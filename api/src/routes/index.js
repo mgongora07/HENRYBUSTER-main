@@ -7,6 +7,7 @@ const getFormat = require("../controllers/getFotmat");
 const getGenre = require("../controllers/getGenres");
 const getLanguage = require("../controllers/getLanguage");
 const insertGenre = require("../controllers/insertGenre");
+const insertLanguage = require("../controllers/insertLanguage");
 
 const router = express.Router();
 
@@ -17,5 +18,6 @@ router.get("/formats", getFormat);
 router.get("/genres", getGenre);
 router.get("/languages", getLanguage);
 router.post("/genre",insertGenre)
+router.post("/language",insertLanguage)
 
 module.exports = router;
