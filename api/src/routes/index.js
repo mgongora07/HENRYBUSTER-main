@@ -18,7 +18,7 @@ const router = express.Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
-router.get("/movies/:id",getMovieById)
+router.get("/movie/:id",getMovieById)
 router.get("/movies", getMovies);
 router.get("/formats", getFormat);
 router.get("/genres", getGenre);
