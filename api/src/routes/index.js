@@ -12,11 +12,13 @@ const insertFormat = require("../controllers/insertFormat");
 const insertUser = require("../controllers/insertUser");
 const insertMovie = require("../controllers/insertMovie");
 const updateMovie = require("../controllers/UpdateMovie");
+const getMovieById = require("../controllers/getMovieById");
 
 const router = express.Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
+router.get("/movies/:id",getMovieById)
 router.get("/movies", getMovies);
 router.get("/formats", getFormat);
 router.get("/genres", getGenre);
@@ -27,4 +29,5 @@ router.post("/format", insertFormat)
 router.post("/user", insertUser)
 router.post("/movie", insertMovie)
 router.put("/movie/:id", updateMovie)
+
 module.exports = router;
