@@ -16,6 +16,7 @@ const getMovieById = require("../controllers/getMovieById");
 const updateUser = require("../controllers/updateUser");
 const getUsers = require("../controllers/getUsers");
 const getUserById = require("../controllers/getUserById");
+const getRatingsByMovieId = require("../controllers/getRatingsByMovieId");
 
 const router = express.Router();
 
@@ -28,6 +29,7 @@ router.get("/users", getUsers);
 router.get("/formats", getFormat);
 router.get("/genres", getGenre);
 router.get("/languages", getLanguage);
+router.get("/rating/:id", getRatingsByMovieId)
 router.post("/genre",insertGenre)
 router.post("/language",insertLanguage)
 router.post("/format", insertFormat)
