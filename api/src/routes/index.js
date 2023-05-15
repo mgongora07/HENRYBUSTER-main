@@ -15,12 +15,14 @@ const updateMovie = require("../controllers/UpdateMovie");
 const getMovieById = require("../controllers/getMovieById");
 const updateUser = require("../controllers/updateUser");
 const getUsers = require("../controllers/getUsers");
+const getUserById = require("../controllers/getUserById");
 
 const router = express.Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 router.get("/movie/:id",getMovieById)
+router.get("/user/:id",getUserById)
 router.get("/movies", getMovies);
 router.get("/users", getUsers);
 router.get("/formats", getFormat);
