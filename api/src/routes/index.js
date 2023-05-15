@@ -14,6 +14,7 @@ const insertMovie = require("../controllers/insertMovie");
 const updateMovie = require("../controllers/UpdateMovie");
 const getMovieById = require("../controllers/getMovieById");
 const updateUser = require("../controllers/updateUser");
+const getUsers = require("../controllers/getUsers");
 
 const router = express.Router();
 
@@ -21,6 +22,7 @@ const router = express.Router();
 // Ejemplo: router.use('/auth', authRouter);
 router.get("/movie/:id",getMovieById)
 router.get("/movies", getMovies);
+router.get("/users", getUsers);
 router.get("/formats", getFormat);
 router.get("/genres", getGenre);
 router.get("/languages", getLanguage);
