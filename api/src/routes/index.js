@@ -13,6 +13,7 @@ const insertUser = require("../controllers/insertUser");
 const insertMovie = require("../controllers/insertMovie");
 const updateMovie = require("../controllers/UpdateMovie");
 const getMovieById = require("../controllers/getMovieById");
+const updateUser = require("../controllers/updateUser");
 
 const router = express.Router();
 
@@ -29,5 +30,5 @@ router.post("/format", insertFormat)
 router.post("/user", insertUser)
 router.post("/movie", insertMovie)
 router.put("/movie/:id", updateMovie)
-
+router.put("/user/:id", updateUser)
 module.exports = router;
