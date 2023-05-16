@@ -366,210 +366,304 @@ const fillMovie = async (req, res) => {
     });
     await movie21.addGenres([1, 2]);
 
+    const movie22 = await Movie.create({
+      name: "Law Abiding Citizen",
+      image:
+        "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/fcEXcip7v0O1ndV4VUdFqJSqbOg.jpg",
+      description: `A frustrated man decides to take justice into his own hands after a plea bargain sets one of his family's killers free. He targets not only the killer but also the district attorney and others involved in the deal.`,
+      price: 15.99,
+      LanguageId: 2,
+      FormatId: 4,
+      date: "2009/10/15",
+    });
 
-const movie22 = await Movie.create({
-  name: "Law Abiding Citizen",
-  image:
-    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/fcEXcip7v0O1ndV4VUdFqJSqbOg.jpg",
-  description: `A frustrated man decides to take justice into his own hands after a plea bargain sets one of his family's killers free. He targets not only the killer but also the district attorney and others involved in the deal.`,
-  price: 15.99,
-  LanguageId: 2,
-  FormatId: 4,
-  date: "2009/10/15",
-});
+    await Inventory.create({
+      quantity: 70,
+      MovieId: movie22.id,
+    });
+    await movie22.addGenres([1, 2]);
 
-await Inventory.create({
-  quantity: 70,
-  MovieId: movie22.id,
-});
-await movie22.addGenres([1, 2]);
+    const movie23 = await Movie.create({
+      name: "A Bronx Tale",
+      image:
+        "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/sDbO6LmLYtyqAoFTPpRcMgPSCEO.jpg",
+      description: `Set in the Bronx during the tumultuous 1960s, an adolescent boy is torn between his honest, working-class father and a violent yet charismatic crime boss. Complicating matters is the youngster's growing attraction - forbidden in his neighborhood - for a beautiful black girl.`,
+      price: 24.99,
+      LanguageId: 2,
+      FormatId: 3,
+      date: "1993/09/14",
+    });
 
-const movie23 = await Movie.create({
-  name: "A Bronx Tale",
-  image:
-    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/sDbO6LmLYtyqAoFTPpRcMgPSCEO.jpg",
-  description: `Set in the Bronx during the tumultuous 1960s, an adolescent boy is torn between his honest, working-class father and a violent yet charismatic crime boss. Complicating matters is the youngster's growing attraction - forbidden in his neighborhood - for a beautiful black girl.`,
-  price: 24.99,
-  LanguageId: 2,
-  FormatId: 3,
-  date: "1993/09/14",
-});
+    await Inventory.create({
+      quantity: 70,
+      MovieId: movie23.id,
+    });
+    await movie23.addGenres([1, 2, 7]);
 
-await Inventory.create({
-  quantity: 70,
-  MovieId: movie23.id,
-});
-await movie23.addGenres([1, 2, 7]);
+    const movie24 = await Movie.create({
+      name: "The Gangster, the cop, the devil",
+      image:
+        "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/oHlM4abRm6BzrRcz9Nup1uidw9H.jpg",
+      description: `After barely surviving a violent attack by an elusive serial killer, crime boss Jang Dong-su finds himself forming an unlikely partnership with local detective Jung Tae-seok to catch the sadistic killer simply known as K.`,
+      price: 20.99,
+      LanguageId: 2,
+      FormatId: 3,
+      date: "2019/05/15",
+    });
 
-const movie24 = await Movie.create({
-  name: "The Gangster, the cop, the devil",
-  image:
-    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/oHlM4abRm6BzrRcz9Nup1uidw9H.jpg",
-  description: `After barely surviving a violent attack by an elusive serial killer, crime boss Jang Dong-su finds himself forming an unlikely partnership with local detective Jung Tae-seok to catch the sadistic killer simply known as K.`,
-  price: 20.99,
-  LanguageId: 2,
-  FormatId: 3,
-  date: "2019/05/15",
-});
+    await Inventory.create({
+      quantity: 30,
+      MovieId: movie24.id,
+    });
+    await movie24.addGenres([1, 2, 7]);
 
-await Inventory.create({
-  quantity: 30,
-  MovieId: movie24.id,
-});
-await movie24.addGenres([1, 2, 7]);
+    const movie25 = await Movie.create({
+      name: "Looks Can Kill",
+      image:
+        "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1uy2PNFwtkqH3mhGd6irk5aeIrF.jpg",
+      description: `A group of models is killed off, one by one, and everyone is a suspect.`,
+      price: 18.99,
+      LanguageId: 2,
+      FormatId: 3,
+      date: "2022/01/02",
+    });
 
-const movie25 = await Movie.create({
-  name: "Looks Can Kill",
-  image:
-    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1uy2PNFwtkqH3mhGd6irk5aeIrF.jpg",
-  description: `A group of models is killed off, one by one, and everyone is a suspect.`,
-  price: 18.99,
-  LanguageId: 2,
-  FormatId: 3,
-  date: "2022/01/02",
-});
+    await Inventory.create({
+      quantity: 20,
+      MovieId: movie25.id,
+    });
+    await movie25.addGenres([1, 2, 5]);
 
-await Inventory.create({
-  quantity: 20,
-  MovieId: movie25.id,
-});
-await movie25.addGenres([1, 2, 5]);
+    const movie26 = await Movie.create({
+      name: "American History X",
+      image:
+        "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/c2gsmSQ2Cqv8zosqKOCwRS0GFBS.jpg",
+      description: `Derek Vineyard is paroled after serving 3 years in prison for killing two African-American men. Through his brother, Danny Vineyard's narration, we learn that before going to prison, Derek was a skinhead and the leader of a violent white supremacist gang that committed acts of racial crime throughout L.A. and his actions greatly influenced Danny. Reformed and fresh out of prison, Derek severs contact with the gang and becomes determined to keep Danny from going down the same violent path as he did.`,
+      price: 10.99,
+      LanguageId: 2,
+      FormatId: 3,
+      date: "2009/04/07",
+    });
 
-const movie26 = await Movie.create({
-  name: "American History X",
-  image:
-    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/c2gsmSQ2Cqv8zosqKOCwRS0GFBS.jpg",
-  description: `Derek Vineyard is paroled after serving 3 years in prison for killing two African-American men. Through his brother, Danny Vineyard's narration, we learn that before going to prison, Derek was a skinhead and the leader of a violent white supremacist gang that committed acts of racial crime throughout L.A. and his actions greatly influenced Danny. Reformed and fresh out of prison, Derek severs contact with the gang and becomes determined to keep Danny from going down the same violent path as he did.`,
-  price: 10.99,
-  LanguageId: 2,
-  FormatId: 3,
-  date: "2009/04/07",
-});
+    await Inventory.create({
+      quantity: 20,
+      MovieId: movie26.id,
+    });
+    await movie26.addGenres([1, 2, 7]);
 
-await Inventory.create({
-  quantity: 20,
-  MovieId: movie26.id,
-});
-await movie26.addGenres([1, 2, 7]);
+    const movie27 = await Movie.create({
+      name: "The Empire Strikes Back",
+      image:
+        "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/mfnkSeeVOBVheuyn2lo4tfmOPQb.jpg",
+      description: `A touching story of an Italian book seller of Jewish ancestry who lives in his own little fairy tale. His creative and happy life would come to an abrupt halt when his entire family is deported to a concentration camp during World War II. While locked up he tries to convince his son that the whole thing is just a game.`,
+      price: 10.99,
+      LanguageId: 2,
+      FormatId: 3,
+      date: "1980/12/25",
+    });
 
-const movie27 = await Movie.create({
-  name: "The Empire Strikes Back",
-  image:
-    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/mfnkSeeVOBVheuyn2lo4tfmOPQb.jpg",
-  description: `A touching story of an Italian book seller of Jewish ancestry who lives in his own little fairy tale. His creative and happy life would come to an abrupt halt when his entire family is deported to a concentration camp during World War II. While locked up he tries to convince his son that the whole thing is just a game.`,
-  price: 10.99,
-  LanguageId: 2,
-  FormatId: 3,
-  date: "1980/12/25",
-});
+    await Inventory.create({
+      quantity: 10,
+      MovieId: movie27.id,
+    });
+    await movie27.addGenres([1, 2]);
 
-await Inventory.create({
-  quantity: 10,
-  MovieId: movie27.id,
-});
-await movie27.addGenres([1, 2]);
+    const movie28 = await Movie.create({
+      name: "The Silence of the Lambs",
+      image:
+        "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/uS9m8OBk1A8eM9I042bx8XXpqAq.jpg",
+      description: `Clarice Starling is a top student at the FBI's training academy. Jack Crawford wants Clarice to interview Dr. Hannibal Lecter, a brilliant psychiatrist who is also a violent psychopath, serving life behind bars for various acts of murder and cannibalism. Crawford believes that Lecter may have insight into a case and that St`,
+      price: 15.99,
+      LanguageId: 2,
+      FormatId: 3,
+      date: "2021/10/28",
+    });
 
-const movie28 = await Movie.create({
-  name: "The Silence of the Lambs",
-  image:
-    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/uS9m8OBk1A8eM9I042bx8XXpqAq.jpg",
-  description: `Clarice Starling is a top student at the FBI's training academy. Jack Crawford wants Clarice to interview Dr. Hannibal Lecter, a brilliant psychiatrist who is also a violent psychopath, serving life behind bars for various acts of murder and cannibalism. Crawford believes that Lecter may have insight into a case and that St`,
-  price: 15.99,
-  LanguageId: 2,
-  FormatId: 3,
-  date: "2021/10/28",
-});
+    await Inventory.create({
+      quantity: 10,
+      MovieId: movie28.id,
+    });
+    await movie28.addGenres([7, 11, 13]);
 
-await Inventory.create({
-  quantity: 10,
-  MovieId: movie28.id,
-});
-await movie28.addGenres([7, 11, 13]);
+    const movie29 = await Movie.create({
+      name: "Léon: The Profesional",
+      image:
+        "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/yI6X2cCM5YPJtxMhUd3dPGqDAhw.jpg",
+      description: `Léon, the top hit man in New York, has earned a rep as an effective "cleaner". But when his next-door neighbors are wiped out by a loose-cannon DEA agent, he becomes the unwilling custodian of 12-year-old Mathilda. Before long, Mathilda's thoughts turn to revenge, and she considers following in Léon's footsteps.`,
+      price: 12.99,
+      LanguageId: 2,
+      FormatId: 3,
+      date: "1994/09/14",
+    });
 
-const movie29 = await Movie.create({
-  name: "Léon: The Profesional",
-  image:
-    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/yI6X2cCM5YPJtxMhUd3dPGqDAhw.jpg",
-  description: `Léon, the top hit man in New York, has earned a rep as an effective "cleaner". But when his next-door neighbors are wiped out by a loose-cannon DEA agent, he becomes the unwilling custodian of 12-year-old Mathilda. Before long, Mathilda's thoughts turn to revenge, and she considers following in Léon's footsteps.`,
-  price: 12.99,
-  LanguageId: 2,
-  FormatId: 3,
-  date: "1994/09/14",
-});
+    await Inventory.create({
+      quantity: 30,
+      MovieId: movie29.id,
+    });
+    await movie29.addGenres([1, 2, 5]);
 
-await Inventory.create({
-  quantity: 30,
-  MovieId: movie29.id,
-});
-await movie29.addGenres([1, 2, 5]);
+    const movie30 = await Movie.create({
+      name: "Modern Times",
+      image:
+        "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/smggAeGHRjKy85h6BzF0eTeDrFW.jpg",
+      description: `The Tramp struggles to live in modern industrial society with the help of a young homeless woman.`,
+      price: 16.99,
+      LanguageId: 2,
+      FormatId: 3,
+      date: "1936/06/20",
+    });
 
-const movie30 = await Movie.create({
-  name: "Modern Times",
-  image:
-    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/smggAeGHRjKy85h6BzF0eTeDrFW.jpg",
-  description: `The Tramp struggles to live in modern industrial society with the help of a young homeless woman.`,
-  price: 16.99,
-  LanguageId: 2,
-  FormatId: 3,
-  date: "1936/06/20",
-});
+    await Inventory.create({
+      quantity: 70,
+      MovieId: movie30.id,
+    });
+    await movie30.addGenres([9, 15]);
 
-await Inventory.create({
-  quantity: 70,
-  MovieId: movie30.id,
-});
-await movie30.addGenres([9, 15]);
+    const movie31 = await Movie.create({
+      name: "The Great Dictador",
+      image:
+        "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1QpO9wo7JWecZ4NiBuu625FiY1j.jpg",
+      description: `Dictator Adenoid Hynkel tries to expand his empire while a poor Jewish barber tries to avoid persecution from Hynkel's regime.`,
+      price: 18.99,
+      LanguageId: 2,
+      FormatId: 3,
+      date: "1941/01/01",
+    });
 
-const movie31 = await Movie.create({
-  name: "The Great Dictador",
-  image:
-    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1QpO9wo7JWecZ4NiBuu625FiY1j.jpg",
-  description: `Dictator Adenoid Hynkel tries to expand his empire while a poor Jewish barber tries to avoid persecution from Hynkel's regime.`,
-  price: 18.99,
-  LanguageId: 2,
-  FormatId: 3,
-  date: "1941/01/01",
-});
+    await Inventory.create({
+      quantity: 10,
+      MovieId: movie31.id,
+    });
+    await movie31.addGenres([1, 2, 4]);
 
-await Inventory.create({
-  quantity: 10,
-  MovieId: movie31.id,
-});
-await movie31.addGenres([1, 2, 4]);
+    const movie32 = await Movie.create({
+      name: "City Lights",
+      image:
+        "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/bXNvzjULc9jrOVhGfjcc64uKZmZ.jpg",
+      description: `In this sound-era silent film, a tramp falls in love with a beautiful blind flower seller.`,
+      price: 10.99,
+      LanguageId: 2,
+      FormatId: 3,
+      date: "1931/07/03",
+    });
 
-const movie32 = await Movie.create({
-  name: "City Lights",
-  image:
-    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/bXNvzjULc9jrOVhGfjcc64uKZmZ.jpg",
-  description: `In this sound-era silent film, a tramp falls in love with a beautiful blind flower seller.`,
-  price: 10.99,
-  LanguageId: 2,
-  FormatId: 3,
-  date: "1931/07/03",
-});
+    await Inventory.create({
+      quantity: 40,
+      MovieId: movie32.id,
+    });
+    await movie32.addGenres([4, 14]);
 
-await Inventory.create({
-  quantity: 40,
-  MovieId: movie32.id,
-});
-await movie32.addGenres([4, 14]);
+    const movie33 = await Movie.create({
+      name: "Interstellar",
+      image:
+        "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+      description: `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg`,
+      price: 9.99,
+      LanguageId: 2,
+      FormatId: 3,
+      date: "2014/11/06",
+    });
 
-const movie33 = await Movie.create({
-  name: "Interstellar",
-  image:
-    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
-  description: `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg`,
-  price: 9.99,
-  LanguageId: 2,
-  FormatId: 3,
-  date: "2014/11/06",
-});
+    await Inventory.create({
+      quantity: 10,
+      MovieId: movie33.id,
+    });
+    await movie33.addGenres([1, 2, 15]);
 
-await Inventory.create({
-  quantity: 10,
-  MovieId: movie33.id,
-});
-await movie33.addGenres([1, 2, 15]);
+    const movie61 = await Movie.create({
+      name: "Glass Onion",
+      image:
+        "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/vDGr1YdrlfbU9wxTOdpf3zChmv9.jpg",
+      description:
+        "World-famous detective Benoit Blanc heads to Greece to peel back the layers of a mystery surrounding a tech billionaire and his eclectic crew of friends.",
+      price: 10.0,
+      LanguageId: 2,
+      FormatId: 1,
+      date: "23/11/2023",
+    });
+
+    await Inventory.create({
+      quantity: 8,
+      MovieId: movie16.id,
+    });
+
+    await movie61.addGenres([4, 5, 13]);
+
+    const movie62 = await Movie.create({
+      name: "Fantastic Beasts: The Secrets of Dumbledore",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/jrgifaYeUtTnaH7NF5Drkgjg2MB.jpg",
+      description:
+        "Professor Albus Dumbledore knows the powerful, dark wizard Gellert Grindelwald is moving to seize control of the wizarding world. Unable to stop him alone, he entrusts magizoologist Newt Scamander to lead an intrepid team of wizards and witches. They soon encounter an array of old and new beasts as they clash with Grindelwald's growing legion of followers.",
+      price: 9.5,
+      LanguageId: 2,
+      FormatId: 1,
+      date: "15/04/2022,",
+    });
+
+    await Inventory.create({
+      quantity: 5,
+      MovieId: movie62.id,
+    });
+
+    await movie62.addGenres([2, 8, 9]);
+
+    const movie63 = await Movie.create({
+      name: "The Avengers",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg",
+      description:
+        "When an unexpected enemy emerges and threatens global safety and security, Nick Fury, director of the international peacekeeping agency known as S.H.I.E.L.D., finds himself in need of a team to pull the world back from the brink of disaster. Spanning the globe, a daring recruitment effort begins!",
+      price: 12.0,
+      LanguageId: 2,
+      FormatId: 2,
+      date: "26/04/2012",
+    });
+
+    await Inventory.create({
+      quantity: 10,
+      MovieId: movie63.id,
+    });
+
+    await movie63.addGenres([15, 1, 2]);
+
+    const movie64 = await Movie.create({
+      name: "Crater",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/n8ZpMwYT02XjpQHpSxn1eJw5Zpz.jpg",
+      description:
+        "After the death of his father, a boy growing up on a lunar mining colony takes a trip to explore a legendary crater, along with his four best friends, prior to being permanently relocated to another planet.",
+      price: 7.0,
+      LanguageId: 2,
+      FormatId: 2,
+      date: "12/05/2023",
+    });
+
+    await Inventory.create({
+      quantity: 3,
+      MovieId: movie64.id,
+    });
+
+    await movie64.addGenres([15, 1, 2, 8]);
+
+    const movie65 = await Movie.create({
+      name: "Titanic",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg",
+      description:
+        "101-year-old Rose DeWitt Bukater tells the story of her life aboard the Titanic, 84 years later. A young Rose boards the ship with her mother and fiancé. Meanwhile, Jack Dawson and Fabrizio De Rossi win third-class tickets aboard the ship. Rose tells the whole story from Titanic's departure through to its death—on its first and last voyage—on April 15, 1912.",
+      price: 15.0,
+      LanguageId: 2,
+      FormatId: 3,
+      date: "05/02/1997",
+    });
+
+    await Inventory.create({
+      quantity: 8,
+      MovieId: movie65.id,
+    });
+
+    await movie65.addGenres([7, 14]);
 
     //res.status(200).json("ok");
   } catch (error) {
