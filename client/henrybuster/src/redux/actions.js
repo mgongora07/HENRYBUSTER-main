@@ -1,4 +1,10 @@
-import { GET_DETAIL, GET_MOVIES, SPLIT_RECIPES } from "./action-type";
+import {
+  GET_DETAIL,
+  GET_MOVIES,
+  GET_FORMAT,
+  GET_GENRES,
+  SPLIT_RECIPES,
+} from "./action-type";
 import axios from "axios";
 
 export const getDetailMovie = (id) => {
@@ -32,6 +38,7 @@ export const cleanDetail = () => {
   };
 };
 
+// funciones en el home
 export const getMovies = () => {
   return async function (dispatch) {
     try {
@@ -54,6 +61,25 @@ export function splitRecipes(inicio, fin) {
       type: SPLIT_RECIPES,
       inicio,
       fin,
+    });
+  };
+}
+
+export function getFormats() {
+  return async (dispatch) => {
+    const resp = await axios(`http://localhost:3001/formats`);
+    dispatch({
+      type: GET_FORMAT,
+      payload: resp.data,
+    });
+  };
+}
+export function getGenres() {
+  return async (dispatch) => {
+    const resp = await axios(`http://localhost:3001/genres`);
+    dispatch({
+      type: GET_GENRES,
+      payload: resp.data,
     });
   };
 }
