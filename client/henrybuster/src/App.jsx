@@ -16,12 +16,11 @@ function App() {
       {location.pathname === "/" ? <Landing /> : <Nav />}
 
       <Routes>
-        <Route to="/home" element={<Home />} />
-       <Route path= '/movie/:id' element={<Detail/>} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/movie/:id" element={<Detail />} />
       </Routes>
     </>
   );
 }
 
 export default App;
-
