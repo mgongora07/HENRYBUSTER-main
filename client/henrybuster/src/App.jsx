@@ -1,29 +1,27 @@
-import { useState } from 'react'
+import React, { useState } from "react";
 
-import './App.css'
-import Detail from './Detail'
-import { Routes, Route} from 'react-router-dom'
-
+import "./App.css";
+// import Detail from './Detail'
+import { Routes, Route, useLocation } from "react-router-dom";
+import { Landing } from "./components/Landing/Landing";
+import { Home } from "./components/Home/Home";
+import { Nav } from "./components/Nav/Nav";
+import { Detail } from "./components/Detail/Detail";
 
 function App() {
- 
+  const location = useLocation();
 
   return (
-    
-      <>
-           <h1>Hola App js</h1>
-      
-      <Routes> 
-        <Route path= '/movie/:id' element={<Detail/>} />
+    <>
+      {location.pathname === "/" ? <Landing /> : <Nav />}
+
+      <Routes>
+        <Route to="/home" element={<Home />} />
+       <Route path= '/movie/:id' element={<Detail/>} />
       </Routes>
-           
-          
-    
-       
-      </>
-      
-   
-  )
+    </>
+  );
 }
 
-export default App
+export default App;
+

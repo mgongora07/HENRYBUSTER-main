@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import {useSelector, useDispatch} from "react-redux"
 import { useParams } from 'react-router-dom'
-import { getDetailMovie, cleanDetail } from './redux/actions'
+import { getDetailMovie, cleanDetail } from '../../redux/actions'
 import './Detail.css'
 
 
-const Detail = () => {
+export const Detail = () => {
     const dispatch = useDispatch()
     const {id} = useParams()
     console.log(id)
@@ -49,4 +49,3 @@ const Detail = () => {
   )
 }
 
-export default Detail
