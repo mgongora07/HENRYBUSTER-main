@@ -3,8 +3,8 @@ const {User} = require('../db');
 
 const insertUser= async (req, res) => {
     try {
-        const{name, password, isAdmin} = req.body
-        const user = await User.create({name, password, isAdmin});
+        const{id,name, admin, username, phoneNumber, email} = req.body
+        const user = await User.create({id,name, admin, username, phoneNumber, email});
 
       res.status(200).json(user);
     } catch (error) {

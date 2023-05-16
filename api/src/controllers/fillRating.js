@@ -74,14 +74,14 @@ const fillRating = async (Rating) => {
       {
         comment:
           "exelente pelicula,  el inico no me gusto me parecio muy lento, hubiera preferiado al mas dramastico",
-        rating: 4,
+        rating: 3,
         MovieId: 2,
         UserId: 11,
       },
       {
         comment:
           "exelente pelicula,  el inico no me gusto me parecio muy lento, hubiera preferiado al mas dramastico",
-        rating: 4,
+        rating: 3,
         MovieId: 2,
         UserId: 12,
       },
