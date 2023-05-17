@@ -1,3 +1,6 @@
+
+import { GET_DETAIL, GET_MOVIES, GET_RANKING, SPLIT_RECIPES } from "./action-type";
+
 import {
   GET_DETAIL,
   GET_MOVIES,
@@ -6,15 +9,19 @@ import {
   SPLIT_RECIPES,
   FILTER_BY_GENRES,
   FILTER_BY_FORMAT,
+  GET_RANKING,
 } from "./action-type";
+
 
 const INITIAL_STATE = {
   detail: {},
   movies: [],
   moviesFilter: [],
   paginado: [],
+  ratings: [],
   format: [],
   genres: [],
+
 };
 
 export default function rootReducer(
@@ -41,6 +48,14 @@ export default function rootReducer(
         ...state,
         paginado: result,
       };
+
+      case GET_RANKING:
+        console.log(payload, "reducer")
+      return {
+        ...state,
+        ratings: payload,
+      };
+
 
     case GET_FORMAT:
       return {
@@ -92,6 +107,7 @@ export default function rootReducer(
           moviesFilter: data,
         };
       }
+
     default:
       return state;
   }

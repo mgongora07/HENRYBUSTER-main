@@ -6,7 +6,9 @@ import {
   SPLIT_RECIPES,
   FILTER_BY_FORMAT,
   FILTER_BY_GENRES,
+  GET_RANKING
 } from "./action-type";
+
 import axios from "axios";
 
 export const getDetailMovie = (id) => {
@@ -67,6 +69,39 @@ export function splitRecipes(inicio, fin) {
   };
 }
 
+
+export const getRankingMovie = (id) => {
+  return async function (dispatch) {
+    try {
+      let ratings = await axios.get(`http://localhost:3001/rating/${id}`);
+
+      let payload = ratings.data
+      console.log(payload, 'de payload')
+      return dispatch({
+        type: GET_RANKING,
+        payload: payload,
+      });
+    } catch (error) {
+      return { error: error };
+    }
+  };
+};
+
+export const cleanRatings = () => {
+  return function (dispatch) {
+    try {
+      let clean = [];
+
+      return dispatch({
+        type: GET_RANKING,
+        payload: clean,
+      });
+    } catch (error) {
+      return { error: error };
+    }
+  };
+};
+
 export function getFormats() {
   return async (dispatch) => {
     const resp = await axios(`http://localhost:3001/formats`);
@@ -98,3 +133,4 @@ export function filterByFormat(filtro) {
     payload: filtro,
   };
 }
+

@@ -5,6 +5,8 @@ import { getDetailMovie, cleanDetail } from '../../redux/actions'
 import './Detail.css'
 import Cart from '../Carrito/Cart'
 import { CartContext } from '../Carrito/Context'
+import Reviews from './Reviews'
+
 
 
 
@@ -25,7 +27,7 @@ export const Detail = () => {
 
     }, [id])
 
-   console.log(movies)
+ 
   return (
     <div className='Wraper'>
         <div className='DatosPelis'>
@@ -53,7 +55,9 @@ export const Detail = () => {
 
         </div>
         <div className='Reviews'>
-            <h1>Aqui va el componente de reviews</h1>
+            <Reviews
+               id={id}
+            />
         </div>
         
     </div>
