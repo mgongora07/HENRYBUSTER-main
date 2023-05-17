@@ -564,13 +564,43 @@ const movie33 = await Movie.create({
   FormatId: 3,
   date: "2014/11/06",
 });
-
 await Inventory.create({
-  quantity: 10,
+  quantity: 70,
   MovieId: movie33.id,
 });
 await movie33.addGenres([1, 2, 15]);
 
+const movie66 = await Movie.create({
+  name: "Avatar: The Last Airbender",
+  image:
+    "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/cHFZA8Tlv03nKTGXhLOYOLtqoSm.jpg",
+  description: `In a war-torn world of elemental magic, a young boy reawakens to undertake a dangerous mystic quest to fulfill his destiny as the Avatar, and bring peace to the world.`,
+  price: 30.99,
+  LanguageId: 1,
+  FormatId: 3,
+  date: "2005/02/21",
+});
+await Inventory.create({
+  quantity: 70,
+  MovieId: movie66.id,
+});
+await movie66.addGenres([1, 2, 15]);
+
+const movie67 = await Movie.create({
+  name: "Animaniacs",
+  image:
+    "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/wmPZzLov9OhiknK4jW4qE6mgvHf.jpg",
+  description: `Yakko, Wakko and Dot return for all-new big laughs and the occasional epic takedown of authority figures in serious need of an ego check. Joining the Warners are Starbox & Cindy on their latest play date while Pinky and the Brain's ideas for world domination lead them to all new adventures.`,
+  price: 30.99,
+  LanguageId: 1,
+  FormatId: 3,
+  date: "2020/11/20",
+});
+await Inventory.create({
+  quantity: 70,
+  MovieId: movie67.id,
+});
+await movie66.addGenres([1, 2, 15]);
     //res.status(200).json("ok");
   } catch (error) {
     //res.status(500).json({ error: error.message });
