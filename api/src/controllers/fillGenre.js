@@ -20,6 +20,7 @@ const fillGenre = async (Genre) => {
       { name: "Thriller" },
       { name: "War" },
       { name: "Western" },
+      { name: "Suspense" },
     ]);
   } catch (error) {
     console.log(error.message);
