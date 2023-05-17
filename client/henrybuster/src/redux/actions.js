@@ -4,6 +4,8 @@ import {
   GET_FORMAT,
   GET_GENRES,
   SPLIT_RECIPES,
+  FILTER_BY_FORMAT,
+  FILTER_BY_GENRES,
 } from "./action-type";
 import axios from "axios";
 
@@ -81,5 +83,18 @@ export function getGenres() {
       type: GET_GENRES,
       payload: resp.data,
     });
+  };
+}
+
+export function filterByGenres(filtro) {
+  return {
+    type: FILTER_BY_GENRES,
+    payload: filtro,
+  };
+}
+export function filterByFormat(filtro) {
+  return {
+    type: FILTER_BY_FORMAT,
+    payload: filtro,
   };
 }

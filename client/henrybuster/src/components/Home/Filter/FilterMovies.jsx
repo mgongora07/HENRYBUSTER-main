@@ -1,17 +1,25 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { filterByGenres, filterByFormat } from "../../../redux/actions";
 
 function FilterMovies({ split }) {
   const { genres, format } = useSelector((state) => state);
 
+  const dispatch = useDispatch();
+
   const handleClick = (e) => {
+    dispatch(filterByGenres(e.target.value));
+    split(1);
+  };
+  const handleFormat = (e) => {
+    dispatch(filterByFormat(e.target.value));
     split(1);
   };
 
   return (
     <div>
       <select onChange={handleClick}>
-        <option value="All-Recipes" defaultValue="All-Recipes">
+        <option value="All-Genres" defaultValue="All-Genres">
           Genres
         </option>
         {genres
@@ -22,8 +30,8 @@ function FilterMovies({ split }) {
             ))
           : null}
       </select>
-      <select onChange={handleClick}>
-        <option value="All-Recipes" defaultValue="All-Recipes">
+      <select onChange={handleFormat}>
+        <option value="All-Format" defaultValue="All-Format">
           Format
         </option>
         {format
