@@ -45,6 +45,9 @@ export const Home = () => {
           {paginado &&
             paginado.map((e) => (
               <Cards
+                movies={e}
+                price={e.price}
+                format={e.Format.name}
                 name={e.name}
                 image={e.image}
                 id={e.id}
