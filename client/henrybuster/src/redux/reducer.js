@@ -1,10 +1,11 @@
-import { GET_DETAIL, GET_MOVIES, SPLIT_RECIPES } from "./action-type";
+import { GET_DETAIL, GET_MOVIES, GET_RANKING, SPLIT_RECIPES } from "./action-type";
 
 const INITIAL_STATE = {
   detail: {},
   movies: [],
   moviesFilter: [],
   paginado: [],
+  ratings: [],
 };
 
 export default function rootReducer(
@@ -30,6 +31,12 @@ export default function rootReducer(
       return {
         ...state,
         paginado: result,
+      };
+      case GET_RANKING:
+        console.log(payload, "reducer")
+      return {
+        ...state,
+        ratings: payload,
       };
     default:
       return state;
