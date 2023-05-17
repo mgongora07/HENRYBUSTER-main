@@ -7,7 +7,7 @@ export const Nav = () => {
     <nav className={style.nav}>
       <Link className={style.link} to="/home">Home</Link>
       <Link className={style.link} to="/about">About</Link>
-      <Link className={style.link} to="/shop">Carrito</Link>
+      <Link className={style.link} to="/Cart">Carrito</Link>
       <Link className={style.link} to="/">Salir</Link>
     </nav>
   );

@@ -1,16 +1,19 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import {useSelector, useDispatch} from "react-redux"
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { getDetailMovie, cleanDetail } from '../../redux/actions'
 import './Detail.css'
+import Cart from '../Carrito/Cart'
+import { CartContext } from '../Carrito/Context'
+
 
 
 export const Detail = () => {
     const dispatch = useDispatch()
     const {id} = useParams()
-    console.log(id)
+ 
    const movies = useSelector(state => state.detail)
-   console.log(movies)
+   const {addItemToCart} = useContext(CartContext)
 
    useEffect(() => {
      
@@ -39,6 +42,14 @@ export const Detail = () => {
                     <p>Ranking: {movies? movies.vote_average : "No info about"}</p>
                     <p>Languages avaibles: {movies? movies.Language?.name : "No information about"}</p>
                 </div>
+
+        </div>
+        <div>
+            <button onClick={()=>addItemToCart(movies)}>Add to cart</button>
+            <Link to={'/Cart'}>
+            <button >View cart</button>
+            
+            </Link>
 
         </div>
         <div className='Reviews'>
