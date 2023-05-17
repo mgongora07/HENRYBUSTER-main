@@ -11,7 +11,7 @@ const fillMovie = async (req, res) => {
       LanguageId: 1,
       FormatId: 1,
       date: "2023/04/5",
-      vote_count: 2,
+      vote_count: 10,
       vote_average: 4,
     });
 
@@ -31,6 +31,8 @@ const fillMovie = async (req, res) => {
       LanguageId: 2,
       FormatId: 2,
       date: "2023/02/15",
+      vote_count: 2,
+      vote_average: 3,
     });
 
     await Inventory.create({
