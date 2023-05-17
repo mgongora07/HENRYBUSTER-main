@@ -1,0 +1,14 @@
+.bodyHome {
+  padding-top: 20px;
+  background-color: red;
+}
+
+.body {
+  padding-top: 20px;
+  background-color: #ccc;
+  display: grid;
+  width: 90%;
+  margin: 0 auto;
+  grid-template-columns: 50% 50%;
+  gap: 10px;
+}
