@@ -1,10 +1,16 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import style from "../Styles/Home.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getMovies, splitRecipes } from "../../redux/actions";
+import {
+  getMovies,
+  splitRecipes,
+  getFormats,
+  getGenres,
+} from "../../redux/actions";
 
 import Cards from "./cards/Cards";
 import Paginado from "./paginado/Paginado";
+import FilterMovies from "./Filter/FilterMovies";
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -26,23 +32,29 @@ export const Home = () => {
 
   useEffect(() => {
     dispatch(getMovies());
+    dispatch(getFormats());
+    dispatch(getGenres());
   }, []);
 
   return (
     <>
-      <div className={style.body}>
-        {paginado &&
-          paginado.map((e) => (
-            <Cards
-              name={e.name}
-              image={e.image}
-              id={e.id}
-              key={e.id}
-              genres={e.genres}
-            />
-          ))}
+      <div className={style.bodyHome}>
+        <FilterMovies split={split} />
+        <Paginado pages={pages} split={split} />
+        <div className={style.body}>
+          {paginado &&
+            paginado.map((e) => (
+              <Cards
+                name={e.name}
+                image={e.image}
+                id={e.id}
+                key={e.id}
+                genres={e.genres}
+              />
+            ))}
+        </div>
+        <Paginado pages={pages} split={split} />
       </div>
-      <Paginado pages={pages} split={split} />
     </>
   );
 };

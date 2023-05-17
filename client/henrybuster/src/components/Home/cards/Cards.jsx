@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import style from "./Cards.module.css";
 
 function Cards({ name, image, id, genres }) {
-  console.log("estoy aqui");
-
   return (
     <div className={style.cardBody}>
       <Link to={`/movie/${id}`}>
