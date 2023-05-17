@@ -570,37 +570,53 @@ await Inventory.create({
 });
 await movie33.addGenres([1, 2, 15]);
 
-const movie66 = await Movie.create({
+const movie34 = await Movie.create({
   name: "Avatar: The Last Airbender",
   image:
     "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/cHFZA8Tlv03nKTGXhLOYOLtqoSm.jpg",
   description: `In a war-torn world of elemental magic, a young boy reawakens to undertake a dangerous mystic quest to fulfill his destiny as the Avatar, and bring peace to the world.`,
   price: 30.99,
-  LanguageId: 1,
+  LanguageId: 2,
   FormatId: 3,
   date: "2005/02/21",
 });
 await Inventory.create({
   quantity: 70,
-  MovieId: movie66.id,
+  MovieId: movie34.id,
 });
-await movie66.addGenres([1, 2, 15]);
+await movie34.addGenres([1, 2, 3, 9, 15]);
 
-const movie67 = await Movie.create({
-  name: "Animaniacs",
+const movie35 = await Movie.create({
+  name: "The Spectacular Spider-Man",
   image:
-    "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/wmPZzLov9OhiknK4jW4qE6mgvHf.jpg",
-  description: `Yakko, Wakko and Dot return for all-new big laughs and the occasional epic takedown of authority figures in serious need of an ego check. Joining the Warners are Starbox & Cindy on their latest play date while Pinky and the Brain's ideas for world domination lead them to all new adventures.`,
+    "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/dCNxOhXT7c4lqYuRpdM3m8s9XDp.jpg",
+  description: `Having spent the summer engaging common criminals with his new-found powers, not so typical 16-year-old Peter Parker must conceal his secret identity and battle super-villains in the real world as he enters his junior year of high school.`,
   price: 30.99,
   LanguageId: 1,
   FormatId: 3,
-  date: "2020/11/20",
+  date: "2018/11/12",
 });
 await Inventory.create({
   quantity: 70,
-  MovieId: movie67.id,
+  MovieId: movie35.id,
 });
-await movie66.addGenres([1, 2, 15]);
+await movie35.addGenres([1, 2, 3]);
+
+const movie36 = await Movie.create({
+  name: "Gravity Falls ",
+  image:
+    "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/t9inzSLIttATX6RdnmDjL7T4WN7.jpg",
+  description: `Twin brother and sister Dipper and Mabel Pines are in for an unexpected adventure when they spend the summer helping their great uncle Stan run a tourist trap in the mysterious town of Gravity Falls, Oregon.`,
+  price: 20.99,
+  LanguageId: 2,
+  FormatId: 3,
+  date: "2013/10/15",
+});
+await Inventory.create({
+  quantity: 70,
+  MovieId: movie36.id,
+});
+await movie36.addGenres([2]);
     //res.status(200).json("ok");
   } catch (error) {
     //res.status(500).json({ error: error.message });
