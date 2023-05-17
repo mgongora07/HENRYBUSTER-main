@@ -1,5 +1,4 @@
 
-import { GET_DETAIL, GET_MOVIES, GET_RANKING, SPLIT_RECIPES } from "./action-type";
 
 import {
   GET_DETAIL,
@@ -10,6 +9,7 @@ import {
   FILTER_BY_GENRES,
   FILTER_BY_FORMAT,
   GET_RANKING,
+  FILTER_RANKING,
 } from "./action-type";
 
 
@@ -21,6 +21,7 @@ const INITIAL_STATE = {
   ratings: [],
   format: [],
   genres: [],
+  ratingsFilter:[],
 
 };
 
@@ -50,10 +51,11 @@ export default function rootReducer(
       };
 
       case GET_RANKING:
-        console.log(payload, "reducer")
+        
       return {
         ...state,
         ratings: payload,
+        ratingsFilter : payload,
       };
 
 
@@ -107,6 +109,28 @@ export default function rootReducer(
           moviesFilter: data,
         };
       }
+
+      case FILTER_RANKING:
+        
+         let ratingsFiltered = [...state.ratings]
+         console.log(ratingsFiltered, 'inicio')
+        if (payload === "All") {
+          
+          ratingsFiltered = state.ratings;
+          console.log(ratingsFiltered, 'if all')
+
+        } else {
+          
+          const rating = payload; 
+           console.log(rating,'nuemero que recibe')
+          ratingsFiltered = ratingsFiltered.filter((item) => item.rating === rating);
+          console.log(ratingsFiltered, 'despues de filtrar')
+        }
+       
+        return {
+          ...state,
+          ratingsFilter: ratingsFiltered, 
+        };
 
     default:
       return state;

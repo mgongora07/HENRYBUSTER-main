@@ -6,7 +6,8 @@ import {
   SPLIT_RECIPES,
   FILTER_BY_FORMAT,
   FILTER_BY_GENRES,
-  GET_RANKING
+  GET_RANKING,
+  FILTER_RANKING,
 } from "./action-type";
 
 import axios from "axios";
@@ -76,7 +77,7 @@ export const getRankingMovie = (id) => {
       let ratings = await axios.get(`http://localhost:3001/rating/${id}`);
 
       let payload = ratings.data
-      console.log(payload, 'de payload')
+     
       return dispatch({
         type: GET_RANKING,
         payload: payload,
@@ -133,4 +134,13 @@ export function filterByFormat(filtro) {
     payload: filtro,
   };
 }
+
+export function filterRatingStar(order) {
+  console.log(order, 'orden del action')
+  return {
+    type: FILTER_RANKING,
+    payload: order,
+  };
+}
+
 

@@ -1,14 +1,16 @@
 import React from 'react'
 
 const EachReview = (props) => {
-    const {MovieId} = props
-    console.log(MovieId, 'eachreview')
+    const {rating, UserId, comment} = props
+   
     
   return (
     <div>
         <div>
-            <p>Hola test</p>
-            <p>{MovieId?MovieId:'No info about'}</p>
+            <p>Usuario {UserId?UserId:"No info about"}: </p>
+            <p>Rating: {rating?rating:"No info about"}</p>
+            <p>{comment?comment:""}</p>
+            
         </div>
     </div>
   )
