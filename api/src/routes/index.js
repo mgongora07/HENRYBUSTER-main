@@ -18,6 +18,7 @@ const getUsers = require("../controllers/getUsers");
 const getUserById = require("../controllers/getUserById");
 const getRatingsByMovieId = require("../controllers/getRatingsByMovieId");
 const InsertRating = require("../controllers/InsertRating");
+const getMoviesbyAdmin = require("../controllers/getMoviesbyAdmin");
 
 const router = express.Router();
 
@@ -26,6 +27,7 @@ const router = express.Router();
 router.get("/movie/:id",getMovieById)
 router.get("/user/:id",getUserById)
 router.get("/movies", getMovies);
+router.get("/movies/admin", getMoviesbyAdmin)
 router.get("/users", getUsers);
 router.get("/formats", getFormat);
 router.get("/genres", getGenre);
