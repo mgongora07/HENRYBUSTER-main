@@ -1,4 +1,3 @@
-import React from "react";
 import style from "./Paginado.module.css";
 
 function Paginado({ pages, split }) {
