@@ -1,6 +1,9 @@
 import React from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import { filterByGenres, filterByFormat } from "../../../redux/actions";
+
+import style from "./FilterMovies.module.css";
 
 function FilterMovies({ split }) {
   const { genres, format } = useSelector((state) => state);
@@ -17,7 +20,7 @@ function FilterMovies({ split }) {
   };
 
   return (
-    <div>
+    <div className={style.body}>
       <select onChange={handleClick}>
         <option value="All-Genres" defaultValue="All-Genres">
           Genres

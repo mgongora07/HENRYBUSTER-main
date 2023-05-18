@@ -8,12 +8,11 @@ import {
   getGenres,
 } from "../../redux/actions";
 
-import Button from "react-bootstrap/Button";
-
 import Cards from "./cards/Cards";
 import Paginado from "./paginado/Paginado";
 import FilterMovies from "./Filter/FilterMovies";
 import CarouselFadeExample from "./carrusel/CarruselComponent";
+import NewMovie from "./agregadasRecientemente/NewMovie";
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -42,7 +41,14 @@ export const Home = () => {
   return (
     <>
       <div className={style.bodyHome}>
+        <h1 className={style.title}>Las Mas Votadas</h1>
         <CarouselFadeExample className={style.carrusel} />
+        <hr style={{ color: "white", marginTop: "-30px" }} />
+        <h1 className={style.title}>Añadidas Recientemente</h1>
+        <NewMovie></NewMovie>
+        <hr style={{ color: "white" }} />
+
+        <h1 className={style.title}>Todas las Peliculas</h1>
 
         <FilterMovies split={split} />
 
