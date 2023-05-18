@@ -70,14 +70,13 @@ export function splitRecipes(inicio, fin) {
   };
 }
 
-
 export const getRankingMovie = (id) => {
   return async function (dispatch) {
     try {
       let ratings = await axios.get(`http://localhost:3001/rating/${id}`);
 
-      let payload = ratings.data
-     
+      let payload = ratings.data;
+
       return dispatch({
         type: GET_RANKING,
         payload: payload,
@@ -136,11 +135,8 @@ export function filterByFormat(filtro) {
 }
 
 export function filterRatingStar(order) {
-  console.log(order, 'orden del action')
   return {
     type: FILTER_RANKING,
     payload: order,
   };
 }
-
-
