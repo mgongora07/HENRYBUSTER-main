@@ -1,5 +1,3 @@
-
-
 import {
   GET_DETAIL,
   GET_MOVIES,
@@ -12,7 +10,6 @@ import {
   FILTER_RANKING,
 } from "./action-type";
 
-
 const INITIAL_STATE = {
   detail: {},
   movies: [],
@@ -21,8 +18,7 @@ const INITIAL_STATE = {
   ratings: [],
   format: [],
   genres: [],
-  ratingsFilter:[],
-
+  ratingsFilter: [],
 };
 
 export default function rootReducer(
@@ -50,14 +46,12 @@ export default function rootReducer(
         paginado: result,
       };
 
-      case GET_RANKING:
-        
+    case GET_RANKING:
       return {
         ...state,
         ratings: payload,
-        ratingsFilter : payload,
+        ratingsFilter: payload,
       };
-
 
     case GET_FORMAT:
       return {
@@ -110,27 +104,38 @@ export default function rootReducer(
         };
       }
 
-      case FILTER_RANKING:
-        
-         let ratingsFiltered = [...state.ratings]
-         console.log(ratingsFiltered, 'inicio')
-        if (payload === "All") {
-          
-          ratingsFiltered = state.ratings;
-          console.log(ratingsFiltered, 'if all')
+    case FILTER_RANKING:
+      let ratingsFiltered = [...state.ratings];
+      console.log(ratingsFiltered, "inicio");
+      if (payload === "All") {
+        ratingsFiltered = state.ratings;
+        console.log(ratingsFiltered, "if all");
+      } else {
+        const rating = payload;
+        console.log(rating, "nuemero que recibe");
+        ratingsFiltered = ratingsFiltered.filter(
+          (item) => item.rating === rating
+        );
+        console.log(ratingsFiltered, "despues de filtrar");
+      }
 
-        } else {
-          
-          const rating = payload; 
-           console.log(rating,'nuemero que recibe')
-          ratingsFiltered = ratingsFiltered.filter((item) => item.rating === rating);
-          console.log(ratingsFiltered, 'despues de filtrar')
-        }
-       
-        return {
-          ...state,
-          ratingsFilter: ratingsFiltered, 
-        };
+      return {
+        ...state,
+        ratingsFilter: ratingsFiltered,
+      };
+
+      console.log(state.movies);
+      if (state.movies.length > 1) {
+      }
+      const sortedMovies = state.movies.sort(
+        (a, b) => b.vote_count - a.vote_count
+      );
+      console.log(sortedMovies);
+      const top10Movies = sortedMovies.slice(0, 10);
+      return {
+        ...state,
+        top: top10Movies,
+      };
 
     default:
       return state;

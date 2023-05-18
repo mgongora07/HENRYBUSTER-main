@@ -4,6 +4,7 @@ function Paginado({ pages, split }) {
   const handleButtonClick = (e) => {
     split(e.target.value);
   };
+
   return (
     <div className={style.container}>
       {pages &&

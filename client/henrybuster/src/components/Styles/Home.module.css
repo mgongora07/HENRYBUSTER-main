@@ -1,14 +1,21 @@
 .bodyHome {
   padding-top: 20px;
-  background-color: red;
+  background-color: rgb(8, 15, 40);
 }
 
 .body {
-  padding-top: 20px;
-  background-color: #ccc;
+  padding-top: 60px;
   display: grid;
   width: 90%;
   margin: 0 auto;
   grid-template-columns: 50% 50%;
-  gap: 10px;
+  justify-content: center;
+  gap: 50px;
+}
+
+.title {
+  color: white;
+  margin-bottom: 40px;
+  margin-left: 10px;
+  width: fit-content;
 }
