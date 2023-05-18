@@ -1532,7 +1532,7 @@ const fillMovie = async (req, res) => {
       MovieId: movie85.id,
     });
 
-    await movie85.addGenres([7,2,1]);
+    await movie85.addGenres([7, 2, 1]);
 
     const movie86 = await Movie.create({
       name: "Con luz propia: Michelle Obama y Oprah Winfrey",
@@ -1665,7 +1665,7 @@ const fillMovie = async (req, res) => {
       MovieId: movie92.id,
     });
 
-    await movie92.addGenres([1,7]);
+    await movie92.addGenres([1, 7]);
 
     const movie93 = await Movie.create({
       name: "Amor en obras",
@@ -1818,6 +1818,576 @@ const fillMovie = async (req, res) => {
     });
 
     await movie100.addGenres([4]);
+
+    const movie101 = await Movie.create({
+      name: "Scarface",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/iQ5ztdjvteGeboxtmRdXEChJOHh.jpg",
+      description:
+        "Después de obtener una tarjeta verde a cambio de asesinar a un funcionario del gobierno cubano, Tony Montana reclama el tráfico de drogas en Miami. Asesinando brutalmente a cualquiera que se interponga en su camino, Tony finalmente se convierte en el capo de la droga más grande del estado, controlando casi toda la cocaína que llega a Miami. Pero el aumento de la presión de la policía, las guerras con los cárteles de la droga colombianos y su propia paranoia alimentada por las drogas sirven para alimentar las llamas de su eventual caída.",
+      price: 77.35,
+      LanguageId: 2,
+      FormatId: 8,
+      date: "02/09/1984",
+    });
+
+    await Inventory.create({
+      quantity: 13,
+      MovieId: movie101.id,
+    });
+
+    await movie101.addGenres([1]);
+
+    const movie102 = await Movie.create({
+      name: "The Good, the Bad and the Ugly",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/bX2xnavhMYjWDoZp1VM6VnU1xwe.jpg",
+      description:
+        "Mientras continúa la Guerra Civil entre la Unión y la Confederación, tres hombres, un solitario solitario, un asesino a sueldo despiadado y un bandido mexicano, peinan el suroeste de Estados Unidos en busca de una caja fuerte que contiene $ 200,000 en oro robado.",
+      price: 66.35,
+      LanguageId: 2,
+      FormatId: 8,
+      date: "1968/11/01",
+    });
+
+    await Inventory.create({
+      quantity: 13,
+      MovieId: movie102.id,
+    });
+
+    await movie102.addGenres([1]);
+
+    const movie103 = await Movie.create({
+      name: "Cannibal Holocaust",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/q8TR9TEePfYCFNvOo85Pwcd5pO5.jpg",
+      description:
+        "Un profesor de la Universidad de Nueva York regresa de una misión de rescate en la selva amazónica con las imágenes filmadas por un equipo perdido de documentalistas que estaban haciendo una película sobre las tribus caníbales locales de la zona.",
+      price: 23.0,
+      LanguageId: 2,
+      FormatId: 11,
+      date: "1980/07/02",
+    });
+
+    await Inventory.create({
+      quantity: 2,
+      MovieId: movie103.id,
+    });
+
+    await movie103.addGenres([11]);
+
+    const movie104 = await Movie.create({
+      name: "Los Diez Mandamientos",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/3Ei59AR64x6dMZfWobPCkZjbqTL.jpg",
+      description:
+        "Escapando de la muerte, un niño hebreo es criado en una casa real para convertirse en príncipe. Al descubrir su verdadera herencia, Moisés se embarca en una búsqueda personal para reclamar su destino como líder y libertador del pueblo hebreo.",
+      price: 90.0,
+      LanguageId: 2,
+      FormatId: 3,
+      date: "1957/12/17",
+    });
+
+    await Inventory.create({
+      quantity: 20,
+      MovieId: movie104.id,
+    });
+
+    await movie104.addGenres([10]);
+
+    const movie105 = await Movie.create({
+      name: "Blade Runner",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/63N9uy8nd9j7Eog2axPQ8lbr3Wj.jpg",
+      description:
+        "En el distópico Los Ángeles asfixiado por el smog de 2019, el corredor de espadas Rick Deckard es llamado a salir de su retiro para terminar con un cuarteto de replicantes que escaparon a la Tierra en busca de su creador para encontrar una forma de extender su corta vida.",
+      price: 50.0,
+      LanguageId: 2,
+      FormatId: 3,
+      date: "1982/10/21",
+    });
+
+    await Inventory.create({
+      quantity: 20,
+      MovieId: movie105.id,
+    });
+
+    await movie105.addGenres([1, 2]);
+
+    const movie106 = await Movie.create({
+      name: "Ben-Hur",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/m4WQ1dBIrEIHZNCoAjdpxwSKWyH.jpg",
+      description:
+        "En el año 25 d. C., Judah Ben-Hur, un judío de la antigua Judea, se opone a la ocupación del imperio romano. Acusado falsamente por un amigo de la infancia romano convertido en señor supremo de intentar matar al gobernador romano, lo esclavizan y se llevan a su madre y hermana como prisioneras. Tres años más tarde, y liberado por un comandante de galera romano agradecido a quien rescató de ahogarse, se convierte en un auriga experto para Roma, mientras conspira para regresar a Judea, encontrar y rescatar a su familia y vengarse de su antiguo amigo. ",
+      price: 60.0,
+      LanguageId: 2,
+      FormatId: 1,
+      date: "1960/04/08",
+    });
+
+    await Inventory.create({
+      quantity: 5,
+      MovieId: movie106.id,
+    });
+
+    await movie106.addGenres([1, 2]);
+
+    const movie107 = await Movie.create({
+      name: "Servicio de entrega de Kiki",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/Aufa4YdZIv4AXpR9rznwVA5SEfd.jpg",
+      description:
+        "A una joven bruja, en su año obligatorio de vida independiente, le resulta difícil adaptarse a una nueva comunidad mientras se mantiene a sí misma administrando un servicio de mensajería aérea.",
+      price: 10.0,
+      LanguageId: 2,
+      FormatId: 2,
+      date: "1989/07/29",
+    });
+
+    await Inventory.create({
+      quantity: 2,
+      MovieId: movie107.id,
+    });
+
+    await movie107.addGenres([2, 3, 9]);
+
+    const movie108 = await Movie.create({
+      name: "Castillo en el cielo",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/pvH9ZafnrV94qzlJvi1nW0BiM1e.jpg",
+      description:
+        "Un niño y una niña con un cristal mágico deben competir contra piratas y agentes extranjeros en la búsqueda de un legendario castillo flotante.",
+      price: 16.0,
+      LanguageId: 1,
+      FormatId: 2,
+      date: "1986/02/08",
+    });
+
+    await Inventory.create({
+      quantity: 1,
+      MovieId: movie108.id,
+    });
+
+    await movie108.addGenres([2, 3, 9]);
+
+    const movie109 = await Movie.create({
+      name: "Beverly Hills Cop",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/eBJEvKkhQ0tUt1dBAcTEYW6kCle.jpg",
+      description:
+        "Un policía de Detroit despreocupado que investiga un asesinato se encuentra lidiando con la cultura muy diferente de Beverly Hills.",
+      price: 9.0,
+      LanguageId: 2,
+      FormatId: 1,
+      date: "1985 / 02 /05",
+    });
+
+    await Inventory.create({
+      quantity: 7,
+      MovieId: movie109.id,
+    });
+
+    await movie109.addGenres([1, 4, 5]);
+
+    const movie110 = await Movie.create({
+      name: "Viernes 13",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/HzrPn1gEHWixfMOvOehOTlHROo.jpg",
+      description:
+        "Los consejeros del campamento son acechados y asesinados por un asaltante desconocido mientras intentan reabrir un campamento de verano que fue el lugar donde se ahogó un niño.",
+      price: 8.0,
+      LanguageId: 1,
+      FormatId: 9,
+      date: "1980/09/05",
+    });
+
+    await Inventory.create({
+      quantity: 20,
+      MovieId: movie110.id,
+    });
+
+    await movie110.addGenres([11]);
+
+    const movie111 = await Movie.create({
+      name: "Grease",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/czVhhAaSBFpakur7U8pOIDV9NUG.jpg",
+      description:
+        "La buena chica australiana Sandy y el engrasador Danny se enamoraron durante el verano. Pero cuando descubren inesperadamente que ahora están en la misma escuela secundaria, ¿podrán reavivar su romance a pesar de sus excéntricos amigos?",
+      price: 12.0,
+      LanguageId: 1,
+      FormatId: 1,
+      date: 07 / 07 / 1978,
+    });
+
+    await Inventory.create({
+      quantity: 15,
+      MovieId: movie111.id,
+    });
+
+    await movie110.addGenres([4, 14]);
+
+    const movie112 = await Movie.create({
+      name: "Full Metal Jacket",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/kMKyx1k8hWWscYFnPbnxxN4Eqo4.jpg",
+      description:
+        "Un infante de marina pragmático de EE. UU. observa los efectos deshumanizantes que la guerra entre EE. UU. y Vietnam tiene en sus compañeros reclutas, desde su brutal entrenamiento en el campo de entrenamiento hasta los sangrientos combates callejeros en Hue.",
+      price: 4.0,
+      LanguageId: 1,
+      FormatId: 2,
+      date: "1987/08/10",
+    });
+
+    await Inventory.create({
+      quantity: 3,
+      MovieId: movie112.id,
+    });
+
+    await movie112.addGenres([1]);
+
+    const movie113 = await Movie.create({
+      name: "Spartacus",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/biaUMHb8xsdQHlEF6rHmlKxSARy.jpg",
+      description:
+        "El tracio rebelde Espartaco, nacido y criado como esclavo, es vendido al entrenador de gladiadores Batiatus. Después de semanas de ser entrenado para matar por la arena, Spartacus se vuelve contra sus dueños y lidera a los otros esclavos en rebelión. A medida que los rebeldes se mueven de pueblo en pueblo, su número aumenta a medida que los esclavos fugitivos se unen a sus filas. Bajo el liderazgo de Spartacus, se abren camino hacia el sur de Italia, donde cruzarán el mar y regresarán a sus hogares.",
+      price: 7.0,
+      LanguageId: 1,
+      FormatId: 9,
+      date: "1960/10/13",
+    });
+
+    await Inventory.create({
+      quantity: 1,
+      MovieId: movie113.id,
+    });
+
+    await movie113.addGenres([1, 2, 10]);
+
+    const movie114 = await Movie.create({
+      name: "Los Goonies",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/eBU7gCjTCj9n2LTxvCSIXXOvHkD.jpg",
+      description:
+        "Un joven adolescente llamado Mikey Walsh encuentra un viejo mapa del tesoro en el ático de su padre. Con la esperanza de salvar sus hogares de la demolición, Mikey y sus amigos Data Wang, Chunk Cohen y Mouth Devereaux emprenden una gran búsqueda para encontrar el alijo secreto del pirata One-Eyed Willie.",
+      price: 30.0,
+      LanguageId: 4,
+      FormatId: 1,
+      date: "1985/04/07",
+    });
+
+    await Inventory.create({
+      quantity: 1,
+      MovieId: movie114.id,
+    });
+
+    await movie114.addGenres([2]);
+
+    const movie115 = await Movie.create({
+      name: "Psicosis",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/yz4QVqPx3h1hD1DfqqQkCq3rmxW.jpg",
+      description:
+        "Cuando la ladrona empleada de bienes raíces Marion Crane se da a la fuga con un fajo de billetes y la esperanza de comenzar una nueva vida, termina en el notorio Bates Motel, donde el gerente Norman Bates cuida a su madre confinada en casa.",
+      price: 25.0,
+      LanguageId: 1,
+      FormatId: 3,
+      date: "1960/06/28",
+    });
+
+    await Inventory.create({
+      quantity: 5,
+      MovieId: movie115.id,
+    });
+
+    await movie115.addGenres([7, 11]);
+
+    const movie116 = await Movie.create({
+      name: "Cobra",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/jCxfbTh8JvJil5edhNywxaTHoWv.jpg",
+      description:
+        "Un policía callejero duro con el crimen debe proteger al único testigo sobreviviente de un extraño culto asesino con planes de largo alcance.",
+      price: 50.0,
+      LanguageId: 2,
+      FormatId: 1,
+      date: "1986/05/23",
+    });
+
+    await Inventory.create({
+      quantity: 3,
+      MovieId: movie116.id,
+    });
+
+    await movie116.addGenres([1]);
+
+    const movie117 = await Movie.create({
+      name: "Mad Max",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/5LrI4GiCSrChgkdskVZiwv643Kg.jpg",
+      description:
+        "En un futuro cercano devastado, una pandilla de motociclistas salvajes gobierna el camino. Aterrorizando a civiles inocentes mientras destrozan las calles, la pandilla despiadada se ríe en la cara de una fuerza policial empeñada en detenerlos. Pero subestiman a un oficial: Max Rockatansky. Y cuando los motociclistas maltratan al mejor amigo y la familia de Max, lo envían a un frenesí loco que lo deja con una sola cosa en el mundo por la que vivir: ¡la venganza!",
+      price: 30.0,
+      LanguageId: 2,
+      FormatId: 1,
+      date: "1979/04/12",
+    });
+
+    await Inventory.create({
+      quantity: 7,
+      MovieId: movie117.id,
+    });
+
+    await movie117.addGenres([1, 2, 15]);
+
+    const movie118 = await Movie.create({
+      name: "Sociedad de poetas muertos",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/ai40gM7SUaGA6fthvsd87o8IQq4.jpg",
+      description:
+        "En un internado de élite a la antigua en Nueva Inglaterra, un apasionado profesor de inglés inspira a sus alumnos a rebelarse contra las convenciones y aprovechar el potencial de cada día, cortejando el desdén del severo director.",
+      price: 40.0,
+      LanguageId: 1,
+      FormatId: 2,
+      date: "1990/02/15",
+    });
+
+    await Inventory.create({
+      quantity: 20,
+      MovieId: movie118.id,
+    });
+
+    await movie118.addGenres([7]);
+
+    const movie119 = await Movie.create({
+      name: "RoboCop",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/hHtOgGb3NihlyRATHlKPaFApbrd.jpg",
+      description:
+        "En un Detroit violento y casi apocalíptico, la malvada corporación Omni Consumer Products gana un contrato del gobierno de la ciudad para privatizar la fuerza policial. Para probar sus cyborgs que erradican el crimen, la compañía lleva al policía callejero Alex Murphy a una confrontación armada con el señor del crimen Boddicker para que puedan usar su cuerpo para apoyar su prototipo RoboCop no probado. Pero cuando RoboCop se entera de los nefastos planes de la compañía, se vuelve contra sus amos.",
+      price: 60.0,
+      LanguageId: 6,
+      FormatId: 3,
+      date: "1987/07/17",
+    });
+
+    await Inventory.create({
+      quantity: 2,
+      MovieId: movie119.id,
+    });
+
+    await movie119.addGenres([1, 15]);
+
+    const movie120 = await Movie.create({
+      name: "Cazafantasmas",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/7E8nLijS9AwwUEPu2oFYOVKhdFA.jpg",
+      description:
+        "Después de perder sus puestos académicos en una prestigiosa universidad, un equipo de parapsicólogos entra en el negocio como cazafantasmas cargados de protones que exterminan demonios, duendes y plagas sobrenaturales de todo tipo. Una campaña publicitaria da sus frutos cuando una violonchelista deslumbrante contrata al equipo para purgar sus ostentosas excavaciones de demonios que parecen vivir en su refrigerador.",
+      price: 18.2,
+      LanguageId: 7,
+      FormatId: 7,
+      date: "1984/06/08",
+    });
+
+    await Inventory.create({
+      quantity: 2,
+      MovieId: movie120.id,
+    });
+
+    await movie120.addGenres([1, 15]);
+
+    const movie121 = await Movie.create({
+      name: "The Ledge",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/S99eCSnRFfeZJmDaIGIZF58H7w.jpg",
+      description:
+        "Una aventura de escalada en roca entre dos amigos se convierte en una terrorífica pesadilla. Después de que Kelly captura el asesinato de su mejor amiga en cámara, se convierte en el próximo objetivo de un grupo muy unido de amigos que no se detendrán ante nada para destruir la evidencia y a cualquiera que se interponga en su camino.",
+      price: 15.0,
+      LanguageId: 2,
+      FormatId: 2,
+      date: "2022/02/18",
+    });
+
+    await Inventory.create({
+      quantity: 3,
+      MovieId: movie121.id,
+    });
+
+    await movie121.addGenres([2, 20]);
+
+    const movie122 = await Movie.create({
+      name: "Space Jam: A New Legacy",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/5bFK5d3mVTAvBCXi5NPWH0tYjKl.jpg",
+      description:
+        "Cuando LeBron y su joven hijo Dom quedan atrapados en un espacio digital por una IA deshonesta, LeBron debe llevarlos a casa a salvo guiando a Bugs, Lola Bunny y toda la pandilla de Looney Tunes notoriamente indisciplinados a la victoria sobre los campeones digitalizados de la IA en la cancha. Es Tunes versus Goons en el desafío de mayor riesgo de su vida.",
+      price: 20.0,
+      LanguageId: 2,
+      FormatId: 2,
+      date: "2021/07/16",
+    });
+
+    await Inventory.create({
+      quantity: 15,
+      MovieId: movie122.id,
+    });
+
+    await movie122.addGenres([2, 3, 4]);
+
+    const movie123 = await Movie.create({
+      name: "El menú",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/fPtUgMcLIboqlTlPrq0bQpKK8eq.jpg",
+      description:
+        "Una joven pareja viaja a una isla remota para comer en un restaurante exclusivo donde el chef ha preparado un menú suntuoso, con algunas sorpresas impactantes.",
+      price: 45.0,
+      LanguageId: 1,
+      FormatId: 2,
+      date: "2022/11/18",
+    });
+
+    await Inventory.create({
+      quantity: 45,
+      MovieId: movie123.id,
+    });
+
+    await movie123.addGenres([4, 11, 20]);
+
+    const movie124 = await Movie.create({
+      name: "El último hombre caído",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/4B7liCxNCZIZGONmAMkCnxVlZQV.jpg",
+      description:
+        "Después de que la civilización sucumbe a una pandemia mortal y su esposa es asesinada, un soldado de las fuerzas especiales abandona su deber y se convierte en ermitaño en la naturaleza nórdica. Años más tarde, una mujer herida aparece en su puerta. Escapó de un laboratorio y sus perseguidores creen que su sangre es la clave para una cura mundial. Duda en involucrarse, pero todas las dudas se desvanecen cuando descubre que su perseguidor no es otro que el Comandante Stone, el hombre que asesinó a su esposa hace algunos años.",
+      price: 35.0,
+      LanguageId: 8,
+      FormatId: 6,
+      date: "2021/10/19",
+    });
+
+    await Inventory.create({
+      quantity: 14,
+      MovieId: movie124.id,
+    });
+
+    await movie124.addGenres([1, 20]);
+
+    const movie125 = await Movie.create({
+      name: "El último hombre caído, La batalla en el lago Changjin: puente Water Gate",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/4W58wirZhbzcw2lNzRS2ErKnOGS.jpg",
+      description:
+        "En el seguimiento de La batalla en el lago Changjin, los hermanos Wu Qianli y Wu Wanli emprenden una nueva tarea para el Ejército Popular de Voluntarios, defendiendo un puente que forma parte de la ruta de escape de las tropas estadounidenses del avance chino.",
+      price: 5.0,
+      LanguageId: 9,
+      FormatId: 1,
+      date: "2022/01/02",
+    });
+
+    await Inventory.create({
+      quantity: 4,
+      MovieId: movie125.id,
+    });
+
+    await movie125.addGenres([1]);
+
+    const movie126 = await Movie.create({
+      name: "Milagro en la celda No. 7",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/bOth4QmNyEkalwahfPCfiXjNh1r.jpg",
+      description:
+        "Separado de su hija, un padre con discapacidad intelectual debe probar su inocencia cuando es encarcelado por la muerte del hijo de un comandante.",
+      price: 23.0,
+      LanguageId: 3,
+      FormatId: 6,
+      date: "2019/11/10",
+    });
+
+    await Inventory.create({
+      quantity: 60,
+      MovieId: movie126.id,
+    });
+
+    await movie126.addGenres([7]);
+
+    const movie127 = await Movie.create({
+      name: "El gángster, el policía, el diablo",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/oHlM4abRm6BzrRcz9Nup1uidw9H.jpg",
+      description:
+        "Después de sobrevivir a duras penas a un ataque violento de un escurridizo asesino en serie, el jefe del crimen Jang Dong-su se encuentra formando una asociación improbable con el detective local Jung Tae-seok para atrapar al sádico asesino conocido simplemente como K.",
+      price: 3.0,
+      LanguageId: 9,
+      FormatId: 1,
+      date: "2019/05/15",
+    });
+
+    await Inventory.create({
+      quantity: 6,
+      MovieId: movie127.id,
+    });
+
+    await movie127.addGenres([1, 2, 5]);
+
+    const movie128 = await Movie.create({
+      name: "La bestia marina",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/9Zfv4Ap1e8eKOYnZPtYaWhLkk0d.jpg",
+      description:
+        "En una era en la que bestias aterradoras vagaban por los mares, los cazadores de monstruos eran héroes célebres. Ninguno fue más querido que el gran Jacob Holland. Pero cuando el joven Maisie Brumble viaja de polizón en su legendario barco, carga con un aliado inesperado. Juntos se embarcan en un viaje épico hacia aguas desconocidas y hacen historia.",
+      price: 2.0,
+      LanguageId: 1,
+      FormatId: 1,
+      date: "2022/07/08",
+    });
+
+    await Inventory.create({
+      quantity: 9,
+      MovieId: movie128.id,
+    });
+
+    await movie128.addGenres([2, 3, 8]);
+
+    const movie129 = await Movie.create({
+      name: "Nop",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/AcKVlWaNVVVFQwro3nLXqPljcYA.jpg",
+      description:
+        "Los residentes de una quebrada solitaria del interior de California son testigos de un descubrimiento extraño y escalofriante.",
+      price: 12.0,
+      LanguageId: 8,
+      FormatId: 1,
+      date: "2022/07/21",
+    });
+
+    await Inventory.create({
+      quantity: 3,
+      MovieId: movie129.id,
+    });
+
+    await movie129.addGenres([13, 15]);
+
+    const movie130 = await Movie.create({
+      name: "La visita sorpresa",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/a3J0t376OE1Vk3jKN67viY31s5.jpg",
+      description:
+        "Cuando una pareja joven hace una visita sorpresa a mamá, reciben una sorpresa aún mayor de un viejo amigo de la familia que planea robar las valiosas joyas de mamá mientras está fuera de la ciudad. Pero cuando el robo “fácil” sale mal y resulta en la muerte accidental del esposo de la hija, obliga a los dos jóvenes drogadictos a tomar una decisión difícil: abandonar el barco o hacer lo impensable.",
+      price: 16.0,
+      LanguageId: 2,
+      FormatId: 1,
+      date: "2022/01/14",
+    });
+
+    await Inventory.create({
+      quantity: 3,
+      MovieId: movie130.id,
+    });
+
+    await movie130.addGenres([20, 5]);
 
     //res.status(200).json("ok");
   } catch (error) {
