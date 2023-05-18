@@ -1,18 +1,13 @@
 const {Movie, Inventory, Format, Genre, Language} = require('../db');
-const { Op } = require('sequelize');
 
-const getMovies = async (req, res) => {
+
+const getMoviesForAdmin = async (req, res) => {
     try {
         const movies = await Movie.findAll({
             include: [
               {
                 model: Inventory,
                 attributes: ['quantity'],
-                where:{
-                  quantity:{
-                    [Op.gt]: 0
-                  }
-                } 
               },
               {
                 model: Format,
@@ -34,5 +29,5 @@ const getMovies = async (req, res) => {
     }
   };
   
-  module.exports = getMovies;
+  module.exports = getMoviesForAdmin;
   
