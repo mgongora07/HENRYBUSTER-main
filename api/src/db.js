@@ -12,7 +12,6 @@ const rating = require("./models/Rating");
 const language = require("./models/Language");
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
-
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/henrybuster`,
   {
@@ -58,18 +57,19 @@ language(sequelize);
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-const { User, Format, Genre, Inventory, Purchase, Movie, Rating, Language} = sequelize.models;
+const { User, Format, Genre, Inventory, Purchase, Movie, Rating, Language } =
+  sequelize.models;
 
-Movie.belongsToMany(Genre, { through: 'MovieGenre' });
-Genre.belongsToMany(Movie, { through: 'MovieGenre' });
+Movie.belongsToMany(Genre, { through: "MovieGenre" });
+Genre.belongsToMany(Movie, { through: "MovieGenre" });
 
 Format.hasOne(Movie);
 Movie.belongsTo(Format);
 
-Movie.hasOne(Inventory); 
+Movie.hasOne(Inventory);
 Inventory.belongsTo(Movie);
 
-Movie.hasMany(Rating); 
+Movie.hasMany(Rating);
 Rating.belongsTo(Movie);
 
 User.hasOne(Rating);
@@ -80,7 +80,6 @@ Movie.belongsTo(Language);
 
 Movie.hasOne(Purchase);
 Purchase.belongsTo(Movie);
-
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
