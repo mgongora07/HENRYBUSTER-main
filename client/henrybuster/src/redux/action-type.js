@@ -7,4 +7,5 @@ export const GET_RANKING = "GET_RANKING"
 export const FILTER_BY_GENRES = "FILTER_BY_GENRES";
 export const FILTER_BY_FORMAT = "FILTER_BY_FORMAT";
 export const FILTER_RANKING = "FILTER_RANKING";
+export const CREATE_MOVIE = "CREATE_MOVIE";
 

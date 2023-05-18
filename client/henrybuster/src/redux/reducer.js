@@ -10,6 +10,7 @@ import {
   FILTER_BY_FORMAT,
   GET_RANKING,
   FILTER_RANKING,
+  CREATE_MOVIE
 } from "./action-type";
 
 
@@ -131,6 +132,11 @@ export default function rootReducer(
           ...state,
           ratingsFilter: ratingsFiltered, 
         };
+
+        case CREATE_MOVIE:
+          return{
+            ...state,
+          }
 
     default:
       return state;

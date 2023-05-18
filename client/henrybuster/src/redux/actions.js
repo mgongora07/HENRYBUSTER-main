@@ -8,6 +8,7 @@ import {
   FILTER_BY_GENRES,
   GET_RANKING,
   FILTER_RANKING,
+  CREATE_MOVIE,
 } from "./action-type";
 
 import axios from "axios";
@@ -144,3 +145,21 @@ export function filterRatingStar(order) {
 }
 
 
+export const postNewMovie = (newMovie)=>{
+  return async function(dispatch){
+      try {
+           await axios.post(`http://localhost:3001/movie`, newMovie)
+
+           alert(`Successfully added to inventory`);
+          
+          return (dispatch({
+              type: CREATE_MOVIE,
+              }
+              ))
+          
+      } catch (error) {
+          alert(`Failed to create item`);
+          return {error: error}
+      }
+  }
+}
