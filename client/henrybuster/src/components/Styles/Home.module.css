@@ -1,14 +1,14 @@
 .bodyHome {
   padding-top: 20px;
-  background-color: red;
+  background-color: #080f28;
 }
 
 .body {
-  padding-top: 20px;
-  background-color: #ccc;
+  padding-top: 60px;
   display: grid;
   width: 90%;
   margin: 0 auto;
   grid-template-columns: 50% 50%;
-  gap: 10px;
+  justify-content: center;
+  gap: 50px;
 }

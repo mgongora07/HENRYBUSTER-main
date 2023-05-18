@@ -1,0 +1,22 @@
+.body {
+  margin-top: 10px;
+  padding-bottom: 100px;
+}
+.title {
+  color: white;
+  padding-bottom: 20px;
+}
+
+.img {
+  width: 70%;
+  height: 500px;
+}
+
+.controls {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+  height: 100%;
+  margin-bottom: -25px;
+}
+.controls h3 {
+  margin-top: 390px;
+}

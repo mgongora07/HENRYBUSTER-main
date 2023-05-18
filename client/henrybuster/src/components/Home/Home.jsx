@@ -8,9 +8,12 @@ import {
   getGenres,
 } from "../../redux/actions";
 
+import Button from "react-bootstrap/Button";
+
 import Cards from "./cards/Cards";
 import Paginado from "./paginado/Paginado";
 import FilterMovies from "./Filter/FilterMovies";
+import CarouselFadeExample from "./carrusel/CarruselComponent";
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -39,7 +42,10 @@ export const Home = () => {
   return (
     <>
       <div className={style.bodyHome}>
+        <CarouselFadeExample className={style.carrusel} />
+
         <FilterMovies split={split} />
+
         <Paginado pages={pages} split={split} />
         <div className={style.body}>
           {paginado &&

@@ -1,6 +1,18 @@
-.cardBody {
-}
-.img {
+.body {
   width: 250px;
-  height: 350px;
+  height: 450px;
+  margin: 0 auto;
+}
+
+.text {
+  color: white;
+}
+
+.text span {
+  color: red;
+}
+
+.button {
+  display: flex;
+  justify-content: space-between;
 }
