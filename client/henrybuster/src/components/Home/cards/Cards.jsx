@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
 import Button from "react-bootstrap/Button";
@@ -8,18 +8,26 @@ import { CartContext } from "../../Carrito/Context";
 import style from "./Cards.module.css";
 
 function Cards({ name, image, id, genres, movies, price, format }) {
-  const { addItemToCart } = useContext(CartContext);
+  const { addItemToCart, deleteItemToCart } = useContext(CartContext);
+  const [stateBuy, setStateBuy] = useState(false);
+
+  const handleClick = () => {
+    if (!stateBuy) {
+      addItemToCart(movies);
+      setStateBuy(true);
+    } else {
+      deleteItemToCart(movies);
+      setStateBuy(false);
+    }
+  };
 
   return (
     <>
-      <Card
-        className={style.body}
-        style={{ background: "rgb(250,250,250, 0)" }}
-      >
+      <Card className={style.body} style={{ background: "rgb(0,0,0,0)" }}>
         <Link to={`/movie/${id}`}>
           <Card.Img variant="top" src={image} style={{ height: "250px" }} />
         </Link>
-        <Card.Body>
+        <Card.Body className={style.cardBody}>
           <Card.Title className={style.text}>{name}</Card.Title>
           <Card.Text className={style.text}>
             <span>Format:</span> {format}
@@ -28,7 +36,13 @@ function Cards({ name, image, id, genres, movies, price, format }) {
             <span>Price$: </span> {price}
           </Card.Text>
           <div className={style.button}>
-            <Button onClick={() => addItemToCart(movies)}>Add to cart</Button>
+            <Button
+              className={stateBuy === true ? "bg-success" : null}
+              onClick={handleClick}
+              style={{ height: "fit-content" }}
+            >
+              Add to cart
+            </Button>
             <Link to={"/Cart"}>
               <Button>View cart</Button>
             </Link>
