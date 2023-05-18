@@ -9,25 +9,28 @@ import { Nav } from "./components/Nav/Nav";
 import { Detail } from "./components/Detail/Detail";
 import Cart from "./components/Carrito/Cart"
 import { CartProvider } from "./components/Carrito/Context";
-
+import { AuthProvider } from "./context/authContext";
+import  Register  from "./components/Register/Register";
+import Login from "./components/Login/Login";
 
 function App() {
   const location = useLocation();
 
   return (
     <>
-    <CartProvider>
+      <CartProvider>
+        <AuthProvider>
+          {location.pathname === "/" ? <Landing /> : <Nav />}
 
-    
-      {location.pathname === "/" ? <Landing /> : <Nav />}
+          <Routes>
+            <Route path='/home' element={<Home />} />
+            <Route path='/movie/:id' element={<Detail />} />
 
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/movie/:id" element={<Detail />} />
-        
-        <Route path="/cart" element={<Cart />} />
-
-      </Routes>
+            <Route path='/cart' element={<Cart />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/login' element={<Login />} />
+          </Routes>
+        </AuthProvider>
       </CartProvider>
     </>
   );
