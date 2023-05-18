@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import Button from "react-bootstrap/Button";
@@ -10,14 +10,37 @@ import style from "./Cards.module.css";
 function Cards({ name, image, id, genres, movies, price, format }) {
   const { addItemToCart, deleteItemToCart } = useContext(CartContext);
   const [stateBuy, setStateBuy] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [deleteSuccess, setDeleteSuccess] = useState(false);
 
-  const handleClick = () => {
+  const valor = localStorage.getItem("cartProducts");
+  const valorArray = JSON.parse(valor);
+
+  useEffect(() => {
+    const x = valorArray.filter((item) => item.id === id); // Utilizar filter en el array
+
+    if (x.length > 0) {
+      setStateBuy(true);
+      return;
+    }
+  }, []);
+
+  const handleClick = (e) => {
+    const value = e.target.value;
     if (!stateBuy) {
       addItemToCart(movies);
       setStateBuy(true);
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+      }, 1000);
     } else {
       deleteItemToCart(movies);
       setStateBuy(false);
+      setDeleteSuccess(true);
+      setTimeout(() => {
+        setDeleteSuccess(false);
+      }, 800);
     }
   };
 
@@ -37,16 +60,25 @@ function Cards({ name, image, id, genres, movies, price, format }) {
           </Card.Text>
           <div className={style.button}>
             <Button
-              className={stateBuy === true ? "bg-success" : null}
+              className={stateBuy === true ? "bg-danger" : "bg-success"}
+              value={id}
               onClick={handleClick}
               style={{ height: "fit-content" }}
             >
-              Add to cart
+              {stateBuy === true ? "Delete to cart" : "Add to cart"}
             </Button>
             <Link to={"/Cart"}>
               <Button>View cart</Button>
             </Link>
           </div>
+          {success ? (
+            <Card.Text className="text-success">Agregado con exito !</Card.Text>
+          ) : null}
+          {deleteSuccess ? (
+            <Card.Text className="text-warning">
+              Eliminado con exito !
+            </Card.Text>
+          ) : null}
         </Card.Body>
       </Card>
     </>

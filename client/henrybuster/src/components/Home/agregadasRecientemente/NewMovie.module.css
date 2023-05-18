@@ -6,7 +6,7 @@
 .body {
   display: grid;
   grid-template-columns: repeat(4, 200px);
-  grid-template-rows: repeat(2, 480px);
+  grid-template-rows: repeat(2, 510px);
   justify-content: center;
   gap: 80px;
   margin-bottom: 50px;
