@@ -18,7 +18,7 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require("./src/app.js");
-const fillMovie = require("./src/controllers/FillMovie.js");
+const fillMovie = require("./src/controllers/fillMovie.js");
 const fillFormat = require("./src/controllers/fillFormat.js");
 const fillGenre = require("./src/controllers/fillGenre.js");
 const fillLanguage = require("./src/controllers/fillLanguage.js");

@@ -1,16 +1,16 @@
 
 import { GET_DETAIL, GET_MOVIES, GET_RANKING, SPLIT_RECIPES } from "./action-type";
 
-import {
-  GET_DETAIL,
-  GET_MOVIES,
-  GET_FORMAT,
-  GET_GENRES,
-  SPLIT_RECIPES,
-  FILTER_BY_GENRES,
-  FILTER_BY_FORMAT,
-  GET_RANKING,
-} from "./action-type";
+// import {
+//   GET_DETAIL,
+//   GET_MOVIES,
+//   GET_FORMAT,
+//   GET_GENRES,
+//   SPLIT_RECIPES,
+//   FILTER_BY_GENRES,
+//   FILTER_BY_FORMAT,
+//   GET_RANKING,
+// } from "./action-type";
 
 
 const INITIAL_STATE = {

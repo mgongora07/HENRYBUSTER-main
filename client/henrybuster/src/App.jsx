@@ -17,16 +17,11 @@ function App() {
   return (
     <>
     <CartProvider>
-
-    
       {location.pathname === "/" ? <Landing /> : <Nav />}
-
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/movie/:id" element={<Detail />} />
-        
         <Route path="/cart" element={<Cart />} />
-
       </Routes>
       </CartProvider>
     </>

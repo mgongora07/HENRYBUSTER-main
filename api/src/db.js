@@ -59,9 +59,9 @@ language(sequelize);
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 const { User, Format, Genre, Inventory, Purchase, Movie, Rating, Language} = sequelize.models;
-
 Movie.belongsToMany(Genre, { through: 'MovieGenre' });
 Genre.belongsToMany(Movie, { through: 'MovieGenre' });
+
 
 Format.hasOne(Movie);
 Movie.belongsTo(Format);
