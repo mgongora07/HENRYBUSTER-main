@@ -22,15 +22,15 @@ export const Home = () => {
     .slice(0, Math.ceil(moviesFilter.length / 10))
     .map((recipe, index) => index + 1);
 
-  const split = (num) => {
-    if (num === 1) {
-      dispatch(splitRecipes(0, 10));
-    } else {
-      const inicio = num * 10 - 10;
-      const fin = num * 10;
-      dispatch(splitRecipes(inicio, fin));
-    }
-  };
+    const split = (num) => {
+      if (num === 1) {
+        dispatch(splitRecipes(0, 10));
+      } else {
+        const inicio = num * 10 - 10;
+        const fin = num * 10;
+        dispatch(splitRecipes(inicio, fin));
+      }
+    };
 
   useEffect(() => {
     dispatch(getMovies());

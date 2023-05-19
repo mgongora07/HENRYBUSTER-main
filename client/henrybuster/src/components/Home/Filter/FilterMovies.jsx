@@ -21,7 +21,7 @@ function FilterMovies({ split }) {
 
   return (
     <div className={style.body}>
-      <select onChange={handleClick}>
+      <select onChange={handleClick} className={style.selects}>
         <option value="All-Genres" defaultValue="All-Genres">
           Genres
         </option>
@@ -33,7 +33,7 @@ function FilterMovies({ split }) {
             ))
           : null}
       </select>
-      <select onChange={handleFormat}>
+      <select onChange={handleFormat} className={style.selects}>
         <option value="All-Format" defaultValue="All-Format">
           Format
         </option>

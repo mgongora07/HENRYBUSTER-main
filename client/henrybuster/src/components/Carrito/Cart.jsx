@@ -28,7 +28,7 @@ const Cart = () => {
           <h2>Tu carrito</h2>
 
           {cartItems.length === 0 ? (
-            <p >Tu carrito está vacío</p>
+            <p >Tu <i class="fa-solid fa-cart-shopping"></i> está vacío</p>
           ) : (
             <div >
               {cartItems.map((item, i) => (

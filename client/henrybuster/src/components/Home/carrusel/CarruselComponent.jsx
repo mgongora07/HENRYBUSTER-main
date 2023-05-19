@@ -31,18 +31,18 @@ function CarouselFadeExample() {
                   <div className={style.bodyTitle}>
                     <h3>{e.name}</h3>
                     <p>
-                      Format:{" "}
-                      <span style={{ color: "red", fontWeight: "600" }}>
-                        {e.Format.name}
+                      Format: 
+                       <span style={{ color: "white", fontWeight: "300" }}>
+                         {e.Format.name}
                       </span>
                     </p>
                   </div>
                   <p>{e.description}</p>
                 </Link>
                 <div className={style.button}>
-                  <Button onClick={() => addItemToCart(e)}>Add to cart</Button>
+                  <Button onClick={() => addItemToCart(e)}><i class="fa-solid fa-cart-plus"></i> +</Button>
                   <Link to={"/Cart"}>
-                    <Button>View cart</Button>
+                    <Button>View cart <i class="fa-solid fa-cart-shopping"></i></Button>
                   </Link>
                 </div>
               </div>

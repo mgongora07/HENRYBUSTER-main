@@ -5,3 +5,17 @@
   margin-left: auto;
   margin-right: 180px;
 }
+
+.selects {
+  margin-right: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #666565;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  font-size: 1rem;
+  /* font-weight: bold; */
+  width: 150px;
+  margin: 0 auto;
+  background-color: crimson;
+  color: #f2f2f2;
+}

@@ -33,7 +33,7 @@ function Cards({ name, image, id, genres, movies, price, format }) {
             <span>Format:</span> {format}
           </Card.Text>
           <Card.Text className={style.text}>
-            <span>Price$: </span> {price}
+            <span>Price $: </span> {price}
           </Card.Text>
           <div className={style.button}>
             <Button
@@ -41,10 +41,10 @@ function Cards({ name, image, id, genres, movies, price, format }) {
               onClick={handleClick}
               style={{ height: "fit-content" }}
             >
-              Add to cart
-            </Button>
+              <i class="fa-solid fa-cart-plus"> +</i>
+            </Button >
             <Link to={"/Cart"}>
-              <Button>View cart</Button>
+              <Button>View cart <i class="fa-solid fa-cart-shopping"></i></Button>
             </Link>
           </div>
         </Card.Body>

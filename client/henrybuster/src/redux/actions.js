@@ -1,6 +1,7 @@
 import {
   GET_DETAIL,
   GET_MOVIES,
+  GET_MOVIES_NAME,
   GET_FORMAT,
   GET_GENRES,
   SPLIT_RECIPES,
@@ -52,6 +53,22 @@ export const getMovies = () => {
 
       return dispatch({
         type: GET_MOVIES,
+        payload: payload,
+      });
+    } catch (error) {
+      return { error: error };
+    }
+  };
+};
+
+export const getMoviesName = (name) => {
+  return async function (dispatch) {
+    try {
+      let movie = await axios.get(`http://localhost:3001/movies?name=${name}`);
+      let payload = movie.data;
+
+      return dispatch({
+        type: GET_MOVIES_NAME,
         payload: payload,
       });
     } catch (error) {
