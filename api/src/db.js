@@ -10,10 +10,10 @@ const movie = require("./models/Movie");
 const purchase = require("./models/Purchase");
 const rating = require("./models/Rating");
 const language = require("./models/Language");
-const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
+const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
 
 const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/henrybuster`,
+  `postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}?sslmode=require?options=project%3D${ENDPOINT_ID}`,
   {
     logging: false, // set to console.log to see the raw SQL queries
     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
