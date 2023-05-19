@@ -10,7 +10,8 @@ import {
   FILTER_BY_FORMAT,
   GET_RANKING,
   FILTER_RANKING,
-  CREATE_MOVIE
+  CREATE_MOVIE,
+  GET_LANGUAGE,
 } from "./action-type";
 
 
@@ -23,6 +24,7 @@ const INITIAL_STATE = {
   format: [],
   genres: [],
   ratingsFilter:[],
+  languages:[]
 
 };
 
@@ -137,6 +139,12 @@ export default function rootReducer(
           return{
             ...state,
           }
+
+          case GET_LANGUAGE:
+      return {
+        ...state,
+        languages: payload,
+      };
 
     default:
       return state;

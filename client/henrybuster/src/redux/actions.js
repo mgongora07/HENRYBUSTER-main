@@ -9,6 +9,7 @@ import {
   GET_RANKING,
   FILTER_RANKING,
   CREATE_MOVIE,
+  GET_LANGUAGE,
 } from "./action-type";
 
 import axios from "axios";
@@ -162,4 +163,14 @@ export const postNewMovie = (newMovie)=>{
           return {error: error}
       }
   }
+}
+
+export function getLanguage() {
+  return async (dispatch) => {
+    const resp = await axios(`http://localhost:3001/languages`);
+    dispatch({
+      type: GET_LANGUAGE,
+      payload: resp.data,
+    });
+  };
 }
