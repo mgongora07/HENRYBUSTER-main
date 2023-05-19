@@ -6,7 +6,7 @@
 .cardBody {
   display: flex;
   flex-direction: column;
-  height: 240px;
+  height: 260px;
   background-color: rgb(0, 0, 0, 0.1);
 }
 

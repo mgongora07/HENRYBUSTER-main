@@ -18,7 +18,7 @@ function CarouselFadeExample() {
 
   return (
     <div className={style.body}>
-      <Carousel fade controls={false}>
+      <Carousel fade>
         {top10Movies.map((e, i) => (
           <Carousel.Item key={i}>
             <img className={style.img} src={e.image} alt={e.name} />
