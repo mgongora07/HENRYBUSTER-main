@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { getMoviesName } from "../../redux/actions";
 
 
+
 const SearchBar = () => {
   const dispatch = useDispatch();
 
