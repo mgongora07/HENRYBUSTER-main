@@ -20,7 +20,6 @@ const SearchBar = () => {
     setName({ name: "" });
   };
   
-
   const HandleChangeForm = (e) => {
     setName({
       ...name,
