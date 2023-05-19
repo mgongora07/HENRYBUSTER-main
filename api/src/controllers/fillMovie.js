@@ -1,4 +1,7 @@
 const { Movie, Inventory } = require("../db");
+function getRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 const fillMovie = async (req, res) => {
   try {
     const movie1 = await Movie.create({
@@ -42,6 +45,7 @@ const fillMovie = async (req, res) => {
     await movie2.addGenres([3, 4, 5]);
 
     const movie3 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Súper Mario Bros. La película",
       image:
         "https://www.themoviedb.org/t/p/w220_and_h330_face/zNKs1T0VZuJiVuhuL5GSCNkGdxf.jpg",
@@ -60,6 +64,7 @@ const fillMovie = async (req, res) => {
     await movie3.addGenres([4, 1, 2]);
 
     const movie4 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Guardianes de la Galaxia: Volumen 3",
       image:
         "https://www.themoviedb.org/t/p/w220_and_h330_face/voAxRv011XHK2qFBXmZKXPj2wWB.jpg",
@@ -78,6 +83,7 @@ const fillMovie = async (req, res) => {
     await movie4.addGenres([3, 1, 2]);
 
     const movie5 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Posesión infernal: El despertar",
       image:
         "https://www.themoviedb.org/t/p/w220_and_h330_face/ioMtng0qHbwNjR1fuxYZsRf1kjm.jpg",
@@ -96,6 +102,7 @@ const fillMovie = async (req, res) => {
     await movie5.addGenres([5, 1, 4]);
 
     const movie6 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Ghosting",
       image:
         "https://www.themoviedb.org/t/p/w220_and_h330_face/zSw2JeQ03GivcS4VKJmWK5sYi1F.jpg",
@@ -114,6 +121,7 @@ const fillMovie = async (req, res) => {
     await movie6.addGenres([1, 2]);
 
     const movie7 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "¡Shazam! La furia de los dioses",
       image:
         "https://www.themoviedb.org/t/p/w220_and_h330_face/igFLHxab9zG0M89OmEpnOM6TPXn.jpg",
@@ -131,6 +139,7 @@ const fillMovie = async (req, res) => {
     await movie7.addGenres([1, 2, 3, 4]);
 
     const movie8 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Alias",
       image:
         "https://www.themoviedb.org/t/p/w220_and_h330_face/rmlYg0HdVQDvvNlWishWT2WdxkE.jpg",
@@ -148,6 +157,7 @@ const fillMovie = async (req, res) => {
     await movie8.addGenres([3, 4, 5, 6]);
 
     const movie9 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Avatar: El sentido del agua",
       image:
         "https://www.themoviedb.org/t/p/w220_and_h330_face/bqOqQ2Tawum3eHKNrc94P4EeaZB.jpg",
@@ -165,6 +175,7 @@ const fillMovie = async (req, res) => {
     await movie9.addGenres([1, 2, 3, 4]);
 
     const movie10 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Black Panther:Wakanda Forever",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/sv1xJUazXeYqALzczSZ3O6nkH75.jpg",
@@ -182,6 +193,7 @@ const fillMovie = async (req, res) => {
     await movie10.addGenres([1, 2]);
 
     const movie11 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "The Godfather",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/3bhkrj58Vtu7enYsRolD1fZdja1.jpg",
@@ -199,6 +211,7 @@ const fillMovie = async (req, res) => {
     await movie11.addGenres([1, 7]);
 
     const movie12 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "The Shawshank Redemption",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg",
@@ -216,6 +229,7 @@ const fillMovie = async (req, res) => {
     await movie12.addGenres([6, 7, 8]);
 
     const movie13 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "The Good, the Bad and the Ugly",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/bX2xnavhMYjWDoZp1VM6VnU1xwe.jpg",
@@ -233,6 +247,7 @@ const fillMovie = async (req, res) => {
     await movie13.addGenres([1, 2, 19]);
 
     const movie14 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "The Green Mile",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/o0lO84GI7qrG6XFvtsPOSV7CTNa.jpg",
@@ -250,6 +265,7 @@ const fillMovie = async (req, res) => {
     await movie14.addGenres([7, 9]);
 
     const movie15 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Life Is Beatiful",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/mfnkSeeVOBVheuyn2lo4tfmOPQb.jpg",
@@ -267,6 +283,7 @@ const fillMovie = async (req, res) => {
     await movie15.addGenres([7, 10]);
 
     const movie16 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Psycho",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/yz4QVqPx3h1hD1DfqqQkCq3rmxW.jpg",
@@ -284,6 +301,7 @@ const fillMovie = async (req, res) => {
     await movie16.addGenres([7, 11, 13]);
 
     const movie17 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Se7en",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/6yoghtyTpznpBik8EngEmJskVUO.jpg",
@@ -301,6 +319,7 @@ const fillMovie = async (req, res) => {
     await movie17.addGenres([1, 5, 13]);
 
     const movie18 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Rear Window",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/qitnZcLP7C9DLRuPpmvZ7GiEjJN.jpg",
@@ -318,6 +337,7 @@ const fillMovie = async (req, res) => {
     await movie18.addGenres([5, 7, 13]);
 
     const movie19 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Paths of Glory",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/l2IY0gOHHmCWM90LjteFssxIV1G.jpg",
@@ -335,6 +355,7 @@ const fillMovie = async (req, res) => {
     await movie19.addGenres([1, 2, 7, 10]);
 
     const movie20 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Seven Samurai",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/8OKmBV5BUFzmozIC3pPWKHy17kx.jpg",
@@ -352,6 +373,7 @@ const fillMovie = async (req, res) => {
     await movie20.addGenres([1, 2]);
 
     const movie21 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Rambo",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/r8LPeldxskHrGJTPfhICguCip2H.jpg",
@@ -369,6 +391,7 @@ const fillMovie = async (req, res) => {
     await movie21.addGenres([1, 2]);
 
     const movie22 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Law Abiding Citizen",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/fcEXcip7v0O1ndV4VUdFqJSqbOg.jpg",
@@ -386,6 +409,7 @@ const fillMovie = async (req, res) => {
     await movie22.addGenres([1, 2]);
 
     const movie23 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "A Bronx Tale",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/sDbO6LmLYtyqAoFTPpRcMgPSCEO.jpg",
@@ -403,6 +427,7 @@ const fillMovie = async (req, res) => {
     await movie23.addGenres([1, 2, 7]);
 
     const movie24 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "The Gangster, the cop, the devil",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/oHlM4abRm6BzrRcz9Nup1uidw9H.jpg",
@@ -420,6 +445,7 @@ const fillMovie = async (req, res) => {
     await movie24.addGenres([1, 2, 7]);
 
     const movie25 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Looks Can Kill",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1uy2PNFwtkqH3mhGd6irk5aeIrF.jpg",
@@ -437,6 +463,7 @@ const fillMovie = async (req, res) => {
     await movie25.addGenres([1, 2, 5]);
 
     const movie26 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "American History X",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/c2gsmSQ2Cqv8zosqKOCwRS0GFBS.jpg",
@@ -454,6 +481,7 @@ const fillMovie = async (req, res) => {
     await movie26.addGenres([1, 2, 7]);
 
     const movie27 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "The Empire Strikes Back",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/mfnkSeeVOBVheuyn2lo4tfmOPQb.jpg",
@@ -471,6 +499,7 @@ const fillMovie = async (req, res) => {
     await movie27.addGenres([1, 2]);
 
     const movie28 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "The Silence of the Lambs",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/uS9m8OBk1A8eM9I042bx8XXpqAq.jpg",
@@ -488,6 +517,7 @@ const fillMovie = async (req, res) => {
     await movie28.addGenres([7, 11, 13]);
 
     const movie29 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Léon: The Profesional",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/yI6X2cCM5YPJtxMhUd3dPGqDAhw.jpg",
@@ -505,6 +535,7 @@ const fillMovie = async (req, res) => {
     await movie29.addGenres([1, 2, 5]);
 
     const movie30 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Modern Times",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/smggAeGHRjKy85h6BzF0eTeDrFW.jpg",
@@ -522,6 +553,7 @@ const fillMovie = async (req, res) => {
     await movie30.addGenres([9, 15]);
 
     const movie31 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "The Great Dictador",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1QpO9wo7JWecZ4NiBuu625FiY1j.jpg",
@@ -539,6 +571,7 @@ const fillMovie = async (req, res) => {
     await movie31.addGenres([1, 2, 4]);
 
     const movie32 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "City Lights",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/bXNvzjULc9jrOVhGfjcc64uKZmZ.jpg",
@@ -556,6 +589,7 @@ const fillMovie = async (req, res) => {
     await movie32.addGenres([4, 14]);
 
     const movie33 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Interstellar",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
@@ -573,6 +607,7 @@ const fillMovie = async (req, res) => {
     await movie33.addGenres([1, 2, 15]);
 
     const movie34 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "HP La casa de la bruja de Lovecraft",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/5KmscR49WkmuPJKjmK4OUmsRn5C.jpg",
@@ -591,6 +626,7 @@ const fillMovie = async (req, res) => {
     await movie34.addGenres([11]);
 
     const movie35 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Liga de la Justicia x RWBY: Superhéroes y Cazadores: Parte 1",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/7twNCiHS1rR7P2fyGOH1sUmLDyY.jpg",
@@ -609,6 +645,7 @@ const fillMovie = async (req, res) => {
     await movie35.addGenres([3, 1, 9]);
 
     const movie36 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Ant-Man y la Avispa: Quantumanía",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/lKHy0ntGPdQeFwvNq8gK1D0anEr.jpg",
@@ -627,6 +664,7 @@ const fillMovie = async (req, res) => {
     await movie36.addGenres([1, 2, 15]);
 
     const movie37 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Dungeons & Dragons: Honor entre ladrones",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/77XBzUUFX5aHI3Jz3ipJTtsDWzk.jpg",
@@ -645,6 +683,7 @@ const fillMovie = async (req, res) => {
     await movie37.addGenres([2, 9, 4]);
 
     const movie38 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Súper Mario Bros. La película",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/zNKs1T0VZuJiVuhuL5GSCNkGdxf.jpg",
@@ -663,6 +702,7 @@ const fillMovie = async (req, res) => {
     await movie38.addGenres([3, 8, 4, 2, 9]);
 
     const movie39 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "DC Liga de supermascotas",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/lDtANZzTD80bVi1DTRKRVDrurhJ.jpg",
@@ -681,6 +721,7 @@ const fillMovie = async (req, res) => {
     await movie39.addGenres([1, 3, 4, 8, 15]);
 
     const movie40 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "La forja de un campeón",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/grjCm3K0eWgNT7gHsE766oXs0VW.jpg",
@@ -699,6 +740,8 @@ const fillMovie = async (req, res) => {
     await movie40.addGenres([7, 10]);
 
     const movie41 = await Movie.create({
+
+      vote_average: getRandomNumber(1, 5),
       name: "Youngblood (Forja de campeón)",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/y0M1j79sOShd6456pMEYpkDimhz.jpg",
@@ -717,6 +760,7 @@ const fillMovie = async (req, res) => {
     await movie41.addGenres([11, 17]);
 
     const movie42 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Miraculous World: Shanghái, la leyenda de Ladygragon",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/r6zthVPVoq1urTOsLgofPGel89d.jpg",
@@ -735,6 +779,7 @@ const fillMovie = async (req, res) => {
     await movie42.addGenres([3, 1, 9]);
 
     const movie43 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "La sirenita",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/goX6Pcb7fugl9ADfg3Ns1OnuIYY.jpg",
@@ -753,6 +798,7 @@ const fillMovie = async (req, res) => {
     await movie43.addGenres([2, 8, 9, 14]);
 
     const movie44 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Shang-Chi y la leyenda de los Diez Anillos",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/baOzlpQllZbjyNBcTdeXESh9Y0M.jpg",
@@ -771,6 +817,7 @@ const fillMovie = async (req, res) => {
     await movie44.addGenres([1, 2, 9]);
 
     const movie45 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Lilo, mi amigo el cocodrilo",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/piJK8RL8YBP4QZ2ZY1hLGS5uMa4.jpg",
@@ -789,6 +836,7 @@ const fillMovie = async (req, res) => {
     await movie45.addGenres([4, 8, 12]);
 
     const movie46 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Miraculous World: Las aventuras de Ladybug en Nueva York",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/9YbyvcrHmY2SVbdfXpb8mC4Fy0g.jpg",
@@ -807,6 +855,7 @@ const fillMovie = async (req, res) => {
     await movie46.addGenres([3, 9, 1]);
 
     const movie47 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Guardianes de la noche: Rumbo a la aldea de los herreros ",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/rzAShiFrU6tSSr9gLD5AxKKwtOo.jpg",
@@ -825,6 +874,7 @@ const fillMovie = async (req, res) => {
     await movie47.addGenres([3, 9, 1]);
 
     const movie48 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "La pasión de Cristo",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/eOecgHEmiejyBQ5J2CjGmF8sDFF.jpg",
@@ -843,6 +893,7 @@ const fillMovie = async (req, res) => {
     await movie48.addGenres([7]);
 
     const movie49 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "La resurrección de la momia",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/d0pt6KlVvmtG0uhccWjgWfIqJee.jpg",
@@ -861,6 +912,7 @@ const fillMovie = async (req, res) => {
     await movie49.addGenres([11]);
 
     const movie50 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Siete reyes deben morir",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/55PJNDJbD4Q9jFO4vaCnNl9dYEv.jpg",
@@ -879,6 +931,7 @@ const fillMovie = async (req, res) => {
     await movie50.addGenres([1, 2, 7, 10]);
 
     const movie51 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Naruto Shippuden, La Película: The Last ",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/bAQ8O5Uw6FedtlCbJTutenzPVKd.jpg",
@@ -897,6 +950,7 @@ const fillMovie = async (req, res) => {
     await movie51.addGenres([1, 3, 14]);
 
     const movie52 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Naruto Shippûden Kai",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/amaNi8LIKolFY1iBcSL09u22epv.jpg",
@@ -915,6 +969,7 @@ const fillMovie = async (req, res) => {
     await movie52.addGenres([1, 3, 14]);
 
     const movie53 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "The Seven Deadly Sins: La maldición de la luz",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/w6U2pGQokqWh2wJLRaXi0bVd3zF.jpg",
@@ -933,6 +988,7 @@ const fillMovie = async (req, res) => {
     await movie53.addGenres([3, 9]);
 
     const movie54 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "The Seven Deadly Sins: El rencor de Edimburgo - Parte 1",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/VWKjOfMDisBDPJy1Dj5wxYLYTp.jpg",
@@ -951,6 +1007,7 @@ const fillMovie = async (req, res) => {
     await movie54.addGenres([3, 9]);
 
     const movie55 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "La Liga de la Justicia de Zack Snyder",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/wcIJgChypo0s6ILm9Dkr13rV5q0.jpg",
@@ -969,6 +1026,7 @@ const fillMovie = async (req, res) => {
     await movie55.addGenres([1, 2, 9, 15]);
 
     const movie56 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "El rey león",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/b0MxU37dNmMwKtoPVYPKOZSIrIn.jpg",
@@ -987,6 +1045,7 @@ const fillMovie = async (req, res) => {
     await movie56.addGenres([3, 8, 7]);
 
     const movie57 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Space Jam: Nuevas Leyendas",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/i6E8fx8lAEI0PGGCUlaA2Ap1gWi.jpg",
@@ -1005,6 +1064,7 @@ const fillMovie = async (req, res) => {
     await movie57.addGenres([3, 4, 8, 15]);
 
     const movie58 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Criminales a la vista",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/3jce1QvM2sma0TKYckNmIKzjhHC.jpg",
@@ -1023,6 +1083,7 @@ const fillMovie = async (req, res) => {
     await movie58.addGenres([4, 5]);
 
     const movie59 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Legado de sangre",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/zTQ2o0gzVZOblt6KlV3bSKg0y8z.jpg",
@@ -1041,6 +1102,7 @@ const fillMovie = async (req, res) => {
     await movie59.addGenres([5]);
 
     const movie60 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Un héroe samurai: La leyenda de Hank",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/dcccakIsT9rBE3EH1f38JMqtgYw.jpg",
@@ -1060,6 +1122,7 @@ const fillMovie = async (req, res) => {
     await movie60.addGenres([1, 2, 3, 4, 8, 19]);
 
     const movie61 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Astérix y Obélix: El reino medio",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/bEcAUzv57bdHLoGyjJQkyd8ENUY.jpg",
@@ -1079,6 +1142,7 @@ const fillMovie = async (req, res) => {
     await movie61.addGenres([4, 2, 8]);
 
     const movie62 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Jesus Obra Teatro",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/aFC4cY9lBsZXTjrqvKrwqusXaa7.jpg",
@@ -1098,6 +1162,7 @@ const fillMovie = async (req, res) => {
     await movie62.addGenres([8, 10, 12]);
 
     const movie63 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Expediente Warren: Obligado por el demonio",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/ghMQALCyytc6W0wlOlMIKiMSRKV.jpg",
@@ -1117,6 +1182,7 @@ const fillMovie = async (req, res) => {
     await movie63.addGenres([11, 13]);
 
     const movie64 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Obi-Wan Kenobi: El retorno del Jedi",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/cv0iBeaxeIVJBenGVNCB7kNKTJ6.jpg",
@@ -1136,6 +1202,7 @@ const fillMovie = async (req, res) => {
     await movie64.addGenres([6]);
 
     const movie65 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Oblivion",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/eO3r38fwnhb58M1YgcjQBd3VNcp.jpg",
@@ -1155,6 +1222,7 @@ const fillMovie = async (req, res) => {
     await movie65.addGenres([1, 2, 15, 13]);
 
     const movie66 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Astérix y Obélix: Misión Cleopatra",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/3I6ocizuNTB2DmNTffLxnCe4bnc.jpg",
@@ -1174,6 +1242,7 @@ const fillMovie = async (req, res) => {
     await movie66.addGenres([2, 4, 8, 9]);
 
     const movie67 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Obra maestra",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/gFuti8UisEutgcKw6xv5G44gyF3.jpg",
@@ -1193,6 +1262,7 @@ const fillMovie = async (req, res) => {
     await movie67.addGenres([3, 4, 8, 15]);
 
     const movie68 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Astérix y Obélix contra César",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/16tATLAUhXi0mq7IaqEp2xur5zJ.jpg",
@@ -1212,6 +1282,7 @@ const fillMovie = async (req, res) => {
     await movie68.addGenres([2, 4, 8, 9]);
 
     const movie69 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Ese oscuro objeto del deseo",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/SjPvUTtdsK4TqALKryKkWZpE5x.jpg",
@@ -1231,6 +1302,7 @@ const fillMovie = async (req, res) => {
     await movie69.addGenres([4, 7, 14]);
 
     const movie70 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Obsesión secreta",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/oDNnaKq5FWDxDV1jk2cXVYIvknn.jpg",
@@ -1250,6 +1322,7 @@ const fillMovie = async (req, res) => {
     await movie70.addGenres([7, 13]);
 
     const movie71 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "La Obsesión de Kyla",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/zrdhT7Mkk23M59cdV0aaiHLYQWs.jpg",
@@ -1269,6 +1342,7 @@ const fillMovie = async (req, res) => {
     await movie71.addGenres([7, 13, 16]);
 
     const movie72 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Whiplash. Música y obsesión",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/sL32IZkyjlF7otj5vcUxiKSKzg5.jpg",
@@ -1288,6 +1362,7 @@ const fillMovie = async (req, res) => {
     await movie72.addGenres([7, 12]);
 
     const movie73 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Objetivo: Washington D.C.",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/zC8HSq4xWsPgPDjgmlFix4VMtaD.jpg",
@@ -1307,6 +1382,7 @@ const fillMovie = async (req, res) => {
     await movie73.addGenres([1, 13]);
 
     const movie74 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Objetos",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/ejijnP0sOr4Fgxo5CYWT6rz3ZdG.jpg",
@@ -1326,6 +1402,7 @@ const fillMovie = async (req, res) => {
     await movie74.addGenres([13]);
 
     const movie75 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Obsesionada",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/MEYFT2fW8ztkHiuBBOgz21SgJo.jpg",
@@ -1345,6 +1422,7 @@ const fillMovie = async (req, res) => {
     await movie75.addGenres([13, 7]);
 
     const movie76 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Objetivo: La Casa Blanca",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/3AWmaBCfX6x3KTa4w5rGLMevNdU.jpg",
@@ -1364,6 +1442,7 @@ const fillMovie = async (req, res) => {
     await movie76.addGenres([13, 7]);
 
     const movie77 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Objetivo: Birmania",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/3hq4VhEMseKMZuNUaSExDyqGhja.jpg",
@@ -1383,6 +1462,7 @@ const fillMovie = async (req, res) => {
     await movie77.addGenres([2, 4, 8]);
 
     const movie78 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Obsessed",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/8nvAZX2WmWe6dKQb7KDoadQ6E5g.jpg",
@@ -1402,6 +1482,7 @@ const fillMovie = async (req, res) => {
     await movie78.addGenres([7]);
 
     const movie79 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Objetivo: Londres",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/AgivYpNxC0SqN2u8JY5udZeX3eE.jpg",
@@ -1421,6 +1502,7 @@ const fillMovie = async (req, res) => {
     await movie79.addGenres([1, 13]);
 
     const movie80 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Obsesiones tormentosas",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/yPSBDsLZhA3BkKSE4LrPxoIv5mE.jpg",
@@ -1440,6 +1522,7 @@ const fillMovie = async (req, res) => {
     await movie80.addGenres([14, 7]);
 
     const movie81 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "London: Oscura obsesión",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/lqRKxobqX3gu5bdvDQGjGrbSGII.jpg",
@@ -1459,6 +1542,7 @@ const fillMovie = async (req, res) => {
     await movie81.addGenres([14, 7, 1]);
 
     const movie82 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Fascinación (Obsession)",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/9160yxML0m3XiBdwdfrJwBlS356.jpg",
@@ -1478,6 +1562,7 @@ const fillMovie = async (req, res) => {
     await movie82.addGenres([7, 13]);
 
     const movie83 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Obsesión",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/yxTNjzSf6G98I7cuYbm45Wgk2ZQ.jpg",
@@ -1497,6 +1582,7 @@ const fillMovie = async (req, res) => {
     await movie83.addGenres([11]);
 
     const movie84 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Santos y soldados: Objetivo Berlín",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/ym8FvKNMpVdOVRteDTjj9zkPSJV.jpg",
@@ -1516,6 +1602,7 @@ const fillMovie = async (req, res) => {
     await movie84.addGenres([7, 1]);
 
     const movie85 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "El Santo",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/6l79hqAWJHrJDnDLCeQUZaGr1YD.jpg",
@@ -1535,6 +1622,7 @@ const fillMovie = async (req, res) => {
     await movie85.addGenres([7, 2, 1]);
 
     const movie86 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Con luz propia: Michelle Obama y Oprah Winfrey",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/akmzMZWQasddjK9u8tVQvjEJnUP.jpg",
@@ -1554,6 +1642,7 @@ const fillMovie = async (req, res) => {
     await movie86.addGenres([6]);
 
     const movie87 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Pasión obsesiva",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/46PXzJ5iG1rtO9VbEGdWBVJSuPb.jpg",
@@ -1573,6 +1662,7 @@ const fillMovie = async (req, res) => {
     await movie87.addGenres([11]);
 
     const movie88 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Las sobrinas de la señora Oberst",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/fiPEJw2HPVB0xjMeyhmLt6UvIpD.jpg",
@@ -1592,6 +1682,7 @@ const fillMovie = async (req, res) => {
     await movie88.addGenres([4]);
 
     const movie89 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Misteriosa obsesión",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/q4sLhtgw6a9SX9mtC1dgc1XWxoI.jpg",
@@ -1611,6 +1702,7 @@ const fillMovie = async (req, res) => {
     await movie89.addGenres([7, 11, 13, 15]);
 
     const movie90 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Love, Honor and Obey",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/xVJ3ZLCHfWUMkV1sIhnJXDGbJUW.jpg",
@@ -1630,6 +1722,7 @@ const fillMovie = async (req, res) => {
     await movie90.addGenres([1, 4, 5]);
 
     const movie91 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Oba: The Last Samurai",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/pPGTbVADWCAsgUcr4wtjJUpTh8Z.jpg",
@@ -1649,6 +1742,7 @@ const fillMovie = async (req, res) => {
     await movie91.addGenres([18, 7]);
 
     const movie92 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Cadena perpetua",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/dc1fX265fZIIY5Hab8I7CdETyJy.jpg",
@@ -1668,6 +1762,7 @@ const fillMovie = async (req, res) => {
     await movie92.addGenres([1, 7]);
 
     const movie93 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Amor en obras",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/jNKGZ6RB6SlA4Vd00gZM9dfvSC2.jpg",
@@ -1687,6 +1782,7 @@ const fillMovie = async (req, res) => {
     await movie93.addGenres([14, 4]);
 
     const movie94 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "La seguridad de los objetos",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/i7w5Q2HP3dI6UbN59l3ZL55weir.jpg",
@@ -1706,6 +1802,7 @@ const fillMovie = async (req, res) => {
     await movie94.addGenres([7]);
 
     const movie95 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Deadly Virtues: Love. Honour. Obey",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/5uCkeMxYv7WNqko2oMWt7IuvV5G.jpg",
@@ -1725,6 +1822,7 @@ const fillMovie = async (req, res) => {
     await movie95.addGenres([7, 11]);
 
     const movie96 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Una obra maestra",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/gFuti8UisEutgcKw6xv5G44gyF3.jpg",
@@ -1744,6 +1842,7 @@ const fillMovie = async (req, res) => {
     await movie96.addGenres([7, 11]);
 
     const movie97 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "El ataúd (La caja oblonga)",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/oPGrl74A8RoY8EuGaQcBPvmE1Tr.jpg",
@@ -1763,6 +1862,7 @@ const fillMovie = async (req, res) => {
     await movie97.addGenres([11]);
 
     const movie98 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Objetivo: Terrum",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/vKvpE2UWYdaB7X4ABKGjKNdZWXy.jpg",
@@ -1782,6 +1882,7 @@ const fillMovie = async (req, res) => {
     await movie98.addGenres([1, 2, 3, 15]);
 
     const movie99 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Objetivo terrorista",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/zxDf5KZ9VTDpf4X5YP28ZadiVhc.jpg",
@@ -1801,6 +1902,7 @@ const fillMovie = async (req, res) => {
     await movie99.addGenres([1]);
 
     const movie100 = await Movie.create({
+      vote_average: getRandomNumber(1, 5),
       name: "Objetivo: Hasselhoff",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/7uo6PZl1UBtIRuPA2w6CnYp2kbS.jpg",
