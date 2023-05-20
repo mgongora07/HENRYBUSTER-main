@@ -76,7 +76,6 @@ export const getMoviesAdmin = () => {
     try {
       let movie = await axios.get(`http://localhost:3001/movies/admin`);
       let payload = movie.data;
-      console.log(payload);
 
       return dispatch({
         type: GET_MOVIES_ADMIN,

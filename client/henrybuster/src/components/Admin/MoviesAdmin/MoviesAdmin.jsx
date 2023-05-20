@@ -29,7 +29,9 @@ function MoviesAdmin() {
 
   useEffect(() => {
     dispatch(getMoviesAdmin());
+    setPage(1);
   }, [dispatch]);
+  useEffect(() => {}, [page]);
   return (
     <>
       <div className="col-4 col-md-2 bg-white vh-100 position-fixed">
@@ -79,10 +81,12 @@ function MoviesAdmin() {
         }}
       >
         <Pagination.Prev
+          disabled={page === 1 ? true : false}
           onClick={() => {
             if (page > 1) {
               setPage(page - 1);
-              split(page);
+
+              split(page - 1);
             }
           }}
         />
@@ -99,10 +103,11 @@ function MoviesAdmin() {
           </Pagination.Item>
         ))}
         <Pagination.Next
+          disabled={page === pages.length ? true : false}
           onClick={() => {
-            if (page < 13) {
+            if (page < pages.length) {
               setPage(page + 1);
-              split(page);
+              split(page + 1);
             }
           }}
         />
