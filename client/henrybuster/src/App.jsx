@@ -7,31 +7,28 @@ import { Landing } from "./components/Landing/Landing";
 import { Home } from "./components/Home/Home";
 import { Nav } from "./components/Nav/Nav";
 import { Detail } from "./components/Detail/Detail";
-import Cart from "./components/Carrito/Cart"
+import Cart from "./components/Carrito/Cart";
 import { CartProvider } from "./components/Carrito/Context";
 import { CreateMovie } from "./components/CreateMovie/CreateMovie";
 import Admin from "./components/Admin/Admin";
-
-
-
+import MoviesAdmin from "./components/Admin/MoviesAdmin/MoviesAdmin";
 
 function App() {
   const location = useLocation();
 
   return (
     <>
-    <CartProvider>
+      <CartProvider>
+        {location.pathname === "/" ? <Landing /> : <Nav />}
 
-    
-      {location.pathname === "/" ? <Landing /> : <Nav />}
-
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/movie/:id" element={<Detail />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/create" element={<CreateMovie />} />
-        <Route path="/admin" element={<Admin />} />
-      </Routes>
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/movie/:id" element={<Detail />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/create" element={<CreateMovie />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/movies" element={<MoviesAdmin />} />
+        </Routes>
       </CartProvider>
     </>
   );
