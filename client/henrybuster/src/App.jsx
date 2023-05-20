@@ -9,7 +9,9 @@ import { Nav } from "./components/Nav/Nav";
 import { Detail } from "./components/Detail/Detail";
 import Cart from "./components/Carrito/Cart"
 import { CartProvider } from "./components/Carrito/Context";
+import { CreateMovie } from "./components/CreateMovie/CreateMovie";
 import Admin from "./components/Admin/Admin";
+
 
 
 
@@ -26,10 +28,9 @@ function App() {
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/movie/:id" element={<Detail />} />
-        
         <Route path="/cart" element={<Cart />} />
+        <Route path="/create" element={<CreateMovie />} />
         <Route path="/admin" element={<Admin />} />
-
       </Routes>
       </CartProvider>
     </>
