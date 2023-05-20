@@ -1,19 +1,49 @@
 import React, { useState, useEffect } from "react";
-import s from "./Create.module.css"
+import s from "./UpdateMovie.module.css"
 import {getFormats,getLanguages, getGenres} from "../../redux/actions.js"
 import { useDispatch, useSelector } from "react-redux";
 //import { useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Tag from "../Tags/Tags";
-export const CreateMovie = () => {
+export const UpdateMovie = () => {
     const dispatch = useDispatch();
+    const { id } = useParams();
  // const history = useHistory();
+
+ const fetchData = async () => {
+    const { data } = await axios.get(
+      `http://localhost:3001/movie/${id}`
+    )
+
+    setName(data.name)
+    setImage(data.image)
+    //setDate(data.date.toString())
+    const dateDb = data.date.toString();
+    const datePortion = dateDb.substring(0, dateDb.indexOf("T"));    
+    setDate(new Date(datePortion.split("-").join("/")))
+    setDescription(data.description)
+    setFormatId(data.FormatId)
+    const selectFormat = document.querySelector("#format");
+    selectFormat.value = data.FormatId; 
+    setLanguageId(data.LanguageId)
+    const selectLanguage = document.querySelector("#language");
+    selectLanguage.value = data.LanguageId; 
+    setPrice(data.price)
+    setQuantity(data.Inventory.quantity)
+    setGenreTags(data.Genres)
+}
+
   useEffect(() => {
     dispatch(getFormats());
     dispatch(getLanguages());
     dispatch(getGenres());
+    
+
+    fetchData();
+
   }, [dispatch]);
 
 
@@ -128,7 +158,7 @@ else newValidation.description = "";
     !valid.genre
 
     ){
-    await axios.post("http://localhost:3001/movie", {
+    await axios.put(`http://localhost:3001/movie/${id}`, {
     name,
       image,
       description,
@@ -139,7 +169,7 @@ else newValidation.description = "";
       quantity,
       genres: [...genreTags].map((x) => Number(x.id)),
       });
-      window.alert("Movie created");
+      window.alert("Movie updated");
     } else{
       window.alert("Please fill the form correctly");
     }
@@ -163,11 +193,14 @@ const uploadImage =(event) =>{
 }
 
 
+
+
+
   return (
     <div className={s.formContainer}>
       <form className={s["movie-form"]}>
         <div className={s["form-group"]}>
-          <h2>CREATE NEW MOVIE</h2>
+          <h2>UPDATE MOVIE</h2>
         </div>
 
         <div className={s["form-group"]}>
@@ -202,7 +235,6 @@ const uploadImage =(event) =>{
             onChange={(event) => setPrice(event.target.value)}
           />
         </div>
-      
         <span>{validation.price}</span>
         <div className={s["form-group"]}>
         <label htmlFor="quantity">Quantity:</label>
