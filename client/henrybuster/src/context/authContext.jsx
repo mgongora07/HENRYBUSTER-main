@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 
+
 export const authContext = createContext();
 
 export const useAuth = () => {
@@ -26,7 +27,7 @@ export function AuthProvider({ children }) {
   //const [user, setUser] = useState(null);
   const [user, setUser] = useState({}); // antes tenia null
   const [loading, setLoading] = useState(true);
-
+   
   const signup = (email, password) =>
     createUserWithEmailAndPassword(auth, email, password);
 
@@ -39,9 +40,10 @@ export function AuthProvider({ children }) {
     return signOut(auth);
   }
 
-  const loginwithgoogle = () => {
+  const loginwithgoogle =  () => {
     const googleProvider = new GoogleAuthProvider();
     return signInWithPopup(auth, googleProvider);
+
   };
 
   /*const verifyEmail = () => {
