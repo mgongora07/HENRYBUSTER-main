@@ -12,6 +12,7 @@ import { CartProvider } from "./components/Carrito/Context";
 import { CreateMovie } from "./components/CreateMovie/CreateMovie";
 import { UpdateMovie } from "./components/UpdateMovie/UpdateMovie";
 import Admin from "./components/Admin/Admin";
+import { CreateGenre } from "./components/CreateGenre/CreateGenre";
 
 
 
@@ -31,6 +32,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/create" element={<CreateMovie />} />
         <Route path="/update/:id" element={<UpdateMovie />} />
+        <Route path="/create/genre" element={<CreateGenre />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
       </CartProvider>
