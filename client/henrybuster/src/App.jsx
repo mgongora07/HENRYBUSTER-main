@@ -10,6 +10,7 @@ import { Detail } from "./components/Detail/Detail";
 import Cart from "./components/Carrito/Cart";
 import { CartProvider } from "./components/Carrito/Context";
 import { CreateMovie } from "./components/CreateMovie/CreateMovie";
+import { UpdateMovie } from "./components/UpdateMovie/UpdateMovie";
 import Admin from "./components/Admin/Admin";
 import MoviesAdmin from "./components/Admin/MoviesAdmin/MoviesAdmin";
 
@@ -18,17 +19,19 @@ function App() {
 
   return (
     <>
-      <CartProvider>
-        {location.pathname === "/" ? <Landing /> : <Nav />}
+    
+      {location.pathname === "/" ? <Landing /> : <Nav />}
 
-        <Routes>
-          <Route path="/home" element={<Home />} />
-          <Route path="/movie/:id" element={<Detail />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/create" element={<CreateMovie />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/admin/movies" element={<MoviesAdmin />} />
-        </Routes>
+      <Routes>
+        <Route path="/home" element={<Home />} />
+        <Route path="/movie/:id" element={<Detail />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/create" element={<CreateMovie />} />
+        <Route path="/update/:id" element={<UpdateMovie />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/movies" element={<MoviesAdmin />} /> 
+      </Routes>
+
       </CartProvider>
     </>
   );
