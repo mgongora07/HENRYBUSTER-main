@@ -19,7 +19,8 @@ function App() {
 
   return (
     <>
-    
+    <CartProvider>
+
       {location.pathname === "/" ? <Landing /> : <Nav />}
 
       <Routes>
