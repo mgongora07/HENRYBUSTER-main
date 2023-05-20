@@ -8,3 +8,4 @@ export const FILTER_BY_GENRES = "FILTER_BY_GENRES";
 export const FILTER_BY_FORMAT = "FILTER_BY_FORMAT";
 export const FILTER_RANKING = "FILTER_RANKING";
 export const GET_TOP_10 = "GET_TOP_10";
+export const GET_LANGUAGES="GET_LANGUAGES";

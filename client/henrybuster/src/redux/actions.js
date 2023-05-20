@@ -8,6 +8,7 @@ import {
   FILTER_BY_GENRES,
   GET_RANKING,
   FILTER_RANKING,
+  GET_LANGUAGES
 } from "./action-type";
 
 import axios from "axios";
@@ -120,6 +121,17 @@ export function getGenres() {
     });
   };
 }
+
+export function getLanguages() {
+  return async (dispatch) => {
+    const resp = await axios(`http://localhost:3001/languages`);
+    dispatch({
+      type: GET_LANGUAGES,
+      payload: resp.data,
+    });
+  };
+}
+
 
 export function filterByGenres(filtro) {
   return {

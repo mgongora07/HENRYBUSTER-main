@@ -8,6 +8,7 @@ import {
   FILTER_BY_FORMAT,
   GET_RANKING,
   FILTER_RANKING,
+  GET_LANGUAGES,
 } from "./action-type";
 
 const INITIAL_STATE = {
@@ -18,6 +19,7 @@ const INITIAL_STATE = {
   ratings: [],
   format: [],
   genres: [],
+  languages: [],
   ratingsFilter: [],
 };
 
@@ -30,6 +32,12 @@ export default function rootReducer(
       return {
         ...state,
         detail: payload,
+      };
+
+    case GET_LANGUAGES:
+      return {
+        ...state,
+        languages: payload,
       };
     case GET_MOVIES:
       const results = payload.slice(0, 10);
