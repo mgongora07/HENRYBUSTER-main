@@ -1,37 +1,29 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Sidebar from './Sidebar';
-import { useState } from 'react';
 import HomeAdmin from './HomeAdmin';
+import MoviesAdmin from './MoviesAdmin/MoviesAdmin';
 
-function App() {
-  const [toggle, setToggle] = useState(true);
-
-  const Toggle = () => {
-    setToggle(!toggle);
-  };
-
-  return (
-    <div className='container-fluid bg-secondary min-vh-100'>
-      <div className='row'>
-        {toggle && (
-          <div className='col-4 col-md-2 bg-white vh-100 position-fixed'>
-            <Sidebar />
+function Admin() {
+    return (
+      <div>
+        <div className='container-fluid bg-secondary min-vh-100'>
+          <div className='row'>
+            <div className='col-4 bg-white vh-100 position-fixed' style={{ width: '25%' }}>
+              <Sidebar />
+            </div>
+            
+         
+              <HomeAdmin />
+         
           </div>
-        )}
-        {toggle && <div className='col-4 col-md-2'></div>}
-        <div className='col'>
-          <HomeAdmin Toggle={Toggle} />
         </div>
       </div>
-    </div>
-  );
-}
-
-export default App;
-
-
-
-
-
+    );
+  }
+  
+  export default Admin;
+  
+  
+  
+  

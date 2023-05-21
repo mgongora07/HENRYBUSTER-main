@@ -3,6 +3,8 @@ import s from "./CreateGenre.module.css";
 import { getGenres } from "../../redux/actions.js";
 import { useDispatch } from "react-redux";
 import axios from "axios";
+import Sidebar from "../Admin/Sidebar";
+
 
 export const CreateGenre = () => {
   const dispatch = useDispatch();
@@ -40,6 +42,10 @@ export const CreateGenre = () => {
   };
 
   return (
+    <div>
+      <div className="col-4 col-md-2 bg-white vh-100 position-fixed">
+        <Sidebar />
+      </div>
     <div className={`${s.formContainer}`}>
       <form className={s['movie-form']}>
         <div>
@@ -64,6 +70,7 @@ export const CreateGenre = () => {
           Add
         </button>
       </form>
+    </div>
     </div>
   );
 };
