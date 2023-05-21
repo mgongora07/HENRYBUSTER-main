@@ -20,7 +20,7 @@ function App() {
     <CartProvider>
 
 
-      {location.pathname === "/" ? <Landing /> : <Nav />}
+      {location.pathname === "/" &&  <Nav />}
 
       <Routes>
         <Route path="/" element={<Home />} />
