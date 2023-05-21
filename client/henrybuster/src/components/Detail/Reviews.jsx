@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from "react-redux"
 import { useParams, Link } from 'react-router-dom'
 import { getRankingMovie, cleanRatings, filterRatingStar } from '../../redux/actions'
 import EachReview from './EachReview'
-
+import style from '../Styles/Reviews.module.css'
 
 const Reviews = (props) => {
     const dispatch = useDispatch()
@@ -82,15 +82,15 @@ const totalPages = Math.ceil(datosPaginados.length / ITEMS_PER_PAGE);
 
 
   return (
-    <div>
-        <div>Reviews of this product</div>
-        <div>
-          <button value="All" onClick={e=>handleSelectStar(e)}>All</button>
-          <button value="1" onClick={e=>handleSelectStar(e)}>1</button>
-          <button value="2" onClick={e=>handleSelectStar(e)}>2</button>
-          <button value="3" onClick={e=>handleSelectStar(e)}>3</button>
-          <button value="4" onClick={e=>handleSelectStar(e)}>4</button>
-          <button value="5" onClick={e=>handleSelectStar(e)}>5</button>
+    <div className={style.container}>
+        <h5 className={style.title}>Reviews of this product</h5>
+        <div className={style.containerBnt}>
+          <button className={style.btn} value="All" onClick={e=>handleSelectStar(e)}>All</button>
+          <button className={style.btn} value="1" onClick={e=>handleSelectStar(e)}>1</button>
+          <button className={style.btn} value="2" onClick={e=>handleSelectStar(e)}>2</button>
+          <button className={style.btn} value="3" onClick={e=>handleSelectStar(e)}>3</button>
+          <button className={style.btn} value="4" onClick={e=>handleSelectStar(e)}>4</button>
+          <button className={style.btn} value="5" onClick={e=>handleSelectStar(e)}>5</button>
         </div>
         <div>
           {ratingsPPage.map((rating) => (
@@ -104,20 +104,18 @@ const totalPages = Math.ceil(datosPaginados.length / ITEMS_PER_PAGE);
             
         </div>
         <div />
-        Total Reviews: {totalreviews}. 
+        
+        Total Reviews: {totalreviews} 
         {numberOfResults > 5 && (
             <div>
-              <p>Showing page {currentPage + 1} of {totalPages}</p>
-              <div>
-                <button onClick={prevHandler}>Prev</button>
-                <button onClick={nextHandler}>Next</button>
+              <p >Showing page {currentPage + 1} of {totalPages}</p>
+              <div className={style.containerBnt}>
+                <button onClick={prevHandler} className={style.btn}>Prev</button>
+                <button onClick={nextHandler} className={style.btn}>Next</button>
               </div>
             </div>
           )
           }
-            
-      
-
        </div>
 
     
