@@ -49,7 +49,7 @@ const getUserById = (id) => async (dispatch) => {
 // Acción asincrónica para registrar un usuario
 const registerUser = (userData) => async (dispatch) => {
 //  const registerUser = async (userData) => {
-    //console.log (userData);
+    console.log (userData);
     try {
       const response = await axios.post("//localhost:3001/user", userData);
       //console.log(response.data);

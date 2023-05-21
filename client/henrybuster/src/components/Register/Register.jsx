@@ -43,7 +43,7 @@ const Register = () => {
         id: user2.uid,
         username: user.username,
         name: user.namecomplete,
-        phonenumber: user.phonenumber,
+        phoneNumber: user.phonenumber,
         email: user.email,
         admin: false,
         // otros detalles del usuario
