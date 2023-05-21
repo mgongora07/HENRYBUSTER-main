@@ -8,7 +8,11 @@ import {
   FILTER_BY_GENRES,
   GET_RANKING,
   FILTER_RANKING,
-  GET_LANGUAGES
+  GET_MOVIES_NAME,
+  GET_LANGUAGES,
+  GET_MOVIES_ADMIN,
+  SPLIT_RECIPES_ADMIN,
+
 } from "./action-type";
 
 import axios from "axios";
@@ -61,10 +65,51 @@ export const getMovies = () => {
   };
 };
 
+
+export const getMoviesName = (name) => {
+  return async function (dispatch) {
+    try {
+      let movie = await axios.get(`http://localhost:3001/movies/search?name=${name}`);
+      let payload = movie.data;
+      console.log(payload)
+      return dispatch({
+        type: GET_MOVIES_NAME,
+        payload: payload,
+      });
+    } catch (error) {
+      return { error: error };
+    }
+  };
+};
+
 export function splitRecipes(inicio, fin) {
   return async (dispatch) => {
     dispatch({
       type: SPLIT_RECIPES,
+      inicio,
+      fin,
+    });
+  };
+}
+export const getMoviesAdmin = () => {
+  return async function (dispatch) {
+    try {
+      let movie = await axios.get(`http://localhost:3001/movies/admin`);
+      let payload = movie.data;
+
+      return dispatch({
+        type: GET_MOVIES_ADMIN,
+        payload: payload,
+      });
+    } catch (error) {
+      return { error: error };
+    }
+  };
+};
+export function splitRecipesAdmin(inicio, fin) {
+  return async (dispatch) => {
+    dispatch({
+      type: SPLIT_RECIPES_ADMIN,
       inicio,
       fin,
     });
@@ -131,7 +176,6 @@ export function getLanguages() {
     });
   };
 }
-
 
 export function filterByGenres(filtro) {
   return {

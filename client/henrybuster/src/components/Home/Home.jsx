@@ -14,9 +14,13 @@ import FilterMovies from "./Filter/FilterMovies";
 import CarouselFadeExample from "./carrusel/CarruselComponent";
 import NewMovie from "./agregadasRecientemente/NewMovie";
 
+
+
 export const Home = () => {
   const dispatch = useDispatch();
   const { paginado, moviesFilter, movies } = useSelector((state) => state);
+  
+  
 
   let pages = moviesFilter
     .slice(0, Math.ceil(moviesFilter.length / 10))
@@ -41,6 +45,7 @@ export const Home = () => {
   return (
     <>
       <div className={style.bodyHome}>
+      
         <h1 className={style.title}>Las Mas Votadas</h1>
         <CarouselFadeExample className={style.carrusel} />
         <hr style={{ color: "white", marginTop: "-30px" }} />
@@ -49,6 +54,7 @@ export const Home = () => {
         <hr style={{ color: "white" }} />
 
         <h1 className={style.title}>Todas las Peliculas</h1>
+
 
         <FilterMovies split={split} />
 

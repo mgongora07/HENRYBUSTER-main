@@ -6,7 +6,7 @@ import Cards from "../cards/Cards";
 function NewMovie() {
   const { movies } = useSelector((state) => state);
 
-  const NewMovies = movies.slice(-8);
+  const NewMovies = movies.slice(-8).reverse();
 
   return (
     <>

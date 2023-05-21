@@ -15,7 +15,7 @@ const getMovieById = async (req, res) => {
                 attributes: ['name']
               },{
                 model:Genre,
-                attributes: ['name'],
+                attributes: ['id','name'],
                 through: { attributes: [] }
               },{
                 model:Language,
