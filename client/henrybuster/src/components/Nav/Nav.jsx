@@ -14,7 +14,7 @@ const handleLogout = async () => {
     // alert("Sign-out successful");
     // await signOut(auth);
     await logout();
-    navigate("/");
+    navigate("/home");
   } catch (error) {
     console.log(error);
   }
@@ -52,7 +52,7 @@ if (!user) {
           hidden={!perfil}
           className={style.link}
           onClick={handleLogout}
-          to='/'
+          to='/home'
         >
           Salir
         </Link>

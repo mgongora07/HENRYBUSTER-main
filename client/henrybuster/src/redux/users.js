@@ -2,6 +2,8 @@ import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import axios from "axios";
 
+
+
 // Acciones
 const FETCH_USERS_SUCCESS = "FETCH_USERS_SUCCESS";
 const SET_CURRENT_USER = "SET_CURRENT_USER";
@@ -21,7 +23,7 @@ const setCurrentUser = (user) => ({
 // Acción asincrónica para obtener los usuarios de la API
 const fetchUsers = () => async (dispatch) => {
   try {
-    const response = await axios.get("/users");
+    const response = await axios.get("//localhost:3001/users");
     dispatch(fetchUsersSuccess(response.data));
      
   } catch (error) {
@@ -32,11 +34,11 @@ const fetchUsers = () => async (dispatch) => {
 // Acción asincrónica para obtener un usuario por su ID
 const getUserById = (id) => async (dispatch) => {
    
-  try {
+ try {
    
-    const response = await axios.get(`/user/${id}`);
-    console.log(id);
+    const response = await axios.get(`//localhost:3001/user/${id}`);
     dispatch(fetchUsersSuccess(response.data));
+    //console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -46,19 +48,21 @@ const getUserById = (id) => async (dispatch) => {
 
 // Acción asincrónica para registrar un usuario
 const registerUser = (userData) => async (dispatch) => {
-  try {
-    const response = await axios.post("/user", userData);
-    //console.log(response.data);
-  } catch (error) {
-    console.error(error);
-  }
-};
+//  const registerUser = async (userData) => {
+    //console.log (userData);
+    try {
+      const response = await axios.post("//localhost:3001/user", userData);
+      //console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
 // Acción asincrónica para actualizar un usuario
 const updateUser = (userData) => async (dispatch) => {
   try {
-    const response = await axios.put("/users", userData);
-    console.log(response.data);
+    const response = await axios.put("/user", userData);
+    //console.log(response.data);
   } catch (error) {
     console.error(error);
   }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../../context/authContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { setDoc, doc } from "firebase/firestore";
 import {
   useUserStore,
@@ -45,7 +45,7 @@ const Login = () => {
     //console.log(user);
     try {
       await login(user.email, user.password);
-      navigate("/");
+      navigate("/home");
       user.sendEmailVerification();
     } catch (error) {
       //console.log(error.message);
@@ -70,16 +70,20 @@ const Login = () => {
         };
     
         setUser(userData);
-        const userDb = dispatch(getUserById("1"));
-            console.log(userDb);
+        const userDb = await dispatch(getUserById(user.uid));
+          //console.log(userDb);
+     
         if (!userDb) {
-          const userDoc = doc(db, "users", user.uid);
-          await setDoc(userDoc, userData);
-          console.log("here");
-          dispatch(registerUser(userData));
+          //console.log("here");
+          //const userDoc = doc(db, "users", user.uid);
+          //console.log(userDoc);
+          //await setDoc(userDoc, userData);
+          
+          await dispatch(registerUser(userData));
+          //console.log(save);
         }
       }
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       setError(error.message);
     }
@@ -129,7 +133,12 @@ const Login = () => {
               <button onClick={handleGoogleSignIn}>Login with Google</button>
             </div>
           </div>
-          <div></div>
+          <div>
+            {" "}
+            <Link to='/register'>
+              Sign up
+            </Link>
+          </div>
         </article>
       </main>
     </>
