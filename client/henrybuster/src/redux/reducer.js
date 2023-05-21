@@ -8,6 +8,9 @@ import {
   FILTER_BY_FORMAT,
   GET_RANKING,
   FILTER_RANKING,
+  GET_LANGUAGES,
+  GET_MOVIES_ADMIN,
+  SPLIT_RECIPES_ADMIN,
 } from "./action-type";
 
 const INITIAL_STATE = {
@@ -18,7 +21,10 @@ const INITIAL_STATE = {
   ratings: [],
   format: [],
   genres: [],
+  languages: [],
   ratingsFilter: [],
+  moviesAdmin: [],
+  paginadoAdmin: [],
 };
 
 export default function rootReducer(
@@ -31,6 +37,12 @@ export default function rootReducer(
         ...state,
         detail: payload,
       };
+
+    case GET_LANGUAGES:
+      return {
+        ...state,
+        languages: payload,
+      };
     case GET_MOVIES:
       const results = payload.slice(0, 10);
       return {
@@ -38,6 +50,20 @@ export default function rootReducer(
         paginado: results,
         movies: payload,
         moviesFilter: payload,
+      };
+    case GET_MOVIES_ADMIN:
+      const allResults = payload.slice(0, 10);
+      return {
+        ...state,
+        paginadoAdmin: allResults,
+        moviesAdmin: payload,
+      };
+
+    case SPLIT_RECIPES_ADMIN:
+      const resultAdmin = state.moviesAdmin.slice(inicio, fin);
+      return {
+        ...state,
+        paginadoAdmin: resultAdmin,
       };
     case SPLIT_RECIPES:
       const result = state.moviesFilter.slice(inicio, fin);

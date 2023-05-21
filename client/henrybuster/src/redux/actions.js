@@ -8,7 +8,11 @@ import {
   FILTER_BY_GENRES,
   GET_RANKING,
   FILTER_RANKING,
-  GET_MOVIES_NAME
+  GET_MOVIES_NAME,
+  GET_LANGUAGES,
+  GET_MOVIES_ADMIN,
+  SPLIT_RECIPES_ADMIN,
+
 } from "./action-type";
 
 import axios from "axios";
@@ -61,6 +65,7 @@ export const getMovies = () => {
   };
 };
 
+
 export const getMoviesName = (name) => {
   return async function (dispatch) {
     try {
@@ -81,6 +86,30 @@ export function splitRecipes(inicio, fin) {
   return async (dispatch) => {
     dispatch({
       type: SPLIT_RECIPES,
+      inicio,
+      fin,
+    });
+  };
+}
+export const getMoviesAdmin = () => {
+  return async function (dispatch) {
+    try {
+      let movie = await axios.get(`http://localhost:3001/movies/admin`);
+      let payload = movie.data;
+
+      return dispatch({
+        type: GET_MOVIES_ADMIN,
+        payload: payload,
+      });
+    } catch (error) {
+      return { error: error };
+    }
+  };
+};
+export function splitRecipesAdmin(inicio, fin) {
+  return async (dispatch) => {
+    dispatch({
+      type: SPLIT_RECIPES_ADMIN,
       inicio,
       fin,
     });
@@ -133,6 +162,16 @@ export function getGenres() {
     const resp = await axios(`http://localhost:3001/genres`);
     dispatch({
       type: GET_GENRES,
+      payload: resp.data,
+    });
+  };
+}
+
+export function getLanguages() {
+  return async (dispatch) => {
+    const resp = await axios(`http://localhost:3001/languages`);
+    dispatch({
+      type: GET_LANGUAGES,
       payload: resp.data,
     });
   };

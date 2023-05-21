@@ -65,10 +65,16 @@ function Cards({ name, image, id, genres, movies, price, format }) {
               onClick={handleClick}
               style={{ height: "fit-content" }}
             >
-              {stateBuy === true ? "Delete to cart" : "Add to cart"}
+              <i class="fa-solid fa-cart-plus"> +</i>
+              {/* {stateBuy === true ? "Delete to cart" : "Add to cart"} */}
             </Button>
             <Link to={"/Cart"}>
-              <Button><i class="fa-solid fa-cart-shopping"></i> </Button>
+
+              
+              <Button>
+                View cart <i class="fa-solid fa-cart-shopping"></i>
+              </Button>
+
             </Link>
           </div>
           {success ? (
