@@ -1,9 +1,10 @@
 .nav{
     display: flex;
     padding: 1rem;
-    background-color: #0b0707;
+    background-color: #0f0b0b;
     justify-content: flex-end;
-    gap: 10px;
+    gap: 15px;
+    align-items: center;
 }
 
 
@@ -11,5 +12,13 @@
     color: #ede9ea;
     font-weight: 600;
     text-transform: uppercase;
-    
+    text-decoration: none;
+}
+
+.link:hover{
+    color: crimson;
+}
+
+.link:focus{
+    color: crimson;
 }
