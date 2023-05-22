@@ -1,19 +1,24 @@
 import React, { useState } from "react";
 import style from "../Styles/SearchBar.module.css";
+import { Link, useNavigate   } from "react-router-dom";
 
 const SearchBar = ({ handleSearch }) => {
   const [name, setName] = useState({ name: "" });
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const value = name.name;
     if (value.length > 0) {
       handleSearch(value); // Llama a la función handleSearch con el valor del nombre
+      navigate("/results"); // Redirecciona a la ruta "/results"
     } else {
       alert("Ingresa el nombre de alguna película");
     }
     setName({ name: "" });
+    setName((prevName) => ({ ...prevName, name: "" }))
   };
+
 
   const HandleChangeForm = (e) => {
     setName({
@@ -21,6 +26,7 @@ const SearchBar = ({ handleSearch }) => {
       [e.target.name]: e.target.value,
     });
   };
+  
 
   return (
     <div className={style.container}>

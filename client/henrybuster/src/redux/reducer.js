@@ -1,6 +1,7 @@
 import {
   GET_DETAIL,
   GET_MOVIES,
+  GET_MOVIES_NAME,
   GET_FORMAT,
   GET_GENRES,
   SPLIT_RECIPES,
@@ -16,6 +17,7 @@ import {
 const INITIAL_STATE = {
   detail: {},
   movies: [],
+  moviesSearchResults: [], // Nueva propiedad para almacenar los resultados de búsqueda
   moviesFilter: [],
   paginado: [],
   ratings: [],
@@ -43,6 +45,7 @@ export default function rootReducer(
         ...state,
         languages: payload,
       };
+
     case GET_MOVIES:
       const results = payload.slice(0, 10);
       return {
@@ -51,6 +54,7 @@ export default function rootReducer(
         movies: payload,
         moviesFilter: payload,
       };
+
     case GET_MOVIES_ADMIN:
       const allResults = payload.slice(0, 10);
       return {
@@ -65,6 +69,7 @@ export default function rootReducer(
         ...state,
         paginadoAdmin: resultAdmin,
       };
+
     case SPLIT_RECIPES:
       const result = state.moviesFilter.slice(inicio, fin);
       return {
@@ -110,6 +115,7 @@ export default function rootReducer(
           moviesFilter: data,
         };
       }
+
     case FILTER_BY_FORMAT:
       console.log(payload);
       if (payload === "All-Format") {
@@ -150,17 +156,10 @@ export default function rootReducer(
         ratingsFilter: ratingsFiltered,
       };
 
-      console.log(state.movies);
-      if (state.movies.length > 1) {
-      }
-      const sortedMovies = state.movies.sort(
-        (a, b) => b.vote_count - a.vote_count
-      );
-      console.log(sortedMovies);
-      const top10Movies = sortedMovies.slice(0, 10);
+    case GET_MOVIES_NAME:
       return {
         ...state,
-        top: top10Movies,
+        moviesSearchResults: payload,
       };
 
     default:

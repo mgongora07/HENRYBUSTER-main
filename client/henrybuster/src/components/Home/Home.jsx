@@ -16,11 +16,10 @@ import NewMovie from "./agregadasRecientemente/NewMovie";
 
 
 
+
 export const Home = () => {
   const dispatch = useDispatch();
   const { paginado, moviesFilter, movies } = useSelector((state) => state);
-  
-  
 
   let pages = moviesFilter
     .slice(0, Math.ceil(moviesFilter.length / 10))
@@ -45,7 +44,7 @@ export const Home = () => {
   return (
     <>
       <div className={style.bodyHome}>
-      
+
         <h1 className={style.title}>Las Mas Votadas</h1>
         <CarouselFadeExample className={style.carrusel} />
         <hr style={{ color: "white", marginTop: "-30px" }} />
