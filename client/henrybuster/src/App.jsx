@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import "./App.css";
-// import Detail from './Detail'
 import { Routes, Route, useLocation } from "react-router-dom";
 import { Landing } from "./components/Landing/Landing";
 import { Home } from "./components/Home/Home";
