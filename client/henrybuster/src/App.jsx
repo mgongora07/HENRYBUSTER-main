@@ -21,7 +21,11 @@ function App() {
     <CartProvider>
 
 
+
        <Nav />
+
+      {location.pathname === "/" &&  <Nav />}
+
 
       <Routes>
         <Route path="/" element={<Home />} />
