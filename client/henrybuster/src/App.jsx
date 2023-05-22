@@ -13,6 +13,7 @@ import { UpdateMovie } from "./components/UpdateMovie/UpdateMovie";
 import Admin from "./components/Admin/Admin";
 import { CreateGenre } from "./components/CreateGenre/CreateGenre";
 import MoviesAdmin from "./components/Admin/MoviesAdmin/MoviesAdmin";
+import SearchResult from "./components/SearchBar/SearchResult";
 function App() {
 
   return (
@@ -20,7 +21,11 @@ function App() {
     <CartProvider>
 
 
+
+       <Nav />
+
       {location.pathname === "/" &&  <Nav />}
+
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -32,6 +37,7 @@ function App() {
         <Route path="/create/genre" element={<CreateGenre />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/movies" element={<MoviesAdmin />} /> 
+        <Route path="/results" element={<SearchResult/>} />
       </Routes>
       </CartProvider>
     </>
