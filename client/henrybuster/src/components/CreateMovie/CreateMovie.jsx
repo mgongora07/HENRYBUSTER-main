@@ -7,6 +7,8 @@ import axios from "axios";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Tag from "../Tags/Tags";
+import Sidebar from "../Admin/Sidebar";
+
 export const CreateMovie = () => {
     const dispatch = useDispatch();
  // const history = useHistory();
@@ -164,6 +166,10 @@ const uploadImage =(event) =>{
 
 
   return (
+    <div>
+    <div className="col-4 col-md-2 bg-white vh-100 position-fixed">
+        <Sidebar />
+    </div>
     <div className={s.formContainer}>
       <form className={s["movie-form"]}>
         <div className={s["form-group"]}>
@@ -302,6 +308,7 @@ const uploadImage =(event) =>{
           Enviar
         </button>
       </form>
+    </div>
     </div>
   )
 }

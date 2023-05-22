@@ -6,6 +6,9 @@ import Pagination from "react-bootstrap/Pagination";
 
 import Sidebar from "../Sidebar";
 import { getMoviesAdmin, splitRecipesAdmin } from "../../../redux/actions";
+import { Link } from "react-router-dom";
+import SearchBarAdmin from "./SearchBarAdmin";
+
 
 function MoviesAdmin() {
   const [page, setPage] = useState(1);
@@ -33,15 +36,17 @@ function MoviesAdmin() {
   }, [dispatch]);
   useEffect(() => {}, [page]);
   return (
-    <>
+    <div >
+      <div><SearchBarAdmin/></div>
       <div className="col-4 col-md-2 bg-white vh-100 position-fixed">
         <Sidebar />
       </div>
+      <h2>List of products:</h2>
       <div
         style={{
           width: "80%",
           marginLeft: "auto",
-
+          backgroundColor: "white",
           height: "500px",
         }}
       >
@@ -67,7 +72,8 @@ function MoviesAdmin() {
                   <td>{e.Genres.map((a) => a.name + ", ")}</td>
                   <td>{e.price}</td>
                   <td>{e.Inventory.quantity}</td>
-                  <td>update</td>
+                  <Link to={`/admin/update/${e.id}`}> <td>update</td></Link>
+                 
                 </tr>
               ))}
           </tbody>
@@ -112,7 +118,7 @@ function MoviesAdmin() {
           }}
         />
       </Pagination>
-    </>
+    </div>
   );
 }
 
