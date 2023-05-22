@@ -3,12 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Table from "react-bootstrap/Table";
 import Pagination from "react-bootstrap/Pagination";
+import Button from "react-bootstrap/Button";
 
 import Sidebar from "../Sidebar";
-import { getMoviesAdmin, splitRecipesAdmin } from "../../../redux/actions";
+import {
+  getMoviesAdmin,
+  getMoviesNameAdmin,
+  splitRecipesAdmin,
+} from "../../../redux/actions";
 import { Link } from "react-router-dom";
 import SearchBarAdmin from "./SearchBarAdmin";
-
 
 function MoviesAdmin() {
   const [page, setPage] = useState(1);
@@ -30,18 +34,44 @@ function MoviesAdmin() {
     .slice(0, Math.ceil(moviesAdmin.length / 10))
     .map((recipe, index) => index + 1);
 
+  const handleDispatch = (name) => {
+    dispatch(getMoviesNameAdmin(name));
+  };
+
   useEffect(() => {
     dispatch(getMoviesAdmin());
     setPage(1);
   }, [dispatch]);
-  useEffect(() => {}, [page]);
+  useEffect(() => {}, [page, handleDispatch]);
+
   return (
-    <div >
-      <div><SearchBarAdmin/></div>
+    <div style={{ background: "white" }}>
       <div className="col-4 col-md-2 bg-white vh-100 position-fixed">
         <Sidebar />
       </div>
-      <h2>List of products:</h2>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <h2 style={{ width: "fit-content", marginLeft: "270px" }}>
+          List of products:
+        </h2>
+        <div style={{ display: "flex", marginTop: "5px" }}>
+          <Button
+            onClick={() => {
+              dispatch(getMoviesAdmin());
+              setPage(1);
+            }}
+            className="bg-light text-dark"
+            style={{ width: "fit-content", height: "35px", marginRight: "5px" }}
+          >
+            All
+          </Button>
+          <SearchBarAdmin handleDispatch={handleDispatch} />
+        </div>
+      </div>
       <div
         style={{
           width: "80%",
@@ -72,8 +102,9 @@ function MoviesAdmin() {
                   <td>{e.Genres.map((a) => a.name + ", ")}</td>
                   <td>{e.price}</td>
                   <td>{e.Inventory.quantity}</td>
-                  <Link to={`/admin/update/${e.id}`}> <td>update</td></Link>
-                 
+                  <td>
+                    <Link to={`/admin/update/${e.id}`}> update</Link>
+                  </td>
                 </tr>
               ))}
           </tbody>
