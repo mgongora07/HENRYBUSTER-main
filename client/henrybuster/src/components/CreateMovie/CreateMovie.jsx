@@ -179,7 +179,7 @@ export const CreateMovie = () => {
             <input type="file" id="image" onChange={uploadImage} />
           </div>
           {image && (
-            <div className={s["form-group"]}>
+            <div className={s["form-group"]} style={{ maxWidth: "200px" }}>
               <label>Preview:</label>
               <img src={image} alt="Preview" />
             </div>
