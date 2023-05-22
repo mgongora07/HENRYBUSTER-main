@@ -9,7 +9,7 @@ import { Nav } from "./components/Nav/Nav";
 import { Detail } from "./components/Detail/Detail";
 import Cart from "./components/Carrito/Cart"
 import { CartProvider } from "./components/Carrito/Context";
-
+import About from "./components/About/About";
 
 function App() {
   const location = useLocation();
@@ -17,14 +17,13 @@ function App() {
   return (
     <>
     <CartProvider>
-
-    
+   
       {location.pathname === "/" ? <Landing /> : <Nav />}
 
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/movie/:id" element={<Detail />} />
-        
+        <Route path="/about" element={<About />} />
         <Route path="/cart" element={<Cart />} />
 
       </Routes>

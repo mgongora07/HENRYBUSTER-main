@@ -14,6 +14,7 @@ import FilterMovies from "./Filter/FilterMovies";
 import CarouselFadeExample from "./carrusel/CarruselComponent";
 import NewMovie from "./agregadasRecientemente/NewMovie";
 
+
 export const Home = () => {
   const dispatch = useDispatch();
   const { paginado, moviesFilter, movies } = useSelector((state) => state);
@@ -70,6 +71,6 @@ export const Home = () => {
         </div>
         <Paginado pages={pages} split={split} />
       </div>
-    </>
+     </>
   );
 };
