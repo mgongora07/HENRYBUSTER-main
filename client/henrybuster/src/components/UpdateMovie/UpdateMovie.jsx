@@ -130,8 +130,8 @@ else newValidation.description = "";
   else newValidation.LanguageId = "";
 
 
-  if (Number(quantity) <= 0) 
-  newValidation.quantity ="Quantity can't be 0 and less than 0";
+  if (Number(quantity) < 0) 
+  newValidation.quantity ="Quantity can't less than 0";
   else newValidation.quantity = "";
 
     if (genreTags.length === 0)
