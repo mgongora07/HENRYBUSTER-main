@@ -69,7 +69,7 @@ export const getMoviesName = (name) => {
   return async function (dispatch) {
     try {
       let movie = await axios.get(
-        `http://localhost:3001/movies/search?name=${name}`
+        `http://localhost:3001/movies/search/guest?name=${name}`
       );
       let payload = movie.data;
       console.log(payload);
