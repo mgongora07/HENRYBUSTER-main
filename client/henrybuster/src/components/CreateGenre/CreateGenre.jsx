@@ -70,7 +70,7 @@ export const CreateGenre = () => {
 
           {err && <Alert variant="danger">{err}</Alert>}
           {success && (
-            <Alert variant="success">Genero creado correctamente</Alert>
+            <Alert variant="success">Gender created successfully</Alert>
           )}
           <button
             type="submit"
