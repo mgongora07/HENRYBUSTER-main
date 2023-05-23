@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 import Table from "react-bootstrap/Table";
 import Pagination from "react-bootstrap/Pagination";
@@ -36,6 +37,9 @@ function MoviesAdmin() {
 
   const handleDispatch = (name) => {
     dispatch(getMoviesNameAdmin(name));
+  };
+  const handleClick = (e) => {
+    e.preventDefault();
   };
 
   useEffect(() => {
@@ -86,11 +90,9 @@ function MoviesAdmin() {
               <th>#</th>
               <th>Name</th>
               <th>Genres</th>
-              <th>Price</th>
-
               <th>Quantity</th>
-
               <th>Actualizar</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -100,10 +102,18 @@ function MoviesAdmin() {
                   <td>{e.id}</td>
                   <td>{e.name}</td>
                   <td>{e.Genres.map((a) => a.name + ", ")}</td>
-                  <td>{e.price}</td>
                   <td>{e.Inventory.quantity}</td>
                   <td>
                     <Link to={`/admin/update/${e.id}`}> update</Link>
+                  </td>
+                  <td>
+                    <button
+                      style={{ border: "none" }}
+                      value={e.id}
+                      onClick={handleClick}
+                    >
+                      <i class="fa-sharp fa-solid fa-trash"></i>
+                    </button>
                   </td>
                 </tr>
               ))}
