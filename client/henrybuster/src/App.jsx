@@ -14,6 +14,7 @@ import MoviesAdmin from "./components/Admin/MoviesAdmin/MoviesAdmin";
 import HomeAdmin from "./components/Admin/HomeAdmin";
 import SearchResult from "./components/SearchBar/SearchResult";
 import AllGenres from "./components/Admin/genres/AllGenres";
+import UpdateGenre from "./components/Admin/genres/UpdateGenre";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="admin/create" element={<CreateMovie />} />
           <Route path="admin/update/:id" element={<UpdateMovie />} />
           <Route path="admin/create/genre" element={<CreateGenre />} />
+          <Route path="admin/update/genre/:id" element={<UpdateGenre />} />
           <Route path="admin/AllGenre" element={<AllGenres />} />
           <Route path="/admin/*" element={<Admin />} />
           <Route path="/admin/movies" element={<MoviesAdmin />} />

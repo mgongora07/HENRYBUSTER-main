@@ -23,12 +23,10 @@ export const CreateGenre = () => {
     e.preventDefault();
     setGenre(e.target.value);
 
-    if (isOnlyLetters(genre) && genre.length >= 20) {
+    if (!isOnlyLetters(genre) || genre.length >= 20) {
       setErr("have to be only letters and length less or equal 20");
-      console.log(genre.length);
       return;
     } else {
-      console.log(genre.length);
       setErr("");
     }
 

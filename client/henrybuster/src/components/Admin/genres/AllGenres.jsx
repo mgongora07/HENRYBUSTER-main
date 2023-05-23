@@ -5,10 +5,13 @@ import Sidebar from "../Sidebar";
 
 import Table from "react-bootstrap/Table";
 import Pagination from "react-bootstrap/Pagination";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getGenres } from "../../../redux/actions";
 
 function AllGenres() {
   const { genres } = useSelector((state) => state);
+  const dispatch = useDispatch();
+
   const [page, setPage] = useState(1);
   const [genrePage, setGenrePage] = useState("");
 
@@ -31,7 +34,7 @@ function AllGenres() {
 
   useEffect(() => {
     setGenrePage(genres.slice(0, 9));
-  }, []);
+  }, [dispatch]);
 
   return (
     <div style={{ background: "white" }}>
@@ -55,7 +58,9 @@ function AllGenres() {
                   <td>{e.name}</td>
 
                   <td>
-                    <Link to={`/admin/update/${e.id}`}> update</Link>
+                    <Link to={`/admin/update/genre/${e.id}-${e.name}`}>
+                      update
+                    </Link>
                   </td>
                 </tr>
               ))}
