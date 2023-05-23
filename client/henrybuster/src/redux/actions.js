@@ -12,7 +12,7 @@ import {
   GET_LANGUAGES,
   GET_MOVIES_ADMIN,
   SPLIT_RECIPES_ADMIN,
-
+  GET_MOVIES_NAME_ADMIN,
 } from "./action-type";
 
 import axios from "axios";
@@ -65,15 +65,33 @@ export const getMovies = () => {
   };
 };
 
-
 export const getMoviesName = (name) => {
   return async function (dispatch) {
     try {
-      let movie = await axios.get(`http://localhost:3001/movies/search?name=${name}`);
+      let movie = await axios.get(
+        `http://localhost:3001/movies/search/guest?name=${name}`
+      );
       let payload = movie.data;
-      console.log(payload)
+      console.log(payload);
       return dispatch({
         type: GET_MOVIES_NAME,
+        payload: payload,
+      });
+    } catch (error) {
+      return { error: error };
+    }
+  };
+};
+export const getMoviesNameAdmin = (name) => {
+  return async function (dispatch) {
+    try {
+      let movie = await axios.get(
+        `http://localhost:3001/movies/search?name=${name}`
+      );
+      let payload = movie.data;
+      console.log(payload);
+      return dispatch({
+        type: GET_MOVIES_NAME_ADMIN,
         payload: payload,
       });
     } catch (error) {

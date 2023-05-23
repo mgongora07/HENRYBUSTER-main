@@ -3,3 +3,11 @@
     text-align: left;
   }
   
+  .link-no-style {
+    color: inherit; /* Mantener el color original del texto */
+    text-decoration: none; /* Quitar la subrayado del enlace */
+  }
+  
+  .link-no-style:hover {
+    color:blue
+  }

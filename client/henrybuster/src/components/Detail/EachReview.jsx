@@ -8,9 +8,12 @@ const EachReview = (props) => {
   return (
     <div className={style.container}>
         <div className={style.container2}>
-            <p className={style.text}><strong className={style.strong}>Usuario</strong> {UserId?UserId:"No info about"}: </p>
-            <p className={style.text}> <strong className={style.strong}>Rating:</strong> {rating?rating:"No info about"}</p>
+          <div>
+            <p className={style.text}><i className="bi bi-star-fill me-1"></i>{rating?rating:"No info about"}/5</p>
+          </div>
+          <div>
             <p className={style.text}>{comment?comment:""}</p>
+          </div>
         </div>
     </div>
   )

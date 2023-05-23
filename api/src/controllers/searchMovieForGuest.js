@@ -1,11 +1,14 @@
 const {Movie, Inventory, Format, Genre, Language} = require('../db');
 const { Op } = require('sequelize');
 
-const getMovies = async (req, res) => {
+const searchMovieForGuest = async (req, res) => {
     try {
+      const { name } = req.query;
         const movies = await Movie.findAll({
-          where:{
-            status: true
+          where: {
+            name: {
+              [Op.iLike]: "%" + name + "%",
+            },
           },
             include: [
               {
@@ -28,10 +31,8 @@ const getMovies = async (req, res) => {
                 model:Language,
                 attributes: ["name"]
               }
-            ],
-            order: [['id', 'ASC']]
+            ]
           });
-
 
       res.status(200).json(movies);
     } catch (error) {
@@ -39,5 +40,4 @@ const getMovies = async (req, res) => {
     }
   };
   
-  module.exports = getMovies;
-  
+  module.exports = searchMovieForGuest;

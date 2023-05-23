@@ -12,6 +12,7 @@ import {
   GET_LANGUAGES,
   GET_MOVIES_ADMIN,
   SPLIT_RECIPES_ADMIN,
+  GET_MOVIES_NAME_ADMIN,
 } from "./action-type";
 
 const INITIAL_STATE = {
@@ -160,6 +161,15 @@ export default function rootReducer(
       return {
         ...state,
         moviesSearchResults: payload,
+        moviesAdmin: payload,
+      };
+    case GET_MOVIES_NAME_ADMIN:
+      console.log(payload);
+      const allResultsFilter = payload.slice(0, 10);
+      return {
+        ...state,
+        moviesAdmin: payload,
+        paginadoAdmin: allResultsFilter,
       };
 
     default:

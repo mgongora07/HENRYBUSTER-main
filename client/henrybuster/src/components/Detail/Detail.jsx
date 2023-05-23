@@ -40,9 +40,7 @@ export const Detail = () => {
                     <img src={movies? movies.image : "No info about"} alt="Imagen de pelicula" className={style.img}/>
                     <div className={style.containerBtn}>
                     <button onClick={()=>addItemToCart(movies)} className={style.btn}><i class="fa-solid fa-cart-plus"></i> Add to cart</button>
-                  <Link to={'/Cart'} className={style.btn}>
-                     <i class="fa-solid fa-cart-shopping"></i> View cart
-                  </Link>
+                  
                 </div>
                 </div>
                 <div className={style.InfoPelis}>
@@ -55,15 +53,16 @@ export const Detail = () => {
                     <p className={style.text}> <strong className={style.strong}>Ranking:</strong> {movies? movies.vote_average : "No info about"}</p>
                     <p className={style.text}> <strong className={style.strong}>Languages avaibles:</strong> {movies? movies.Language?.name : "No information about"}</p>
 
-                    <div className={style.Reviews}>
-                        <Reviews
-                          id={id}
-                        />
-                    </div>
+                    
                 </div>
-                
       
         </div>  
+                <div className={style.Reviews}>
+                        <Reviews
+                          id={id}
+                          rating={movies.vote_average}
+                        />
+                    </div>
         <div className={style.containerBack}>
           <button onClick={goBack} className={style.btnBack}>Back</button>
         </div>

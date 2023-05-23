@@ -8,6 +8,8 @@ import axios from "axios";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Tag from "../Tags/Tags";
+import Sidebar from "../Admin/Sidebar";
+
 export const UpdateMovie = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
@@ -128,8 +130,8 @@ else newValidation.description = "";
   else newValidation.LanguageId = "";
 
 
-  if (Number(quantity) <= 0) 
-  newValidation.quantity ="Quantity can't be 0 and less than 0";
+  if (Number(quantity) < 0) 
+  newValidation.quantity ="Quantity can't less than 0";
   else newValidation.quantity = "";
 
     if (genreTags.length === 0)
@@ -197,6 +199,10 @@ const uploadImage =(event) =>{
 
 
   return (
+    <div>
+      <div className="col-4 col-md-2 bg-white vh-100 position-fixed">
+        <Sidebar />
+    </div>
     <div className={s.formContainer}>
       <form className={s["movie-form"]}>
         <div className={s["form-group"]}>
@@ -334,6 +340,7 @@ const uploadImage =(event) =>{
           Enviar
         </button>
       </form>
+    </div>
     </div>
   )
 }
