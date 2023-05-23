@@ -131,13 +131,26 @@ export const CreateMovie = () => {
         genres: [...genreTags].map((x) => Number(x.id)),
       });
 
+      const imageElement = document.querySelector("#image");
+      imageElement.value = "";
+      setImage("");
+      const formatElement = document.querySelector("#format");
+      formatElement.value = "";
+      setFormatId("");
+      const languageElement = document.querySelector("#language");
+      languageElement.value = "";
+      setLanguageId("");
+      const genreElement = document.querySelector("#genres");
+      genreElement.value = "";
+      setGenreTags([]);
+      setGenre({ id: "", name: "" });
+
+      setLanguageId("");
       setName("");
       setDescription("");
       setPrice("");
       setDate("");
       setQuantity("");
-      setGenreTags([]);
-      setGenre({ id: "", name: "" });
       setLoading(true);
       setErr(false);
 
