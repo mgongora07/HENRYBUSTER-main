@@ -5,14 +5,14 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import Sidebar from "../Admin/Sidebar";
 
+import Alert from "react-bootstrap/Alert";
+
 export const CreateGenre = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getGenres());
-  }, [dispatch]);
 
   const [genre, setGenre] = useState("");
   const [err, setErr] = useState("");
+  const [success, setSuccess] = useState(false);
 
   const isOnlyLetters = (text) => {
     const regex = /^[a-zA-Z]+$/;
@@ -21,22 +21,33 @@ export const CreateGenre = () => {
 
   const InsertGenre = async (e) => {
     e.preventDefault();
-    if (isOnlyLetters(genre) && genre.length <= 20) {
-      setErr("");
-    } else {
+    setGenre(e.target.value);
+
+    if (isOnlyLetters(genre) && genre.length >= 20) {
       setErr("have to be only letters and length less or equal 20");
+      console.log(genre.length);
+      return;
+    } else {
+      console.log(genre.length);
+      setErr("");
     }
 
-    if (genre && !err) {
+    if (genre) {
       await axios.post(`http://localhost:3001/genre`, {
         name: genre,
       });
-
-      window.alert("Genre created");
+      setErr("");
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+      }, 1400);
     } else {
       window.alert("Please fill the input correctly");
     }
   };
+  useEffect(() => {
+    dispatch(getGenres());
+  }, [dispatch, success]);
 
   return (
     <div style={{ background: "white" }}>
@@ -59,10 +70,10 @@ export const CreateGenre = () => {
             />
           </div>
 
-          <div className={s["form-group"]}>
-            <span>{err}</span>
-          </div>
-
+          {err && <Alert variant="danger">{err}</Alert>}
+          {success && (
+            <Alert variant="success">Genero creado correctamente</Alert>
+          )}
           <button
             type="submit"
             className={s["submit-button"]}

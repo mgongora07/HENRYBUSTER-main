@@ -88,7 +88,7 @@ function MoviesAdmin() {
               <th>Genres</th>
               <th>Price</th>
 
-              <th>Stock</th>
+              <th>Quantity</th>
 
               <th>Actualizar</th>
             </tr>
