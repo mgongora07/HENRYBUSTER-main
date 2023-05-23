@@ -68,6 +68,7 @@ function MoviesAdmin() {
 
   useEffect(() => {
     dispatch(getMoviesAdmin());
+    dispatch(splitRecipesAdmin(0, 10));
     setPage(1);
   }, [dispatch]);
   useEffect(() => {}, [page, handleDispatch]);
@@ -107,6 +108,7 @@ function MoviesAdmin() {
         style={{
           width: "80%",
           marginLeft: "auto",
+          marginBottom: "15px",
           backgroundColor: "white",
           height: "500px",
         }}

@@ -19,7 +19,6 @@ function AllGenres() {
 
   const genr = () => {
     if (!genrePage) {
-      console.log("genrePage");
       setActualizar(true);
     } else {
       setActualizar(false);
@@ -47,7 +46,7 @@ function AllGenres() {
     dispatch(getGenres());
     setGenrePage(genres.slice(0, 9));
     genr();
-  }, [dispatch, actualizar]);
+  }, [dispatch, actualizar, genres]);
 
   return (
     <div style={{ background: "white" }}>
