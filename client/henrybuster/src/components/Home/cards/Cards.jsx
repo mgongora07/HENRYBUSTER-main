@@ -46,47 +46,48 @@ function Cards({ name, image, id, genres, movies, price, format }) {
 
   return (
     <>
-      <Card className={style.body} style={{ background: "rgb(0,0,0,0)" }}>
-        <Link to={`/movie/${id}`}>
-          <Card.Img variant="top" src={image} style={{ height: "250px" }} />
-        </Link>
-        <Card.Body className={style.cardBody}>
-          <Card.Title className={style.text}>{name}</Card.Title>
+      <div className={style.card}>
+        <div className={style.card_img}>
+          <Link to={`/movie/${id}`}>
+            <Card.Img variant="top" src={image} style={{ height: "250px" }} />
+          </Link>
+        </div>
+        <div className={style.card_info}>
+          <p className={style.text_title}>
+            <Card.Title className={style.text}>{name}</Card.Title>
+          </p>
           <Card.Text className={style.text}>
             <span>Format:</span> {format}
           </Card.Text>
-          <Card.Text className={style.text}>
-            <span>Price $ </span> {price}
-          </Card.Text>
-          <div className={style.button}>
+        </div>
+        <div className={style.card_footer}>
+          <div>
+            <Card.Text className={style.text}>
+              <span className={style.text_title}>${price}</span>
+            </Card.Text>
+          </div>
+          <div className={style.card_button}>
             <Button
               className={stateBuy === true ? "bg-danger" : "bg-success"}
               value={id}
               onClick={handleClick}
               style={{ height: "fit-content" }}
             >
-              <i class="fa-solid fa-cart-plus"> +</i>
-              {/* {stateBuy === true ? "Delete to cart" : "Add to cart"} */}
+              <i class="fa-solid fa-cart-plus"> + </i>
             </Button>
-            <Link to={"/Cart"}>
-
-              
-              <Button>
-                View cart <i class="fa-solid fa-cart-shopping"></i>
-              </Button>
-
-            </Link>
           </div>
+        </div>
+        <div className={style.alert}>
           {success ? (
-            <Card.Text className="text-success">Agregado con exito !</Card.Text>
+            <Card.Text className="text-success">Added successfully!</Card.Text>
           ) : null}
           {deleteSuccess ? (
             <Card.Text className="text-warning">
-              Eliminado con exito !
+             Deleted successfully!
             </Card.Text>
           ) : null}
-        </Card.Body>
-      </Card>
+        </div>
+      </div>
     </>
   );
 }

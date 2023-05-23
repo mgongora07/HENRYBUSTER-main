@@ -45,14 +45,14 @@ export const Home = () => {
     <>
       <div className={style.bodyHome}>
 
-        <h1 className={style.title}>Las Mas Votadas</h1>
+        <h1 className={style.title}>The Most Voted</h1>
         <CarouselFadeExample className={style.carrusel} />
         <hr style={{ color: "white", marginTop: "-30px" }} />
-        <h1 className={style.title}>Añadidas Recientemente</h1>
+        <h1 className={style.title}>Recently Added</h1>
         <NewMovie></NewMovie>
         <hr style={{ color: "white" }} />
 
-        <h1 className={style.title}>Todas las Peliculas</h1>
+        <h1 className={style.title}>All the movies</h1>
 
 
         <FilterMovies split={split} />

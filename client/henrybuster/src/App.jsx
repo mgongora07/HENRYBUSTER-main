@@ -19,6 +19,7 @@ import UpdateGenre from "./components/Admin/genres/UpdateGenre";
 function App() {
   return (
     <>
+
       <CartProvider>
         <Nav />
 
