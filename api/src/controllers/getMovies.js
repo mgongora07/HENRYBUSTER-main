@@ -28,7 +28,8 @@ const getMovies = async (req, res) => {
                 model:Language,
                 attributes: ["name"]
               }
-            ]
+            ],
+            order: [['id', 'ASC']]
           });
 
 

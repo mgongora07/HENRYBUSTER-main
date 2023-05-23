@@ -4,6 +4,9 @@ const {Movie, Inventory, Format, Genre, Language} = require('../db');
 const getMoviesForAdmin = async (req, res) => {
     try {
         const movies = await Movie.findAll({
+          where:{
+            status: true
+          },
             include: [
               {
                 model: Inventory,
@@ -20,7 +23,8 @@ const getMoviesForAdmin = async (req, res) => {
                 model:Language,
                 attributes: ["name"]
               }
-            ]
+            ],
+            order: [['id', 'ASC']]
           });
 
       res.status(200).json(movies);
