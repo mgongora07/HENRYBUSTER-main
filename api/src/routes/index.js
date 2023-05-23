@@ -21,6 +21,8 @@ const InsertRating = require("../controllers/InsertRating");
 const getMoviesForAdmin = require("../controllers/getMoviesForAdmin");
 const searchMovieByName = require("../controllers/searchMovieByName");
 const searchMovieForGuest = require("../controllers/SearchMovieForGuest");
+const updateGenre = require("../controllers/updateGenre");
+const deleteMovie = require("../controllers/deleteMovie");
 
 const router = express.Router();
 
@@ -45,4 +47,6 @@ router.post("/movie", insertMovie)
 router.post("/rating", InsertRating)
 router.put("/movie/:id", updateMovie)
 router.put("/user/:id", updateUser)
+router.put("/genre/:id", updateGenre)
+router.delete("/movie/:id",deleteMovie)
 module.exports = router;

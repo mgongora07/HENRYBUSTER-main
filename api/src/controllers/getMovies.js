@@ -4,6 +4,9 @@ const { Op } = require('sequelize');
 const getMovies = async (req, res) => {
     try {
         const movies = await Movie.findAll({
+          where:{
+            status: true
+          },
             include: [
               {
                 model: Inventory,
@@ -27,6 +30,7 @@ const getMovies = async (req, res) => {
               }
             ]
           });
+
 
       res.status(200).json(movies);
     } catch (error) {
