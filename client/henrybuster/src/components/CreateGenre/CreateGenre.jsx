@@ -14,29 +14,37 @@ export const CreateGenre = () => {
   const [genre, setGenre] = useState("");
   const [err, setErr] = useState("");
 
-  const isOnlyLetters = (text) => {
-    const regex = /^[a-zA-Z]+$/;
-    return regex.test(text);
-  };
+
 
   const InsertGenre = async (e) => {
     e.preventDefault();
-    if (isOnlyLetters(genre) && genre.length <= 20) {
-      setErr("");
-    } else {
+    const regex = /^[a-zA-Z]+$/;
+    let error = false
+    if(!regex.test(genre) || genre.length > 20){
       setErr("have to be only letters and length less or equal 20");
+      error = true
+    }else{
+      setErr("")
+      error = false
     }
-
-    if (genre && !err) {
-      await axios.post(`http://localhost:3001/genre`, {
-        name: genre,
-      });
-
-      window.alert("Genre created");
+    if (regex.test(genre) && genre.length <= 20 && !error) {
+      try {
+        await axios.post(`http://localhost:3001/genre`, {
+          name: genre,
+        });
+        window.alert("Category created");
+      } catch (error) {
+        window.alert("An error occurred while creating the genre");
+      }
     } else {
       window.alert("Please fill the input correctly");
     }
+
+    
+
   };
+
+ 
 
   return (
     <div style={{ background: "white" }}>
@@ -46,7 +54,7 @@ export const CreateGenre = () => {
       <div className={`${s.formContainer}`}>
         <form className={s["movie-form"]}>
           <div>
-            <h2>CREATE GENRE</h2>
+            <h2>CREATE CATEGORY</h2>
           </div>
 
           <div className={s["form-group"]}>
