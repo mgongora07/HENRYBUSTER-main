@@ -24,8 +24,8 @@ export const UpdateMovie = () => {
     setImage(data.image)
     //setDate(data.date.toString())
     const dateDb = data.date.toString();
-    const datePortion = dateDb.substring(0, dateDb.indexOf("T"));    
-    setDate(new Date(datePortion.split("-").join("/")))
+   // const datePortion = dateDb.substring(0, dateDb.indexOf("T"));    
+    setDate(new Date(dateDb.split("-").join("/")))
     setDescription(data.description)
     setFormatId(data.FormatId)
     const selectFormat = document.querySelector("#format");

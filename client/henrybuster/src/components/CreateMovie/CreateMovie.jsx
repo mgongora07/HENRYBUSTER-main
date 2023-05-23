@@ -104,6 +104,8 @@ export const CreateMovie = () => {
   };
 
   const submitHandler = async (e) => {
+    const imageElement = document.querySelector("#image");
+imageElement.value= "";
     e.preventDefault();
     let valid = validationHandler();
 
