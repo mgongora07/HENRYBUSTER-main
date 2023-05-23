@@ -8,6 +8,7 @@ const searchMovieByName = async (req, res) => {
         name: {
           [Op.iLike]: "%" + name + "%",
         },
+        status: true,
       },
       include: [
         {
