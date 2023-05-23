@@ -24,9 +24,6 @@ function App() {
 
        <Nav />
 
-      {location.pathname === "/" &&  <Nav />}
-
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movie/:id" element={<Detail />} />
