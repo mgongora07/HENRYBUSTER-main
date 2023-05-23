@@ -16,7 +16,7 @@ export const Nav = () => {
   return (
     <nav className={style.nav}>
       <h3 style={{ color: "white", marginRight: "auto" }}>
-        Titulo de la pagina
+        Movie Prime
       </h3>
       <Link className={style.link} to="/">
         <i class="fa-solid fa-house"></i> HOME
