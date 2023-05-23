@@ -33,6 +33,7 @@ export const CreateGenre = () => {
           name: genre,
         });
         window.alert("Category created");
+        setGenre("")
       } catch (error) {
         window.alert("An error occurred while creating the genre");
       }
