@@ -67,14 +67,14 @@ function UpdateGenre() {
 
           {error && <Alert variant="danger">{error}</Alert>}
           {success && (
-            <Alert variant="success">Genero actualizado correctamente</Alert>
+            <Alert variant="success">Gender updated successfully</Alert>
           )}
           <button
             type="submit"
             className={s["submit-button"]}
             onClick={handleSubmit}
           >
-            Enviar
+            Send
           </button>
         </form>
       </div>

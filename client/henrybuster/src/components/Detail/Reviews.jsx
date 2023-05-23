@@ -88,17 +88,17 @@ const Reviews = (props) => {
   
     // Renderizar estrellas llenas
     for (let i = 0; i < fullStars; i++) {
-      stars.push(<i className="bi bi-star-fill me-1"></i>);
+      stars.push(<i className="bi bi-star-fill me-1" ></i>);
     }
   
     // Renderizar estrella media si es necesario
     if (hasHalfStar) {
-      stars.push(<i className="bi bi-star-half me-1"></i>);
+      stars.push(<i className="bi bi-star-half me-1" ></i>);
     }
   
     // Renderizar estrellas vacías
     for (let i = 0; i < emptyStars; i++) {
-      stars.push(<i className="bi bi-star me-1"></i>);
+      stars.push(<i className="bi bi-star me-1" ></i>);
     }
   
     return stars;
