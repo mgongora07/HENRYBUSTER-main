@@ -48,7 +48,7 @@ export default function rootReducer(
       };
 
     case GET_MOVIES:
-      const results = payload.slice(0, 10);
+      const results = payload.slice(0, 9);
       return {
         ...state,
         paginado: results,
