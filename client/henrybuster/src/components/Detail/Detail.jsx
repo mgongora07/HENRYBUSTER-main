@@ -39,7 +39,7 @@ export const Detail = () => {
                 <h5>{movies? movies.name : "No info about"}</h5>
                     <img src={movies? movies.image : "No info about"} alt="Imagen de pelicula" className={style.img}/>
                     <div className={style.containerBtn}>
-                    <button onClick={()=>addItemToCart(movies)} className={style.btn}><i class="fa-solid fa-cart-plus"></i> Add to cart</button>
+                    <button onClick={()=>addItemToCart(movies)} className={style.btn}><i className="fa-solid fa-cart-plus"></i> Add to cart</button>
                   
                 </div>
                 </div>
