@@ -19,7 +19,7 @@ function AllGenres() {
 
   const genr = () => {
     if (!genrePage) {
-      console.log(genrePage);
+      console.log("genrePage");
       setActualizar(true);
     } else {
       setActualizar(false);

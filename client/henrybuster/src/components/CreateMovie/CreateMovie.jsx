@@ -106,7 +106,7 @@ export const CreateMovie = () => {
 
   const submitHandler = async (e) => {
     const imageElement = document.querySelector("#image");
-imageElement.value= "";
+    imageElement.value = "";
     e.preventDefault();
     let valid = validationHandler();
 
@@ -336,7 +336,7 @@ imageElement.value= "";
             <Alerts variant="danger">Please fill the form correctly</Alerts>
           )}
           {success && (
-            <Alerts variant="success">Pelicula creada correctamente</Alerts>
+            <Alerts variant="success">Movie created successfully</Alerts>
           )}
           <button
             type="submit"
