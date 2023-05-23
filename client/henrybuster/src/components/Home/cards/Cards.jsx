@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
 import Button from "react-bootstrap/Button";
@@ -43,12 +43,24 @@ function Cards({ name, image, id, genres, movies, price, format }) {
       }, 800);
     }
   };
+  
+    const pageRef = useRef();
+  
+    const handleScrollUp = () => {
+      pageRef.current.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    };
+  
+   
+
 
   return (
     <>
       <div className={style.card}>
         <div className={style.card_img}>
-          <Link to={`/movie/${id}`}>
+          <Link to={`/movie/${id}`} onClick={handleScrollUp}>
             <Card.Img variant="top" src={image} style={{ height: "250px" }} />
           </Link>
         </div>
