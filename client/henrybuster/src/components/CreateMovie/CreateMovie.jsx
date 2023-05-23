@@ -9,14 +9,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import Tag from "../Tags/Tags";
 import Sidebar from "../Admin/Sidebar";
 
+import Alerts from "react-bootstrap/Alert";
+import Spinner from "react-bootstrap/Spinner";
+
 export const CreateMovie = () => {
   const dispatch = useDispatch();
   // const history = useHistory();
-  useEffect(() => {
-    dispatch(getFormats());
-    dispatch(getLanguages());
-    dispatch(getGenres());
-  }, [dispatch]);
 
   const languages = useSelector((state) => state.languages);
   const genres = useSelector((state) => state.genres);
@@ -42,6 +40,9 @@ export const CreateMovie = () => {
     quantity: "",
     genre: "",
   });
+  const [err, setErr] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleAddTag = (event) => {
     event.preventDefault();
@@ -129,9 +130,26 @@ export const CreateMovie = () => {
         quantity,
         genres: [...genreTags].map((x) => Number(x.id)),
       });
-      window.alert("Movie created");
+
+      setName("");
+      setDescription("");
+      setPrice("");
+      setDate("");
+      setQuantity("");
+      setGenreTags([]);
+      setGenre({ id: "", name: "" });
+      setLoading(true);
+      setErr(false);
+
+      setTimeout(() => {
+        setSuccess(true);
+        setLoading(false);
+      }, 800);
+      setTimeout(() => {
+        setSuccess(false);
+      }, 1400);
     } else {
-      window.alert("Please fill the form correctly");
+      setErr(true);
     }
     // history.push("/home");
   };
@@ -153,8 +171,14 @@ export const CreateMovie = () => {
       .catch((err) => console.log(err));
   };
 
+  useEffect(() => {
+    dispatch(getFormats());
+    dispatch(getLanguages());
+    dispatch(getGenres());
+  }, [dispatch]);
+
   return (
-    <div style={{ background: "white" }}>
+    <div style={{ background: "white", paddingBottom: "80px" }}>
       <div className="col-4 col-md-2 bg-white vh-100 position-fixed">
         <Sidebar />
       </div>
@@ -220,6 +244,7 @@ export const CreateMovie = () => {
             <select
               id="format"
               onChange={(event) => setFormatId(event.target.value)}
+              defaultValue=""
             >
               <option key={0} value="">
                 Select a Format
@@ -239,6 +264,7 @@ export const CreateMovie = () => {
             <select
               id="language"
               onChange={(event) => setLanguageId(event.target.value)}
+              defaultValue=""
             >
               <option key={0} value="">
                 Select a language
@@ -291,13 +317,25 @@ export const CreateMovie = () => {
               />
             ))}
           </div>
+          {err && (
+            <Alerts variant="danger">Please fill the form correctly</Alerts>
+          )}
+          {success && (
+            <Alerts variant="success">Pelicula creada correctamente</Alerts>
+          )}
           <button
             type="submit"
             className={s["submit-button"]}
             onClick={submitHandler}
+            disabled={loading ? true : false}
           >
             Enviar
           </button>
+          {loading ? (
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          ) : null}
         </form>
       </div>
     </div>
