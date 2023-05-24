@@ -23,7 +23,7 @@ export const Nav = () => {
       // alert("Sign-out successful");
       // await signOut(auth);
       await logout();
-      navigate("/home");
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
