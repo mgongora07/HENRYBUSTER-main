@@ -5,7 +5,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 function Sidebar({ handleCreateMovie }) {
   return (
-    <div className="col-4 col-md-2 bg-white vh-100 position-fixed">
+    <div className="body">
       <div className="sidebar p-2">
         <div className="m-2">
           <i className="bi bi-person-circle me-3 fs-4"></i>
