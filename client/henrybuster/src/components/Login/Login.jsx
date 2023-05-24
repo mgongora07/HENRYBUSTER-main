@@ -45,7 +45,7 @@ const Login = () => {
     //console.log(user);
     try {
       await login(user.email, user.password);
-      navigate("/home");
+      navigate("/");
       user.sendEmailVerification();
     } catch (error) {
       //console.log(error.message);
