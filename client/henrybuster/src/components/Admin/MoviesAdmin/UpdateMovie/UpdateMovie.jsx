@@ -1,20 +1,47 @@
 import React, { useState, useEffect } from "react";
-import s from "./Create.module.css";
-import { getFormats, getLanguages, getGenres } from "../../redux/actions.js";
+import s from "./UpdateMovie.module.css";
+import { getFormats, getLanguages, getGenres } from "../../../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 //import { useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Tag from "../Tags/Tags";
-import Sidebar from "../Admin/Sidebar";
+import Tag from "../../../Tags/Tags";
 
-import Alerts from "react-bootstrap/Alert";
-import Spinner from "react-bootstrap/Spinner";
-
-export const CreateMovie = () => {
+export const UpdateMovie = () => {
   const dispatch = useDispatch();
+  const { id } = useParams();
   // const history = useHistory();
+
+  const fetchData = async () => {
+    const { data } = await axios.get(`http://localhost:3001/movie/${id}`);
+
+    setName(data.name);
+    setImage(data.image);
+    //setDate(data.date.toString())
+    const dateDb = data.date.toString();
+    // const datePortion = dateDb.substring(0, dateDb.indexOf("T"));
+    setDate(new Date(dateDb.split("-").join("/")));
+    setDescription(data.description);
+    setFormatId(data.FormatId);
+    const selectFormat = document.querySelector("#format");
+    selectFormat.value = data.FormatId;
+    setLanguageId(data.LanguageId);
+    const selectLanguage = document.querySelector("#language");
+    selectLanguage.value = data.LanguageId;
+    setPrice(data.price);
+    setQuantity(data.Inventory.quantity);
+    setGenreTags(data.Genres);
+  };
+
+  useEffect(() => {
+    dispatch(getFormats());
+    dispatch(getLanguages());
+    dispatch(getGenres());
+
+    fetchData();
+  }, [dispatch]);
 
   const languages = useSelector((state) => state.languages);
   const genres = useSelector((state) => state.genres);
@@ -40,9 +67,6 @@ export const CreateMovie = () => {
     quantity: "",
     genre: "",
   });
-  const [err, setErr] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const handleAddTag = (event) => {
     event.preventDefault();
@@ -91,8 +115,8 @@ export const CreateMovie = () => {
     if (!LanguageId) newValidation.LanguageId = "Language can't be empty";
     else newValidation.LanguageId = "";
 
-    if (Number(quantity) <= 0)
-      newValidation.quantity = "Quantity can't be 0 and less than 0";
+    if (Number(quantity) < 0)
+      newValidation.quantity = "Quantity can't less than 0";
     else newValidation.quantity = "";
 
     if (genreTags.length === 0)
@@ -105,8 +129,6 @@ export const CreateMovie = () => {
   };
 
   const submitHandler = async (e) => {
-    const imageElement = document.querySelector("#image");
-    imageElement.value = "";
     e.preventDefault();
     let valid = validationHandler();
 
@@ -121,7 +143,7 @@ export const CreateMovie = () => {
       !valid.quantity &&
       !valid.genre
     ) {
-      await axios.post("http://localhost:3001/movie", {
+      await axios.put(`http://localhost:3001/movie/${id}`, {
         name,
         image,
         description,
@@ -132,39 +154,9 @@ export const CreateMovie = () => {
         quantity,
         genres: [...genreTags].map((x) => Number(x.id)),
       });
-
-      const imageElement = document.querySelector("#image");
-      imageElement.value = "";
-      setImage("");
-      const formatElement = document.querySelector("#format");
-      formatElement.value = "";
-      setFormatId("");
-      const languageElement = document.querySelector("#language");
-      languageElement.value = "";
-      setLanguageId("");
-      const genreElement = document.querySelector("#genres");
-      genreElement.value = "";
-      setGenreTags([]);
-      setGenre({ id: "", name: "" });
-
-      setLanguageId("");
-      setName("");
-      setDescription("");
-      setPrice("");
-      setDate("");
-      setQuantity("");
-      setLoading(true);
-      setErr(false);
-
-      setTimeout(() => {
-        setSuccess(true);
-        setLoading(false);
-      }, 800);
-      setTimeout(() => {
-        setSuccess(false);
-      }, 1400);
+      window.alert("Movie updated");
     } else {
-      setErr(true);
+      window.alert("Please fill the form correctly");
     }
     // history.push("/home");
   };
@@ -186,21 +178,12 @@ export const CreateMovie = () => {
       .catch((err) => console.log(err));
   };
 
-  useEffect(() => {
-    dispatch(getFormats());
-    dispatch(getLanguages());
-    dispatch(getGenres());
-  }, [dispatch]);
-
   return (
-    <div style={{ background: "white", paddingBottom: "80px" }}>
-      <div className="col-4 col-md-2 bg-white vh-100 position-fixed">
-        <Sidebar />
-      </div>
+    <div>
       <div className={s.formContainer}>
         <form className={s["movie-form"]}>
           <div className={s["form-group"]}>
-            <h2>CREATE NEW MOVIE</h2>
+            <h2>UPDATE MOVIE</h2>
           </div>
 
           <div className={s["form-group"]}>
@@ -218,7 +201,7 @@ export const CreateMovie = () => {
             <input type="file" id="image" onChange={uploadImage} />
           </div>
           {image && (
-            <div className={s["form-group"]} style={{ maxWidth: "200px" }}>
+            <div className={s["form-group"]}>
               <label>Preview:</label>
               <img src={image} alt="Preview" />
             </div>
@@ -233,7 +216,6 @@ export const CreateMovie = () => {
               onChange={(event) => setPrice(event.target.value)}
             />
           </div>
-
           <span>{validation.price}</span>
           <div className={s["form-group"]}>
             <label htmlFor="quantity">Quantity:</label>
@@ -259,7 +241,6 @@ export const CreateMovie = () => {
             <select
               id="format"
               onChange={(event) => setFormatId(event.target.value)}
-              defaultValue=""
             >
               <option key={0} value="">
                 Select a Format
@@ -279,7 +260,6 @@ export const CreateMovie = () => {
             <select
               id="language"
               onChange={(event) => setLanguageId(event.target.value)}
-              defaultValue=""
             >
               <option key={0} value="">
                 Select a language
@@ -332,25 +312,13 @@ export const CreateMovie = () => {
               />
             ))}
           </div>
-          {err && (
-            <Alerts variant="danger">Please fill the form correctly</Alerts>
-          )}
-          {success && (
-            <Alerts variant="success">Movie created successfully</Alerts>
-          )}
           <button
             type="submit"
             className={s["submit-button"]}
             onClick={submitHandler}
-            disabled={loading ? true : false}
           >
             Enviar
           </button>
-          {loading ? (
-            <Spinner animation="border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
-          ) : null}
         </form>
       </div>
     </div>

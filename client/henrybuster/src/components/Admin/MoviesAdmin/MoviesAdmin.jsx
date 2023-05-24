@@ -78,9 +78,7 @@ function MoviesAdmin() {
       <Alert variant="danger" show={success}>
         <Alert.Heading>Movie Deleted Successfully</Alert.Heading>
       </Alert>
-      <div className="col-4 col-md-2 bg-white vh-100 position-fixed">
-        <Sidebar />
-      </div>
+
       <div
         style={{
           display: "flex",
