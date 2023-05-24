@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import s from "./CreateGenre.module.css";
-import { getGenres } from "../../redux/actions.js";
+import { getGenres } from "../../../../redux/actions";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import Sidebar from "../Admin/Sidebar";
 
 import Alert from "react-bootstrap/Alert";
 
@@ -49,9 +48,6 @@ export const CreateGenre = () => {
 
   return (
     <div style={{ background: "white" }}>
-      <div className="col-4 col-md-2 bg-white vh-100 position-fixed">
-        <Sidebar />
-      </div>
       <div className={`${s.formContainer}`}>
         <form className={s["movie-form"]}>
           <div>
