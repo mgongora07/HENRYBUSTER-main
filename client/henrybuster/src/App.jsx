@@ -6,6 +6,11 @@ import { Nav } from "./components/Nav/Nav";
 import { Detail } from "./components/Detail/Detail";
 import Cart from "./components/Carrito/Cart";
 import { CartProvider } from "./components/Carrito/Context";
+
+import { AuthProvider } from "./context/authContext";
+import  Register  from "./components/Register/Register";
+import Login from "./components/Login/Login";
+
 import { CreateMovie } from "./components/CreateMovie/CreateMovie";
 import { UpdateMovie } from "./components/UpdateMovie/UpdateMovie";
 import Admin from "./components/Admin/Admin";
@@ -16,11 +21,14 @@ import SearchResult from "./components/SearchBar/SearchResult";
 import AllGenres from "./components/Admin/genres/AllGenres";
 import UpdateGenre from "./components/Admin/genres/UpdateGenre";
 
+
 function App() {
   return (
     <>
 
+
       <CartProvider>
+        <AuthProvider>      
         <Nav />
 
         <Routes>
@@ -37,6 +45,7 @@ function App() {
           <Route path="/admin/movies" element={<MoviesAdmin />} />
           <Route path="/results" element={<SearchResult />} />
         </Routes>
+ </AuthProvider>
       </CartProvider>
     </>
   );

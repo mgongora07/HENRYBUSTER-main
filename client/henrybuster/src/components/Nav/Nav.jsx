@@ -1,5 +1,8 @@
 import React from "react";
 import style from "../Styles/Nav.module.css";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/authContext"
+
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import SearchBar from "../SearchBar/SearchBar";
@@ -12,6 +15,30 @@ export const Nav = () => {
   const handleSearch = (name) => {
     dispatch(getMoviesName(name));
   };
+  
+const { user, loading, logout } = useAuth();
+ const navigate = useNavigate();
+
+const handleLogout = async () => {
+  try {
+    // alert("Sign-out successful");
+    // await signOut(auth);
+    await logout();
+    navigate("/home");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const perfil = user ? true : false;
+console.log(user);
+
+if (!user) {
+  ("");
+} else {
+  var email = user.email;
+}
+
 
   return (
     <nav className={style.nav}>
@@ -37,5 +64,6 @@ export const Nav = () => {
         <i class="fa-solid fa-arrow-right-from-bracket"></i>
       </Link>
     </nav>
+
   );
 };
