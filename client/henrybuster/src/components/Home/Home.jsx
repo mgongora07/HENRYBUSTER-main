@@ -11,10 +11,12 @@ import {
 import Cards from "./cards/Cards";
 import Paginado from "./paginado/Paginado";
 import FilterMovies from "./Filter/FilterMovies";
+import CarouselFadeExample from "./carrusel/CarruselComponent";
+import NewMovie from "./agregadasRecientemente/NewMovie";
 
 export const Home = () => {
   const dispatch = useDispatch();
-  const { paginado, moviesFilter } = useSelector((state) => state);
+  const { paginado, moviesFilter, movies } = useSelector((state) => state);
 
   let pages = moviesFilter
     .slice(0, Math.ceil(moviesFilter.length / 10))
@@ -22,10 +24,10 @@ export const Home = () => {
 
   const split = (num) => {
     if (num === 1) {
-      dispatch(splitRecipes(0, 10));
+      dispatch(splitRecipes(0, 9));
     } else {
       const inicio = num * 10 - 10;
-      const fin = num * 10;
+      const fin = num * 10 - 1;
       dispatch(splitRecipes(inicio, fin));
     }
   };
@@ -39,7 +41,17 @@ export const Home = () => {
   return (
     <>
       <div className={style.bodyHome}>
+        <h1 className={style.title}>The Most Voted</h1>
+        <CarouselFadeExample className={style.carrusel} />
+        <hr style={{ color: "white", marginTop: "-30px" }} />
+        <h1 className={style.title}>Recently Added</h1>
+        <NewMovie></NewMovie>
+        <hr style={{ color: "white", marginTop: "90px" }} />
+
+        <h1 className={style.title}>All the movies</h1>
+
         <FilterMovies split={split} />
+
         <Paginado pages={pages} split={split} />
         <div className={style.body}>
           {paginado &&

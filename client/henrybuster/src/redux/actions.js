@@ -6,7 +6,15 @@ import {
   SPLIT_RECIPES,
   FILTER_BY_FORMAT,
   FILTER_BY_GENRES,
+  GET_RANKING,
+  FILTER_RANKING,
+  GET_MOVIES_NAME,
+  GET_LANGUAGES,
+  GET_MOVIES_ADMIN,
+  SPLIT_RECIPES_ADMIN,
+  GET_MOVIES_NAME_ADMIN,
 } from "./action-type";
+
 import axios from "axios";
 
 export const getDetailMovie = (id) => {
@@ -57,6 +65,41 @@ export const getMovies = () => {
   };
 };
 
+export const getMoviesName = (name) => {
+  return async function (dispatch) {
+    try {
+      let movie = await axios.get(
+        `http://localhost:3001/movies/search/guest?name=${name}`
+      );
+      let payload = movie.data;
+      console.log(payload);
+      return dispatch({
+        type: GET_MOVIES_NAME,
+        payload: payload,
+      });
+    } catch (error) {
+      return { error: error };
+    }
+  };
+};
+export const getMoviesNameAdmin = (name) => {
+  return async function (dispatch) {
+    try {
+      let movie = await axios.get(
+        `http://localhost:3001/movies/search?name=${name}`
+      );
+      let payload = movie.data;
+      console.log(payload);
+      return dispatch({
+        type: GET_MOVIES_NAME_ADMIN,
+        payload: payload,
+      });
+    } catch (error) {
+      return { error: error };
+    }
+  };
+};
+
 export function splitRecipes(inicio, fin) {
   return async (dispatch) => {
     dispatch({
@@ -66,6 +109,62 @@ export function splitRecipes(inicio, fin) {
     });
   };
 }
+export const getMoviesAdmin = () => {
+  return async function (dispatch) {
+    try {
+      let movie = await axios.get(`http://localhost:3001/movies/admin`);
+      let payload = movie.data;
+
+      return dispatch({
+        type: GET_MOVIES_ADMIN,
+        payload: payload,
+      });
+    } catch (error) {
+      return { error: error };
+    }
+  };
+};
+export function splitRecipesAdmin(inicio, fin) {
+  return async (dispatch) => {
+    dispatch({
+      type: SPLIT_RECIPES_ADMIN,
+      inicio,
+      fin,
+    });
+  };
+}
+
+export const getRankingMovie = (id) => {
+  return async function (dispatch) {
+    try {
+      let ratings = await axios.get(`http://localhost:3001/rating/${id}`);
+
+      let payload = ratings.data;
+
+      return dispatch({
+        type: GET_RANKING,
+        payload: payload,
+      });
+    } catch (error) {
+      return { error: error };
+    }
+  };
+};
+
+export const cleanRatings = () => {
+  return function (dispatch) {
+    try {
+      let clean = [];
+
+      return dispatch({
+        type: GET_RANKING,
+        payload: clean,
+      });
+    } catch (error) {
+      return { error: error };
+    }
+  };
+};
 
 export function getFormats() {
   return async (dispatch) => {
@@ -86,6 +185,16 @@ export function getGenres() {
   };
 }
 
+export function getLanguages() {
+  return async (dispatch) => {
+    const resp = await axios(`http://localhost:3001/languages`);
+    dispatch({
+      type: GET_LANGUAGES,
+      payload: resp.data,
+    });
+  };
+}
+
 export function filterByGenres(filtro) {
   return {
     type: FILTER_BY_GENRES,
@@ -96,5 +205,12 @@ export function filterByFormat(filtro) {
   return {
     type: FILTER_BY_FORMAT,
     payload: filtro,
+  };
+}
+
+export function filterRatingStar(order) {
+  return {
+    type: FILTER_RANKING,
+    payload: order,
   };
 }

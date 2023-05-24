@@ -3,8 +3,18 @@ import style from "../Styles/Nav.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext"
 
+import { Link, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import SearchBar from "../SearchBar/SearchBar";
+import { getMoviesName } from "../../redux/actions";
 
 export const Nav = () => {
+  const dispatch = useDispatch();
+  const location = useLocation();
+
+  const handleSearch = (name) => {
+    dispatch(getMoviesName(name));
+  };
   
 const { user, loading, logout } = useAuth();
  const navigate = useNavigate();
@@ -30,35 +40,30 @@ if (!user) {
 }
 
 
-
-
   return (
-    <>
-      <nav className={style.nav}>
-        <div className={style.link}>Hola {email}</div>
-        <Link className={style.link} to='/home'>
-          Home
-        </Link>
-        <Link className={style.link} to='/about'>
-          About
-        </Link>
-        <Link className={style.link} to='/Cart'>
-          Carrito
-        </Link>
-        <Link hidden={perfil} className={style.link} to='/login'>
-          Login
-        </Link>
-        <Link
-          hidden={!perfil}
-          className={style.link}
-          onClick={handleLogout}
-          to='/home'
-        >
-          Salir
-        </Link>
-      </nav>
-    </>
+    <nav className={style.nav}>
+      <h3 style={{ color: "white", marginRight: "auto" }}>
+        Movie Prime
+      </h3>
+      <Link className={style.link} to="/">
+        <i class="fa-solid fa-house"></i> HOME
+      </Link>
+      <Link className={style.link} to="/admin">
+        <i class="fa-solid fa-user"></i> ADMIN
+      </Link>
+      <Link className={style.link} to="/Cart">
+        <i class="fa-solid fa-cart-shopping"></i> CART
+      </Link>
+      <Link className={style.link} to="/about">
+        <i class="fa-solid fa-address-card"></i> ABOUT
+      </Link>
+      {location.pathname !== "/admin/movies" && (
+        <SearchBar handleSearch={handleSearch} />
+      )}
+      <Link className={style.link} to="#">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+      </Link>
+    </nav>
+
   );
 };
-
-

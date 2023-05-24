@@ -1,20 +1,33 @@
 import {
   GET_DETAIL,
   GET_MOVIES,
+  GET_MOVIES_NAME,
   GET_FORMAT,
   GET_GENRES,
   SPLIT_RECIPES,
   FILTER_BY_GENRES,
   FILTER_BY_FORMAT,
+  GET_RANKING,
+  FILTER_RANKING,
+  GET_LANGUAGES,
+  GET_MOVIES_ADMIN,
+  SPLIT_RECIPES_ADMIN,
+  GET_MOVIES_NAME_ADMIN,
 } from "./action-type";
 
 const INITIAL_STATE = {
   detail: {},
   movies: [],
+  moviesSearchResults: [], // Nueva propiedad para almacenar los resultados de búsqueda
   moviesFilter: [],
   paginado: [],
+  ratings: [],
   format: [],
   genres: [],
+  languages: [],
+  ratingsFilter: [],
+  moviesAdmin: [],
+  paginadoAdmin: [],
 };
 
 export default function rootReducer(
@@ -27,19 +40,49 @@ export default function rootReducer(
         ...state,
         detail: payload,
       };
+
+    case GET_LANGUAGES:
+      return {
+        ...state,
+        languages: payload,
+      };
+
     case GET_MOVIES:
-      const results = payload.slice(0, 10);
+      const results = payload.slice(0, 9);
       return {
         ...state,
         paginado: results,
         movies: payload,
         moviesFilter: payload,
       };
+
+    case GET_MOVIES_ADMIN:
+      const allResults = payload.slice(0, 10);
+      return {
+        ...state,
+        paginadoAdmin: allResults,
+        moviesAdmin: payload,
+      };
+
+    case SPLIT_RECIPES_ADMIN:
+      const resultAdmin = state.moviesAdmin.slice(inicio, fin);
+      return {
+        ...state,
+        paginadoAdmin: resultAdmin,
+      };
+
     case SPLIT_RECIPES:
       const result = state.moviesFilter.slice(inicio, fin);
       return {
         ...state,
         paginado: result,
+      };
+
+    case GET_RANKING:
+      return {
+        ...state,
+        ratings: payload,
+        ratingsFilter: payload,
       };
 
     case GET_FORMAT:
@@ -73,6 +116,7 @@ export default function rootReducer(
           moviesFilter: data,
         };
       }
+
     case FILTER_BY_FORMAT:
       console.log(payload);
       if (payload === "All-Format") {
@@ -92,6 +136,42 @@ export default function rootReducer(
           moviesFilter: data,
         };
       }
+
+    case FILTER_RANKING:
+      let ratingsFiltered = [...state.ratings];
+      console.log(ratingsFiltered, "inicio");
+      if (payload === "All") {
+        ratingsFiltered = state.ratings;
+        console.log(ratingsFiltered, "if all");
+      } else {
+        const rating = payload;
+        console.log(rating, "nuemero que recibe");
+        ratingsFiltered = ratingsFiltered.filter(
+          (item) => item.rating === rating
+        );
+        console.log(ratingsFiltered, "despues de filtrar");
+      }
+
+      return {
+        ...state,
+        ratingsFilter: ratingsFiltered,
+      };
+
+    case GET_MOVIES_NAME:
+      return {
+        ...state,
+        moviesSearchResults: payload,
+        moviesAdmin: payload,
+      };
+    case GET_MOVIES_NAME_ADMIN:
+      console.log(payload);
+      const allResultsFilter = payload.slice(0, 10);
+      return {
+        ...state,
+        moviesAdmin: payload,
+        paginadoAdmin: allResultsFilter,
+      };
+
     default:
       return state;
   }
