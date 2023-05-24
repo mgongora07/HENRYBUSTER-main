@@ -83,7 +83,7 @@ const Login = () => {
           //console.log(save);
         }
       }
-      navigate("/home");
+      navigate("/");
     } catch (error) {
       setError(error.message);
     }

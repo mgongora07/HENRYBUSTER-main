@@ -49,7 +49,7 @@ const Register = () => {
         // otros detalles del usuario
       };
       dispatch(registerUser(userData));
-      navigate("/home");
+      navigate("/");
       //await verifyEmail();
     } catch (error) {
       //console.log(error.message);

@@ -53,10 +53,18 @@ export const Nav = () => {
       <Link className={style.link} to='/about'>
         <i class='fa-solid fa-address-card'></i> ABOUT
       </Link>
+      <Link hidden={perfil} className={style.link} to='/login'>
+        Login
+      </Link>
       {location.pathname !== "/admin/movies" && (
         <SearchBar handleSearch={handleSearch} />
       )}
-      <Link className={style.link} to='#'>
+      <Link
+        hidden={!perfil}
+        className={style.link}
+        onClick={handleLogout}
+        to='/'
+      >
         <i class='fa-solid fa-arrow-right-from-bracket'></i>
       </Link>
     </nav>
