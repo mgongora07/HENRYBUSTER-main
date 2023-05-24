@@ -74,7 +74,7 @@ function MoviesAdmin() {
   useEffect(() => {}, [page, handleDispatch]);
 
   return (
-    <div style={{ background: "white" }}>
+    <div style={{ background: "white", height: "593px" }}>
       <Alert variant="danger" show={success}>
         <Alert.Heading>Movie Deleted Successfully</Alert.Heading>
       </Alert>
@@ -106,12 +106,11 @@ function MoviesAdmin() {
         style={{
           width: "80%",
           marginLeft: "auto",
-          marginBottom: "15px",
           backgroundColor: "white",
           height: "500px",
         }}
       >
-        <Table striped bordered hover>
+        <Table responsive borderless>
           <thead>
             <tr>
               <th>#</th>

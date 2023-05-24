@@ -17,11 +17,9 @@ function Admin() {
   }
 
   return (
-    <div>
-      <div className="container-fluid bg-secondary min-vh-100">
-        <div className="row">
-          <HomeAdmin />
-        </div>
+    <div className="container-fluid bg-white" style={{ height: "593px" }}>
+      <div className="row">
+        <HomeAdmin />
       </div>
     </div>
   );
