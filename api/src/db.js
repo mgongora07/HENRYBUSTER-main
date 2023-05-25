@@ -10,6 +10,8 @@ const movie = require("./models/Movie");
 const purchase = require("./models/Purchase");
 const rating = require("./models/Rating");
 const language = require("./models/Language");
+const address = require("./models/Address");
+
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
 const sequelize = new Sequelize(
@@ -54,10 +56,11 @@ purchase(sequelize);
 movie(sequelize);
 rating(sequelize);
 language(sequelize);
+address(sequelize);
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-const { User, Format, Genre, Inventory, Purchase, Movie, Rating, Language } =
+const { User, Format, Genre, Inventory, Purchase, Movie, Rating, Language , Address} =
   sequelize.models;
 
 Movie.belongsToMany(Genre, { through: "MovieGenre" });
@@ -80,6 +83,15 @@ Movie.belongsTo(Language);
 
 Movie.hasOne(Purchase);
 Purchase.belongsTo(Movie);
+
+User.hasMany(Purchase);
+Purchase.belongsTo(User)
+
+User.hasMany(Address)
+
+
+
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

@@ -13,10 +13,15 @@ import Paginado from "./paginado/Paginado";
 import FilterMovies from "./Filter/FilterMovies";
 import CarouselFadeExample from "./carrusel/CarruselComponent";
 import NewMovie from "./agregadasRecientemente/NewMovie";
+import { useAuth } from "../../context/authContext";
 
-export const Home = () => {
+export const Home = ({ handleUser }) => {
   const dispatch = useDispatch();
-  const { paginado, moviesFilter, movies } = useSelector((state) => state);
+  const { paginado, moviesFilter, movies, userRegister } = useSelector(
+    (state) => state
+  );
+
+  const { user } = useAuth();
 
   let pages = moviesFilter
     .slice(0, Math.ceil(moviesFilter.length / 10))
@@ -36,7 +41,11 @@ export const Home = () => {
     dispatch(getMovies());
     dispatch(getFormats());
     dispatch(getGenres());
+    handleUser(user.uid);
   }, []);
+  useEffect(() => {
+    handleUser(user.uid);
+  }, [dispatch]);
 
   return (
     <>

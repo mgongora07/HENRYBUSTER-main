@@ -35,7 +35,7 @@ const {
 } = require("./src/db.js");
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+conn.sync({ alter: true }).then(() => {
   server.listen(3001, async () => {
     console.log("%s listening at 3001"); // eslint-disable-line no-console
     fillUser(User);
@@ -43,9 +43,8 @@ conn.sync({ force: true }).then(() => {
     fillGenre(Genre);
     fillLanguage(Language);
     fillMovie(Movie);
-    setTimeout(function() {
+    setTimeout(function () {
       fillRating(Rating);
     }, 3000);
-    
   });
-})
+});

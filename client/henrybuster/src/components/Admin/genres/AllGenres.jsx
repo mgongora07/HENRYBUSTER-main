@@ -14,16 +14,8 @@ function AllGenres() {
   const dispatch = useDispatch();
 
   const [page, setPage] = useState(1);
-  const [genrePage, setGenrePage] = useState("");
+  const [genrePage, setGenrePage] = useState([]);
   const [actualizar, setActualizar] = useState(false);
-
-  const genr = () => {
-    if (!genrePage) {
-      setActualizar(true);
-    } else {
-      setActualizar(false);
-    }
-  };
 
   const handlePage = (inicio, fin) => {
     setGenrePage(genres.slice(inicio, fin));
@@ -43,11 +35,11 @@ function AllGenres() {
     .map((recipe, index) => index + 1);
 
   useEffect(() => {
-    dispatch(getGenres());
-    setGenrePage(genres.slice(0, 9));
-    genr();
-  }, [dispatch, actualizar, genres]);
-
+    if (!genrePage.length) {
+      dispatch(getGenres());
+      setGenrePage(genres.slice(0, 10));
+    }
+  }, [dispatch, genres]);
   return (
     <div style={{ background: "white" }}>
       <div className="col-4 col-md-2 bg-white vh-100 position-fixed">

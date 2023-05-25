@@ -23,7 +23,12 @@ const searchMovieByName = require("../controllers/searchMovieByName");
 const searchMovieForGuest = require("../controllers/SearchMovieForGuest");
 const updateGenre = require("../controllers/updateGenre");
 const deleteMovie = require("../controllers/deleteMovie");
+
 const order = require("../controllers/order")
+
+const InsertPurchase = require("../controllers/InsertPurchase");
+const insertGuestPurchase = require("../controllers/insertGuestPurchase");
+
 
 const router = express.Router();
 
@@ -46,6 +51,8 @@ router.post("/format", insertFormat)
 router.post("/user", insertUser)
 router.post("/movie", insertMovie)
 router.post("/rating", InsertRating)
+router.post("/purchase/guest", insertGuestPurchase)
+router.post("/purchase/:id", InsertPurchase)
 router.put("/movie/:id", updateMovie)
 router.put("/user/:id", updateUser)
 router.put("/genre/:id", updateGenre)

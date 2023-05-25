@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import s from "./up.module.css";
 import { useParams } from "react-router";
-import Sidebar from "../Sidebar";
 
 import Alert from "react-bootstrap/Alert";
 import { getGenres } from "../../../redux/actions";
@@ -46,9 +45,6 @@ function UpdateGenre() {
 
   return (
     <div style={{ background: "white" }}>
-      <div className="col-4 col-md-2 bg-white vh-100 position-fixed">
-        <Sidebar />
-      </div>
       <div className={`${s.formContainer}`}>
         <form className={s["movie-form"]}>
           <div>

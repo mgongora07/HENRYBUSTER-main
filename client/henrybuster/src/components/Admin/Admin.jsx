@@ -4,17 +4,16 @@ import Sidebar from "./Sidebar";
 import HomeAdmin from "./HomeAdmin";
 import MoviesAdmin from "./MoviesAdmin/MoviesAdmin";
 
-function Admin() {
-  return (
-    <div>
-      <div className="container-fluid bg-secondary min-vh-100">
-        <div className="row">
-          <div className="col-4 bg-white vh-100" style={{ width: "25%" }}>
-            <Sidebar />
-          </div>
+import { useSelector } from "react-redux";
+import { useAuth } from "../../context/authContext";
 
-          <HomeAdmin />
-        </div>
+function Admin() {
+  const { user } = useAuth();
+
+  return (
+    <div className="container-fluid bg-white" style={{ height: "593px" }}>
+      <div className="row">
+        <HomeAdmin />
       </div>
     </div>
   );

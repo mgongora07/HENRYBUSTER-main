@@ -740,7 +740,6 @@ const fillMovie = async (req, res) => {
     await movie40.addGenres([7, 10]);
 
     const movie41 = await Movie.create({
-
       vote_average: getRandomNumber(1, 5),
       name: "Youngblood (Forja de campeón)",
       image:
@@ -2128,7 +2127,7 @@ const fillMovie = async (req, res) => {
       MovieId: movie111.id,
     });
 
-    await movie110.addGenres([4, 14]);
+    await movie111.addGenres([4, 14]);
 
     const movie112 = await Movie.create({
       name: "Full Metal Jacket",
@@ -2490,6 +2489,766 @@ const fillMovie = async (req, res) => {
     });
 
     await movie130.addGenres([20, 5]);
+
+    const movie131 = await Movie.create({
+      name: "Code Name Banshee",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/YLv9S84WyPZ5uxty989Duhzi5u.jpg",
+      description:
+        "Caleb, un antiguo asesino del gobierno escondido, que reaparece cuando su protegido, el asesino igualmente mortal conocido como Banshee, descubre que se ha puesto una recompensa por la cabeza de Caleb.",
+      price: 13.4,
+      LanguageId: 2,
+      FormatId: 1,
+      date: "2022/01/07",
+    });
+
+    await Inventory.create({
+      quantity: 6,
+      MovieId: movie131.id,
+    });
+
+    await movie131.addGenres([1, 20]);
+
+    const movie132 = await Movie.create({
+      name: "Mientras Haya Esperanza",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/8GTJwaC2CeNa0Zg6QrPLwrfurpZ.jpg",
+      description:
+        "Después de que su piloto muere inesperadamente en pleno vuelo, el pasajero Doug White debe aterrizar con seguridad un avión y salvar a toda su familia de un peligro insuperable.",
+      price: 15.9,
+      LanguageId: 1,
+      FormatId: 2,
+      date: "2023/06/04",
+    });
+
+    await Inventory.create({
+      quantity: 7,
+      MovieId: movie132.id,
+    });
+
+    await movie132.addGenres([7]);
+
+    const movie133 = await Movie.create({
+      name: "Los Extraños",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/3OKBFYRVSKkBVJ7WpKogTVQfUqC.jpg",
+      description:
+        "La vida de privilegios meticulosamente diseñada de una mujer negra comienza a desmoronarse cuando dos extraños aparecen en su pintoresco pueblo suburbano.",
+      price: 12.9,
+      LanguageId: 2,
+      FormatId: 1,
+      date: "2023/02/17",
+    });
+
+    await Inventory.create({
+      quantity: 2,
+      MovieId: movie133.id,
+    });
+
+    await movie133.addGenres([20]);
+
+    const movie134 = await Movie.create({
+      name: "Brick Mansions",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/6OopiNRk7lWP0hPsY0eYqq2kQTi.jpg",
+      description:
+        "En un Detroit distópico, las grandes casas que alguna vez albergaron a los ricos ahora son hogares de los criminales más peligrosos de la ciudad. Rodeando el área hay un muro gigante para mantener seguro al resto de Detroit. Para el policía encubierto Damien Collier, cada día es una batalla contra la corrupción mientras lucha por llevar ante la justicia al asesino de su padre, Tremaine. Mientras tanto, Damien y un ex convicto llamado Lino trabajan juntos para salvar a la ciudad de un complot para destruirla.",
+      price: 11.0,
+      LanguageId: 2,
+      FormatId: 4,
+      date: "2014/04/25",
+    });
+
+    await Inventory.create({
+      quantity: 5,
+      MovieId: movie134.id,
+    });
+
+    await movie134.addGenres([1, 5, 7]);
+
+    const movie135 = await Movie.create({
+      name: "Un disparo",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/3OXiTjU30gWtqxmx4BU9RVp2OTv.jpg",
+      description:
+        "Un escuadrón de élite de los SEAL de la Marina, en una misión encubierta para transportar a un prisionero fuera de una prisión isleña del sitio negro de la CIA, queda atrapado cuando los insurgentes atacan mientras intentan rescatar al mismo prisionero.",
+      price: 9.0,
+      LanguageId: 4,
+      FormatId: 5,
+      date: "2022/01/29",
+    });
+
+    await Inventory.create({
+      quantity: 2,
+      MovieId: movie135.id,
+    });
+
+    await movie135.addGenres([1]);
+
+    const movie136 = await Movie.create({
+      name: "Ejército de los muertos",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/z8CExJekGrEThbpMXAmCFvvgoJR.jpg",
+      description:
+        "Después de un brote de zombis en Las Vegas, un grupo de mercenarios toma la última apuesta: aventurarse en la zona de cuarentena para llevar a cabo el mayor atraco jamás intentado.",
+      price: 12.0,
+      LanguageId: 1,
+      FormatId: 1,
+      date: "2021/05/14",
+    });
+
+    await Inventory.create({
+      quantity: 2,
+      MovieId: movie136.id,
+    });
+
+    await movie136.addGenres([1, 5, 9]);
+
+    const movie137 = await Movie.create({
+      name: "El sastre de la mafia",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/lZa5EB6PVJBT5mxhgZS5ftqdAm6.jpg",
+      description:
+        "Leonard es un sastre inglés que solía confeccionar trajes en el mundialmente famoso Savile Row de Londres. Después de una tragedia personal, terminó en Chicago, operando una pequeña sastrería en una parte peligrosa de la ciudad donde hace ropa hermosa para las únicas personas que pueden pagarla: una familia de gánsteres viciosos.",
+      price: 10.0,
+      LanguageId: 3,
+      FormatId: 5,
+      date: "2022/03/18",
+    });
+
+    await Inventory.create({
+      quantity: 10,
+      MovieId: movie137.id,
+    });
+
+    await movie137.addGenres([5]);
+
+    const movie138 = await Movie.create({
+      name: "Éxodo: dioses y reyes",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/uaDj37JtvLan9tihxZ18e6qL33b.jpg",
+      description:
+        "El desafiante líder Moisés se levanta contra el faraón egipcio Ramsés, poniendo a 400.000 esclavos en un monumental viaje de escape de Egipto y su aterrador ciclo de plagas mortales.",
+      price: 10.0,
+      LanguageId: 1,
+      FormatId: 1,
+      date: "2014/04/12",
+    });
+
+    await Inventory.create({
+      quantity: 6,
+      MovieId: movie138.id,
+    });
+
+    await movie138.addGenres([1, 2, 7]);
+
+    const movie139 = await Movie.create({
+      name: "Eres tú",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/3VTOxrrv4xA9ixJESEP8JOllDel.jpg",
+      description:
+        "La historia de Javier que, a los 16 años, mientras besaba por primera vez a una chica, se dio cuenta de que tenía el don de la clarividencia romántica. Javier puede ver el futuro... y por fin sabe quién es el amor de su vida.",
+      price: 6.0,
+      LanguageId: 6,
+      FormatId: 2,
+      date: "2023/03/03",
+    });
+
+    await Inventory.create({
+      quantity: 6,
+      MovieId: movie139.id,
+    });
+
+    await movie139.addGenres([14]);
+
+    const movie140 = await Movie.create({
+      name: "En el bosque",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/pWKTaGN9WMcKHKAir9POsKm4vEo.jpg",
+      description:
+        "Helen y su hija Emily acompañan a regañadientes al padre de Helen, Stan, en un viaje de campamento familiar, adentrándose en el bosque para disfrutar de una experiencia real al aire libre, solo para que el enojado terrateniente Howard llegue y los obligue a irse. Cuando su RV se atasca, Helen decide buscar ayuda pero descubre un secreto inquietante en la propiedad del hombre. Luego debe luchar para proteger a su familia y salir viva del bosque antes de ser perseguida.",
+      price: 12.0,
+      LanguageId: 3,
+      FormatId: 1,
+      date: "2022/01/28",
+    });
+
+    await Inventory.create({
+      quantity: 8,
+      MovieId: movie140.id,
+    });
+
+    await movie140.addGenres([20, 11]);
+
+    const movie141 = await Movie.create({
+      name: "Un héroe samurai: La leyenda de Hank",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/wMDUDwAArpfGdtTTZ25SfwngGwt.jpg",
+      description:
+        "Un perro de mala suerte se encuentra en un pueblo lleno de gatos que necesitan un héroe que los defienda del malvado plan de un villano despiadado para borrar su pueblo del mapa. Con la ayuda de un mentor reacio, nuestro desvalido debe asumir el papel de samurái del pueblo y unirse a los aldeanos para salvar el día.",
+      price: 4.5,
+      LanguageId: 1,
+      FormatId: 1,
+      date: "2022/11/08",
+    });
+
+    await Inventory.create({
+      quantity: 3,
+      MovieId: movie141.id,
+    });
+
+    await movie141.addGenres([2, 3, 4, 8]);
+
+    const movie142 = await Movie.create({
+      name: "La princesa",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/ksxiXqwPuEjh3gct1zUpyzNoQFt.jpg",
+      description:
+        "Al negarse a casarse con un capo de la droga, Grecia está decidida a pagar ella misma la deuda de su padre. Para ganar el dinero, decide apostar en los palenques de Sinaloa, donde conoce a Armando. Inmediatamente queda cautivado por su belleza y actitud intrépida. Pero, poco sabe él que enamorarse de ella será su esfuerzo más peligroso.",
+      price: 12.0,
+      LanguageId: 1,
+      FormatId: 3,
+      date: "2022/08/05",
+    });
+
+    await Inventory.create({
+      quantity: 2,
+      MovieId: movie142.id,
+    });
+
+    await movie142.addGenres([1]);
+
+    const movie143 = await Movie.create({
+      name: "Tenemos un fantasma",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/xo0fgAUoEeVQ7KsKeMWypyglvnf.jpg",
+      description:
+        "Después de que Kevin encuentra un fantasma llamado Ernest acechando en su nuevo hogar, se convierte de la noche a la mañana en una sensación en las redes sociales. Pero cuando Kevin y Ernest se rebelan para investigar el misterio del pasado de este último, se convierten en objetivos de la CIA.",
+      price: 17.0,
+      LanguageId: 2,
+      FormatId: 6,
+      date: "2023/02/24",
+    });
+
+    await Inventory.create({
+      quantity: 12,
+      MovieId: movie143.id,
+    });
+
+    await movie143.addGenres([4, 8, 9]);
+
+    const movie144 = await Movie.create({
+      name: "Lorax",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/tePFnZFw5JvjwjQjaKkqDPNMLPU.jpg",
+      description:
+        "Un niño de 12 años busca lo único que le permita ganarse el cariño de la chica de sus sueños. Para encontrarlo, debe descubrir la historia de Lorax, la criatura gruñona pero encantadora que lucha para proteger su mundo.",
+      price: 10.0,
+      LanguageId: 1,
+      FormatId: 2,
+      date: "2012/03/29",
+    });
+
+    await Inventory.create({
+      quantity: 10,
+      MovieId: movie144.id,
+    });
+
+    await movie144.addGenres([3, 8]);
+
+    const movie145 = await Movie.create({
+      name: "Los tres mosqueteros: D'Artagnan",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/hfExJPcbBtDeFDEb7I1By72Drlr.jpg",
+      description:
+        "D'Artagnan, un gascón joven y enérgico, es dado por muerto después de intentar salvar a una mujer noble del secuestro. Una vez en París, intenta por todos los medios encontrar a sus atacantes, sin saber que su búsqueda lo llevará al corazón mismo de una guerra donde está en juego el futuro de Francia. Con la ayuda de los mosqueteros del rey Athos, Porthos y Aramis, se enfrenta a las maquinaciones del malvado cardenal Richelieu y Milady de Winter, mientras se enamora de Constance, la confidente de la reina.",
+      price: 6.0,
+      LanguageId: 3,
+      FormatId: 1,
+      date: "2023/04/13",
+    });
+
+    await Inventory.create({
+      quantity: 2,
+      MovieId: movie145.id,
+    });
+
+    await movie145.addGenres([2, 7, 9]);
+
+    const movie146 = await Movie.create({
+      name: "La lista de Schindler",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/sF1U4EUQS8YHUYjNl3pMGNIQyr0.jpg",
+      description:
+        "La verdadera historia de cómo el empresario Oskar Schindler salvó más de mil vidas judías de los nazis mientras trabajaban como esclavos en su fábrica durante la Segunda Guerra Mundial.",
+      price: 100.0,
+      LanguageId: 1,
+      FormatId: 3,
+      date: "1994/02/24",
+    });
+
+    await Inventory.create({
+      quantity: 30,
+      MovieId: movie146.id,
+    });
+
+    await movie146.addGenres([7, 10]);
+
+    const movie147 = await Movie.create({
+      name: "Los intocables",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/323BP0itpxTsO0skTwdnVmf7YC9.jpg",
+      description:
+        "Una historia real de dos hombres que nunca deberían haberse conocido: un aristócrata tetrapléjico que resultó herido en un accidente de parapente y un joven de los proyectos.",
+      price: 55.0,
+      LanguageId: 2,
+      FormatId: 1,
+      date: "2012/02/08",
+    });
+
+    await Inventory.create({
+      quantity: 15,
+      MovieId: movie147.id,
+    });
+
+    await movie147.addGenres([4, 7]);
+
+    const movie148 = await Movie.create({
+      name: "Whiplash. Música y obsesión",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/7fn624j5lj3xTme2SgiLCeuedmO.jpg",
+      description:
+        "Bajo la dirección de un instructor despiadado, un joven baterista talentoso comienza a buscar la perfección a toda costa, incluso su humanidad.",
+      price: 25.0,
+      LanguageId: 2,
+      FormatId: 4,
+      date: "2015/01/22",
+    });
+
+    await Inventory.create({
+      quantity: 11,
+      MovieId: movie148.id,
+    });
+
+    await movie148.addGenres([12]);
+
+    const movie149 = await Movie.create({
+      name: "Lucy",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/dhjyfcwEoW6jJ4Q7DpZTp6E58GA.jpg",
+      description:
+        "Una mujer, atrapada accidentalmente en un trato oscuro, da la vuelta a sus captores y se transforma en una guerrera despiadada evolucionada más allá de la lógica humana.",
+      price: 40.0,
+      LanguageId: 2,
+      FormatId: 2,
+      date: "2014/07/25",
+    });
+
+    await Inventory.create({
+      quantity: 7,
+      MovieId: movie149.id,
+    });
+
+    await movie149.addGenres([1, 15]);
+
+    const movie150 = await Movie.create({
+      name: "The Simpsons Movie",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/s3b8TZWwmkYc2KoJ5zk77qB6PzY.jpg",
+      description:
+        "Después de que Homero contamina accidentalmente el suministro de agua de la ciudad, la EPA encierra Springfield en una cúpula gigantesca y los Simpson son declarados fugitivos.",
+      price: 90.0,
+      LanguageId: 1,
+      FormatId: 2,
+      date: "2007/07/27",
+    });
+
+    await Inventory.create({
+      quantity: 200,
+      MovieId: movie150.id,
+    });
+
+    await movie150.addGenres([3, 4]);
+
+    const movie151 = await Movie.create({
+      name: "Elvis",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/qBOKWqAFbveZ4ryjJJwbie6tXkQ.jpg",
+      description:
+        "La historia de vida de Elvis Presley vista a través de la complicada relación con su enigmático manager, el Coronel Tom Parker.",
+      price: 100.0,
+      LanguageId: 1,
+      FormatId: 1,
+      date: "2022/06/22",
+    });
+
+    await Inventory.create({
+      quantity: 150,
+      MovieId: movie151.id,
+    });
+
+    await movie151.addGenres([7, 10, 12]);
+
+    const movie152 = await Movie.create({
+      name: "Diario de un niño debilucho: las reglas de Rodrick",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/iW6ixzkrvdrcxk0umiLZMtlSl9L.jpg",
+      description:
+        "Un nuevo año escolar, su hermano Rodrick se burla de él una y otra y otra y otra vez. ¿Conseguirá Greg llevarse bien con él? ¿O un secreto arruinará todo?",
+      price: 20.0,
+      LanguageId: 1,
+      FormatId: 2,
+      date: "2022/12/02",
+    });
+
+    await Inventory.create({
+      quantity: 3,
+      MovieId: movie152.id,
+    });
+
+    await movie152.addGenres([3, 4]);
+
+    const movie153 = await Movie.create({
+      name: "Tomb Raider",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/ePyN2nX9t8SOl70eRW47Q29zUFO.jpg",
+      description:
+        "Lara Croft, la ferozmente independiente hija de un aventurero desaparecido, debe esforzarse más allá de sus límites cuando se encuentra en la isla donde desapareció su padre.",
+      price: 20.0,
+      LanguageId: 2,
+      FormatId: 6,
+      date: "2018/03/16",
+    });
+
+    await Inventory.create({
+      quantity: 7,
+      MovieId: movie153.id,
+    });
+
+    await movie153.addGenres([1, 2]);
+
+    const movie154 = await Movie.create({
+      name: "Robots",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/hlOTSiMEDMQwJ1U6ZTFvfLyTlhS.jpg",
+      description:
+        "Un mujeriego y un cazafortunas engañan a la gente para que se relacione con dobles robóticos ilegales. Cuando, sin darse cuenta, usan esta estafa entre ellos, sus dobles robots se enamoran y se fugan, lo que obliga al dúo a unirse para cazarlos antes de que las autoridades descubran su secreto.",
+      price: 60.0,
+      LanguageId: 2,
+      FormatId: 2,
+      date: "2023/05/19",
+    });
+
+    await Inventory.create({
+      quantity: 8,
+      MovieId: movie154.id,
+    });
+
+    await movie154.addGenres([4, 9, 14, 15]);
+
+    const movie155 = await Movie.create({
+      name: "El hombre de Toronto",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/uTCfTibqtk4f90cC59bLPMOmsfc.jpg",
+      description:
+        "En un caso de identidad equivocada, el asesino más mortífero del mundo, conocido como el Hombre de Toronto, y un metedura de pata de la ciudad de Nueva York se ven obligados a formar un equipo después de ser confundidos el uno con el otro en una cabaña de alquiler.",
+      price: 87.0,
+      LanguageId: 3,
+      FormatId: 3,
+      date: "2022/06/24",
+    });
+
+    await Inventory.create({
+      quantity: 8,
+      MovieId: movie155.id,
+    });
+
+    await movie155.addGenres([1, 2, 4]);
+
+    const movie156 = await Movie.create({
+      name: "Eterno resplandor de una mente sin recuerdos",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/5MwkWH9tYHv3mV9OdYTMR5qreIz.jpg",
+      description:
+        "Joel Barish, desconsolado porque su novia se sometió a un procedimiento para borrarlo de su memoria, decide hacer lo mismo. Sin embargo, mientras observa cómo se desvanecen sus recuerdos de ella, se da cuenta de que todavía la ama y que puede ser demasiado tarde para corregir su error.",
+      price: 76.0,
+      LanguageId: 11,
+      FormatId: 3,
+      date: "2004/03/19",
+    });
+
+    await Inventory.create({
+      quantity: 5,
+      MovieId: movie156.id,
+    });
+
+    await movie156.addGenres([7, 15]);
+
+    const movie157 = await Movie.create({
+      name: "The Truman Show",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/vuza0WqY239yBXOadKlGwJsZJFE.jpg",
+      description:
+        "Truman Burbank es la estrella de The Truman Show, un reality show de televisión de 24 horas al día que transmite todos los aspectos de su vida sin su conocimiento. Toda su vida ha sido una telenovela interminable para el consumo del resto del mundo. Y todos los que conoce, incluida su esposa y su mejor amigo, son realmente actores, pagados para ser parte de su vida.",
+      price: 34.0,
+      LanguageId: 2,
+      FormatId: 2,
+      date: "1998/06/05",
+    });
+
+    await Inventory.create({
+      quantity: 15,
+      MovieId: movie157.id,
+    });
+
+    await movie157.addGenres([4, 7]);
+
+    const movie158 = await Movie.create({
+      name: "El niño con el pijama de rayas",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/2C8QCXdMlojTxZjfBlINr4FWcb6.jpg",
+      description:
+        "Cuando su familia se muda de su hogar en Berlín a una casa nueva y extraña en Polonia, el joven Bruno se hace amigo de Shmuel, un niño que vive al otro lado de la cerca donde todos parecen estar usando pijamas a rayas. Sin saber el destino de Shmuel como prisionero judío o el papel que juega su propio padre nazi en su encarcelamiento, Bruno se embarca en un peligroso viaje dentro de los muros del campo.",
+      price: 76.0,
+      LanguageId: 4,
+      FormatId: 4,
+      date: "2008/12/09",
+    });
+
+    await Inventory.create({
+      quantity: 6,
+      MovieId: movie158.id,
+    });
+
+    await movie158.addGenres([7, 10, 18]);
+
+    const movie159 = await Movie.create({
+      name: "Salvaje es el viento",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/rITxQBtnMpneZf8QzH1dqONQocx.jpg",
+      description:
+        "Cuando dos policías corruptos investigan el brutal asesinato de una niña, las tensiones llegan a un punto crítico en su pequeño pueblo segregado racialmente.",
+      price: 36.0,
+      LanguageId: 1,
+      FormatId: 2,
+      date: "2022/10/22",
+    });
+
+    await Inventory.create({
+      quantity: 4,
+      MovieId: movie159.id,
+    });
+
+    await movie159.addGenres([1]);
+
+    const movie160 = await Movie.create({
+      name: "Unidos por el honor",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/gvP6R6juhe2IpCG7QGDgjyUvm0g.jpg",
+      description:
+        "Basada en las experiencias de la vida real del poeta Jimmy Santiago Baca, la película se centra en los medios hermanos Paco y Cruz, y su primo birracial Miklo. Se abre en 1972, ya que los tres son miembros de una pandilla del este de Los Ángeles conocida como los Vatos Locos, y la historia se centra en cómo un crimen violento y la influencia de los narcóticos alteran sus vidas.",
+      price: 16.0,
+      LanguageId: 1,
+      FormatId: 3,
+      date: "1993/06/03",
+    });
+
+    await Inventory.create({
+      quantity: 2,
+      MovieId: movie160.id,
+    });
+
+    await movie160.addGenres([1, 20, 5]);
+
+    const movie161 = await Movie.create({
+      name: "La bella durmiente",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/e3K5cLvVRXVxhw4mXQET92p1dnz.jpg",
+      description:
+        "Una hermosa princesa nacida en un reino lejano está destinada por una terrible maldición a pincharse el dedo con el eje de una rueca y caer en un profundo sueño que solo puede despertar con el primer beso del amor verdadero. Decididos a protegerla, sus padres piden a tres hadas que la críen en la clandestinidad. Pero la malvada Maléfica está igualmente decidida a sellar el destino de la princesa.",
+      price: 40.0,
+      LanguageId: 2,
+      FormatId: 3,
+      date: "1960/05/07",
+    });
+
+    await Inventory.create({
+      quantity: 10,
+      MovieId: movie161.id,
+    });
+
+    await movie161.addGenres([3]);
+
+    const movie162 = await Movie.create({
+      name: "Un golpe con estilo",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/4nfWsdsJfO5srRZgxiWC9xHub0W.jpg",
+      description:
+        "Desesperados por pagar las facturas y ayudar a sus seres queridos, tres amigos de toda la vida lo arriesgan todo al embarcarse en un audaz intento de acabar con el mismo banco que se fugó con su dinero.",
+      price: 30.0,
+      LanguageId: 2,
+      FormatId: 2,
+      date: "2017/06/04",
+    });
+
+    await Inventory.create({
+      quantity: 8,
+      MovieId: movie162.id,
+    });
+
+    await movie162.addGenres([4, 5]);
+
+    const movie163 = await Movie.create({
+      name: "Maléfica: Dueña del mal ",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/vloNTScJ3w7jwNwtNGoG8DbTThv.jpg",
+      description:
+        "Maléfica y su ahijada Aurora comienzan a cuestionar los complejos lazos familiares que las unen a medida que se ven empujadas en diferentes direcciones por nupcias inminentes, aliados inesperados y nuevas fuerzas oscuras en juego.",
+      price: 30.0,
+      LanguageId: 2,
+      FormatId: 6,
+      date: "2019/10/18",
+    });
+
+    await Inventory.create({
+      quantity: 3,
+      MovieId: movie163.id,
+    });
+
+    await movie163.addGenres([2, 8, 9]);
+
+    const movie164 = await Movie.create({
+      name: "Marte",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/5BHuvQ6p9kfc091Z8RiFNhCwL4b.jpg",
+      description:
+        "Durante una misión tripulada a Marte, se presume que el astronauta Mark Watney murió después de una feroz tormenta y su tripulación lo dejó atrás. Pero Watney ha sobrevivido y se encuentra varado y solo en el planeta hostil. Con solo suministros escasos, debe recurrir a su ingenio, ingenio y espíritu para subsistir y encontrar una manera de indicarle a la Tierra que está vivo.",
+      price: 35.0,
+      LanguageId: 2,
+      FormatId: 2,
+      date: "2015/01/10",
+    });
+
+    await Inventory.create({
+      quantity: 1,
+      MovieId: movie164.id,
+    });
+
+    await movie164.addGenres([2, 15]);
+
+    const movie165 = await Movie.create({
+      name: "Mis dos vidas",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/jq8IGJgg16mJ95a5OPyS7eGJaam.jpg",
+      description:
+        "En la víspera de su graduación universitaria, la vida de Natalie diverge en dos realidades paralelas: una en la que queda embarazada y debe afrontar la maternidad como una joven adulta en su ciudad natal de Texas, la otra en la que se muda a Los Ángeles para seguir su carrera. En ambos viajes a lo largo de sus veinte años, Natalie experimenta un amor que le cambia la vida, una angustia devastadora y se redescubre a sí misma.",
+      price: 15.0,
+      LanguageId: 1,
+      FormatId: 1,
+      date: "2022/08/16",
+    });
+
+    await Inventory.create({
+      quantity: 7,
+      MovieId: movie165.id,
+    });
+
+    await movie165.addGenres([4, 7, 14]);
+
+    const movie166 = await Movie.create({
+      name: "El mago de Oz",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/bSA6DbAC5gdkaooU164lQUX6rVs.jpg",
+      description:
+        "La joven Dorothy se encuentra en un mundo mágico donde se hace amiga de un león, un espantapájaros y un hombre de hojalata mientras recorren el camino de baldosas amarillas para hablar con el Mago y pedirle las cosas que más extrañan en sus vidas. La Malvada Bruja del Oeste es lo único que podría detenerlos.",
+      price: 55.0,
+      LanguageId: 1,
+      FormatId: 3,
+      date: "1939/08/25",
+    });
+
+    await Inventory.create({
+      quantity: 2,
+      MovieId: movie166.id,
+    });
+
+    await movie166.addGenres([2, 8, 9]);
+
+    const movie167 = await Movie.create({
+      name: "Spiderhead",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/5hTK0J9SGPLSTFwcbU0ELlJsnAY.jpg",
+      description:
+        "Un preso en una penitenciaría de última generación comienza a cuestionar el propósito de las drogas para controlar las emociones que está probando para un genio farmacéutico.",
+      price: 15.0,
+      LanguageId: 2,
+      FormatId: 2,
+      date: "2022/06/15",
+    });
+
+    await Inventory.create({
+      quantity: 13,
+      MovieId: movie167.id,
+    });
+
+    await movie167.addGenres([15, 20]);
+
+    const movie168 = await Movie.create({
+      name: "Pokémon Detective Pikachu",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/wgQ7APnFpf1TuviKHXeEe3KnsTV.jpg",
+      description:
+        "En un mundo donde la gente colecciona monstruos de bolsillo (Pokémon) para luchar, un niño se encuentra con un monstruo inteligente que busca ser detective.",
+      price: 15.0,
+      LanguageId: 1,
+      FormatId: 1,
+      date: "2019/09/05",
+    });
+
+    await Inventory.create({
+      quantity: 13,
+      MovieId: movie168.id,
+    });
+
+    await movie168.addGenres([2, 8]);
+
+    const movie169 = await Movie.create({
+      name: "Midsommar",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/eycO6M2s38xO1888Gq2gSrXf0A6.jpg",
+      description:
+        "Varios amigos viajan a Suecia para estudiar como antropólogos un festival de verano que se celebra cada noventa años en el remoto pueblo natal de uno de ellos. Lo que comienza como unas vacaciones de ensueño en un lugar donde el sol nunca se pone, se convierte gradualmente en una oscura pesadilla cuando los misteriosos habitantes los invitan a participar en sus inquietantes actividades festivas.",
+      price: 12.0,
+      LanguageId: 7,
+      FormatId: 5,
+      date: "2019/09/19",
+    });
+
+    await Inventory.create({
+      quantity: 2,
+      MovieId: movie169.id,
+    });
+
+    await movie169.addGenres([7, 11]);
+
+    const movie170 = await Movie.create({
+      name: "Rio 2",
+      image:
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/i5b1rX1gEFS2OEi2wApM1wLsAHX.jpg",
+      description:
+        "Es una jungla allá afuera para Blu, Jewel y sus tres hijos después de que son lanzados desde Río de Janeiro a las tierras salvajes del Amazonas. Mientras Blu intenta encajar, se enfrenta cara a cara con el vengativo Nigel y se encuentra con el adversario más temible de todos: su suegro.",
+      price: 20.0,
+      LanguageId: 1,
+      FormatId: 1,
+      date: "2014/10/04",
+    });
+
+    await Inventory.create({
+      quantity: 7,
+      MovieId: movie170.id,
+    });
+
+    await movie170.addGenres([2, 3, 4]);
 
     //res.status(200).json("ok");
   } catch (error) {
