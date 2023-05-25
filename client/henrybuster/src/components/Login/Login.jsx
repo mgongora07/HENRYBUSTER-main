@@ -8,7 +8,7 @@ import {
   getUserById,
   registerUser,
   updateUser,
-  setCurrentUser
+  setCurrentUser,
 } from "../../redux/users.js";
 import { app, db } from "../../firebase/firebase";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,8 +22,8 @@ const Login = () => {
   const dispatch = useDispatch();
   //const state = useUserStore.getState();
   const users = useSelector((state) => state.users);
- // const getUserById = useSelector(state.getUserById);
- // const registerUser = useSelector(state.registerUser);
+  // const getUserById = useSelector(state.getUserById);
+  // const registerUser = useSelector(state.registerUser);
 
   //const setUserStore = useUserStore((state) => state.setUser);
   //const getUserById = useUserStore((state) => state.getUserById);
@@ -45,7 +45,7 @@ const Login = () => {
     //console.log(user);
     try {
       await login(user.email, user.password);
-      navigate("/home");
+      navigate("/");
       user.sendEmailVerification();
     } catch (error) {
       //console.log(error.message);
@@ -68,17 +68,17 @@ const Login = () => {
           //photoURL: user.photoURL,
           // otros detalles del usuario
         };
-    
+
         setUser(userData);
         const userDb = await dispatch(getUserById(user.uid));
-          //console.log(userDb);
-     
+        //console.log(userDb);
+
         if (!userDb) {
           //console.log("here");
           //const userDoc = doc(db, "users", user.uid);
           //console.log(userDoc);
           //await setDoc(userDoc, userData);
-          
+
           await dispatch(registerUser(userData));
           //console.log(save);
         }
@@ -91,8 +91,8 @@ const Login = () => {
 
   return (
     <>
-      <main className='container main'>
-        <article className='grid'>
+      <main className="container main">
+        <article className="grid">
           <div>
             <hgroup>
               <h1>Login</h1>
@@ -101,30 +101,30 @@ const Login = () => {
             <form onSubmit={handleSubmit}>
               <div>
                 <input
-                  type='text'
-                  name='email'
-                  placeholder='E-mail'
-                  aria-label='E-mail'
-                  autoComplete='E-mail'
+                  type="text"
+                  name="email"
+                  placeholder="E-mail"
+                  aria-label="E-mail"
+                  autoComplete="E-mail"
                   required
-                  id='email'
+                  id="email"
                   onChange={handleChange}
                 />
               </div>
               <div>
                 <input
-                  type='password'
-                  name='password'
-                  placeholder='******'
-                  aria-label='Password'
-                  autoComplete='current-password'
-                  id='password'
+                  type="password"
+                  name="password"
+                  placeholder="******"
+                  aria-label="Password"
+                  autoComplete="current-password"
+                  id="password"
                   onChange={handleChange}
                   required
                 />
               </div>
               <div>
-                <button type='submit' className='contrast'>
+                <button type="submit" className="contrast">
                   Login
                 </button>
               </div>
@@ -135,9 +135,7 @@ const Login = () => {
           </div>
           <div>
             {" "}
-            <Link to='/register'>
-              Sign up
-            </Link>
+            <Link to="/register">Sign up</Link>
           </div>
         </article>
       </main>
