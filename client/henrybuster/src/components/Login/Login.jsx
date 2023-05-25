@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 const Login = () => {
 
 
-   const { user, login, loginwithgoogle } = useAuth();
+   const { user, login, loginwithgoogle, resetPassword } = useAuth();
    const navigate = useNavigate();
 
   /* useEffect(() => {
@@ -104,7 +104,15 @@ const Login = () => {
     }
   };
 
-
+const handleResetPassword = async () => {
+  if(!userlogin.email) setError("Please enter your email");
+  try {
+   await resetPassword(userlogin.email);
+   setError("We sent you an email with a link to reset password")
+  } catch (error) {
+    setError(error.message);
+  }
+}
 
     return (
       <>
@@ -144,6 +152,7 @@ const Login = () => {
                   <button type='submit' className='contrast'>
                     Login
                   </button>
+                  <a href="#!" onClick={handleResetPassword}>Forgot Password?</a>
                 </div>
               </form>
               <div>
@@ -156,7 +165,6 @@ const Login = () => {
             </div>
           </article>
         </main>
-      
       </>
     );
 
