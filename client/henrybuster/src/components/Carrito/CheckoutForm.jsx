@@ -29,11 +29,12 @@ const CheckoutForm = () => {
         const respuesta = await postCheckout(id, amountInCents);
         console.log(respuesta, 'soy respuesta');
 
-        if (respuesta && respuesta.status) {
+        if (respuesta.status ) {
           setResponseMessage('Payment successful!');
           elements.getElement(CardElement).clear();
         } else {
           setResponseMessage('Payment failed. Please try again.');
+          elements.getElement(CardElement).clear();
         }
       } catch (error) {
         console.log(error);
