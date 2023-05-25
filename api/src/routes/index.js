@@ -23,6 +23,7 @@ const searchMovieByName = require("../controllers/searchMovieByName");
 const searchMovieForGuest = require("../controllers/SearchMovieForGuest");
 const updateGenre = require("../controllers/updateGenre");
 const deleteMovie = require("../controllers/deleteMovie");
+const order = require("../controllers/order")
 
 const router = express.Router();
 
@@ -49,4 +50,6 @@ router.put("/movie/:id", updateMovie)
 router.put("/user/:id", updateUser)
 router.put("/genre/:id", updateGenre)
 router.delete("/movie/:id",deleteMovie)
+router.post("/checkout", order)
+
 module.exports = router;

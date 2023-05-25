@@ -13,6 +13,7 @@ import {
   GET_MOVIES_ADMIN,
   SPLIT_RECIPES_ADMIN,
   GET_MOVIES_NAME_ADMIN,
+  POST_CHECKOUT,
 } from "./action-type";
 
 const INITIAL_STATE = {
@@ -28,6 +29,7 @@ const INITIAL_STATE = {
   ratingsFilter: [],
   moviesAdmin: [],
   paginadoAdmin: [],
+ 
 };
 
 export default function rootReducer(
@@ -170,6 +172,12 @@ export default function rootReducer(
         ...state,
         moviesAdmin: payload,
         paginadoAdmin: allResultsFilter,
+      };
+
+      case POST_CHECKOUT:
+     
+      return {
+        ...state,
       };
 
     default:

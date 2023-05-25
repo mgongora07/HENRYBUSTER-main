@@ -15,6 +15,7 @@ import HomeAdmin from "./components/Admin/HomeAdmin";
 import SearchResult from "./components/SearchBar/SearchResult";
 import AllGenres from "./components/Admin/genres/AllGenres";
 import UpdateGenre from "./components/Admin/genres/UpdateGenre";
+import Payment from "./components/Carrito/Payment";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/admin/*" element={<Admin />} />
           <Route path="/admin/movies" element={<MoviesAdmin />} />
           <Route path="/results" element={<SearchResult />} />
+          <Route path="/payment" element={<Payment />} />
         </Routes>
       </CartProvider>
     </>

@@ -13,3 +13,4 @@ export const GET_TOP_10 = "GET_TOP_10";
 export const GET_MOVIES_NAME = "GET_MOVIES_NAME";
 export const GET_LANGUAGES = "GET_LANGUAGES";
 export const GET_MOVIES_NAME_ADMIN = "GET_MOVIES_NAME_ADMIN";
+export const POST_CHECKOUT = 'POST_CHECKOUT'
