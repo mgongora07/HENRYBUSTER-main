@@ -13,6 +13,7 @@ import Paginado from "./paginado/Paginado";
 import FilterMovies from "./Filter/FilterMovies";
 import CarouselFadeExample from "./carrusel/CarruselComponent";
 import NewMovie from "./agregadasRecientemente/NewMovie";
+import { ContactUs } from "../Notifications/notification";
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -70,6 +71,9 @@ export const Home = () => {
         </div>
         <Paginado pages={pages} split={split} />
       </div>
+              <ContactUs/>
+
+
     </>
   );
 };
