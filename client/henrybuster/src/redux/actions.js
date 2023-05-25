@@ -13,8 +13,12 @@ import {
   GET_MOVIES_ADMIN,
   SPLIT_RECIPES_ADMIN,
   GET_MOVIES_NAME_ADMIN,
+
+  POST_CHECKOUT
+
   GET_ALL_USER,
   SPLIT_USERS,
+
 } from "./action-type";
 
 import axios from "axios";
@@ -238,4 +242,20 @@ export function filterRatingStar(order) {
     type: FILTER_RANKING,
     payload: order,
   };
+}
+
+export const postCheckout = async (id, amount)=>{
+  console.log('Hola linea 220 actions')
+  
+      try {
+        console.log('hola entre al try actions')
+        const {data} = await axios.post('http://localhost:3001/checkout', {id, amount});
+          return data.status
+          
+            
+      } catch (error) {
+          console.log(error)
+          return {message: error}
+      }
+  
 }

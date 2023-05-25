@@ -20,10 +20,14 @@ import HomeAdmin from "./components/Admin/HomeAdmin";
 import SearchResult from "./components/SearchBar/SearchResult";
 import AllGenres from "./components/Admin/genres/AllGenres";
 import UpdateGenre from "./components/Admin/genres/UpdateGenre";
+
+import Payment from "./components/Carrito/Payment";
+
 import Sidebar from "./components/Admin/Sidebar";
 import RouteError from "./components/RouteError/RouteError";
 import axios from "axios";
 import Users from "./components/Admin/users/Users";
+
 
 function App() {
   const location = useLocation();
@@ -56,6 +60,8 @@ function App() {
   return (
     <>
       <CartProvider>
+
+
         <AuthProvider>
           <Nav handleUser={handleUser} userRegister={userRegister} />
           {location.pathname.startsWith("/admin") && userRegister.admin ? (
@@ -68,7 +74,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
-
+             <Route path="/payment" element={<Payment />} />
             {/* admin */}
 
             {userRegister && userRegister.admin ? (
@@ -92,6 +98,7 @@ function App() {
             {/* ------- */}
           </Routes>
         </AuthProvider>
+
       </CartProvider>
     </>
   );
