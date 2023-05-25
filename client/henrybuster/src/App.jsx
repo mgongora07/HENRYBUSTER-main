@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { Home } from "./components/Home/Home";
@@ -20,37 +20,85 @@ import HomeAdmin from "./components/Admin/HomeAdmin";
 import SearchResult from "./components/SearchBar/SearchResult";
 import AllGenres from "./components/Admin/genres/AllGenres";
 import UpdateGenre from "./components/Admin/genres/UpdateGenre";
+
+import Payment from "./components/Carrito/Payment";
+
 import Sidebar from "./components/Admin/Sidebar";
+import RouteError from "./components/RouteError/RouteError";
+import axios from "axios";
+import Users from "./components/Admin/users/Users";
+
 
 function App() {
   const location = useLocation();
+  const [userRegister, setUser] = useState({});
+
+  const handleUser = async (id) => {
+    if (id === "") {
+      localStorage.setItem("user", JSON.stringify(""));
+    } else {
+      let userRegister = await axios.get(`http://localhost:3001/user/${id}`);
+      let user = userRegister.data;
+      if (user) {
+        localStorage.setItem("user", JSON.stringify(user));
+      }
+    }
+    let storedPayload = localStorage.getItem("user");
+    if (storedPayload) {
+      setUser(JSON.parse(storedPayload));
+    }
+  };
+
+  useEffect(() => {
+    let storedPayload = localStorage.getItem("user");
+    if (storedPayload) {
+      setUser(JSON.parse(storedPayload));
+    }
+  }, []);
+  useEffect(() => {}, [userRegister]);
+
   return (
     <>
       <CartProvider>
+
+
         <AuthProvider>
-          <Nav />
-          {location.pathname.startsWith("/admin") ? <Sidebar /> : null}
+          <Nav handleUser={handleUser} userRegister={userRegister} />
+          {location.pathname.startsWith("/admin") && userRegister.admin ? (
+            <Sidebar />
+          ) : null}
 
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home handleUser={handleUser} />} />
             <Route path="/movie/:id" element={<Detail />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
-
+             <Route path="/payment" element={<Payment />} />
             {/* admin */}
-            <Route path="admin/create" element={<CreateMovie />} />
-            <Route path="admin/update/:id" element={<UpdateMovie />} />
-            <Route path="admin/create/genre" element={<CreateGenre />} />
-            <Route path="admin/update/genre/:id" element={<UpdateGenre />} />
-            <Route path="admin/AllGenre" element={<AllGenres />} />
-            <Route path="/admin/*" element={<Admin />} />
-            <Route path="/admin/movies" element={<MoviesAdmin />} />
-            <Route path="/results" element={<SearchResult />} />
 
+            {userRegister && userRegister.admin ? (
+              <>
+                <Route path="admin/create" element={<CreateMovie />} />
+                <Route path="admin/update/:id" element={<UpdateMovie />} />
+                <Route path="admin/create/genre" element={<CreateGenre />} />
+                <Route
+                  path="admin/update/genre/:id"
+                  element={<UpdateGenre />}
+                />
+                <Route path="admin/AllGenre" element={<AllGenres />} />
+                <Route path="/admin/*" element={<Admin />} />
+                <Route path="/admin/movies" element={<MoviesAdmin />} />
+                <Route path="/admin/users" element={<Users />} />
+              </>
+            ) : (
+              <Route path="/admin" element={<RouteError />} />
+            )}
+            <Route path="/results" element={<SearchResult />} />
             {/* ------- */}
           </Routes>
         </AuthProvider>
+
       </CartProvider>
     </>
   );

@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
+import style from '../Styles/Carrito.module.css'
 import ItemCart from "./ItemCart";
 import { CartContext } from "./Context";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const [productsLength, setProductsLength] = useState(0);
@@ -17,25 +19,32 @@ const Cart = () => {
   const total = cartItems?.reduce(
     (previous, current) => previous + current.amount * current.price,
     0
-  );
+  ).toFixed(2);;
 
   return (
     <div style={{ color: "white" }}>
       {cartItems && (
         <div>
-          <h2>Tu carrito</h2>
+          <div className={style.titulo2}><h2 >Your cart</h2> </div>
 
           {cartItems.length === 0 ? (
-            <p>Tu carrito está vacío</p>
+            <div><p>Your cart is empty</p></div>
+            
           ) : (
+            
             <div>
               {cartItems.map((item, i) => (
                 <ItemCart key={i} item={item} />
               ))}
+              <Link to={"/payment"}>
+          <button className={style.boton}>Go to pay (${total} USD)</button>
+
+          </Link>
             </div>
           )}
+          
 
-          <h2>Total: ${total}</h2>
+         
         </div>
       )}
     </div>

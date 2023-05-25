@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "../Styles/Nav.module.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import SearchBar from "../SearchBar/SearchBar";
 import { getMoviesName } from "../../redux/actions";
 
-export const Nav = () => {
+export const Nav = ({ handleUser, userRegister }) => {
   const dispatch = useDispatch();
   const location = useLocation();
 
@@ -22,6 +22,7 @@ export const Nav = () => {
     try {
       // alert("Sign-out successful");
       // await signOut(auth);
+      handleUser("");
       await logout();
       navigate("/");
     } catch (error) {
@@ -30,7 +31,6 @@ export const Nav = () => {
   };
 
   const perfil = user ? true : false;
-  console.log(user);
 
   if (!user) {
     ("");
@@ -41,19 +41,27 @@ export const Nav = () => {
   return (
     <nav className={style.nav}>
       <h3 style={{ color: "white", marginRight: "auto" }}>Movie Prime</h3>
-      <Link className={style.link} to='/'>
-        <i class='fa-solid fa-house'></i> HOME
+      {userRegister && (
+        <p style={{ color: "red", marginRight: "auto" }}>
+          Bienvenido {userRegister.name}
+        </p>
+      )}
+
+      {userRegister && userRegister.admin && (
+        <Link className={style.link} to="/admin">
+          <i className="fa-solid fa-user"></i> ADMIN
+        </Link>
+      )}
+      <Link className={style.link} to="/">
+        <i className="fa-solid fa-house"></i> HOME
       </Link>
-      <Link className={style.link} to='/admin'>
-        <i class='fa-solid fa-user'></i> ADMIN
+      <Link className={style.link} to="/Cart">
+        <i className="fa-solid fa-cart-shopping"></i> CART
       </Link>
-      <Link className={style.link} to='/Cart'>
-        <i class='fa-solid fa-cart-shopping'></i> CART
+      <Link className={style.link} to="/about">
+        <i className="fa-solid fa-address-card"></i> ABOUT
       </Link>
-      <Link className={style.link} to='/about'>
-        <i class='fa-solid fa-address-card'></i> ABOUT
-      </Link>
-      <Link hidden={perfil} className={style.link} to='/login'>
+      <Link hidden={perfil} className={style.link} to="/login">
         Login
       </Link>
       {location.pathname !== "/admin/movies" && (
@@ -63,9 +71,9 @@ export const Nav = () => {
         hidden={!perfil}
         className={style.link}
         onClick={handleLogout}
-        to='/'
+        to="/"
       >
-        <i class='fa-solid fa-arrow-right-from-bracket'></i>
+        <i className="fa-solid fa-arrow-right-from-bracket"></i>
       </Link>
     </nav>
   );
