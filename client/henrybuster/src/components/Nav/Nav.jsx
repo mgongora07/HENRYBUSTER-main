@@ -30,7 +30,7 @@ export const Nav = () => {
   };
 
   const perfil = user ? true : false;
-  console.log(user);
+ // console.log(user);
 
   if (!user) {
     ("");
