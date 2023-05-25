@@ -13,6 +13,7 @@ import {
   GET_MOVIES_ADMIN,
   SPLIT_RECIPES_ADMIN,
   GET_MOVIES_NAME_ADMIN,
+  GET_USER,
 } from "./action-type";
 
 import axios from "axios";
@@ -89,7 +90,6 @@ export const getMoviesNameAdmin = (name) => {
         `http://localhost:3001/movies/search?name=${name}`
       );
       let payload = movie.data;
-      console.log(payload);
       return dispatch({
         type: GET_MOVIES_NAME_ADMIN,
         payload: payload,
