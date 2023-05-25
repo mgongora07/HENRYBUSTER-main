@@ -28,9 +28,7 @@ const Login = () => {
      }
    }, [navigate, user]);*/
 
-   if (user) {
-     return <Navigate to='/' />;
-   }
+   
 
   const dispatch = useDispatch();
   //const state = useUserStore.getState();
@@ -114,7 +112,13 @@ const handleResetPassword = async () => {
   }
 }
 
+   if (user) {
+     return <Navigate to='/' />;
+   }
+   
     return (
+   
+ 
       <>
         <main className='container main'>
           <article className='grid'>
