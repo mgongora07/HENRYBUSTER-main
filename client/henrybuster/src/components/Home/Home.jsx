@@ -41,6 +41,7 @@ export const Home = ({ handleUser }) => {
     dispatch(getMovies());
     dispatch(getFormats());
     dispatch(getGenres());
+    handleUser(user.uid);
   }, []);
   useEffect(() => {
     handleUser(user.uid);

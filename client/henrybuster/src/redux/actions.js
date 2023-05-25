@@ -13,7 +13,8 @@ import {
   GET_MOVIES_ADMIN,
   SPLIT_RECIPES_ADMIN,
   GET_MOVIES_NAME_ADMIN,
-  GET_USER,
+  GET_ALL_USER,
+  SPLIT_USERS,
 } from "./action-type";
 
 import axios from "axios";
@@ -65,6 +66,30 @@ export const getMovies = () => {
     }
   };
 };
+export const getUsers = () => {
+  return async function (dispatch) {
+    try {
+      let movie = await axios.get(`http://localhost:3001/users`);
+      let payload = movie.data;
+
+      return dispatch({
+        type: GET_ALL_USER,
+        payload: payload,
+      });
+    } catch (error) {
+      return { error: error };
+    }
+  };
+};
+export function splitUsers(inicio, fin) {
+  return async (dispatch) => {
+    dispatch({
+      type: SPLIT_USERS,
+      inicio,
+      fin,
+    });
+  };
+}
 
 export const getMoviesName = (name) => {
   return async function (dispatch) {

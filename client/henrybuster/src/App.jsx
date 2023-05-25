@@ -23,6 +23,7 @@ import UpdateGenre from "./components/Admin/genres/UpdateGenre";
 import Sidebar from "./components/Admin/Sidebar";
 import RouteError from "./components/RouteError/RouteError";
 import axios from "axios";
+import Users from "./components/Admin/users/Users";
 
 function App() {
   const location = useLocation();
@@ -44,6 +45,12 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    let storedPayload = localStorage.getItem("user");
+    if (storedPayload) {
+      setUser(JSON.parse(storedPayload));
+    }
+  }, []);
   useEffect(() => {}, [userRegister]);
 
   return (
@@ -76,6 +83,7 @@ function App() {
                 <Route path="admin/AllGenre" element={<AllGenres />} />
                 <Route path="/admin/*" element={<Admin />} />
                 <Route path="/admin/movies" element={<MoviesAdmin />} />
+                <Route path="/admin/users" element={<Users />} />
               </>
             ) : (
               <Route path="/admin" element={<RouteError />} />
