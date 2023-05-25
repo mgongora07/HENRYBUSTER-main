@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../../context/authContext";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, Navigate } from "react-router-dom";
 import { setDoc, doc } from "firebase/firestore";
 import {
   useUserStore,
@@ -13,11 +13,24 @@ import {
 import { app, db } from "../../firebase/firebase";
 import { useDispatch, useSelector } from "react-redux";
 
+
 const Login = () => {
-  const [user, setUser] = useState({
-    email: "",
-    password: "",
-  });
+
+
+   const { user, login, loginwithgoogle } = useAuth();
+   const navigate = useNavigate();
+
+  /* useEffect(() => {
+     if (user) {
+       navigate("/");
+     } else {
+       navigate("/login");
+     }
+   }, [navigate, user]);*/
+
+   if (user) {
+     return <Navigate to='/' />;
+   }
 
   const dispatch = useDispatch();
   //const state = useUserStore.getState();
@@ -29,14 +42,16 @@ const Login = () => {
   //const getUserById = useUserStore((state) => state.getUserById);
   //const registerUser = useUserStore((state) => state.registerUser);
 
-  const { login, loginwithgoogle } = useAuth();
-  const navigate = useNavigate();
+   const [userlogin, setUser] = useState({
+     email: "",
+     password: "",
+   });
 
   const [error, setError] = useState();
 
   const handleChange = ({ target: { name, value } }) => {
     //console.log(name, value);
-    setUser({ ...user, [name]: value });
+    setUser({ ...userlogin, [name]: value });
   };
 
   const handleSubmit = async (e) => {
@@ -44,9 +59,9 @@ const Login = () => {
     setError("");
     //console.log(user);
     try {
-      await login(user.email, user.password);
+      await login(userlogin.email, userlogin.password);
       navigate("/");
-      user.sendEmailVerification();
+      userlogin.sendEmailVerification();
     } catch (error) {
       //console.log(error.message);
       setError(error.message);
@@ -89,60 +104,62 @@ const Login = () => {
     }
   };
 
-  return (
-    <>
-      <main className='container main'>
-        <article className='grid'>
-          <div>
-            <hgroup>
-              <h1>Login</h1>
-              {error && <h2>{error}</h2>}
-            </hgroup>
-            <form onSubmit={handleSubmit}>
-              <div>
-                <input
-                  type='text'
-                  name='email'
-                  placeholder='E-mail'
-                  aria-label='E-mail'
-                  autoComplete='E-mail'
-                  required
-                  id='email'
-                  onChange={handleChange}
-                />
-              </div>
-              <div>
-                <input
-                  type='password'
-                  name='password'
-                  placeholder='******'
-                  aria-label='Password'
-                  autoComplete='current-password'
-                  id='password'
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div>
-                <button type='submit' className='contrast'>
-                  Login
-                </button>
-              </div>
-            </form>
+
+
+    return (
+      <>
+        <main className='container main'>
+          <article className='grid'>
             <div>
-              <button onClick={handleGoogleSignIn}>Login with Google</button>
+              <hgroup>
+                <h1>Login</h1>
+                {error && <h2>{error}</h2>}
+              </hgroup>
+              <form onSubmit={handleSubmit}>
+                <div>
+                  <input
+                    type='text'
+                    name='email'
+                    placeholder='E-mail'
+                    aria-label='E-mail'
+                    autoComplete='E-mail'
+                    required
+                    id='email'
+                    onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  <input
+                    type='password'
+                    name='password'
+                    placeholder='******'
+                    aria-label='Password'
+                    autoComplete='current-password'
+                    id='password'
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div>
+                  <button type='submit' className='contrast'>
+                    Login
+                  </button>
+                </div>
+              </form>
+              <div>
+                <button onClick={handleGoogleSignIn}>Login with Google</button>
+              </div>
             </div>
-          </div>
-          <div>
-            {" "}
-            <Link to='/register'>
-              Sign up
-            </Link>
-          </div>
-        </article>
-      </main>
-    </>
-  );
+            <div>
+              {" "}
+              <Link to='/register'>Sign up</Link>
+            </div>
+          </article>
+        </main>
+      
+      </>
+    );
+
 };
 
 export default Login;
