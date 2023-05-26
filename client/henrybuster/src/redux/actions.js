@@ -16,8 +16,9 @@ import {
   POST_CHECKOUT,
   GET_ALL_USER,
   SPLIT_USERS,
-  GET_USER
-
+  GET_USER,
+  POST_ORDER,
+  ORDER_DATA
 } from "./action-type";
 
 import axios from "axios";
@@ -267,4 +268,28 @@ export const getUserById =  (id) =>{
       payload:data,
     });
   };
+}
+
+export function setOrder (formData){
+  return {
+    type: ORDER_DATA,
+    payload: formData,
+  };
+}
+
+export const postOrder = (orderData)=>{
+  return async (dispatch) => {
+    try {
+      const resp= await axios.post('http://localhost:3001/purchase/guest', orderData);
+      dispatch({
+        type: POST_ORDER,
+        payload: {},
+      });
+    } catch (error) {
+        console.log({message: error})
+        return {message: error}
+    }
+
+  }
+  
 }

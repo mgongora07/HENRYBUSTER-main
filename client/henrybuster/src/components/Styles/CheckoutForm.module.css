@@ -89,3 +89,9 @@
   justify-content: center;
   text-align: center;
 }
+
+.boton:disabled {
+  cursor: not-allowed;
+  background-color: #f8f9fa;
+  /* Agrega cualquier otro estilo que desees cuando el botón esté deshabilitado */
+}

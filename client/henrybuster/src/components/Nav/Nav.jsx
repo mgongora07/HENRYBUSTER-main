@@ -32,6 +32,10 @@ export const Nav = ({ handleUser, userRegister }) => {
 
   const perfil = user ? true : false;
 
+ // console.log(user);
+
+
+
   if (!user) {
     ("");
   } else {

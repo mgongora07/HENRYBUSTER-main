@@ -13,6 +13,9 @@ import Paginado from "./paginado/Paginado";
 import FilterMovies from "./Filter/FilterMovies";
 import CarouselFadeExample from "./carrusel/CarruselComponent";
 import NewMovie from "./agregadasRecientemente/NewMovie";
+
+import { ContactUs } from "../Notifications/notification";
+
 import { useAuth } from "../../context/authContext";
 
 export const Home = ({ handleUser }) => {
@@ -79,6 +82,7 @@ export const Home = ({ handleUser }) => {
         </div>
         <Paginado pages={pages} split={split} />
       </div>
+      {/* <ContactUs /> */}
     </>
   );
 };
