@@ -69,3 +69,7 @@ gap: 5px;
     background-color: crimson;
     color: #fff;
 }
+
+.cursor{
+    cursor: pointer;
+}

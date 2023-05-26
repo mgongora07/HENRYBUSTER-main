@@ -16,10 +16,9 @@ import {
   POST_CHECKOUT,
   GET_ALL_USER,
   SPLIT_USERS,
-  
+  GET_USER,
   POST_ORDER,
-  ORDER_DATA,
-
+  ORDER_DATA
 } from "./action-type";
 
 import axios from "axios";
@@ -261,6 +260,16 @@ export const postCheckout = async (id, amount)=>{
   
 }
 
+export const getUserById =  (id) =>{
+  return async (dispatch) => {
+    const {data} = await axios(`http://localhost:3001/user/${id}`);
+    dispatch({
+      type: GET_USER,
+      payload:data,
+    });
+  };
+}
+
 export function setOrder (formData){
   return {
     type: ORDER_DATA,
@@ -284,4 +293,3 @@ export const postOrder = (orderData)=>{
   }
   
 }
-
