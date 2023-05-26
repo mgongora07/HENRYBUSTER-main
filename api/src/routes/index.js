@@ -32,6 +32,7 @@ const getGenreById = require("../controllers/getGenreById");
 const getAddressByUserId = require("../controllers/getAddressByUserId");
 const InsertAddressByUserId = require("../controllers/InsertAddressByUserId.js");
 const getAddressById = require("../controllers/getAddressById");
+const deleteUser = require("../controllers/deleteUser");
 
 
 const router = express.Router();
@@ -65,6 +66,7 @@ router.put("/movie/:id", updateMovie)
 router.put("/user/:id", updateUser)
 router.put("/genre/:id", updateGenre)
 router.delete("/movie/:id",deleteMovie)
+router.delete("/user/:id", deleteUser)
 router.post("/checkout", order)
 
 module.exports = router;
