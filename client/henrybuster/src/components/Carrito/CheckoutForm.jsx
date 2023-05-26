@@ -1,11 +1,16 @@
 import React, { useState, useContext } from 'react';
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { CartContext } from "./Context";
-import { postCheckout } from '../../redux/actions';
+import { postCheckout, setOrder } from '../../redux/actions';
 import style from '../Styles/CheckoutForm.module.css';
+import { useSelector } from 'react-redux';
+import {postOrder} from '../../redux/actions'
+
+
 
 const CheckoutForm = () => {
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, clearCart } = useContext(CartContext);
+  const currentOrder = useSelector(state => state.currentOrder)
   const amountDolars = cartItems.reduce((previous, current) => previous + current.amount * current.price, 0).toFixed(2);
   const stripe = useStripe();
   const elements = useElements();
@@ -31,6 +36,12 @@ const CheckoutForm = () => {
         if (respuesta === "succeeded") {
           setResponseMessage('Payment successful!');
           elements.getElement(CardElement).clear();
+          setOrder(currentOrder)
+          clearCart();
+          
+
+
+          
         } else {
           setResponseMessage('Payment failed. Please try again.');
           elements.getElement(CardElement).clear();
@@ -72,13 +83,13 @@ const CheckoutForm = () => {
             }}
           />
         </div>
-        <button className={style.boton} disabled={!stripe}>
-          {loading ? (
-            <div className="spinner-border text-dark" role="status">
-              <span className="sr-only">Loading...</span>
-            </div>
-          ) : `Submit Payment ${amountDolars}`}
-        </button>
+        <button className={`${style.boton} ${stripe && currentOrder && Object.keys(currentOrder).length !== 0 ? '' : style.disabledButton}`} disabled={!stripe || !currentOrder || Object.keys(currentOrder).length === 0}>
+  {loading ? (
+    <div className="spinner-border text-dark" role="status">
+      <span className="sr-only">Loading...</span>
+    </div>
+  ) : `Submit Payment ${amountDolars}`}
+</button>
         {responseMessage && <p className='"d-flex align-items-center justify-content-center"'>{responseMessage}</p>}
       </div>
     </form>
