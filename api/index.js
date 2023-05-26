@@ -43,9 +43,8 @@ conn.sync({ force: true }).then(() => {
     fillGenre(Genre);
     fillLanguage(Language);
     fillMovie(Movie);
-    setTimeout(function() {
+    setTimeout(function () {
       fillRating(Rating);
     }, 3000);
-    
   });
-})
+});
