@@ -13,12 +13,10 @@ import {
   GET_MOVIES_ADMIN,
   SPLIT_RECIPES_ADMIN,
   GET_MOVIES_NAME_ADMIN,
-
   POST_CHECKOUT,
-
+  GET_USER,
   GET_ALL_USER,
   SPLIT_USERS,
-
 } from "./action-type";
 
 const INITIAL_STATE = {
@@ -34,12 +32,9 @@ const INITIAL_STATE = {
   ratingsFilter: [],
   moviesAdmin: [],
   paginadoAdmin: [],
-
- 
-
+  user: {},
   allUsers: [],
   usersPaginado: [],
-
 };
 
 export default function rootReducer(
@@ -204,12 +199,15 @@ export default function rootReducer(
         usersPaginado: resultUser,
       };
 
-      case POST_CHECKOUT:
-     
+    case POST_CHECKOUT:
       return {
         ...state,
       };
-
+      case GET_USER:
+        return{
+          ...state,
+          user: payload
+        }
     default:
       return state;
   }

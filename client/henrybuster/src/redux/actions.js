@@ -16,6 +16,7 @@ import {
   POST_CHECKOUT,
   GET_ALL_USER,
   SPLIT_USERS,
+  GET_USER
 
 } from "./action-type";
 
@@ -256,4 +257,14 @@ export const postCheckout = async (id, amount)=>{
           return {message: error}
       }
   
+}
+
+export const getUserById =  (id) =>{
+  return async (dispatch) => {
+    const {data} = await axios(`http://localhost:3001/user/${id}`);
+    dispatch({
+      type: GET_USER,
+      payload:data,
+    });
+  };
 }
