@@ -28,6 +28,7 @@ const order = require("../controllers/order")
 
 const InsertPurchase = require("../controllers/InsertPurchase");
 const insertGuestPurchase = require("../controllers/insertGuestPurchase");
+const getGenreById = require("../controllers/getGenreById");
 
 
 const router = express.Router();
@@ -45,6 +46,7 @@ router.get("/languages", getLanguage);
 router.get("/rating/:id", getRatingsByMovieId)
 router.get("/movies/search", searchMovieByName)
 router.get("/movies/search/guest", searchMovieForGuest)
+router.get("/genre/:id",getGenreById)
 router.post("/genre",insertGenre)
 router.post("/language",insertLanguage)
 router.post("/format", insertFormat)

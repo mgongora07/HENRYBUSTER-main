@@ -6,7 +6,7 @@ import style from '../Styles/CheckoutForm.module.css';
 
 const CheckoutForm = () => {
   const { cartItems } = useContext(CartContext);
-  const amountDolars = cartItems.reduce((previous, current) => previous + current.amount * current.price, 0).toFixed(2);;
+  const amountDolars = cartItems.reduce((previous, current) => previous + current.amount * current.price, 0).toFixed(2);
   const stripe = useStripe();
   const elements = useElements();
   const amountInCents = Math.round(amountDolars * 100);
@@ -28,8 +28,7 @@ const CheckoutForm = () => {
         const { id } = paymentMethod;
         const respuesta = await postCheckout(id, amountInCents);
         console.log(respuesta, 'soy respuesta');
-
-        if (respuesta.status ) {
+        if (respuesta === "succeeded") {
           setResponseMessage('Payment successful!');
           elements.getElement(CardElement).clear();
         } else {
@@ -75,8 +74,8 @@ const CheckoutForm = () => {
         </div>
         <button className={style.boton} disabled={!stripe}>
           {loading ? (
-            <div class="spinner-border text-dark" role="status">
-              <span class="sr-only">Loading...</span>
+            <div className="spinner-border text-dark" role="status">
+              <span className="sr-only">Loading...</span>
             </div>
           ) : `Submit Payment ${amountDolars}`}
         </button>

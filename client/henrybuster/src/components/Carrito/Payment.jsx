@@ -33,7 +33,7 @@ const Payment = () => {
 
 
   return (
-    <div >
+    <div className={style.container}>
       
       <h1 className={style.titulos1}>Checkout:</h1>
         <div className={style.Principal}>
