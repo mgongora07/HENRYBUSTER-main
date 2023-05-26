@@ -1,9 +1,11 @@
-const {User} = require('../db');
+const {User, Address} = require('../db');
 
 
 const getUsers= async (req, res) => {
     try {
-        const users = await User.findAll();
+        const users = await User.findAll({
+          include: Address
+        });
 
       res.status(200).json(users);
     } catch (error) {

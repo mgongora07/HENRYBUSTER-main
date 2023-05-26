@@ -88,3 +88,7 @@
     background-color: #56778f;
   }
   
+  .overlay{
+    position: relative; 
+    z-index: 9999;
+  }

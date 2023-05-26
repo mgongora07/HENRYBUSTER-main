@@ -84,10 +84,14 @@ Movie.belongsTo(Language);
 Movie.hasOne(Purchase);
 Purchase.belongsTo(Movie);
 
+Address.hasOne(Purchase);
+Purchase.belongsTo(Address);
+
 User.hasMany(Purchase);
 Purchase.belongsTo(User)
 
 User.hasMany(Address)
+Address.belongsTo(User)
 
 
 

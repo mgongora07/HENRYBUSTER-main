@@ -28,8 +28,7 @@ const CheckoutForm = () => {
         const { id } = paymentMethod;
         const respuesta = await postCheckout(id, amountInCents);
         console.log(respuesta, 'soy respuesta');
-
-        if (respuesta.status ) {
+        if (respuesta === "succeeded") {
           setResponseMessage('Payment successful!');
           elements.getElement(CardElement).clear();
         } else {
