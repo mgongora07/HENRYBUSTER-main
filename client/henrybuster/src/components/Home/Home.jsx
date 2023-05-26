@@ -71,6 +71,7 @@ export const Home = () => {
         </div>
         <Paginado pages={pages} split={split} />
       </div>
+      {/* <ContactUs /> */}
     </>
   );
 };
