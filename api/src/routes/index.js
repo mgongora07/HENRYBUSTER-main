@@ -20,7 +20,7 @@ const getRatingsByMovieId = require("../controllers/getRatingsByMovieId");
 const InsertRating = require("../controllers/InsertRating");
 const getMoviesForAdmin = require("../controllers/getMoviesForAdmin");
 const searchMovieByName = require("../controllers/searchMovieByName");
-const searchMovieForGuest = require("../controllers/SearchMovieForGuest");
+const searchMovieForGuest = require("../controllers/searchMovieForGuest");
 const updateGenre = require("../controllers/updateGenre");
 const deleteMovie = require("../controllers/deleteMovie");
 
@@ -28,25 +28,25 @@ const router = express.Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
-router.get("/movie/:id",getMovieById)
-router.get("/user/:id",getUserById)
+router.get("/movie/:id", getMovieById);
+router.get("/user/:id", getUserById);
 router.get("/movies", getMovies);
 router.get("/movies/admin", getMoviesForAdmin);
 router.get("/users", getUsers);
 router.get("/formats", getFormat);
 router.get("/genres", getGenre);
 router.get("/languages", getLanguage);
-router.get("/rating/:id", getRatingsByMovieId)
-router.get("/movies/search", searchMovieByName)
-router.get("/movies/search/guest", searchMovieForGuest)
-router.post("/genre",insertGenre)
-router.post("/language",insertLanguage)
-router.post("/format", insertFormat)
-router.post("/user", insertUser)
-router.post("/movie", insertMovie)
-router.post("/rating", InsertRating)
-router.put("/movie/:id", updateMovie)
-router.put("/user/:id", updateUser)
-router.put("/genre/:id", updateGenre)
-router.delete("/movie/:id",deleteMovie)
+router.get("/rating/:id", getRatingsByMovieId);
+router.get("/movies/search", searchMovieByName);
+router.get("/movies/search/guest", searchMovieForGuest);
+router.post("/genre", insertGenre);
+router.post("/language", insertLanguage);
+router.post("/format", insertFormat);
+router.post("/user", insertUser);
+router.post("/movie", insertMovie);
+router.post("/rating", InsertRating);
+router.put("/movie/:id", updateMovie);
+router.put("/user/:id", updateUser);
+router.put("/genre/:id", updateGenre);
+router.delete("/movie/:id", deleteMovie);
 module.exports = router;
