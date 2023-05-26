@@ -1,18 +1,33 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import style from '../Styles/Payment.module.css';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, CardElement } from '@stripe/react-stripe-js';
 import CheckoutForm from './CheckoutForm';
 import OrderAdress from '../Users/OrderAdress';
 import { CartContext } from "./Context";
+import { useSelector } from 'react-redux';
 
 
 const Payment = () => {
   
   const { cartItems } = useContext(CartContext);
+  const currentOrder = useSelector(state=>state.currentOrder)
   const stripePromise = loadStripe(
     'pk_test_51NB6jDKYeZyt0ZZhF4rhnhYKRp55bCCtnvCqUWE8khTmgyBk37Op5cl3jYN4fHJBA2LaLGU2RU6wFoYuuA6WO1eh00GfjV2DDF'
   );
+
+  const [isDireccion, setIsDireccion] = useState(false)
+  const [shipMessage, setShipMessage]= useState("")
+
+  useEffect(() => {
+    if (!currentOrder.name) {
+      setShipMessage('Add an address to continue');
+    } else {
+      setShipMessage('');
+    }
+  }, [currentOrder]);
+
+
 
   const renderImages = () => {
     return cartItems.map((item, index) => (
@@ -49,13 +64,16 @@ const Payment = () => {
                   </div>
             </div>
               <div className={style.adress}>
-                <h2>Name:</h2>
-                <p>Phone number:</p>
-                <p>Adress:</p>
+                <h2>Shipping data:</h2>
+                {shipMessage !== "" && <p>{shipMessage}</p>}
+                <h2>{currentOrder.name ? currentOrder.name : ''}</h2>
+                <p>{currentOrder.phoneNumber ? currentOrder.phoneNumber : ''}</p>
+                <p>{currentOrder.street ? currentOrder.street : ''}</p>
+                <p>{currentOrder.city ? currentOrder.city : ''}</p>
               </div>
 
             <div>
-                <button className={style.boton} onClick={openPopup}>Edit adress</button>
+                <button className={style.boton} onClick={openPopup}>New Adress</button>
 
                 {showPopup && (
                   <div className="overlay">

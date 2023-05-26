@@ -1,9 +1,15 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import style from '../Styles/OrderAdress.module.css';
 import { CartContext } from '../Carrito/Context';
+import { setOrder } from '../../redux/actions';
 
 const OrderAdress = ({ onClose }) => {
+  const [errorMsg, setErrorMsg] = useState("");
   const { cartItems } = useContext(CartContext);
+  const currentOrder = useSelector(state => state.currentOrder)
+  const dispatch = useDispatch()
+  console.log(currentOrder)
 
   const purchases = cartItems.map((item) => ({
     MovieId: item.id,
@@ -41,18 +47,36 @@ const OrderAdress = ({ onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData, 'Soy datos');
-    setFormData({
-      purchases: [],
-      name: '',
-      email: '',
-      phoneNumber: '',
-      street: '',
-      city: '',
-      state: '',
-      postalCode: '',
-      country: '',
-    });
+
+    if (
+        !formData.purchases ||
+        !formData.name ||
+        !formData.email||
+        !formData.phoneNumber ||
+        !formData.street ||
+        !formData.city ||
+        !formData.state ||
+        !formData.postalCode ||
+        !formData.country 
+    ) {
+        setErrorMsg("Please fill in all fields");
+        return;
+      } 
+      let createAdress = {
+      purchases: formData.purchases,
+      name: formData.name,
+      email: formData.email,
+      phoneNumber: formData.phoneNumber,
+      street: formData.street,
+      city: formData.city,
+      state: formData.state,
+      postalCode: formData.postalCode,
+      country: formData.country,
+      }
+      dispatch(setOrder(createAdress))
+      setShowForm(false);
+  
+    
   };
 
   const handleCancel = () => {
