@@ -8,11 +8,7 @@ const insertPurchase = async (req, res) => {
       purchases,
       name,
       phoneNumber,
-      street,
-      city,
-      state,
-      postalCode,
-      country,
+      AddressId
     } = req.body;
 
     for (const purchase of purchases) {
@@ -32,7 +28,7 @@ const insertPurchase = async (req, res) => {
       name,
       phoneNumber,
     });
-
+/*
     const createAddress = await Address.create({
       street,
       city,
@@ -41,10 +37,10 @@ const insertPurchase = async (req, res) => {
       country,
       UserId: id,
     });
-
+*/
     const createdPurchases = await Purchase.bulkCreate(
       purchases.map((x) => {
-        return { ...x, AddressId: createAddress.id, UserId: id };
+        return { ...x, AddressId, UserId: id };
       })
     );
     // Disminuir la cantidad en el inventario
