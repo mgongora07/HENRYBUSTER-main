@@ -57,7 +57,30 @@ const Login = () => {
     setError("");
     //console.log(user);
     try {
-      await login(userlogin.email, userlogin.password);
+      const result = await login(userlogin.email, userlogin.password);
+      const user = result.user;
+
+      if (user !== null) {
+        const userData = {
+          id: user.uid,
+          email: user.email,
+          admin: false,
+          //photoURL: user.photoURL,
+          // otros detalles del usuario
+        };
+        setUser(userData);
+        const userDb = await dispatch(getUserById(user.uid));
+         if (!userDb) {
+          //console.log("here");
+          //const userDoc = doc(db, "users", user.uid);
+          //console.log(userDoc);
+          //await setDoc(userDoc, userData);
+          
+          await dispatch(registerUser(userData));
+          //console.log(save);
+        }
+      //await login(userlogin.email, userlogin.password);
+      }
       navigate("/");
       userlogin.sendEmailVerification();
     } catch (error) {
@@ -74,7 +97,7 @@ const Login = () => {
       if (user !== null) {
         const userData = {
           id: user.uid,
-          username: user.displayName,
+          name: user.displayName,
           email: user.email,
           admin: false,
           phoneNumber: user.phoneNumber,
