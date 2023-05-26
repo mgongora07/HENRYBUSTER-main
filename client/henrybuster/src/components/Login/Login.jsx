@@ -8,7 +8,7 @@ import {
   getUserById,
   registerUser,
   updateUser,
-  setCurrentUser
+  setCurrentUser,
 } from "../../redux/users.js";
 import { app, db } from "../../firebase/firebase";
 import { useDispatch, useSelector } from "react-redux";
@@ -33,8 +33,8 @@ const Login = () => {
   const dispatch = useDispatch();
   //const state = useUserStore.getState();
   const users = useSelector((state) => state.users);
- // const getUserById = useSelector(state.getUserById);
- // const registerUser = useSelector(state.registerUser);
+  // const getUserById = useSelector(state.getUserById);
+  // const registerUser = useSelector(state.registerUser);
 
   //const setUserStore = useUserStore((state) => state.setUser);
   //const getUserById = useUserStore((state) => state.getUserById);
@@ -104,17 +104,17 @@ const Login = () => {
           //photoURL: user.photoURL,
           // otros detalles del usuario
         };
-    
+
         setUser(userData);
         const userDb = await dispatch(getUserById(user.uid));
-          //console.log(userDb);
-     
+        //console.log(userDb);
+
         if (!userDb) {
           //console.log("here");
           //const userDoc = doc(db, "users", user.uid);
           //console.log(userDoc);
           //await setDoc(userDoc, userData);
-          
+
           await dispatch(registerUser(userData));
           //console.log(save);
         }
@@ -124,6 +124,7 @@ const Login = () => {
       setError(error.message);
     }
   };
+
 
 const handleResetPassword = async () => {
   if(!userlogin.email) setError("Please enter your email");
@@ -194,6 +195,7 @@ const handleResetPassword = async () => {
         </main>
       </>
     );
+
 
 };
 

@@ -1,30 +1,48 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { CartContext } from "./Context";
 import './Cart.css'
+import style from '../Styles/ItemCart.module.css'
 
 const ItemCart = ({ item }) => {
   const { addItemToCart, deleteItemToCart } = useContext(CartContext);
   const { amount } = item;
+  const inventory = item.Inventory.quantity
+
+
+
+
+ 
 
   return (
-    <div className="list-item">
-      <img src={item.image} alt={item.name} />
-      <div className="list-item-details">
+    <div>
+      <div className={style.itemDiv}>
         <div>
-          <p>{item.name}</p>
-          <div className="list-item-buttons">
-            <button onClick={() => addItemToCart(item)}>
-              Añadir +1
-            </button>
-            <button onClick={() => deleteItemToCart(item)}>
-              Remover -1
-            </button>
+          <div className={style.itemView}>
+            <img src={item.image} alt={item.name} className={style.itemImg} />
+            <div className={style.itemInfo}>
+              <p><strong>{item.name}</strong></p>
+              <p> <strong>{item.price}</strong> USD$</p>
+              <p>Format: {item.Format.name}</p>
+            </div>
           </div>
         </div>
-        <div>
-          <div><p>Items:{item.amount}</p></div>
-          <p>Total: ${item.amount * item.price}</p>
+        <div className={style.test}>
+
+          <div className={style.subTotal}>
+            <button className="btn btn-light" onClick={() => addItemToCart(item)}>
+              +
+            </button>
+            <div className={style.itemCantidad}>
+             <p>{amount}</p> 
+            </div>
+            <button className="btn btn-light" onClick={() => deleteItemToCart(item)}>
+              -
+            </button>
+          </div>
+
+          <p>Subtotal: ${item.amount * item.price} USD</p>
         </div>
+
       </div>
     </div>
   );

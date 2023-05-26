@@ -4,26 +4,37 @@ const { DataTypes, literal } = require("sequelize");
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define(
-    "Purchase",
+    "Address",
     {
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
+      street: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      city: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      state: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      postalCode: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      country: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       date: {
         type: DataTypes.DATE,
         allowNull: false,
         defaultValue: literal("CURRENT_TIMESTAMP"),
-      },
-      status: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: "Pendiente",
-      },
-      quantity: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
       },
     },
     {

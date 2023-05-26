@@ -65,11 +65,12 @@ function Sidebar({ handleCreateMovie }) {
             <span>
               Order management<i className="bi bi-chevron-down"></i>
             </span>
-
-            <div>
-              <i className="bi bi-clipboard-check fs-5 me-3"></i>
-              <span className="sub-category">View orders</span>
-            </div>
+            <Link to={"/admin/users"} className="link-no-style">
+              <div>
+                <i className="bi bi-file-ruled fs-5 me-3"></i>
+                <span className="sub-category">Users</span>
+              </div>
+            </Link>
           </div>
 
           <div className="list-group-item py-2 text-start">
