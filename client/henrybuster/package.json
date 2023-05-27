@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-
     "@emailjs/browser": "^3.11.0",
     "@stripe/react-stripe-js": "^2.1.0",
     "@stripe/stripe-js": "^1.53.0",

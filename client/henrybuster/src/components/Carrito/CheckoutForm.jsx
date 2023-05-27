@@ -5,7 +5,7 @@ import { postCheckout, setOrder } from '../../redux/actions';
 import style from '../Styles/CheckoutForm.module.css';
 import { useSelector } from 'react-redux';
 import {postOrder} from '../../redux/actions'
-
+import axios from 'axios'
 
 
 const CheckoutForm = () => {
@@ -35,6 +35,7 @@ const CheckoutForm = () => {
         console.log(respuesta, 'soy respuesta');
         if (respuesta === "succeeded") {
           setResponseMessage('Payment successful!');
+          await axios.post('http://localhost:3001/purchase/guest',currentOrder)
           elements.getElement(CardElement).clear();
           setOrder(currentOrder)
           clearCart();
