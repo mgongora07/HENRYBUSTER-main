@@ -20,7 +20,9 @@ import axios from "axios";
 export const getDetailMovie = (id) => {
   return async function (dispatch) {
     try {
-      let movie = await axios.get(`http://localhost:3001/movie/${id}`);
+      let movie = await axios.get(
+        `https://henrybuster.onrender.com/movie/${id}`
+      );
       let payload = movie.data;
 
       return dispatch({
@@ -52,7 +54,7 @@ export const cleanDetail = () => {
 export const getMovies = () => {
   return async function (dispatch) {
     try {
-      let movie = await axios.get(`http://localhost:3001/movies`);
+      let movie = await axios.get(`https://henrybuster.onrender.com/movies`);
       let payload = movie.data;
 
       return dispatch({
@@ -69,7 +71,7 @@ export const getMoviesName = (name) => {
   return async function (dispatch) {
     try {
       let movie = await axios.get(
-        `http://localhost:3001/movies/search/guest?name=${name}`
+        `https://henrybuster.onrender.com/movies/search/guest?name=${name}`
       );
       let payload = movie.data;
       console.log(payload);
@@ -86,7 +88,7 @@ export const getMoviesNameAdmin = (name) => {
   return async function (dispatch) {
     try {
       let movie = await axios.get(
-        `http://localhost:3001/movies/search?name=${name}`
+        `https://henrybuster.onrender.com/movies/search?name=${name}`
       );
       let payload = movie.data;
       console.log(payload);
@@ -112,7 +114,9 @@ export function splitRecipes(inicio, fin) {
 export const getMoviesAdmin = () => {
   return async function (dispatch) {
     try {
-      let movie = await axios.get(`http://localhost:3001/movies/admin`);
+      let movie = await axios.get(
+        `https://henrybuster.onrender.com/movies/admin`
+      );
       let payload = movie.data;
 
       return dispatch({
@@ -137,7 +141,9 @@ export function splitRecipesAdmin(inicio, fin) {
 export const getRankingMovie = (id) => {
   return async function (dispatch) {
     try {
-      let ratings = await axios.get(`http://localhost:3001/rating/${id}`);
+      let ratings = await axios.get(
+        `https://henrybuster.onrender.com/rating/${id}`
+      );
 
       let payload = ratings.data;
 
@@ -168,7 +174,7 @@ export const cleanRatings = () => {
 
 export function getFormats() {
   return async (dispatch) => {
-    const resp = await axios(`http://localhost:3001/formats`);
+    const resp = await axios(`https://henrybuster.onrender.com/formats`);
     dispatch({
       type: GET_FORMAT,
       payload: resp.data,
@@ -177,7 +183,7 @@ export function getFormats() {
 }
 export function getGenres() {
   return async (dispatch) => {
-    const resp = await axios(`http://localhost:3001/genres`);
+    const resp = await axios(`https://henrybuster.onrender.com/genres`);
     dispatch({
       type: GET_GENRES,
       payload: resp.data,
@@ -187,7 +193,7 @@ export function getGenres() {
 
 export function getLanguages() {
   return async (dispatch) => {
-    const resp = await axios(`http://localhost:3001/languages`);
+    const resp = await axios(`https://henrybuster.onrender.com/languages`);
     dispatch({
       type: GET_LANGUAGES,
       payload: resp.data,

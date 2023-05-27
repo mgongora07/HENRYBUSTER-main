@@ -32,7 +32,7 @@ function UpdateGenre() {
     }
 
     try {
-      await axios.put(`http://localhost:3001/genre/${idValue}`, {
+      await axios.put(`https://henrybuster.onrender.com/genre/${idValue}`, {
         name: value,
       });
       dispatch(getGenres());
