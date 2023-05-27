@@ -6,11 +6,24 @@ import CheckoutForm from './CheckoutForm';
 import OrderAdress from '../Users/OrderAdress';
 import { CartContext } from "./Context";
 import { useSelector } from 'react-redux';
+import { useAuth } from "../../context/authContext";
+import { getUserById } from '../../redux/actions';
+
 
 
 const Payment = () => {
   
   const { cartItems } = useContext(CartContext);
+  const { user} = useAuth();
+  console.log(user)
+  const userState = useSelector(state=> state.user)
+  console.log(userState,'vego del estado')
+
+  useEffect(()=>{
+    if(user){
+      getUserById(user.uid)
+    }
+  },[user])
   const currentOrder = useSelector(state=>state.currentOrder)
   const stripePromise = loadStripe(
     'pk_test_51NB6jDKYeZyt0ZZhF4rhnhYKRp55bCCtnvCqUWE8khTmgyBk37Op5cl3jYN4fHJBA2LaLGU2RU6wFoYuuA6WO1eh00GfjV2DDF'
@@ -56,7 +69,7 @@ const Payment = () => {
           <div className={style.Col1}>
 
             <div>
-              <h1 className={style.titulos1}>It's almost yours:</h1>
+              <h1 className={style.titulos1}>It's almost yours!:</h1>
             </div>
             <div>
                   <div className={style.imagecontainer}>

@@ -1,5 +1,5 @@
 const { Address } = require("../db");
-
+//Esta busca por el id de adress
 const getAddressById = async (req, res) => {
   const { id } = req.params;
   try {
