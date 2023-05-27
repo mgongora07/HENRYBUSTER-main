@@ -1,7 +1,6 @@
-
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import { Routes, Route, useLocation  } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { Home } from "./components/Home/Home";
 import { Nav } from "./components/Nav/Nav";
 import { Detail } from "./components/Detail/Detail";
@@ -28,8 +27,6 @@ import Sidebar from "./components/Admin/Sidebar";
 import RouteError from "./components/RouteError/RouteError";
 import axios from "axios";
 import Users from "./components/Admin/users/Users";
-
-
 
 function App() {
   const location = useLocation();
@@ -60,12 +57,9 @@ function App() {
   }, []);
   useEffect(() => {}, [userRegister]);
 
-
   return (
     <>
       <CartProvider>
-
-
         <AuthProvider>
           <Nav handleUser={handleUser} userRegister={userRegister} />
           {location.pathname.startsWith("/admin") && userRegister.admin ? (
@@ -78,7 +72,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
-             <Route path="/payment" element={<Payment />} />
+            <Route path="/payment" element={<Payment />} />
             {/* admin */}
 
             {userRegister && userRegister.admin ? (
@@ -93,7 +87,10 @@ function App() {
                 <Route path="admin/AllGenre" element={<AllGenres />} />
                 <Route path="/admin/*" element={<Admin />} />
                 <Route path="/admin/movies" element={<MoviesAdmin />} />
-                <Route path="/admin/users" element={<Users />} />
+                <Route
+                  path="/admin/users"
+                  element={<Users userRegister={userRegister} />}
+                />
               </>
             ) : (
               <Route path="/admin" element={<RouteError />} />
@@ -102,7 +99,6 @@ function App() {
             {/* ------- */}
           </Routes>
         </AuthProvider>
-
       </CartProvider>
     </>
   );
