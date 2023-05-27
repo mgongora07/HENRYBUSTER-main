@@ -122,7 +122,7 @@ function Users({ userRegister }) {
             <th>email</th>
             <th>username</th>
             <th>id</th>
-            <th>phoneNumber</th>
+
             <th>admin</th>
             <th>AdminUpdate</th>
             <th>DeleteUser</th>
@@ -133,14 +133,15 @@ function Users({ userRegister }) {
             usersPaginado.map((e) => (
               <tr
                 key={e.id}
-                style={userRegister.id === e.id ? { background: "#ccc" } : null}
+                // style={userRegister.id === e.id ? { background: "#ccc" } : null}
                 className={userModify === e.id && change && "bg-warning"}
               >
                 <td>{e.name}</td>
                 <td>{e.email}</td>
-                <td>{e.username}</td>
+                <td style={e.username !== "guest" ? null : { color: "red" }}>
+                  {e.username !== "guest" ? e.username : "Guest"}
+                </td>
                 <td>{e.id}</td>
-                <td>{e.phoneNumber}</td>
                 <td>{e.admin ? "true" : "false"}</td>
                 {userRegister.id !== e.id ? (
                   <>
