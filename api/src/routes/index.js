@@ -33,6 +33,7 @@ const getAddressByUserId = require("../controllers/getAddressByUserId");
 const InsertAddressByUserId = require("../controllers/InsertAddressByUserId.js");
 const getAddressById = require("../controllers/getAddressById");
 const deleteUser = require("../controllers/deleteUser");
+const getPurchases = require("../controllers/getPurchases");
 
 
 const router = express.Router();
@@ -53,6 +54,7 @@ router.get("/movies/search/guest", searchMovieForGuest)
 router.get("/genre/:id",getGenreById)
 router.get("/address/:id", getAddressById)
 router.get("/address/user/:id", getAddressByUserId)
+router.get("/purchases", getPurchases)
 router.post("/address/:id", InsertAddressByUserId)
 router.post("/genre",insertGenre)
 router.post("/language",insertLanguage)

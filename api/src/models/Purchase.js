@@ -21,10 +21,6 @@ module.exports = (sequelize) => {
         allowNull: false,
         defaultValue: "Pendiente",
       },
-      quantity: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
     },
     {
       timestamps: false,
