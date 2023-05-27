@@ -27,6 +27,7 @@ import Sidebar from "./components/Admin/Sidebar";
 import RouteError from "./components/RouteError/RouteError";
 import axios from "axios";
 import Users from "./components/Admin/users/Users";
+import Purchases from "./components/Admin/purchases/purchases";
 
 function App() {
   const location = useLocation();
@@ -63,7 +64,7 @@ function App() {
         <AuthProvider>
           <Nav handleUser={handleUser} userRegister={userRegister} />
           {location.pathname.startsWith("/admin") && userRegister.admin ? (
-            <Sidebar />
+            <Sidebar handleUser={handleUser} userRegister={userRegister} />
           ) : null}
 
           <Routes>
@@ -91,6 +92,7 @@ function App() {
                   path="/admin/users"
                   element={<Users userRegister={userRegister} />}
                 />
+                <Route path="/admin/purchases" element={<Purchases />} />
               </>
             ) : (
               <Route path="/admin" element={<RouteError />} />
