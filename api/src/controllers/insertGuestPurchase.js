@@ -33,6 +33,7 @@ const insertGuestPurchase = async (req, res) => {
       phoneNumber,
       email,
       admin: false,
+      username: "Guest"
     });
 
     const createAddress = await Address.create({
