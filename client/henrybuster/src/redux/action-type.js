@@ -17,7 +17,9 @@ export const POST_CHECKOUT = "POST_CHECKOUT";
 export const GET_ALL_USER = "GET_ALL_USER";
 export const SPLIT_USERS = "SPLIT_USERS";
 export const GET_USER = "GET_USER";
-export const ORDER_DATA='ORDER_DATA'
-export const POST_ORDER='POST_ORDER'
+export const ORDER_DATA='ORDER_DATA';
+export const POST_ORDER='POST_ORDER';
+export const ORDER_USER_DATA='ORDER_USER_DATA'
+export const CLEAN_ORDERS='CLEAN_ORDERS'
 
 

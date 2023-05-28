@@ -5,7 +5,7 @@ import { useAuth } from "../../context/authContext";
 
 import { useDispatch } from "react-redux";
 import SearchBar from "../SearchBar/SearchBar";
-import { getMoviesName } from "../../redux/actions";
+import { getMoviesName, cleanOrders } from "../../redux/actions";
 
 export const Nav = ({ handleUser, userRegister }) => {
   const dispatch = useDispatch();
@@ -25,6 +25,7 @@ export const Nav = ({ handleUser, userRegister }) => {
       handleUser("");
       await logout();
       navigate("/");
+      dispatch(cleanOrders())
     } catch (error) {
       console.log(error);
     }

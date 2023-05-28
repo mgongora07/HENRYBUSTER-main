@@ -18,7 +18,9 @@ import {
   SPLIT_USERS,
   GET_USER,
   POST_ORDER,
-  ORDER_DATA
+  ORDER_DATA,
+  ORDER_USER_DATA,
+  CLEAN_ORDERS,
 } from "./action-type";
 
 import axios from "axios";
@@ -271,11 +273,17 @@ export const getUserById =  (id) =>{
 }
 
 export function setOrder (formData){
-  return {
-    type: ORDER_DATA,
-    payload: formData,
+  console.log(formData,'soy setOrdee')
+  return (dispatch)=>{
+    dispatch({
+      type: ORDER_DATA,
+      payload: formData,
+
+    })
+    
   };
 }
+
 
 export const postOrder = (orderData)=>{
   return async (dispatch) => {
@@ -293,3 +301,30 @@ export const postOrder = (orderData)=>{
   }
   
 }
+
+export function setUserOrder (formData){
+  console.log(formData,'soy userOrder del actions 305')
+  return (dispatch)=>{
+    dispatch({
+      type: ORDER_USER_DATA,
+      payload: formData,
+
+    })
+    
+  };
+}
+
+export const cleanOrders = () => {
+  return function (dispatch) {
+    try {
+      let clean = {};
+
+      return dispatch({
+        type: CLEAN_ORDERS,
+        payload: clean,
+      });
+    } catch (error) {
+      return { error: error };
+    }
+  };
+};
