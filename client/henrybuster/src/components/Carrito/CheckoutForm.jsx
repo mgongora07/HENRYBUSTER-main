@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useRef } from 'react';
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { CartContext } from "./Context";
 import { postCheckout, setOrder } from '../../redux/actions';
@@ -6,6 +6,8 @@ import style from '../Styles/CheckoutForm.module.css';
 import { useSelector } from 'react-redux';
 import {postOrder} from '../../redux/actions'
 import axios from 'axios'
+import emailjs from '@emailjs/browser';
+
 
 
 const CheckoutForm = () => {
@@ -18,11 +20,16 @@ const CheckoutForm = () => {
 
   const [responseMessage, setResponseMessage] = useState('');
   const [loading, setLoading] = useState(false);
+  const form = useRef();
+
+  
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
+  
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: 'card',
       card: elements.getElement(CardElement)
@@ -38,9 +45,15 @@ const CheckoutForm = () => {
           await axios.post('http://localhost:3001/purchase/guest',currentOrder)
           elements.getElement(CardElement).clear();
           setOrder(currentOrder)
+          emailjs.sendForm('service_816e43q', 'template_tcxw4vn', form.current, 'W3vt9Xtn4Qq49pmM4')
+          .then((result) => {
+              console.log(result.text);
+          }, (error) => {
+              console.log(error.text);
+          });
           clearCart();
           
-
+     
 
           
         } else {
@@ -60,7 +73,7 @@ const CheckoutForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form ref={form} onSubmit={handleSubmit} >
       <div className={style.cardForm}>
         <div className={style.encabezado}>
           <i className="bi bi-credit-card me-4 fs-5"></i>
@@ -84,6 +97,11 @@ const CheckoutForm = () => {
             }}
           />
         </div>
+
+        <input type='text'  name="user_name"  value={currentOrder.name}  /> 
+        <input type='text' name="user_email" value={currentOrder.email}/>
+        <textarea name="message"  value={"Hemos recibido tu compra, un abrazo" } />
+
         <button className={`${style.boton} ${stripe && currentOrder && Object.keys(currentOrder).length !== 0 ? '' : style.disabledButton}`} disabled={!stripe || !currentOrder || Object.keys(currentOrder).length === 0}>
   {loading ? (
     <div className="spinner-border text-dark" role="status">
@@ -93,6 +111,12 @@ const CheckoutForm = () => {
 </button>
         {responseMessage && <p className='"d-flex align-items-center justify-content-center"'>{responseMessage}</p>}
       </div>
+      
+  
+    
+    
+    
+      
     </form>
   );
 };

@@ -9,7 +9,7 @@ const OrderAdress = ({ onClose }) => {
   const { cartItems } = useContext(CartContext);
   const currentOrder = useSelector(state => state.currentOrder)
   const dispatch = useDispatch()
-  console.log(currentOrder)
+  //console.log(currentOrder)
 
   const purchases = cartItems.map((item) => ({
     MovieId: item.id,
