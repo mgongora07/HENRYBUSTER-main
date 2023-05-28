@@ -19,6 +19,8 @@ import {
   SPLIT_USERS,
   ORDER_DATA,
   POST_ORDER,
+  ORDER_USER_DATA,
+  CLEAN_ORDERS,
 } from "./action-type";
 
 const INITIAL_STATE = {
@@ -39,6 +41,7 @@ const INITIAL_STATE = {
   allAdress:{},
   allUsers: [],
   usersPaginado: [],
+  currentUserOrder:{},
 };
 
 export default function rootReducer(
@@ -215,16 +218,31 @@ export default function rootReducer(
         }
 
       case ORDER_DATA:
-     
+      console.log(payload,'soypayload')
       return {
         ...state,
         currentOrder:payload
       };
+      
+      case ORDER_USER_DATA:
+      console.log(payload,'soypayload')
+      return {
+        ...state,
+        currentUserOrder:payload
+      };
+
       case POST_ORDER:
      
       return {
         ...state,
         currentOrder:payload
+      };
+      case CLEAN_ORDERS:
+     
+      return {
+        ...state,
+        currentOrder:payload,
+        currentUserOrder: payload
       };
 
     default:

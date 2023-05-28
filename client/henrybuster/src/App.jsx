@@ -27,6 +27,11 @@ import Sidebar from "./components/Admin/Sidebar";
 import RouteError from "./components/RouteError/RouteError";
 import axios from "axios";
 import Users from "./components/Admin/users/Users";
+
+import UserProfile from "./components/Users/UserProfile";
+
+
+
 import Purchases from "./components/Admin/purchases/purchases";
 
 function App() {
@@ -74,6 +79,9 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/payment" element={<Payment />} />
+
+            <Route path="/miProfile" element={<UserProfile />} />
+
             {/* admin */}
 
             {userRegister && userRegister.admin ? (
