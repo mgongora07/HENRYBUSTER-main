@@ -13,9 +13,6 @@ import Paginado from "./paginado/Paginado";
 import FilterMovies from "./Filter/FilterMovies";
 import CarouselFadeExample from "./carrusel/CarruselComponent";
 import NewMovie from "./agregadasRecientemente/NewMovie";
-
-import { ContactUs } from "../Notifications/notification";
-
 import { useAuth } from "../../context/authContext";
 
 export const Home = ({ handleUser }) => {
@@ -44,10 +41,16 @@ export const Home = ({ handleUser }) => {
     dispatch(getMovies());
     dispatch(getFormats());
     dispatch(getGenres());
-    handleUser(user.uid);
-  }, []);
+    if (user) {
+      console.log("llegue aqui");
+      handleUser(user.uid);
+    }
+  }, [user]);
   useEffect(() => {
-    handleUser(user.uid);
+    if (user) {
+      console.log("llegue aqui");
+      handleUser(user.uid);
+    }
   }, [dispatch]);
 
   return (
@@ -82,7 +85,6 @@ export const Home = ({ handleUser }) => {
         </div>
         <Paginado pages={pages} split={split} />
       </div>
-      {/* <ContactUs /> */}
     </>
   );
 };

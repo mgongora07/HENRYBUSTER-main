@@ -1,6 +1,5 @@
-const { Purchase, Inventory, Address, User } = require("../db");
-const { v4: uuidv4 } = require('uuid');
-
+const { Purchase, Inventory, Address, User, PurchaseMovie } = require("../db");
+const { v4: uuidv4 } = require("uuid");
 
 const insertGuestPurchase = async (req, res) => {
   try {
@@ -33,7 +32,8 @@ const insertGuestPurchase = async (req, res) => {
       name,
       phoneNumber,
       email,
-      admin: false
+      admin: false,
+      username: "Guest"
     });
 
     const createAddress = await Address.create({
@@ -45,13 +45,23 @@ const insertGuestPurchase = async (req, res) => {
       UserId: createGuest.id,
     });
 
-    const createdPurchases = await Purchase.bulkCreate(
+    const createdPurchases = await Purchase.create({
+      AddressId: createAddress.id,
+      UserId: createGuest.id,
+    });
+
+    const purchaseMovie = await PurchaseMovie.bulkCreate(
       purchases.map((x) => {
-        return { ...x, AddressId: createAddress.id, UserId: createGuest.id };
+        return {
+          ...x,
+          PurchaseId: createdPurchases.id,
+          UserId: createGuest.id,
+        };
       })
     );
+
     // Disminuir la cantidad en el inventario
-    for (const purchase of createdPurchases) {
+    for (const purchase of purchaseMovie) {
       const inventory = await Inventory.findOne({
         where: { MovieId: purchase.MovieId },
       });
