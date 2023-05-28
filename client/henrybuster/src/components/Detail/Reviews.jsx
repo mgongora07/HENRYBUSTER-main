@@ -61,7 +61,7 @@ const Reviews = (props) => {
         UserId: User.id,
       });
       //setFilterRating("All")
-
+      setStar(0)
       setComment("");
       setStarSelect("");
       setDisplaySuccess("");
