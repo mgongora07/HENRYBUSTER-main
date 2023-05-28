@@ -1,4 +1,4 @@
-bodyAbout {
+body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 20px;
@@ -8,19 +8,19 @@ bodyAbout {
 }
 
 .h1About {
-  font-size: 24px;
+  font-size: 35px;
   font-weight: bold;
   margin-bottom: 10px;
   color: white;
 }
 
-h2About {
-  font-size: 20px;
+.h2About {
+  font-size: 50px;
   margin-bottom: 5px;
 }
 
 .h3About {
-  font-size: 10px;
+  font-size: 20px;
   margin-bottom: 5px;
 }
 
@@ -45,8 +45,8 @@ h2About {
 }
 
 .imgDimensionAbout {
-  width: 300px;
-  height: 300px;
+  width: 10em;
+  height: 10em;
   border-radius: 10px; 
   border: 2px solid #000;
 }
@@ -54,10 +54,10 @@ h2About {
   display: inline-block;
   width: 50px; /* Ancho deseado */
   height: auto;
-  padding: 1px;
+  padding: 5px;
 }
 
-imgAbout {
+.imgAbout {
   width: 200px;
   height: auto;
   margin-top: 10px;
@@ -67,8 +67,6 @@ imgAbout {
   width: 200px; /* Ancho deseado */
   height: auto;
   padding: 1px;
-  border: 2px solid #000;
-  border-radius: 10px; 
   float: left;
 }
 
@@ -86,10 +84,9 @@ imgAbout {
   box-shadow: 0 2px 4px rgba(206, 14, 14, 0.1);
 }
 
-
 .project-infoAbout {
   margin-bottom: 20px;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .project-info h1 {
@@ -103,4 +100,19 @@ imgAbout {
 .project-info pAbout {
   color: #777;
 }
+.logo{
+  width: 150px;
+  height: 150px;
+  float: left;
+  margin-left: 50px;
+}
 
+.social-icons img {
+  display: inline-block;
+  width: 50px; /* Ajusta el tamaño según tus necesidades */
+  height: 40px;
+  margin-right: 10px; /* Añade un margen entre los logos */
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+  transform: scale(1.2); /* Cambia el valor según el nivel de zoom deseado */
+}
