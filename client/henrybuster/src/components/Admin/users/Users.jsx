@@ -138,8 +138,8 @@ function Users({ userRegister }) {
               >
                 <td>{e.name}</td>
                 <td>{e.email}</td>
-                <td style={e.username !== "guest" ? null : { color: "red" }}>
-                  {e.username !== "guest" ? e.username : "Guest"}
+                <td style={e.username !== "Guest" ? null : { color: "red" }}>
+                  {e.username !== "Guest" ? e.username : "Guest"}
                 </td>
                 <td>{e.id}</td>
                 <td>{e.admin ? "true" : "false"}</td>
