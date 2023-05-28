@@ -1,36 +1,40 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import React, { useState, useContext, useEffect } from "react";
+import {
+  Elements,
+  CardElement,
+  useStripe,
+  useElements,
+} from "@stripe/react-stripe-js";
 import { CartContext } from "./Context";
-import { postCheckout, setOrder, setUserOrder } from '../../redux/actions';
-import style from '../Styles/CheckoutForm.module.css';
-import { useSelector, useDispatch } from 'react-redux';
-import {postOrder} from '../../redux/actions'
-import axios from 'axios'
+import { postCheckout, setOrder, setUserOrder } from "../../redux/actions";
+import style from "../Styles/CheckoutForm.module.css";
+import { useSelector, useDispatch } from "react-redux";
+import { postOrder } from "../../redux/actions";
+import axios from "axios";
 import { useAuth } from "../../context/authContext";
-import { useHistory } from 'react-router-dom';
-
-
+import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = (props) => {
   const { cartItems, clearCart } = useContext(CartContext);
   const currentOrder = useSelector((state) => state.currentOrder);
   const userOrder = useSelector((state) => state.currentUserOrder);
   const usuario = useSelector((state) => state.user);
-  const amountDolars = cartItems.reduce( (previous, current) => previous + current.amount * current.price, 0).toFixed(2);
+  const amountDolars = cartItems
+    .reduce((previous, current) => previous + current.amount * current.price, 0)
+    .toFixed(2);
   const stripe = useStripe();
   const elements = useElements();
   const amountInCents = Math.round(amountDolars * 100);
   const userState = useSelector((state) => state.user);
-  const [responseMessage, setResponseMessage] = useState('');
+  const [responseMessage, setResponseMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  const history = useHistory();
-  console.log(usuario,'hola soy usuario')
+  const navigate = useNavigate();
+  console.log(usuario, "hola soy usuario");
   //Aqui se intenta hacer que los datos de la orden se llenen, para la ruta back de compra si fueras usuario
 
- 
   useEffect(() => {
-    if (currentOrder && currentOrder.street !== '') {
+    if (currentOrder && currentOrder.street !== "") {
       const purchaseUser = {
         purchases: currentOrder.purchases,
         name: currentOrder.name,
@@ -47,7 +51,7 @@ const CheckoutForm = (props) => {
     setLoading(true);
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: 'card',
+      type: "card",
       card: elements.getElement(CardElement),
     });
 
@@ -56,79 +60,99 @@ const CheckoutForm = (props) => {
         try {
           const { id } = paymentMethod;
           const respuesta = await postCheckout(id, amountInCents);
-          console.log(respuesta, 'soy respuesta');
+          console.log(respuesta, "soy respuesta");
 
-          if (respuesta === 'succeeded') {
-            setResponseMessage('Payment successful!');
+          if (respuesta === "succeeded") {
+            setResponseMessage("Payment successful!");
 
             if (Object.keys(usuario).length !== 0) {
-              await axios.post(`http://localhost:3001/purchase/${usuario.id}`, userOrder);
+              await axios.post(
+                `http://localhost:3001/purchase/${usuario.id}`,
+                userOrder
+              );
             } else {
-              await axios.post('http://localhost:3001/purchase/guest', currentOrder);
+              await axios.post(
+                "http://localhost:3001/purchase/guest",
+                currentOrder
+              );
             }
 
             elements.getElement(CardElement).clear();
             clearCart();
-            history.push('/'); 
+            navigate("/");
           } else {
-            setResponseMessage('Payment failed. Please try again.');
+            setResponseMessage("Payment failed. Please try again.");
             elements.getElement(CardElement).clear();
           }
         } catch (error) {
           console.log(error);
-          setResponseMessage('Payment failed. Please try again.');
+          setResponseMessage("Payment failed. Please try again.");
           elements.getElement(CardElement).clear();
         }
       }
     } else {
-      setResponseMessage('Payment failed. Please try again.');
+      setResponseMessage("Payment failed. Please try again.");
     }
 
     setLoading(false);
   };
-
-  
 
   return (
     <form onSubmit={handleSubmit}>
       <div className={style.cardForm}>
         <div className={style.encabezado}>
           <i className="bi bi-credit-card me-4 fs-5"></i>
-          <label className={style.etiqueta1} htmlFor="cardholderName">Pay with card</label>
+          <label className={style.etiqueta1} htmlFor="cardholderName">
+            Pay with card
+          </label>
           <hr />
         </div>
 
         <div className={style.namediv}>
-          <label className={style.etiqueta} htmlFor="cardholderName">Cardholder Name</label>
+          <label className={style.etiqueta} htmlFor="cardholderName">
+            Cardholder Name
+          </label>
           <div className={style.nameInput}>
-            <input id="cardholderName" type="text" className={style.nameInput} />
+            <input
+              id="cardholderName"
+              type="text"
+              className={style.nameInput}
+            />
           </div>
         </div>
         <div className={style.cardFormItem}>
-          <label className={style.etiqueta} htmlFor="cardElement">Card Information</label>
+          <label className={style.etiqueta} htmlFor="cardElement">
+            Card Information
+          </label>
           <CardElement
             className={style.cardInfo}
             id="cardElement"
             options={{
-              style: { base: { fontSize: '16px' } }
+              style: { base: { fontSize: "16px" } },
             }}
           />
         </div>
         <button
-  className={`${style.boton} ${
-    stripe && currentOrder && currentOrder.street !== '' ? '' : style.disabledButton
-  }`}
-  disabled={stripe && currentOrder && currentOrder.street === ''}
->
-  {loading ? (
-    <div className="spinner-border text-dark" role="status">
-      <span className="sr-only">Loading...</span>
-    </div>
-  ) : (
-    `Submit Payment ${amountDolars}`
-  )}
-</button>
-        {responseMessage && <p className='"d-flex align-items-center justify-content-center"'>{responseMessage}</p>}
+          className={`${style.boton} ${
+            stripe && currentOrder && currentOrder.street !== ""
+              ? ""
+              : style.disabledButton
+          }`}
+          disabled={stripe && currentOrder && currentOrder.street === ""}
+        >
+          {loading ? (
+            <div className="spinner-border text-dark" role="status">
+              <span className="sr-only">Loading...</span>
+            </div>
+          ) : (
+            `Submit Payment ${amountDolars}`
+          )}
+        </button>
+        {responseMessage && (
+          <p className='"d-flex align-items-center justify-content-center"'>
+            {responseMessage}
+          </p>
+        )}
       </div>
     </form>
   );
