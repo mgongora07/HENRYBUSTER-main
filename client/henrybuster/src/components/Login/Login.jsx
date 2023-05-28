@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../../context/authContext";
 import { useNavigate, Link, Navigate } from "react-router-dom";
 import { setDoc, doc } from "firebase/firestore";
+import s from "./Login.module.css"
 import {
   useUserStore,
   fetchUsers,
@@ -140,63 +141,63 @@ const handleResetPassword = async () => {
      return <Navigate to='/' />;
    }
    
-    return (
-   
- 
-      <>
-        <main className='container main'>
-          <article className='grid'>
-            <div>
-              <hgroup>
-                <h1>Login</h1>
-                {error && <h2>{error}</h2>}
-              </hgroup>
-              <form onSubmit={handleSubmit}>
-                <div>
-                  <input
-                    type='text'
-                    name='email'
-                    placeholder='E-mail'
-                    aria-label='E-mail'
-                    autoComplete='E-mail'
-                    required
-                    id='email'
-                    onChange={handleChange}
-                  />
-                </div>
-                <div>
-                  <input
-                    type='password'
-                    name='password'
-                    placeholder='******'
-                    aria-label='Password'
-                    autoComplete='current-password'
-                    id='password'
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div>
-                  <button type='submit' className='contrast'>
-                    Login
-                  </button>
-                  <a href="#!" onClick={handleResetPassword}>Forgot Password?</a>
-                </div>
-              </form>
-              <div>
-                <button onClick={handleGoogleSignIn}>Login with Google</button>
-              </div>
+   return (
+    <main className="container main vh-100 w-100 d-flex flex-column align-items-center justify-content-center">
+      <article className={`grid d-flex bg-light flex-column p-5 rounded justify-content-center ${s.container2}`}>
+        <div>
+          <hgroup>
+            <h1><i className="fa-solid fa-user"></i> Login</h1>
+            {error && <h2>{error}</h2>}
+          </hgroup>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-3">
+              <input
+                type="text"
+                name="email"
+                placeholder="E-mail"
+                aria-label="E-mail"
+                autoComplete="E-mail"
+                required
+                id="email"
+                className="form-control py-3"
+                onChange={handleChange}
+              />
             </div>
-            <div>
-              {" "}
-              <Link to='/register'>Sign up</Link>
+            <div className="mb-3">
+              <input
+                type="password"
+                name="password"
+                placeholder="******"
+                aria-label="Password"
+                autoComplete="current-password"
+                id="password"
+                className="form-control py-3"
+                onChange={handleChange}
+                required
+              />
             </div>
-          </article>
-        </main>
-      </>
-    );
-
-
+            <div className="mb-3">
+              <button type="submit" className="btn btn-primary">
+                Login
+              </button>
+             
+            </div>
+          </form>
+          <div>
+            <button className="btn btn-primary" onClick={handleGoogleSignIn}>
+              Login with Google
+            </button>
+          </div>
+        </div>
+        <div className="d-flex justify-content-around mt-4">
+          <Link to="/register" >Sign up</Link>
+          <a href="#!"  onClick={handleResetPassword}>
+          Forgot Password?
+        </a>
+        </div>
+      </article>
+    </main>
+  );
 };
 
 export default Login;

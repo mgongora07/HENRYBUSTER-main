@@ -58,88 +58,76 @@ const Register = () => {
   };
 
   return (
-    <>
-      <main className='container main'>
-        <article className='grid'>
-          <div>
-            <hgroup>
-              <h1>Sign in</h1>
-              {error && <h2>{error}</h2>}
-            </hgroup>
-            <form onSubmit={handleSubmit}>
-              <div>
-                <input
-                  type='text'
-                  name='namecomplete'
-                  placeholder='Name'
-                  aria-label='Name'
-                  autoComplete='Name'
-                  required
-                  id='namecomplete'
-                  onChange={handleChange}
-                />
-              </div>
+    <main className="container main vh-100 d-flex flex-column justify-content-center">
+      <article className="grid d-flex flex-column bg-light p-5 rounded justify-content-center">
+        <div>
+          <hgroup>
+            <h1><i className="fa-solid fa-user-plus"></i> Sign in</h1>
+            {error && <h2>{error}</h2>}
+          </hgroup>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-3">
+              <input
+                type="text"
+                name="namecomplete"
+                placeholder="Name"
+                className="form-control"
+                required
+                onChange={handleChange}
+              />
+            </div>
 
-              <div>
-                <input
-                  type='text'
-                  name='email'
-                  placeholder='E-mail'
-                  aria-label='E-mail'
-                  autoComplete='E-mail'
-                  required
-                  id='email'
-                  onChange={handleChange}
-                />
-              </div>
-              <div>
-                <input
-                  type='text'
-                  name='username'
-                  placeholder='Username'
-                  aria-label='Username'
-                  autoComplete='Username'
-                  required
-                  id='username'
-                  onChange={handleChange}
-                />
-              </div>
-              <div>
-                <input
-                  type='text'
-                  name='phonenumber'
-                  placeholder='Phone Number'
-                  aria-label='Phone Number'
-                  autoComplete='Phone Number'
-                  required
-                  id='phonenumber'
-                  onChange={handleChange}
-                />
-              </div>
-              <div>
-                <input
-                  type='password'
-                  name='password'
-                  placeholder='******'
-                  aria-label='Password'
-                  autoComplete='current-password'
-                  id='password'
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div>
-                <button type='submit' className='contrast'>
-                  Register
-                </button>
-              </div>
-            </form>
-          </div>
-          <div></div>
-        </article>
-      </main>
-    </>
+            <div className="mb-3">
+              <input
+                type="text"
+                name="email"
+                placeholder="E-mail"
+                className="form-control"
+                required
+                onChange={handleChange}
+              />
+            </div>
+            <div className="mb-3">
+              <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                className="form-control"
+                required
+                onChange={handleChange}
+              />
+            </div>
+            <div className="mb-3">
+              <input
+                type="text"
+                name="phonenumber"
+                placeholder="Phone Number"
+                className="form-control"
+                required
+                onChange={handleChange}
+              />
+            </div>
+            <div className="mb-3">
+              <input
+                type="password"
+                name="password"
+                placeholder="******"
+                className="form-control py-2"
+                autoComplete="current-password"
+                required
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <button type="submit" className="btn btn-primary">
+                Register
+              </button>
+            </div>
+          </form>
+        </div>
+        <div></div>
+      </article>
+    </main>
   );
 };
-
 export default Register;
