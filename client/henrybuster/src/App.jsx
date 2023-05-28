@@ -21,6 +21,7 @@ import SearchResult from "./components/SearchBar/SearchResult";
 import AllGenres from "./components/Admin/genres/AllGenres";
 import UpdateGenre from "./components/Admin/genres/UpdateGenre";
 import Sidebar from "./components/Admin/Sidebar";
+import About from "./components/About/About";
 
 function App() {
   const location = useLocation();
@@ -37,6 +38,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/about" element={<About />} />
 
             {/* admin */}
             <Route path="admin/create" element={<CreateMovie />} />
