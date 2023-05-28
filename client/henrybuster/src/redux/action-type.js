@@ -13,3 +13,11 @@ export const GET_TOP_10 = "GET_TOP_10";
 export const GET_MOVIES_NAME = "GET_MOVIES_NAME";
 export const GET_LANGUAGES = "GET_LANGUAGES";
 export const GET_MOVIES_NAME_ADMIN = "GET_MOVIES_NAME_ADMIN";
+export const POST_CHECKOUT = "POST_CHECKOUT";
+export const GET_ALL_USER = "GET_ALL_USER";
+export const SPLIT_USERS = "SPLIT_USERS";
+export const GET_USER = "GET_USER";
+export const ORDER_DATA='ORDER_DATA'
+export const POST_ORDER='POST_ORDER'
+
+

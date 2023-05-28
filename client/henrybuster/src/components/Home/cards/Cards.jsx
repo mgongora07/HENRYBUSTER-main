@@ -43,18 +43,15 @@ function Cards({ name, image, id, genres, movies, price, format }) {
       }, 800);
     }
   };
-  
-    const pageRef = useRef();
-  
-    const handleScrollUp = () => {
-      pageRef.current.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    };
-  
-   
 
+  const pageRef = useRef();
+
+  const handleScrollUp = () => {
+    pageRef.current.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <>
@@ -85,7 +82,7 @@ function Cards({ name, image, id, genres, movies, price, format }) {
               onClick={handleClick}
               style={{ height: "fit-content" }}
             >
-              <i class="fa-solid fa-cart-plus"> + </i>
+              <i className="fa-solid fa-cart-plus"> + </i>
             </Button>
           </div>
         </div>
@@ -95,7 +92,7 @@ function Cards({ name, image, id, genres, movies, price, format }) {
           ) : null}
           {deleteSuccess ? (
             <Card.Text className="text-warning">
-             Deleted successfully!
+              Deleted successfully!
             </Card.Text>
           ) : null}
         </div>

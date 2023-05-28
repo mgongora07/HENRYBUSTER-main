@@ -74,7 +74,7 @@ function AllGenres() {
                     <td>{e.name}</td>
 
                     <td>
-                      <Link to={`/admin/update/genre/${e.id}-${e.name}`}>
+                      <Link to={`/admin/update/genre/${e.id}`}>
                         update
                       </Link>
                     </td>

@@ -3,7 +3,7 @@ import "./Sidebar.css";
 import { Link } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-function Sidebar({ handleCreateMovie }) {
+function Sidebar({ handleUser, userRegister }) {
   return (
     <div className="body">
       <div className="sidebar p-2">
@@ -65,16 +65,18 @@ function Sidebar({ handleCreateMovie }) {
             <span>
               Order management<i className="bi bi-chevron-down"></i>
             </span>
-
-            <div>
-              <i className="bi bi-clipboard-check fs-5 me-3"></i>
-              <span className="sub-category">View orders</span>
-            </div>
-          </div>
-
-          <div className="list-group-item py-2 text-start">
-            <i className="bi bi-box-arrow-in-left fs-5 me-3"></i>
-            <span>Logout</span>
+            <Link to={"/admin/users"} className="link-no-style">
+              <div>
+                <i className="bi bi-file-ruled fs-5 me-3"></i>
+                <span className="sub-category">Users</span>
+              </div>
+            </Link>
+            <Link to={"/admin/purchases"} className="link-no-style">
+              <div>
+                <i className="bi bi-file-ruled fs-5 me-3"></i>
+                <span className="sub-category">Purchases</span>
+              </div>
+            </Link>
           </div>
         </div>
       </div>

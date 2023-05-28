@@ -10,12 +10,6 @@ import { useAuth } from "../../context/authContext";
 function Admin() {
   const { user } = useAuth();
 
-  const { email } = user;
-
-  if (email === "francobaudino98@gmail.com") {
-    console.log("eres admin");
-  }
-
   return (
     <div className="container-fluid bg-white" style={{ height: "593px" }}>
       <div className="row">

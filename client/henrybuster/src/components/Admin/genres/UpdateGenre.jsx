@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import s from "./up.module.css";
 import { useParams } from "react-router";
@@ -9,10 +9,9 @@ import { useDispatch } from "react-redux";
 
 function UpdateGenre() {
   const { id } = useParams();
-
   const dispatch = useDispatch();
 
-  const [idValue, name] = id.split("-");
+
   const [value, setValue] = useState("");
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -32,7 +31,7 @@ function UpdateGenre() {
     }
 
     try {
-      await axios.put(`http://localhost:3001/genre/${idValue}`, {
+      await axios.put(`http://localhost:3001/genre/${id}`, {
         name: value,
       });
       dispatch(getGenres());
@@ -43,12 +42,27 @@ function UpdateGenre() {
     } catch (error) {}
   };
 
+  const getGenre = async(genreId)=>{
+    try {
+      const {data} = await axios.get(`http://localhost:3001/genre/${genreId}`)
+
+      setValue(data.name)
+     
+    } catch (error) {
+     console.log(error.message)
+    } 
+  }
+
+
+    useEffect(()=>{
+      getGenre(id);
+      },[id])
   return (
     <div style={{ background: "white" }}>
       <div className={`${s.formContainer}`}>
         <form className={s["movie-form"]}>
           <div>
-            <h2>UPDATE GENRE: {name}</h2>
+            <h2>UPDATE GENRE</h2>
           </div>
 
           <div className={s["form-group"]}>

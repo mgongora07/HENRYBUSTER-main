@@ -10,6 +10,8 @@ const movie = require("./models/Movie");
 const purchase = require("./models/Purchase");
 const rating = require("./models/Rating");
 const language = require("./models/Language");
+const address = require("./models/Address");
+const purchaseMovie = require("./models/PurchaseMovie")
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
 const sequelize = new Sequelize(
@@ -54,10 +56,11 @@ purchase(sequelize);
 movie(sequelize);
 rating(sequelize);
 language(sequelize);
-
+address(sequelize);
+purchaseMovie(sequelize);
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-const { User, Format, Genre, Inventory, Purchase, Movie, Rating, Language } =
+const { User, Format, Genre, Inventory, Purchase, Movie, Rating, Language , Address, PurchaseMovie} =
   sequelize.models;
 
 Movie.belongsToMany(Genre, { through: "MovieGenre" });
@@ -78,9 +81,37 @@ Rating.belongsTo(User);
 Language.hasOne(Movie);
 Movie.belongsTo(Language);
 
-Movie.hasOne(Purchase);
-Purchase.belongsTo(Movie);
 
+Address.hasOne(Purchase);
+Purchase.belongsTo(Address);
+
+User.hasMany(Purchase);
+Purchase.belongsTo(User)
+
+User.hasMany(Address)
+Address.belongsTo(User)
+/*
+Purchase.belongsToMany(Movie, { through: "PurchaseMovie" });
+Movie.belongsToMany(Purchase, { through: "PurchaseMovie" });
+
+
+Movie.hasOne(PurchaseMovie)
+PurchaseMovie.belongsTo(Movie)
+
+Purchase.hasOne(PurchaseMovie)
+PurchaseMovie.belongsTo(Purchase)
+*/
+Purchase.belongsToMany(Movie, {
+  through: PurchaseMovie,
+  foreignKey: 'PurchaseId',
+  otherKey: 'MovieId',
+});
+
+Movie.belongsToMany(Purchase, {
+  through: PurchaseMovie,
+  foreignKey: 'MovieId',
+  otherKey: 'PurchaseId',
+});
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize, // para importart la conexión { conn } = require('./db.js');

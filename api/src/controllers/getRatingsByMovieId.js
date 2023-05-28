@@ -10,7 +10,7 @@ const getRatingsByMovieId = async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ['id','name']
+          attributes: ['id','name','username']
         },
       ],
     });
