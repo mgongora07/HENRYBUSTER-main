@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import style from "../Styles/Nav.module.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
-
+import logo from "../../assets/mp-logo-01.png"
 import { useDispatch } from "react-redux";
 import SearchBar from "../SearchBar/SearchBar";
 import { getMoviesName, cleanOrders } from "../../redux/actions";
@@ -45,7 +45,9 @@ export const Nav = ({ handleUser, userRegister }) => {
 
   return (
     <nav className={style.nav}>
-      <h3 style={{ color: "white", marginRight: "auto" }}>Movie Prime</h3>
+    <div className={style.image}>
+      <img className="img-fluid" src={logo} alt="Logo"/>
+      </div>
       {userRegister && (
         <p style={{ color: "red", marginRight: "auto" }}>
           Bienvenido {userRegister.name}
@@ -78,7 +80,7 @@ export const Nav = ({ handleUser, userRegister }) => {
         onClick={handleLogout}
         to="/"
       >
-        <i className="fa-solid fa-arrow-right-from-bracket"></i>
+        <i className={`fa-solid fa-arrow-right-from-bracket ${style.logout}`}></i>
       </Link>
     </nav>
   );
