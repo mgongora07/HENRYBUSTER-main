@@ -116,5 +116,3 @@ body {
   transition: transform 0.3s ease;
   transform: scale(1.2); /* Cambia el valor según el nivel de zoom deseado */
 }
-
-

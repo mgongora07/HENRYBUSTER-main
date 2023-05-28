@@ -6,7 +6,6 @@ import Kevin from "../../img/Kevin.jpg";
 import Saraid from "../../img/Saraid.jpg";
 import Mauricio from "../../img/Mauricio.jpg";
 import Franco from "../../img/Franco.jpg";
-
 import Argentina from "../../img/Argentina.jpg";
 import Mexico from "../../img/Mexico.png";
 import RepublicaDominicana from "../../img/RepublicaDominicana.png";
