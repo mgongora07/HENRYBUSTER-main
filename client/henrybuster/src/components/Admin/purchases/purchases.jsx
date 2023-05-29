@@ -37,7 +37,9 @@ function Purchases() {
 
   const getMovies = async () => {
     try {
-      const data = await axios.get(`http://localhost:3001/purchases`);
+      const data = await axios.get(
+        `https://henrybuster.onrender.com/purchases`
+      );
 
       setPurchases(data.data);
     } catch (error) {
@@ -56,7 +58,7 @@ function Purchases() {
     });
     try {
       const data = await axios.put(
-        `http://localhost:3001/purchase/${id}`,
+        `https://henrybuster.onrender.com/purchase/${id}`,
         peticion
       );
       setSuccess(true);
@@ -89,7 +91,7 @@ function Purchases() {
     };
     try {
       const data = await axios.put(
-        `http://localhost:3001/purchase/${id}`,
+        `https://henrybuster.onrender.com/purchase/${id}`,
         peticion
       );
       setSuccess(true);

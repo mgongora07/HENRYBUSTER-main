@@ -67,12 +67,12 @@ const CheckoutForm = (props) => {
 
             if (usuario) {
               await axios.post(
-                `http://localhost:3001/purchase/${usuario.id}`,
+                `https://henrybuster.onrender.com/purchase/${usuario.id}`,
                 userOrder
               );
             } else {
               await axios.post(
-                "http://localhost:3001/purchase/guest",
+                "https://henrybuster.onrender.com/purchase/guest",
                 currentOrder
               );
             }

@@ -49,7 +49,9 @@ function MoviesAdmin() {
       const resp = confirm(`¿you're sure?`);
       if (resp) {
         try {
-          await axios.delete(`http://localhost:3001/movie/${itemId}`);
+          await axios.delete(
+            `https://henrybuster.onrender.com/movie/${itemId}`
+          );
           dispatch(getMoviesAdmin());
           setSuccess(true);
           setTimeout(() => {

@@ -21,7 +21,7 @@ import {
   ORDER_DATA,
   ORDER_USER_DATA,
   CLEAN_ORDERS,
-  DIRECTIONS
+  DIRECTIONS,
 } from "./action-type";
 
 import axios from "axios";
@@ -29,7 +29,9 @@ import axios from "axios";
 export const getDetailMovie = (id) => {
   return async function (dispatch) {
     try {
-      let movie = await axios.get(`http://localhost:3001/movie/${id}`);
+      let movie = await axios.get(
+        `https://henrybuster.onrender.com/movie/${id}`
+      );
       let payload = movie.data;
 
       return dispatch({
@@ -60,7 +62,6 @@ export const cleanDetail = () => {
 export const setDirections = (directions) => {
   return function (dispatch) {
     try {
-
       return dispatch({
         type: DIRECTIONS,
         payload: directions,
@@ -75,7 +76,7 @@ export const setDirections = (directions) => {
 export const getMovies = () => {
   return async function (dispatch) {
     try {
-      let movie = await axios.get(`http://localhost:3001/movies`);
+      let movie = await axios.get(`https://henrybuster.onrender.com/movies`);
       let payload = movie.data;
 
       return dispatch({
@@ -90,7 +91,7 @@ export const getMovies = () => {
 export const getUsers = () => {
   return async function (dispatch) {
     try {
-      let movie = await axios.get(`http://localhost:3001/users`);
+      let movie = await axios.get(`https://henrybuster.onrender.com/users`);
       let payload = movie.data;
 
       return dispatch({
@@ -116,7 +117,7 @@ export const getMoviesName = (name) => {
   return async function (dispatch) {
     try {
       let movie = await axios.get(
-        `http://localhost:3001/movies/search/guest?name=${name}`
+        `https://henrybuster.onrender.com/movies/search/guest?name=${name}`
       );
       let payload = movie.data;
       console.log(payload);
@@ -133,7 +134,7 @@ export const getMoviesNameAdmin = (name) => {
   return async function (dispatch) {
     try {
       let movie = await axios.get(
-        `http://localhost:3001/movies/search?name=${name}`
+        `https://henrybuster.onrender.com/movies/search?name=${name}`
       );
       let payload = movie.data;
       return dispatch({
@@ -158,7 +159,9 @@ export function splitRecipes(inicio, fin) {
 export const getMoviesAdmin = () => {
   return async function (dispatch) {
     try {
-      let movie = await axios.get(`http://localhost:3001/movies/admin`);
+      let movie = await axios.get(
+        `https://henrybuster.onrender.com/movies/admin`
+      );
       let payload = movie.data;
 
       return dispatch({
@@ -183,7 +186,9 @@ export function splitRecipesAdmin(inicio, fin) {
 export const getRankingMovie = (id) => {
   return async function (dispatch) {
     try {
-      let ratings = await axios.get(`http://localhost:3001/rating/${id}`);
+      let ratings = await axios.get(
+        `https://henrybuster.onrender.com/rating/${id}`
+      );
 
       let payload = ratings.data;
 
@@ -214,7 +219,7 @@ export const cleanRatings = () => {
 
 export function getFormats() {
   return async (dispatch) => {
-    const resp = await axios(`http://localhost:3001/formats`);
+    const resp = await axios(`https://henrybuster.onrender.com/formats`);
     dispatch({
       type: GET_FORMAT,
       payload: resp.data,
@@ -223,7 +228,7 @@ export function getFormats() {
 }
 export function getGenres() {
   return async (dispatch) => {
-    const resp = await axios(`http://localhost:3001/genres`);
+    const resp = await axios(`https://henrybuster.onrender.com/genres`);
     dispatch({
       type: GET_GENRES,
       payload: resp.data,
@@ -233,7 +238,7 @@ export function getGenres() {
 
 export function getLanguages() {
   return async (dispatch) => {
-    const resp = await axios(`http://localhost:3001/languages`);
+    const resp = await axios(`https://henrybuster.onrender.com/languages`);
     dispatch({
       type: GET_LANGUAGES,
       payload: resp.data,
@@ -261,71 +266,67 @@ export function filterRatingStar(order) {
   };
 }
 
-export const postCheckout = async (id, amount)=>{
-  console.log('Hola linea 220 actions')
-  
-      try {
-        console.log('hola entre al try actions')
-        const {data} = await axios.post('http://localhost:3001/checkout', {id, amount});
-          return data.status
-          
-            
-      } catch (error) {
-          console.log(error)
-          return {message: error}
-      }
-  
-}
+export const postCheckout = async (id, amount) => {
+  console.log("Hola linea 220 actions");
 
-export const getUserById =  (id) =>{
+  try {
+    console.log("hola entre al try actions");
+    const { data } = await axios.post(
+      "https://henrybuster.onrender.com/checkout",
+      { id, amount }
+    );
+    return data.status;
+  } catch (error) {
+    console.log(error);
+    return { message: error };
+  }
+};
+
+export const getUserById = (id) => {
   return async (dispatch) => {
-    const {data} = await axios(`http://localhost:3001/user/${id}`);
+    const { data } = await axios(`https://henrybuster.onrender.com/user/${id}`);
     dispatch({
       type: GET_USER,
-      payload:data,
+      payload: data,
+    });
+  };
+};
+
+export function setOrder(formData) {
+  console.log(formData, "soy setOrdee");
+  return (dispatch) => {
+    dispatch({
+      type: ORDER_DATA,
+      payload: formData,
     });
   };
 }
 
-export function setOrder (formData){
-  console.log(formData,'soy setOrdee')
-  return (dispatch)=>{
-    dispatch({
-      type: ORDER_DATA,
-      payload: formData,
-
-    })
-    
-  };
-}
-
-
-export const postOrder = (orderData)=>{
+export const postOrder = (orderData) => {
   return async (dispatch) => {
     try {
-      const resp= await axios.post('http://localhost:3001/purchase/guest', orderData);
+      const resp = await axios.post(
+        "https://henrybuster.onrender.com/purchase/guest",
+        orderData
+      );
       dispatch({
         type: POST_ORDER,
         payload: {},
       });
     } catch (error) {
-        console.log({message: error})
-        return {message: error}
+      console.log({ message: error });
+      return { message: error };
     }
+  };
+};
 
-  }
-  
-}
-
-export function setUserOrder (formData){
-  console.log(formData,'soy userOrder del actions 305')
-  return (dispatch)=>{
+export function setUserOrder(formData) {
+  console.log(formData, "soy userOrder del actions 305");
+  return (dispatch) => {
     dispatch({
       type: ORDER_USER_DATA,
       payload: formData,
-
-    })
-    
+    });
   };
 }
 

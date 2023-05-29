@@ -6,7 +6,7 @@ import {
   cleanRatings,
   filterRatingStar,
   getDetailMovie,
-  getUserById
+  getUserById,
 } from "../../redux/actions";
 import EachReview from "./EachReview";
 import style from "../Styles/Reviews.module.css";
@@ -16,7 +16,7 @@ import { useAuth } from "../../context/authContext";
 const Reviews = (props) => {
   const dispatch = useDispatch();
   const { id } = props;
-  const{user} = useAuth();
+  const { user } = useAuth();
   const ratings = useSelector((state) => state.ratingsFilter);
   const totales = useSelector((state) => state.ratings);
   const User = useSelector((state) => state.user);
@@ -54,14 +54,14 @@ const Reviews = (props) => {
 
   const handleComment = async () => {
     if (comment && starSelect > 0) {
-      await axios.post(`http://localhost:3001/rating`, {
+      await axios.post(`https://henrybuster.onrender.com/rating`, {
         comment,
         rating: starSelect,
         MovieId: id,
         UserId: User.id,
       });
       //setFilterRating("All")
-      setStar(0)
+      setStar(0);
       setComment("");
       setStarSelect("");
       setDisplaySuccess("");
@@ -69,8 +69,7 @@ const Reviews = (props) => {
         setDisplaySuccess("d-none");
       }, 5000);
       dispatch(getRankingMovie(id));
-      dispatch(getDetailMovie(id))
-    
+      dispatch(getDetailMovie(id));
     } else {
       setDisplayError("");
       setTimeout(function () {
@@ -100,15 +99,11 @@ const Reviews = (props) => {
     };
   }, [id]);
 
-  useEffect(()=>{
-   
-    if(user){
-      dispatch(getUserById(user.uid))
+  useEffect(() => {
+    if (user) {
+      dispatch(getUserById(user.uid));
     }
-  },[user,id])
-
-
-  
+  }, [user, id]);
 
   // PAGINADO //
   const ITEMS_PER_PAGE = 4;
