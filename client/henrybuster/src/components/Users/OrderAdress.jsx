@@ -2,15 +2,16 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import style from '../Styles/OrderAdress.module.css';
 import { CartContext } from '../Carrito/Context';
-import { setOrder } from '../../redux/actions';
-
+import { setOrder, setUserOrder, setDirections } from '../../redux/actions';
+import axios from "axios"
 const OrderAdress = ({ onClose }) => {
   const [errorMsg, setErrorMsg] = useState("");
   const { cartItems } = useContext(CartContext);
   const currentOrder = useSelector(state => state.currentOrder)
+  const user = useSelector(state=>state.user)
   const dispatch = useDispatch()
   console.log(currentOrder)
-
+  const directions =useSelector(state=>state.directions)
   const purchases = cartItems.map((item) => ({
     MovieId: item.id,
     quantity: item.amount,
@@ -45,9 +46,8 @@ const OrderAdress = ({ onClose }) => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-
     if (
         !formData.purchases ||
         !formData.name ||
@@ -62,6 +62,9 @@ const OrderAdress = ({ onClose }) => {
         setErrorMsg("Please fill in all fields");
         return;
       } 
+
+      if(!user){
+
       let createAdress = {
       purchases: formData.purchases,
       name: formData.name,
@@ -73,8 +76,31 @@ const OrderAdress = ({ onClose }) => {
       postalCode: formData.postalCode,
       country: formData.country,
       }
+
       dispatch(setOrder(createAdress))
       setShowForm(false);
+    }else{
+
+      console.log("poraqui no")
+      let createAdress = {
+        purchases: formData.purchases,
+        name: formData.name,
+        email: formData.email,
+        phoneNumber: formData.phoneNumber,
+        street: formData.street,
+        city: formData.city,
+        state: formData.state,
+        postalCode: formData.postalCode,
+        country: formData.country,
+        }
+      const{data}=await axios.post(`http://localhost:3001/address/${user.id}`, createAdress)
+        dispatch(setDirections([...directions, data]))
+      createAdress.AddressId = data.id
+
+      dispatch(setUserOrder(createAdress))
+      setShowForm(false);
+      
+    }
   
     
   };

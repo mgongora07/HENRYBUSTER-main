@@ -21,6 +21,7 @@ import {
   POST_ORDER,
   ORDER_USER_DATA,
   CLEAN_ORDERS,
+  DIRECTIONS
 } from "./action-type";
 
 const INITIAL_STATE = {
@@ -42,6 +43,7 @@ const INITIAL_STATE = {
   allUsers: [],
   usersPaginado: [],
   currentUserOrder:{},
+  directions:{}
 };
 
 export default function rootReducer(
@@ -244,7 +246,11 @@ export default function rootReducer(
         currentOrder:payload,
         currentUserOrder: payload
       };
-
+      case DIRECTIONS:
+        return{
+          ...state,
+          directions: payload
+        }
     default:
       return state;
   }
