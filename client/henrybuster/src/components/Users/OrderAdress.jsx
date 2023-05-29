@@ -1,17 +1,16 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import style from '../Styles/OrderAdress.module.css';
-import { CartContext } from '../Carrito/Context';
-import { setOrder, setUserOrder, setDirections } from '../../redux/actions';
-import axios from "axios"
+import style from "../Styles/OrderAdress.module.css";
+import { CartContext } from "../Carrito/Context";
+import { setOrder, setUserOrder, setDirections } from "../../redux/actions";
+import axios from "axios";
 const OrderAdress = ({ onClose }) => {
   const [errorMsg, setErrorMsg] = useState("");
   const { cartItems } = useContext(CartContext);
-  const currentOrder = useSelector(state => state.currentOrder)
-  const user = useSelector(state=>state.user)
-  const dispatch = useDispatch()
-  console.log(currentOrder)
-  const directions =useSelector(state=>state.directions)
+  const currentOrder = useSelector((state) => state.currentOrder);
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const directions = useSelector((state) => state.directions);
   const purchases = cartItems.map((item) => ({
     MovieId: item.id,
     quantity: item.amount,
@@ -21,14 +20,14 @@ const OrderAdress = ({ onClose }) => {
 
   const [formData, setFormData] = useState({
     purchases: [],
-    name: '',
-    email: '',
-    phoneNumber: '',
-    street: '',
-    city: '',
-    state: '',
-    postalCode: '',
-    country: '',
+    name: "",
+    email: "",
+    phoneNumber: "",
+    street: "",
+    city: "",
+    state: "",
+    postalCode: "",
+    country: "",
   });
 
   useEffect(() => {
@@ -44,44 +43,43 @@ const OrderAdress = ({ onClose }) => {
       ...prevData,
       [name]: value,
     }));
+    console.log("campeon")
+    console.log(formData)
   };
 
-  const handleSubmit = async(e) => {
+  useEffect(() => {
+    if (user) {
+      if (user.name) {
+        setFormData(prevFormData => ({ ...prevFormData, name: user.name }));
+      }
+      if (user.email) {
+        setFormData(prevFormData => ({ ...prevFormData, email: user.email }));
+      }
+      if (user.phoneNumber) {
+        setFormData(prevFormData => ({ ...prevFormData, phoneNumber: user.phoneNumber }));
+      }
+    }
+  }, [user]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (
-        !formData.purchases ||
-        !formData.name ||
-        !formData.email||
-        !formData.phoneNumber ||
-        !formData.street ||
-        !formData.city ||
-        !formData.state ||
-        !formData.postalCode ||
-        !formData.country 
+      !formData.purchases ||
+      !formData.name ||
+      !formData.email ||
+      !formData.phoneNumber ||
+      !formData.street ||
+      !formData.city ||
+      !formData.state ||
+      !formData.postalCode ||
+      !formData.country
     ) {
-        setErrorMsg("Please fill in all fields");
-        return;
-      } 
+      setErrorMsg("Please fill in all fields");
+      return;
+    }
 
-      if(!user){
-
-      let createAdress = {
-      purchases: formData.purchases,
-      name: formData.name,
-      email: formData.email,
-      phoneNumber: formData.phoneNumber,
-      street: formData.street,
-      city: formData.city,
-      state: formData.state,
-      postalCode: formData.postalCode,
-      country: formData.country,
-      }
-
-      dispatch(setOrder(createAdress))
-      setShowForm(false);
-    }else{
-
-      console.log("poraqui no")
+    if (user.id=== undefined) {
+console.log("me ssss")
       let createAdress = {
         purchases: formData.purchases,
         name: formData.name,
@@ -92,28 +90,48 @@ const OrderAdress = ({ onClose }) => {
         state: formData.state,
         postalCode: formData.postalCode,
         country: formData.country,
-        }
-      const{data}=await axios.post(`http://localhost:3001/address/${user.id}`, createAdress)
-        dispatch(setDirections([...directions, data]))
-      createAdress.AddressId = data.id
+      };
 
-      dispatch(setUserOrder(createAdress))
-      setShowForm(false);
-      
+      dispatch(setOrder(createAdress));
+      //setShowForm(false);
+      onClose();
+    } else {
+
+      console.log("soy el pendejo2")
+      let createAdress = {
+        purchases: formData.purchases,
+        name: formData.name,
+        email: formData.email,
+        phoneNumber: formData.phoneNumber,
+        street: formData.street,
+        city: formData.city,
+        state: formData.state,
+        postalCode: formData.postalCode,
+        country: formData.country,
+      };
+      console.log(createAdress)
+      const { data } = await axios.post(
+        `http://localhost:3001/address/${user.id}`,
+        createAdress
+      );
+      dispatch(setDirections([data,...directions]));
+      createAdress.AddressId = data.id;
+
+      dispatch(setUserOrder(createAdress));
+      //setShowForm(false);
+      onClose();
     }
-  
-    
   };
 
   const handleCancel = () => {
-    setShowForm(false);
+    //setShowForm(false);
     onClose();
   };
-
+  /*
   if (!showForm) {
     return null;
   }
-
+*/
   return (
     <div className={style.overlay}>
       <form onSubmit={handleSubmit} className={style.popup}>
@@ -132,6 +150,7 @@ const OrderAdress = ({ onClose }) => {
               name="name"
               value={formData.name}
               onChange={handleChange}
+              disabled= {user?.name? true: false}
             />
             <br />
           </div>
@@ -142,6 +161,7 @@ const OrderAdress = ({ onClose }) => {
               name="email"
               value={formData.email}
               onChange={handleChange}
+              disabled= {user?.email? true: false}
             />
             <br />
           </div>
@@ -152,6 +172,7 @@ const OrderAdress = ({ onClose }) => {
               name="phoneNumber"
               value={formData.phoneNumber}
               onChange={handleChange}
+              disabled= {user?.phoneNumber? true: false}
             />
             <br />
           </div>

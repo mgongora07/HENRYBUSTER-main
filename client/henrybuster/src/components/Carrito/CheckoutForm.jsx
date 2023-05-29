@@ -34,7 +34,7 @@ const CheckoutForm = (props) => {
   //Aqui se intenta hacer que los datos de la orden se llenen, para la ruta back de compra si fueras usuario
 
   useEffect(() => {
-    if (currentOrder && currentOrder.street !== "" && !usuario) {
+    if (currentOrder && currentOrder.street !== "" && !usuario?.id) {
       const purchaseUser = {
         purchases: currentOrder.purchases,
         name: currentOrder.name,
@@ -65,7 +65,7 @@ const CheckoutForm = (props) => {
           if (respuesta === "succeeded") {
             setResponseMessage("Payment successful!");
 
-            if (usuario) {
+            if (usuario.id!== undefined) {
               await axios.post(
                 `http://localhost:3001/purchase/${usuario.id}`,
                 userOrder

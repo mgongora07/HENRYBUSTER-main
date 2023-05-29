@@ -21,7 +21,8 @@ import {
   POST_ORDER,
   ORDER_USER_DATA,
   CLEAN_ORDERS,
-  DIRECTIONS
+  DIRECTIONS,
+  CLEAN_USER
 } from "./action-type";
 
 const INITIAL_STATE = {
@@ -251,6 +252,12 @@ export default function rootReducer(
           ...state,
           directions: payload
         }
+
+        case CLEAN_USER:
+          return{
+            ...state,
+            user:{}
+          }
     default:
       return state;
   }

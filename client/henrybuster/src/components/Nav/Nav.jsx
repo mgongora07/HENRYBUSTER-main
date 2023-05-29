@@ -3,14 +3,14 @@ import style from "../Styles/Nav.module.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import logo from "../../assets/mp-logo-01.png"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../SearchBar/SearchBar";
-import { getMoviesName, cleanOrders } from "../../redux/actions";
+import { getMoviesName, cleanOrders, cleanUser, setDirections, getUserById } from "../../redux/actions";
 
 export const Nav = ({ handleUser, userRegister }) => {
   const dispatch = useDispatch();
   const location = useLocation();
-
+  const usuario = useSelector(state=>state.user)
   const handleSearch = (name) => {
     dispatch(getMoviesName(name));
   };
@@ -26,14 +26,21 @@ export const Nav = ({ handleUser, userRegister }) => {
       await logout();
       navigate("/");
       dispatch(cleanOrders())
+      dispatch(cleanUser())
+      dispatch(setDirections([]))
     } catch (error) {
       console.log(error);
     }
   };
 
   const perfil = user ? true : false;
+  useEffect(()=>{
+   
+    if(user){
+      dispatch(getUserById(user.uid))
+    }
+  },[user])
 
- // console.log(user);
 
 
 
@@ -48,9 +55,9 @@ export const Nav = ({ handleUser, userRegister }) => {
     <div className={style.image}>
       <img className="img-fluid" src={logo} alt="Logo"/>
       </div>
-      {userRegister && (
+      {usuario?.name && (
         <p style={{ color: "red", marginRight: "auto" }}>
-          Bienvenido {userRegister.name}
+           { `welcome ${usuario.name}`}
         </p>
       )}
 

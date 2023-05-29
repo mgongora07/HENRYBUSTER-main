@@ -21,7 +21,8 @@ import {
   ORDER_DATA,
   ORDER_USER_DATA,
   CLEAN_ORDERS,
-  DIRECTIONS
+  DIRECTIONS,
+  CLEAN_USER
 } from "./action-type";
 
 import axios from "axios";
@@ -57,6 +58,19 @@ export const cleanDetail = () => {
   };
 };
 
+
+export const cleanUser = () => {
+  return function (dispatch) {
+    try {
+
+      return dispatch({
+        type: CLEAN_USER
+      });
+    } catch (error) {
+      return { error: error };
+    }
+  };
+};
 export const setDirections = (directions) => {
   return function (dispatch) {
     try {
