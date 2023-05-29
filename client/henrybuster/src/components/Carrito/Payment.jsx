@@ -61,7 +61,7 @@ const directions = useSelector(state=> state.directions);
     fetchAddress();
   }
     
-  }, [user, ]);
+  }, [user,userState]);
   const handlePhone = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -83,11 +83,27 @@ const directions = useSelector(state=> state.directions);
         postalCode: directions[0] && directions[0].postalCode ? directions[0].postalCode : formData.postalCode,
         country: directions[0] && directions[0].country ? directions[0].country : formData.country,
       };
-      dispatch(setOrder(updatedData));
+      if(userState.id === undefined){
+        dispatch(setOrder(updatedData))
+      }else{
+        dispatch(setUserOrder(updatedData))
+
+      }
+       
+       
+       
       setFormData(updatedData);
     }
-  }, [directions,user, userState,]);
 
+  
+  }, [directions,user, userState]);
+
+  useEffect(() => {
+  const selectElement = document.querySelector("#address");
+
+if(selectElement) selectElement.selectedIndex = 0;
+
+}, [directions]);
   useEffect(() => {
     if (!currentOrder.street || !currentOrder.name) {
       setShipMessage('Provide the shipping data. You must fill all the fields to continue');
@@ -138,7 +154,7 @@ useEffect(() => {
           AddressId:id,
           purchases:purchases,
           name: userState.name,
-          phoneNumber:userState.phoneNumber,
+          phoneNumber:currentUserOrder.phoneNumber,
           street: data.street,
           city: data.city
         };
@@ -157,7 +173,7 @@ useEffect(() => {
   const handleAddressChange = async (event) => {
     
     const selectedStreet = event.target.value;
-    console.log('HOLAAAA')
+
       const{data} = await axios.get(`http://localhost:3001/address/${selectedStreet}`)
       const newAddress = {
         
@@ -190,24 +206,26 @@ useEffect(() => {
           </div>
           <div className={style.adress}>
           {directions.length>=1 && (
-            <select name="" id="" onChange={handleAddressChange}>
-              {directions.map((address, index) => (
-                <option key={index} id="address" value={address.id}>
+            <select name="" id="address" onChange={handleAddressChange}>
+              {directions.map((address) => (
+                <option key={address.id} value={address.id}>
                   {address.street}
                 </option>
               ))}
             </select>
           )}
   <h2>Shipping data:</h2>
+  {/*
   <div>
+  
     <label htmlFor="">Please enter a phone number:</label>
     <input type="text" 
            name="phoneNumber"
            value={formData.phoneNumber}
            onChange={handlePhone}/>
-  </div>
+              </div>*/}
 
-  {!userState? (
+  {!userState?.id? (
     <><h2>{currentOrder.name ? currentOrder.name : ""}</h2>
     <p>{currentOrder.phoneNumber ? currentOrder.phoneNumber : ""}</p>
     <p>{currentOrder.street ? currentOrder.street : ""}</p>
