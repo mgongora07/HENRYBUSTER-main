@@ -33,6 +33,7 @@ import UserProfile from "./components/Users/UserProfile";
 
 
 import Purchases from "./components/Admin/purchases/purchases";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 
 function App() {
   const location = useLocation();
@@ -80,7 +81,12 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/payment" element={<Payment />} />
 
-            <Route path="/miProfile" element={<UserProfile />} />
+            <Route path="/miProfile" element={
+              <ProtectedRoute>
+
+            <UserProfile />
+              </ProtectedRoute>
+            } />
 
             {/* admin */}
 
