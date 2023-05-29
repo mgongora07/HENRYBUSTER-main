@@ -73,7 +73,7 @@ export const Nav = ({ handleUser, userRegister }) => {
         <i className="fa-solid fa-address-card"></i> <span className={style.iconText}>ABOUT</span>
       </Link>
       <Link hidden={perfil} className={style.link} to="/login">
-        Login
+      <i class="fas fa-sign-in-alt"></i> <span className={style.iconText}>LOGIN</span>
       </Link>
       {location.pathname !== "/admin/movies" && (
         <SearchBar handleSearch={handleSearch} />
@@ -88,5 +88,6 @@ export const Nav = ({ handleUser, userRegister }) => {
       </Link>
       </div>
     </nav>
+
   );
 };
