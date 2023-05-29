@@ -39,7 +39,8 @@ export default function About() {
             <br />
             integrative activities to raise money and generate employment. It is
             aimed at people who like retro and who still buy movies in physical
-            format.
+            format. 
+            
           
         </p>
       </div>
