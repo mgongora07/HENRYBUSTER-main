@@ -21,6 +21,7 @@ import {
   ORDER_DATA,
   ORDER_USER_DATA,
   CLEAN_ORDERS,
+  DIRECTIONS
 } from "./action-type";
 
 import axios from "axios";
@@ -49,6 +50,20 @@ export const cleanDetail = () => {
       return dispatch({
         type: GET_DETAIL,
         payload: clean,
+      });
+    } catch (error) {
+      return { error: error };
+    }
+  };
+};
+
+export const setDirections = (directions) => {
+  return function (dispatch) {
+    try {
+
+      return dispatch({
+        type: DIRECTIONS,
+        payload: directions,
       });
     } catch (error) {
       return { error: error };
