@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import style from "./SearchBarAdmin.module.css";
+import style from "./searchBarAdmin.module.css";
 
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
