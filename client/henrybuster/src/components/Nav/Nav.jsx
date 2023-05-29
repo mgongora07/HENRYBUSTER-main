@@ -51,26 +51,26 @@ export const Nav = ({ handleUser, userRegister }) => {
        <img src={logo} alt="logo not found"  className={style.logo}/>
       {userRegister && (
         <p className={style.user}>
-          Bienvenido {userRegister.name}
+          <i className="fas fa-user-circle"></i>  <span className={style.iconText}>BIENVENIDO </span>  {userRegister.name}
         </p>
       )}
 
       {userRegister && userRegister.admin && (
         <Link className={style.link} to="/admin">
-          <i className="fa-solid fa-user"></i> ADMIN
+          <i className="fa-solid fa-user"></i> <span className={style.iconText}>ADMIN</span>
         </Link>
       )}
       </div>
 
       <div className={style.contentLink}>
       <Link className={style.link} to="/">
-        <i className="fa-solid fa-house"></i> HOME
+        <i className="fa-solid fa-house"></i> <span className={style.iconText}>HOME</span>
       </Link>
       <Link className={style.link} to="/Cart">
-        <i className="fa-solid fa-cart-shopping"></i> CART
+        <i className="fa-solid fa-cart-shopping"></i> <span className={style.iconText}>CART</span>
       </Link>
       <Link className={style.link} to="/about">
-        <i className="fa-solid fa-address-card"></i> ABOUT
+        <i className="fa-solid fa-address-card"></i> <span className={style.iconText}>ABOUT</span>
       </Link>
       <Link hidden={perfil} className={style.link} to="/login">
         Login

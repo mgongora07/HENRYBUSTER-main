@@ -9,11 +9,12 @@
 
 .user{
     color: #fff;
+    margin: 0 auto;
 }
 
 .containerLogo{
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .contentLink{
@@ -39,6 +40,15 @@
 
 
 .logo{
-    width: 600px;
-    height: 60px;
+    width: 269px;
+    height: 65px;
+}
+
+@media (max-width: 900px){
+    .logo{
+        display: none;
+    }
+    .iconText{
+        display: none;
+    }
 }
