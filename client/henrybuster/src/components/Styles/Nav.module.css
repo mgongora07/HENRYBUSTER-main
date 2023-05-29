@@ -2,11 +2,25 @@
     display: flex;
     padding: 1rem;
     background-color: #0f0b0b;
-    justify-content: flex-end;
+    justify-content: space-between;
     gap: 15px;
     align-items: center;
 }
 
+.user{
+    color: #fff;
+}
+
+.containerLogo{
+    display: flex;
+    align-items: center;
+}
+
+.contentLink{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
 
 .link{
     color: #ede9ea;
@@ -21,4 +35,10 @@
 
 .link:focus{
     color: crimson;
+}
+
+
+.logo{
+    width: 600px;
+    height: 60px;
 }

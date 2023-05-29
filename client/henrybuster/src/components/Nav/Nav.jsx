@@ -6,6 +6,7 @@ import { useAuth } from "../../context/authContext";
 import { useDispatch } from "react-redux";
 import SearchBar from "../SearchBar/SearchBar";
 import { getMoviesName, cleanOrders } from "../../redux/actions";
+import logo from '../../img/logo_movie.jpg'
 
 export const Nav = ({ handleUser, userRegister }) => {
   const dispatch = useDispatch();
@@ -45,9 +46,11 @@ export const Nav = ({ handleUser, userRegister }) => {
 
   return (
     <nav className={style.nav}>
-      <h3 style={{ color: "white", marginRight: "auto" }}>Movie Prime</h3>
+      <div className={style.containerLogo}>
+
+       <img src={logo} alt="logo not found"  className={style.logo}/>
       {userRegister && (
-        <p style={{ color: "red", marginRight: "auto" }}>
+        <p className={style.user}>
           Bienvenido {userRegister.name}
         </p>
       )}
@@ -57,6 +60,9 @@ export const Nav = ({ handleUser, userRegister }) => {
           <i className="fa-solid fa-user"></i> ADMIN
         </Link>
       )}
+      </div>
+
+      <div className={style.contentLink}>
       <Link className={style.link} to="/">
         <i className="fa-solid fa-house"></i> HOME
       </Link>
@@ -80,6 +86,7 @@ export const Nav = ({ handleUser, userRegister }) => {
       >
         <i className="fa-solid fa-arrow-right-from-bracket"></i>
       </Link>
+      </div>
     </nav>
   );
 };
