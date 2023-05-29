@@ -1,0 +1,74 @@
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #1a2337; /* Fondo azul marino oscuro */
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 400px;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    color: #fff;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .error {
+    color: #ff5252; /* Color rojo para mensajes de error */
+  }
+  
+  input {
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+  
+  button {
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #2196f3; /* Color azul claro para botones */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #1976d2; /* Color azul más oscuro al pasar el cursor por encima */
+  }
+  
+  a {
+    color: #fff;
+    text-decoration: none;
+    margin-top: 0.5rem;
+  }
+  
+  .googleButton {
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
+  }
+  
+  .contrastButton {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+  }
+  
+  .contrastButton:hover {
+    background-color: #fff;
+    color: #000;
+  }
+  

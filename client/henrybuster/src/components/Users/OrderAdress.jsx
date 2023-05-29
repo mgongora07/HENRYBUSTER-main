@@ -73,6 +73,7 @@ const OrderAdress = ({ onClose }) => {
       postalCode: formData.postalCode,
       country: formData.country,
       }
+    
       dispatch(setOrder(createAdress))
       setShowForm(false);
   

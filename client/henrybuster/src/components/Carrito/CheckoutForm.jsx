@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {postOrder} from '../../redux/actions'
 import axios from 'axios'
 import { useAuth } from "../../context/authContext";
-import { useHistory } from 'react-router-dom';
+
 
 
 
@@ -24,11 +24,9 @@ const CheckoutForm = (props) => {
   const [responseMessage, setResponseMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  const history = useHistory();
-  console.log(usuario,'hola soy usuario')
-  //Aqui se intenta hacer que los datos de la orden se llenen, para la ruta back de compra si fueras usuario
 
- 
+  console.log(usuario,'hola soy usuario')
+  
   useEffect(() => {
     if (currentOrder && currentOrder.street !== '') {
       const purchaseUser = {
@@ -41,7 +39,7 @@ const CheckoutForm = (props) => {
     }
   }, [currentOrder, props.id]);
 
-  //El detalle es que esto nuca se llena con los datos
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -69,7 +67,7 @@ const CheckoutForm = (props) => {
 
             elements.getElement(CardElement).clear();
             clearCart();
-            history.push('/'); 
+    
           } else {
             setResponseMessage('Payment failed. Please try again.');
             elements.getElement(CardElement).clear();
