@@ -37,7 +37,7 @@ function Users({ userRegister }) {
     const bodyData = { admin: data };
     try {
       const data = await axios.put(
-        `http://localhost:3001/user/${id}`,
+        `https://henrybuster.onrender.com/user/${id}`,
         bodyData
       );
       setUserModify(id);
@@ -68,7 +68,7 @@ function Users({ userRegister }) {
       const resp = confirm(`¿you're sure?`);
       if (resp) {
         try {
-          await axios.delete(`http://localhost:3001/user/${itemId}`);
+          await axios.delete(`https://henrybuster.onrender.com/user/${itemId}`);
           setSuccess(true);
 
           setMessage("User Admin Delete");
@@ -146,11 +146,13 @@ function Users({ userRegister }) {
                 {userRegister.id !== e.id ? (
                   <>
                     <td>
-                    {e.username !=="Guest"?
-                    (<Button onClick={() => handleAdmin(e.id, !e.admin)}>
-                        Up
-                      </Button>) : ""}
-                      
+                      {e.username !== "Guest" ? (
+                        <Button onClick={() => handleAdmin(e.id, !e.admin)}>
+                          Up
+                        </Button>
+                      ) : (
+                        ""
+                      )}
                     </td>
                     <td>
                       <Button onClick={() => deleteItem(e.id)}>Del</Button>

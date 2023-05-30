@@ -15,7 +15,9 @@ export const UpdateMovie = () => {
   // const history = useHistory();
 
   const fetchData = async () => {
-    const { data } = await axios.get(`http://localhost:3001/movie/${id}`);
+    const { data } = await axios.get(
+      `https://henrybuster.onrender.com/movie/${id}`
+    );
 
     setName(data.name);
     setImage(data.image);
@@ -143,7 +145,7 @@ export const UpdateMovie = () => {
       !valid.quantity &&
       !valid.genre
     ) {
-      await axios.put(`http://localhost:3001/movie/${id}`, {
+      await axios.put(`https://henrybuster.onrender.com/movie/${id}`, {
         name,
         image,
         description,

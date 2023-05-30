@@ -105,7 +105,7 @@ export const CreateMovie = () => {
 
   const submitHandler = async (e) => {
     const imageElement = document.querySelector("#image");
-imageElement.value= "";
+    imageElement.value = "";
     e.preventDefault();
     let valid = validationHandler();
 
@@ -120,7 +120,7 @@ imageElement.value= "";
       !valid.quantity &&
       !valid.genre
     ) {
-      await axios.post("http://localhost:3001/movie", {
+      await axios.post("https://henrybuster.onrender.com/movie", {
         name,
         image,
         description,
@@ -230,7 +230,8 @@ imageElement.value= "";
                 <option key={x.id} value={x.id}>
                   {x.name}
                 </option>
-              ))}git pul
+              ))}
+              git pul
             </select>
           </div>
 
