@@ -30,8 +30,6 @@ import Users from "./components/Admin/users/Users";
 
 import UserProfile from "./components/Users/UserProfile";
 
-
-
 import Purchases from "./components/Admin/purchases/purchases";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 
@@ -44,7 +42,9 @@ function App() {
     if (id === "") {
       localStorage.setItem("user", JSON.stringify(""));
     } else {
-      let userRegister = await axios.get(`http://localhost:3001/user/${id}`);
+      let userRegister = await axios.get(
+        `https://henrybuster.onrender.com/user/${id}`
+      );
       let user = userRegister.data;
       if (user) {
         localStorage.setItem("user", JSON.stringify(user));
@@ -81,12 +81,14 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/payment" element={<Payment />} />
 
-            <Route path="/miProfile" element={
-              <ProtectedRoute>
-
-            <UserProfile />
-              </ProtectedRoute>
-            } />
+            <Route
+              path="/miProfile"
+              element={
+                <ProtectedRoute>
+                  <UserProfile />
+                </ProtectedRoute>
+              }
+            />
 
             {/* admin */}
 
