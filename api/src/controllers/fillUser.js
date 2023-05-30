@@ -174,6 +174,16 @@ const fillUser = async (User) => {
         admin: true,
         superAdmin: true,
       },
+      {
+        id: "zGvIx57UWJh2kg7XzGrs5TA99ox1",
+        username: null,
+        name: "Ezequiel Rubio",
+        phoneNumber: null,
+        email: "erubio07@gmail.com",
+        state: true,
+        admin: true,
+        superAdmin: true,
+      },
     ]);
   } catch (error) {
     console.log(error.message);
