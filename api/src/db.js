@@ -11,16 +11,18 @@ const purchase = require("./models/Purchase");
 const rating = require("./models/Rating");
 const language = require("./models/Language");
 const address = require("./models/Address");
-const purchaseMovie = require("./models/PurchaseMovie")
-const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
+const purchaseMovie = require("./models/PurchaseMovie");
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_DEPLOY } = process.env;
 
-const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/henrybuster`,
-  {
-    logging: false, // set to console.log to see the raw SQL queries
-    native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-  }
-);
+const sequelize = new Sequelize(DB_DEPLOY, {
+  logging: false, // set to console.log to see the raw SQL queries
+  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+  dialectOptions: {
+    ssl: {
+      require: true,
+    },
+  },
+});
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -60,8 +62,18 @@ address(sequelize);
 purchaseMovie(sequelize);
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-const { User, Format, Genre, Inventory, Purchase, Movie, Rating, Language , Address, PurchaseMovie} =
-  sequelize.models;
+const {
+  User,
+  Format,
+  Genre,
+  Inventory,
+  Purchase,
+  Movie,
+  Rating,
+  Language,
+  Address,
+  PurchaseMovie,
+} = sequelize.models;
 
 Movie.belongsToMany(Genre, { through: "MovieGenre" });
 Genre.belongsToMany(Movie, { through: "MovieGenre" });
@@ -81,15 +93,14 @@ Rating.belongsTo(User);
 Language.hasOne(Movie);
 Movie.belongsTo(Language);
 
-
 Address.hasOne(Purchase);
 Purchase.belongsTo(Address);
 
 User.hasMany(Purchase);
-Purchase.belongsTo(User)
+Purchase.belongsTo(User);
 
-User.hasMany(Address)
-Address.belongsTo(User)
+User.hasMany(Address);
+Address.belongsTo(User);
 /*
 Purchase.belongsToMany(Movie, { through: "PurchaseMovie" });
 Movie.belongsToMany(Purchase, { through: "PurchaseMovie" });
@@ -103,14 +114,14 @@ PurchaseMovie.belongsTo(Purchase)
 */
 Purchase.belongsToMany(Movie, {
   through: PurchaseMovie,
-  foreignKey: 'PurchaseId',
-  otherKey: 'MovieId',
+  foreignKey: "PurchaseId",
+  otherKey: "MovieId",
 });
 
 Movie.belongsToMany(Purchase, {
   through: PurchaseMovie,
-  foreignKey: 'MovieId',
-  otherKey: 'PurchaseId',
+  foreignKey: "MovieId",
+  otherKey: "PurchaseId",
 });
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
