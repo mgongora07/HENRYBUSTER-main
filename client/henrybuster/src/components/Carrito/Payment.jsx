@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useAuth } from "../../context/authContext";
 import { getUserById, setOrder, postOrder, setUserOrder, setDirections } from '../../redux/actions';
 import axios from 'axios';
-
+import.meta.env.KEY
 const Payment = () => {
   const dispatch = useDispatch();
   const { cartItems } = useContext(CartContext);
@@ -37,9 +37,7 @@ const directions = useSelector(state=> state.directions);
   const [showPopup, setShowPopup] = useState(false);
   const [direccion, setDireccion] = useState([]);
   const [idAdress, setidAdress] = useState('')
-  const stripePromise = loadStripe(
-    'pk_test_51NB6jDKYeZyt0ZZhF4rhnhYKRp55bCCtnvCqUWE8khTmgyBk37Op5cl3jYN4fHJBA2LaLGU2RU6wFoYuuA6WO1eh00GfjV2DDF'
-  );
+  const stripePromise = loadStripe( KEY  );
 
   const getAdress = async (uid) => {
    

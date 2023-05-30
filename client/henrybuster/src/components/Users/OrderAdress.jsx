@@ -50,8 +50,8 @@ const OrderAdress = ({ onClose }) => {
       ...prevData,
       [name]: value,
     }));
-    console.log("campeon")
-    console.log(formData)
+  
+ 
   };
 
   useEffect(() => {
@@ -86,7 +86,7 @@ const OrderAdress = ({ onClose }) => {
     }
 
     if (!usuario.id) {
-console.log("me ssss")
+
       let createAdress = {
         purchases: formData.purchases,
         name: formData.name,
@@ -104,7 +104,7 @@ console.log("me ssss")
       onClose();
     } else {
 
-      console.log("soy el pendejo2")
+     
       let createAdress = {
         purchases: formData.purchases,
         name: formData.name,
