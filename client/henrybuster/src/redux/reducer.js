@@ -38,7 +38,7 @@ const INITIAL_STATE = {
   ratingsFilter: [],
   moviesAdmin: [],
   paginadoAdmin: [],
-  user: {},
+  user: {id:"", name:""},
   currentOrder:{},
   allAdress:{},
   allUsers: [],
@@ -256,7 +256,7 @@ export default function rootReducer(
         case CLEAN_USER:
           return{
             ...state,
-            user:{}
+            user:{id:"",name:""}
           }
     default:
       return state;
