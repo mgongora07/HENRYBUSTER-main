@@ -20,11 +20,11 @@ const getRatingsByMovieId = require("../controllers/getRatingsByMovieId");
 const InsertRating = require("../controllers/InsertRating");
 const getMoviesForAdmin = require("../controllers/getMoviesForAdmin");
 const searchMovieByName = require("../controllers/searchMovieByName");
-const searchMovieForGuest = require("../controllers/SearchMovieForGuest");
+const searchMovieForGuest = require("../controllers/searchMovieForGuest");
 const updateGenre = require("../controllers/updateGenre");
 const deleteMovie = require("../controllers/deleteMovie");
 
-const order = require("../controllers/order")
+const order = require("../controllers/order");
 
 const InsertPurchase = require("../controllers/InsertPurchase");
 const insertGuestPurchase = require("../controllers/insertGuestPurchase");
@@ -36,41 +36,40 @@ const deleteUser = require("../controllers/deleteUser");
 const getPurchases = require("../controllers/getPurchases");
 const updatePuchaseById = require("../controllers/updatePuchaseById");
 
-
 const router = express.Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
-router.get("/movie/:id",getMovieById)
-router.get("/user/:id",getUserById)
+router.get("/movie/:id", getMovieById);
+router.get("/user/:id", getUserById);
 router.get("/movies", getMovies);
 router.get("/movies/admin", getMoviesForAdmin);
 router.get("/users", getUsers);
 router.get("/formats", getFormat);
 router.get("/genres", getGenre);
 router.get("/languages", getLanguage);
-router.get("/rating/:id", getRatingsByMovieId)
-router.get("/movies/search", searchMovieByName)
-router.get("/movies/search/guest", searchMovieForGuest)
-router.get("/genre/:id",getGenreById)
-router.get("/address/:id", getAddressById)
-router.get("/address/user/:id", getAddressByUserId)
-router.get("/purchases", getPurchases)
-router.post("/address/:id", InsertAddressByUserId)
-router.post("/genre",insertGenre)
-router.post("/language",insertLanguage)
-router.post("/format", insertFormat)
-router.post("/user", insertUser)
-router.post("/movie", insertMovie)
-router.post("/rating", InsertRating)
-router.post("/purchase/guest", insertGuestPurchase)
-router.post("/purchase/:id", InsertPurchase)
-router.put("/movie/:id", updateMovie)
-router.put("/user/:id", updateUser)
-router.put("/genre/:id", updateGenre)
-router.put("/purchase/:id", updatePuchaseById)
-router.delete("/movie/:id",deleteMovie)
-router.delete("/user/:id", deleteUser)
-router.post("/checkout", order)
+router.get("/rating/:id", getRatingsByMovieId);
+router.get("/movies/search", searchMovieByName);
+router.get("/movies/search/guest", searchMovieForGuest);
+router.get("/genre/:id", getGenreById);
+router.get("/address/:id", getAddressById);
+router.get("/address/user/:id", getAddressByUserId);
+router.get("/purchases", getPurchases);
+router.post("/address/:id", InsertAddressByUserId);
+router.post("/genre", insertGenre);
+router.post("/language", insertLanguage);
+router.post("/format", insertFormat);
+router.post("/user", insertUser);
+router.post("/movie", insertMovie);
+router.post("/rating", InsertRating);
+router.post("/purchase/guest", insertGuestPurchase);
+router.post("/purchase/:id", InsertPurchase);
+router.put("/movie/:id", updateMovie);
+router.put("/user/:id", updateUser);
+router.put("/genre/:id", updateGenre);
+router.put("/purchase/:id", updatePuchaseById);
+router.delete("/movie/:id", deleteMovie);
+router.delete("/user/:id", deleteUser);
+router.post("/checkout", order);
 
 module.exports = router;
