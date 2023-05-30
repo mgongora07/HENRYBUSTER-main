@@ -14,7 +14,7 @@ export const Nav = ({ handleUser, userRegister }) => {
   const handleSearch = (name) => {
     dispatch(getMoviesName(name));
   };
-
+  const [userState, setUserState] = useState({id:"", name:""})
   const { user, loading, logout } = useAuth();
   const navigate = useNavigate();
 
@@ -41,6 +41,14 @@ export const Nav = ({ handleUser, userRegister }) => {
     }
   },[user])
 
+  useEffect(()=>{
+   
+    if(usuario){
+      setUserState((prev)=>({...prev, ...usuario}))
+    }
+  },[usuario])
+
+
 
 
 
@@ -55,11 +63,11 @@ export const Nav = ({ handleUser, userRegister }) => {
     <div className={style.image}>
       <img className="img-fluid" src={logo} alt="Logo"/>
       </div>
-      {usuario?.name && (
+      {userState.name ? (
         <p style={{ color: "red", marginRight: "auto" }}>
-           { `welcome ${usuario.name}`}
+           { `welcome ${userState.name}`}
         </p>
-      )}
+      ):""}
 
       {userRegister && userRegister.admin && (
         <Link className={style.link} to="/admin">

@@ -15,7 +15,7 @@ const OrderAdress = ({ onClose }) => {
     MovieId: item.id,
     quantity: item.amount,
   }));
-
+  const[usuario, setUsuario] = useState({id:""});
   const [showForm, setShowForm] = useState(true);
 
   const [formData, setFormData] = useState({
@@ -37,6 +37,13 @@ const OrderAdress = ({ onClose }) => {
     }));
   }, [cartItems]);
 
+
+  useEffect(() => {
+    setUsuario((prevData) => ({
+      ...prevData,
+      ...user
+    }));
+  }, [user]);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -78,7 +85,7 @@ const OrderAdress = ({ onClose }) => {
       return;
     }
 
-    if (user.id=== undefined) {
+    if (!usuario.id) {
 console.log("me ssss")
       let createAdress = {
         purchases: formData.purchases,
