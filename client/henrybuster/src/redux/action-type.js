@@ -21,5 +21,7 @@ export const ORDER_DATA='ORDER_DATA';
 export const POST_ORDER='POST_ORDER';
 export const ORDER_USER_DATA='ORDER_USER_DATA'
 export const CLEAN_ORDERS='CLEAN_ORDERS'
+export const CLEAN_USER='CLEAN_USER'
+export const DIRECTIONS='DIRECTIONS'
 
 

@@ -146,9 +146,11 @@ function Users({ userRegister }) {
                 {userRegister.id !== e.id ? (
                   <>
                     <td>
-                      <Button onClick={() => handleAdmin(e.id, !e.admin)}>
+                    {e.username !=="Guest"?
+                    (<Button onClick={() => handleAdmin(e.id, !e.admin)}>
                         Up
-                      </Button>
+                      </Button>) : ""}
+                      
                     </td>
                     <td>
                       <Button onClick={() => deleteItem(e.id)}>Del</Button>

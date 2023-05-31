@@ -7,7 +7,7 @@ import OrderAdress from '../Users/OrderAdress';
 import { CartContext } from "./Context";
 import { useSelector, useDispatch } from 'react-redux';
 import { useAuth } from "../../context/authContext";
-import { getUserById, setOrder, postOrder, setUserOrder } from '../../redux/actions';
+import { getUserById, setOrder, postOrder, setUserOrder, setDirections } from '../../redux/actions';
 import axios from 'axios';
 
 const Payment = () => {
@@ -15,7 +15,6 @@ const Payment = () => {
   const { cartItems } = useContext(CartContext);
   const { user } = useAuth();
   const userState = useSelector(state => state.user);
-
   const purchases = cartItems.map((item) => ({
     MovieId: item.id,
     quantity: item.amount,
@@ -32,7 +31,8 @@ const Payment = () => {
     country: '',
   });
   const currentOrder = useSelector(state => state.currentOrder);
-
+  const currentUserOrder = useSelector(state => state.currentUserOrder);
+const directions = useSelector(state=> state.directions);
   const [shipMessage, setShipMessage] = useState("");
   const [showPopup, setShowPopup] = useState(false);
   const [direccion, setDireccion] = useState([]);
@@ -45,7 +45,7 @@ const Payment = () => {
    
     const adress = await axios.get(`http://localhost:3001/address/user/${uid}`);
     const direccionData = adress.data;
-    setDireccion(direccionData);
+   dispatch(setDirections(direccionData));
   };
 
   useEffect(() => {
@@ -61,7 +61,7 @@ const Payment = () => {
     fetchAddress();
   }
     
-  }, [user]);
+  }, [user,userState]);
   const handlePhone = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -71,23 +71,39 @@ const Payment = () => {
   };
 
   useEffect(() => {
-    if (direccion.length > 0) {
+    if (directions.length > 0) {
       const updatedData = {
         ...formData,
         name: userState && userState.name ? userState.name : formData.name,
         email: user && user.email ? user.email : formData.email,
         phoneNumber: userState && userState.phoneNumber ? userState.phoneNumber : formData.phoneNumber,
-        street: direccion[0] && direccion[0].street ? direccion[0].street : formData.street,
-        city: direccion[0] && direccion[0].city ? direccion[0].city : formData.city,
-        state: direccion[0] && direccion[0].state ? direccion[0].state : formData.state,
-        postalCode: direccion[0] && direccion[0].postalCode ? direccion[0].postalCode : formData.postalCode,
-        country: direccion[0] && direccion[0].country ? direccion[0].country : formData.country,
+        street: directions[0] && directions[0].street ? directions[0].street : formData.street,
+        city: directions[0] && directions[0].city ? directions[0].city : formData.city,
+        state: directions[0] && directions[0].state ? directions[0].state : formData.state,
+        postalCode: directions[0] && directions[0].postalCode ? directions[0].postalCode : formData.postalCode,
+        country: directions[0] && directions[0].country ? directions[0].country : formData.country,
       };
-      dispatch(setOrder(updatedData));
+      if(userState.id === undefined){
+        dispatch(setOrder(updatedData))
+      }else{
+        dispatch(setUserOrder(updatedData))
+
+      }
+       
+       
+       
       setFormData(updatedData);
     }
-  }, [direccion,user, userState,]);
 
+  
+  }, [directions,user, userState]);
+
+  useEffect(() => {
+  const selectElement = document.querySelector("#address");
+
+if(selectElement) selectElement.selectedIndex = 0;
+
+}, [directions]);
   useEffect(() => {
     if (!currentOrder.street || !currentOrder.name) {
       setShipMessage('Provide the shipping data. You must fill all the fields to continue');
@@ -109,40 +125,71 @@ const Payment = () => {
   const closePopup = () => {
     setShowPopup(false);
   };
-
- if(currentOrder){
-  const direccionSeleccionada = direccion[0]
-  
-  const fisrtAddress = {
-        
-    AddressId: direccionSeleccionada?.id,
-    purchases:purchases,
-    name: currentOrder.name,
-    phoneNumber:userState?.phoneNumber
-  };
-  dispatch(setUserOrder(fisrtAddress));
-
-
- }
-
-  const handleAddressChange = (event) => {
-    const selectedStreet = event.target.value;
-    console.log('HOLAAAA')
+/*
+  if(currentOrder){
+    const direccionSeleccionada = direccion[0]
     
+    const fisrtAddress = {
+          
+      AddressId: direccionSeleccionada?.id,
+      purchases:purchases,
+      name: currentOrder.name,
+      phoneNumber:userState?.phoneNumber
+    };
+    dispatch(setUserOrder(fisrtAddress));
+   }
+*/
+
+
+
+useEffect(() => {
+  if (directions){
+    const value = document.querySelector("#address")
+    if(value){
+      console.log(value.value)
+      const getAdressById = async(id) =>{
+        const{data} = await axios.get(`http://localhost:3001/address/${id}`)
+        const newAddress = {
+          
+          AddressId:id,
+          purchases:purchases,
+          name: userState.name,
+          phoneNumber:currentUserOrder.phoneNumber,
+          street: data.street,
+          city: data.city
+        };
+
+        
+        dispatch(setUserOrder(newAddress));
+      }
+
+      getAdressById(value.value)
+    }
+  }
+}, [directions]);
+
+
+
+  const handleAddressChange = async (event) => {
+    
+    const selectedStreet = event.target.value;
+
+      const{data} = await axios.get(`http://localhost:3001/address/${selectedStreet}`)
       const newAddress = {
         
         AddressId:selectedStreet,
         purchases:purchases,
-        name: currentOrder.name,
-        phoneNumber:userState?.phoneNumber
+        name: userState.name,
+        phoneNumber:userState.phoneNumber,
+        street: data.street,
+        city: data.city
       };
       dispatch(setUserOrder(newAddress));
       setFormData(newAddress);
       
      console.log(newAddress,'componente payment')
   };
-console.log(user,'soy usuario de auth')
-console.log(userState,'soy usuario de state')
+
 
   return (
     <div className={style.container}>
@@ -158,28 +205,41 @@ console.log(userState,'soy usuario de state')
             </div>
           </div>
           <div className={style.adress}>
-          {direccion.length>=1 && (
-            <select name="" id="" onChange={handleAddressChange}>
-              {direccion.map((address, index) => (
-                <option key={index} value={address.id}>
+          {directions.length>=1 && (
+            <select name="" id="address" onChange={handleAddressChange}>
+              {directions.map((address) => (
+                <option key={address.id} value={address.id}>
                   {address.street}
                 </option>
               ))}
             </select>
           )}
   <h2>Shipping data:</h2>
+  {/*
   <div>
+  
     <label htmlFor="">Please enter a phone number:</label>
     <input type="text" 
            name="phoneNumber"
            value={formData.phoneNumber}
            onChange={handlePhone}/>
-  </div>
-  <h2>{currentOrder.name ? currentOrder.name : ""}</h2>
-  <p>{currentOrder.phoneNumber ? currentOrder.phoneNumber : ""}</p>
-  <p>{currentOrder.street ? currentOrder.street : ""}</p>
-  <p>{currentOrder.city ? currentOrder.city : ""}</p>
-  {shipMessage !== "" && <p>{shipMessage}</p>}
+              </div>*/}
+
+  {!userState?.id? (
+    <><h2>{currentOrder.name ? currentOrder.name : ""}</h2>
+    <p>{currentOrder.phoneNumber ? currentOrder.phoneNumber : ""}</p>
+    <p>{currentOrder.street ? currentOrder.street : ""}</p>
+    <p>{currentOrder.city ? currentOrder.city : ""}</p>
+    {shipMessage !== "" && <p>{shipMessage}</p>}</>) :
+  (<><h2>{currentUserOrder.name ? currentUserOrder.name : ""}</h2>
+  <p>{currentUserOrder.phoneNumber ? currentUserOrder.phoneNumber : ""}</p>
+  <p>{currentUserOrder.street ? currentUserOrder.street : ""}</p>
+  <p>{currentUserOrder.city ? currentUserOrder.city : ""}</p>
+  {shipMessage !== "" && <p>{shipMessage}</p>}</>)
+  }
+  
+  
+  
 </div>
           <div>
             <button className={style.boton} onClick={openPopup}>Add Address</button>

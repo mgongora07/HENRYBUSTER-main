@@ -61,7 +61,7 @@ const Reviews = (props) => {
         UserId: User.id,
       });
       //setFilterRating("All")
-
+      setStar(0)
       setComment("");
       setStarSelect("");
       setDisplaySuccess("");
@@ -302,6 +302,7 @@ const Reviews = (props) => {
               username={rating.User.username}
               rating={rating.rating}
               comment={rating.comment}
+              name ={rating.User.name}
             />
           ))}
         </div>
@@ -340,10 +341,10 @@ const Reviews = (props) => {
           <button className={style.btn2} onClick={handleComment}>
             comment
           </button>
-          <div className={`alert alert-danger ${displayError}`}>
+          <div className={`alert alert-danger mt-2 ${displayError}`}>
             Please rate and comment
           </div>
-          <div className={`alert alert-success ${displaySuccess}`}>
+          <div className={`alert alert-success mt-2 ${displaySuccess}`}>
             Comment succeeded
           </div>
         </div>
