@@ -221,14 +221,14 @@ export default function rootReducer(
         }
 
       case ORDER_DATA:
-      console.log(payload,'soypayload')
+ 
       return {
         ...state,
         currentOrder:payload
       };
       
       case ORDER_USER_DATA:
-      console.log(payload,'soypayload')
+  
       return {
         ...state,
         currentUserOrder:payload
