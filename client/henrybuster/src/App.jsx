@@ -22,15 +22,13 @@ import AllGenres from "./components/Admin/genres/AllGenres";
 import UpdateGenre from "./components/Admin/genres/UpdateGenre";
 
 import Payment from "./components/Carrito/Payment";
-
 import Sidebar from "./components/Admin/Sidebar";
+import About from "./components/About/About";
 import RouteError from "./components/RouteError/RouteError";
 import axios from "axios";
 import Users from "./components/Admin/users/Users";
 
 import UserProfile from "./components/Users/UserProfile";
-
-
 
 import Purchases from "./components/Admin/purchases/purchases";
 import { ProtectedRoute } from "./components/ProtectedRoute";
@@ -62,7 +60,6 @@ function App() {
       setUser(JSON.parse(storedPayload));
     }
   }, []);
-  useEffect(() => {}, [userRegister]);
 
   return (
     <>
@@ -72,34 +69,42 @@ function App() {
           {location.pathname.startsWith("/admin") && userRegister.admin ? (
             <Sidebar handleUser={handleUser} userRegister={userRegister} />
           ) : null}
-
           <Routes>
             <Route path="/" element={<Home handleUser={handleUser} />} />
             <Route path="/movie/:id" element={<Detail />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/about" element={<About />} />
             <Route path="/payment" element={<Payment />} />
 
-            <Route path="/miProfile" element={
-              <ProtectedRoute>
-
-            <UserProfile />
-              </ProtectedRoute>
-            } />
+            <Route
+              path="/miProfile"
+              element={
+                <ProtectedRoute>
+                  <UserProfile />
+                </ProtectedRoute>
+              }
+            />
 
             {/* admin */}
 
             {userRegister && userRegister.admin ? (
               <>
-                <Route path="admin/create" element={<CreateMovie />} />
-                <Route path="admin/update/:id" element={<UpdateMovie />} />
-                <Route path="admin/create/genre" element={<CreateGenre />} />
+                <Route path="/admin/create" element={<CreateMovie />} />
                 <Route
-                  path="admin/update/genre/:id"
+                  path="/admin/update/:id"
+                  element={<UpdateMovie />}
+                />
+                <Route
+                  path="/admin/create/genre"
+                  element={<CreateGenre />}
+                />
+                <Route
+                  path="/admin/update/genre/:id"
                   element={<UpdateGenre />}
                 />
-                <Route path="admin/AllGenre" element={<AllGenres />} />
+                <Route path="/admin/AllGenre" element={<AllGenres />} />
                 <Route path="/admin/*" element={<Admin />} />
                 <Route path="/admin/movies" element={<MoviesAdmin />} />
                 <Route
@@ -112,7 +117,6 @@ function App() {
               <Route path="/admin" element={<RouteError />} />
             )}
             <Route path="/results" element={<SearchResult />} />
-            {/* ------- */}
           </Routes>
         </AuthProvider>
       </CartProvider>
