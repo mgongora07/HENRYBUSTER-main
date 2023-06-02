@@ -69,9 +69,13 @@ export const Nav = ({ handleUser, userRegister }) => {
         )}
       </div>
 
-
-
       <div className={style.contentLink}>
+        {userRegister?.admin && (
+          <Link className={style.link} to="/admin">
+            <i className="fa-solid fa-user"></i>
+            <span className={style.iconText}>Admin</span>
+          </Link>
+        ) }
         <Link className={style.link} to="/">
           <i className="fa-solid fa-house"></i>{" "}
           <span className={style.iconText}>HOME</span>
@@ -97,7 +101,9 @@ export const Nav = ({ handleUser, userRegister }) => {
           onClick={handleLogout}
           to="/"
         >
-          <i className={`fa-solid fa-arrow-right-from-bracket ${style.logout}`}></i>
+          <i
+            className={`fa-solid fa-arrow-right-from-bracket ${style.logout}`}
+          ></i>
         </Link>
       </div>
     </nav>
