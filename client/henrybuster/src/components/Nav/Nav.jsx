@@ -69,6 +69,8 @@ export const Nav = ({ handleUser, userRegister }) => {
         )}
       </div>
 
+
+
       <div className={style.contentLink}>
         <Link className={style.link} to="/">
           <i className="fa-solid fa-house"></i>{" "}
