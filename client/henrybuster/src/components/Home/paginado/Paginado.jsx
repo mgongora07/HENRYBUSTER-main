@@ -1,6 +1,6 @@
 import style from "./Paginado.module.css";
 
-function Paginado({ pages, currentPage, split, totalPages }) {
+function Paginado({ pages, currentPage, split }) {
   console.log(pages);
   console.log(currentPage);
   const handleButtonClick = (e) => {
