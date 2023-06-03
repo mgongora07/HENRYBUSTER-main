@@ -31,10 +31,11 @@ const CheckoutForm = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   console.log(usuario, "hola soy usuario");
+  const[user, setUser] = useState({id:"", name:""})
   //Aqui se intenta hacer que los datos de la orden se llenen, para la ruta back de compra si fueras usuario
 
   useEffect(() => {
-    if (currentOrder && currentOrder.street !== "" && !usuario) {
+    if (currentOrder && currentOrder.street !== "" && !usuario?.id) {
       const purchaseUser = {
         purchases: currentOrder.purchases,
         name: currentOrder.name,
@@ -44,6 +45,16 @@ const CheckoutForm = (props) => {
       dispatch(setUserOrder(purchaseUser));
     }
   }, [currentOrder, props.id]);
+
+  useEffect(() => {
+    if(userState){
+      setUser((prev)=>({
+        ...prev,
+        ...userState
+      }))
+    }
+    
+  }, [userState]);
 
   //El detalle es que esto nuca se llena con los datos
   const handleSubmit = async (e) => {
@@ -65,7 +76,7 @@ const CheckoutForm = (props) => {
           if (respuesta === "succeeded") {
             setResponseMessage("Payment successful!");
 
-            if (usuario) {
+            if (user.id) {
               await axios.post(
                 `http://localhost:3001/purchase/${usuario.id}`,
                 userOrder

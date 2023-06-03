@@ -21,7 +21,8 @@ import {
   ORDER_DATA,
   ORDER_USER_DATA,
   CLEAN_ORDERS,
-  DIRECTIONS
+  DIRECTIONS,
+  CLEAN_USER
 } from "./action-type";
 
 import axios from "axios";
@@ -57,6 +58,19 @@ export const cleanDetail = () => {
   };
 };
 
+
+export const cleanUser = () => {
+  return function (dispatch) {
+    try {
+
+      return dispatch({
+        type: CLEAN_USER
+      });
+    } catch (error) {
+      return { error: error };
+    }
+  };
+};
 export const setDirections = (directions) => {
   return function (dispatch) {
     try {
@@ -119,7 +133,7 @@ export const getMoviesName = (name) => {
         `http://localhost:3001/movies/search/guest?name=${name}`
       );
       let payload = movie.data;
-      console.log(payload);
+     
       return dispatch({
         type: GET_MOVIES_NAME,
         payload: payload,
@@ -262,16 +276,16 @@ export function filterRatingStar(order) {
 }
 
 export const postCheckout = async (id, amount)=>{
-  console.log('Hola linea 220 actions')
+ 
   
       try {
-        console.log('hola entre al try actions')
+        
         const {data} = await axios.post('http://localhost:3001/checkout', {id, amount});
           return data.status
           
             
       } catch (error) {
-          console.log(error)
+         
           return {message: error}
       }
   
@@ -288,7 +302,7 @@ export const getUserById =  (id) =>{
 }
 
 export function setOrder (formData){
-  console.log(formData,'soy setOrdee')
+  
   return (dispatch)=>{
     dispatch({
       type: ORDER_DATA,
@@ -309,7 +323,7 @@ export const postOrder = (orderData)=>{
         payload: {},
       });
     } catch (error) {
-        console.log({message: error})
+        
         return {message: error}
     }
 
@@ -318,7 +332,7 @@ export const postOrder = (orderData)=>{
 }
 
 export function setUserOrder (formData){
-  console.log(formData,'soy userOrder del actions 305')
+  
   return (dispatch)=>{
     dispatch({
       type: ORDER_USER_DATA,

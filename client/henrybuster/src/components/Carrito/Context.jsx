@@ -58,8 +58,29 @@ export const CartProvider = ({ children }) => {
     setCartItems([]);
   };
 
+  const forceItemInCart = (product, quantity) => {
+    const inCart = cartItems.find((productInCart) => productInCart.id === product.id);
+    
+    if (inCart) {
+      if (quantity <= product.Inventory.quantity) {
+        setCartItems(
+          cartItems.map((productInCart) => {
+            if (productInCart.id === product.id) {
+              return { ...inCart, amount: quantity };
+            } else return productInCart;
+          })
+        );
+      } else {
+        alert("Stock insuficiente para establecer la cantidad de este producto.");
+      }
+    } else {
+      alert("El producto no se encuentra en el carrito.");
+    }
+  };
+  
+
   return (
-    <CartContext.Provider value={{ cartItems, addItemToCart, deleteItemToCart, clearCart }}>
+    <CartContext.Provider value={{ cartItems, addItemToCart, deleteItemToCart, clearCart, forceItemInCart }}>
       {children}
     </CartContext.Provider>
   );

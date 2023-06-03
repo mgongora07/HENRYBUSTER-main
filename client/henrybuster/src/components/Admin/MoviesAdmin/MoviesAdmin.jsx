@@ -10,6 +10,7 @@ import Table from "react-bootstrap/Table";
 import Pagination from "react-bootstrap/Pagination";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
+import Modal from "react-bootstrap/Modal"; // Importa el componente Modal
 
 import Sidebar from "../Sidebar";
 import {
@@ -23,6 +24,8 @@ import SearchBarAdmin from "./SearchBarAdmin";
 function MoviesAdmin() {
   const [page, setPage] = useState(1);
   const [success, setSuccess] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false); // Estado para controlar la visibilidad del modal de eliminación
+  const [deleteItemId, setDeleteItemId] = useState(""); // Estado para almacenar el ID del elemento a eliminar
   const { paginadoAdmin, moviesAdmin } = useSelector((state) => state);
 
   const split = (num) => {
@@ -44,29 +47,24 @@ function MoviesAdmin() {
   const handleDispatch = (name) => {
     dispatch(getMoviesNameAdmin(name));
   };
+
   const deleteItem = async (itemId) => {
-    const resp = confirm(
-      `You want to delete the movie with the id: ${itemId}?`
-    );
-    console.log(resp);
-    if (resp) {
-      const resp = confirm(`¿you're sure?`);
-      if (resp) {
-        try {
-          await axios.delete(`http://localhost:3001/movie/${itemId}`);
-          dispatch(getMoviesAdmin());
-          setSuccess(true);
-          setTimeout(() => {
-            setSuccess(false);
-          }, 1000);
-        } catch (error) {
-          console.log(error);
-        }
-      } else {
-        return;
-      }
-    } else {
-      return;
+    setDeleteItemId(itemId); 
+    setShowDeleteModal(true); 
+  };
+
+  const handleDeleteConfirm = async () => {
+    try {
+      await axios.delete(`http://localhost:3001/movie/${deleteItemId}`);
+      dispatch(getMoviesAdmin());
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+      }, 1000);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setShowDeleteModal(false); 
     }
   };
 
@@ -75,6 +73,7 @@ function MoviesAdmin() {
     dispatch(splitRecipesAdmin(0, 10));
     setPage(1);
   }, [dispatch]);
+
   useEffect(() => {}, [page, handleDispatch]);
 
   return (
@@ -178,10 +177,42 @@ function MoviesAdmin() {
                 split(page + 1);
               }
             }}
-          />
-        </Pagination>
-      </Row>
-    </Container>
+
+            active={e === page}
+          >
+            {e}
+          </Pagination.Item>
+        ))}
+        <Pagination.Next
+          disabled={page === pages.length ? true : false}
+          onClick={() => {
+            if (page < pages.length) {
+              setPage(page + 1);
+              split(page + 1);
+            }
+          }}
+        />
+      </Pagination>
+
+    
+      <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Delete</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you want to delete the movie with the ID:{" "}
+          {deleteItemId}?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={handleDeleteConfirm}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
   );
 }
 

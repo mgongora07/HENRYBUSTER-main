@@ -32,6 +32,11 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         allowNull: false,
       },
+      superAdmin:{
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
       state: {
         type: DataTypes.BOOLEAN,
         allowNull: false,

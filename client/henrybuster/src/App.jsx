@@ -22,8 +22,8 @@ import AllGenres from "./components/Admin/genres/AllGenres";
 import UpdateGenre from "./components/Admin/genres/UpdateGenre";
 
 import Payment from "./components/Carrito/Payment";
-
 import Sidebar from "./components/Admin/Sidebar";
+import About from "./components/About/About";
 import RouteError from "./components/RouteError/RouteError";
 import axios from "axios";
 import Users from "./components/Admin/users/Users";
@@ -32,6 +32,8 @@ import UserProfile from "./components/Users/UserProfile";
 
 import Purchases from "./components/Admin/purchases/purchases";
 import BarChart from "./components/Admin/purchases/BarChart";
+import { ProtectedRoute } from "./components/ProtectedRoute";
+
 
 function App() {
   const location = useLocation();
@@ -60,7 +62,6 @@ function App() {
       setUser(JSON.parse(storedPayload));
     }
   }, []);
-  useEffect(() => {}, [userRegister]);
 
   return (
     <>
@@ -70,27 +71,30 @@ function App() {
             <Nav handleUser={handleUser} userRegister={userRegister} />
           )}
 
-          {/* {location.pathname.startsWith("/admin") && userRegister.admin ? (
-            <Sidebar handleUser={handleUser} userRegister={userRegister} />
-          ) : null} */}
-          {/* {location.pathname.startsWith("/admin") && userRegister.admin ? (
-            <Admin />
-          ) : null} */}
-
+         
           <Routes>
             <Route path="/" element={<Home handleUser={handleUser} />} />
             <Route path="/movie/:id" element={<Detail />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/about" element={<About />} />
             <Route path="/payment" element={<Payment />} />
 
-            <Route path="/miProfile" element={<UserProfile />} />
+            <Route
+              path="/miProfile"
+              element={
+                <ProtectedRoute>
+                  <UserProfile />
+                </ProtectedRoute>
+              }
+            />
 
             {/* admin */}
 
             {userRegister && userRegister.admin ? (
               <>
+
                 <Route path="/admin" element={<Admin />}>
                   <Route path="/admin" element={<HomeAdmin />} />
                   <Route path="create" element={<CreateMovie />} />
@@ -111,7 +115,6 @@ function App() {
               <Route path="/admin" element={<RouteError />} />
             )}
             <Route path="/results" element={<SearchResult />} />
-            {/* ------- */}
           </Routes>
         </AuthProvider>
       </CartProvider>

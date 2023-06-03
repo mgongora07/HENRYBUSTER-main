@@ -21,7 +21,8 @@ import {
   POST_ORDER,
   ORDER_USER_DATA,
   CLEAN_ORDERS,
-  DIRECTIONS
+  DIRECTIONS,
+  CLEAN_USER
 } from "./action-type";
 
 const INITIAL_STATE = {
@@ -37,7 +38,7 @@ const INITIAL_STATE = {
   ratingsFilter: [],
   moviesAdmin: [],
   paginadoAdmin: [],
-  user: {},
+  user: {id:"", name:""},
   currentOrder:{},
   allAdress:{},
   allUsers: [],
@@ -220,14 +221,14 @@ export default function rootReducer(
         }
 
       case ORDER_DATA:
-      console.log(payload,'soypayload')
+ 
       return {
         ...state,
         currentOrder:payload
       };
       
       case ORDER_USER_DATA:
-      console.log(payload,'soypayload')
+  
       return {
         ...state,
         currentUserOrder:payload
@@ -251,6 +252,12 @@ export default function rootReducer(
           ...state,
           directions: payload
         }
+
+        case CLEAN_USER:
+          return{
+            ...state,
+            user:{id:"",name:""}
+          }
     default:
       return state;
   }
