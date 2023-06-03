@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import Pagination from "react-bootstrap/Pagination";
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 import Alert from "react-bootstrap/Alert";
 import Spinner from "react-bootstrap/Spinner";
 import Modal from "react-bootstrap/Modal";
@@ -189,15 +191,18 @@ function Users({ userRegister }) {
               setPage(page - 1);
               split(page - 1);
             }
+
           }}
-        />
-        {pages.map((e) => (
-          <Pagination.Item
-            key={e}
+        >
+          <Pagination.Prev
+            disabled={page === 1 ? true : false}
             onClick={() => {
-              setPage(e);
-              split(e);
+              if (page > 1) {
+                setPage(page - 1);
+                split(page - 1);
+              }
             }}
+
             active={e === page}
           >
             {e}
@@ -234,6 +239,7 @@ function Users({ userRegister }) {
         </Modal.Footer>
       </Modal>
     </div>
+
   );
 }
 

@@ -200,111 +200,140 @@ export const CreateMovie = () => {
   }, [dispatch]);
 
   return (
-    <div style={{ background: "white", paddingBottom: "80px" }}>
-      <div className={s.formContainer}>
-        <form className={s["movie-form"]}>
-          <div className={s["form-group"]}>
-            <h2>CREATE NEW MOVIE</h2>
-          </div>
+    <div className={s.formContainer}>
+      <form className={s["movie-form"]}>
+        <div className={s["form-group"]}>
+          <h2>CREATE NEW MOVIE</h2>
+        </div>
 
-          <div className={s["form-group"]}>
-            <label htmlFor="name">Name:</label>
-            <input
-              type="text"
-              id="name"
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-            />
+        <div className={s["form-group"]}>
+          <label htmlFor="name">Name:</label>
+          <input
+            type="text"
+            id="name"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+          />
+        </div>
+        <span>{validation.name}</span>
+        <div className={s["form-group"]}>
+          <label htmlFor="image">Image</label>
+          <input type="file" id="image" onChange={uploadImage} />
+        </div>
+        {image && (
+          <div className={s["form-group"]} style={{ maxWidth: "200px" }}>
+            <label>Preview:</label>
+            <img src={image} alt="Preview" />
           </div>
-          <span>{validation.name}</span>
-          <div className={s["form-group"]}>
-            <label htmlFor="image">Image</label>
-            <input type="file" id="image" onChange={uploadImage} />
-          </div>
-          {image && (
-            <div className={s["form-group"]} style={{ maxWidth: "200px" }}>
-              <label>Preview:</label>
-              <img src={image} alt="Preview" />
-            </div>
-          )}
-          <span>{validation.image}</span>
-          <div className={s["form-group"]}>
-            <label htmlFor="price">Price:</label>
-            <input
-              type="number"
-              id="price"
-              value={price}
-              onChange={(event) => setPrice(event.target.value)}
-            />
-          </div>
+        )}
+        <span>{validation.image}</span>
+        <div className={s["form-group"]}>
+          <label htmlFor="price">Price:</label>
+          <input
+            type="number"
+            id="price"
+            value={price}
+            onChange={(event) => setPrice(event.target.value)}
+          />
+        </div>
 
-          <span>{validation.price}</span>
-          <div className={s["form-group"]}>
-            <label htmlFor="quantity">Quantity:</label>
-            <input
-              type="number"
-              id="quantity"
-              value={quantity}
-              onChange={(event) => setQuantity(event.target.value)}
-            />
-          </div>
-          <span>{validation.quantity}</span>
-          <div className={s["form-group"]}>
-            <label>Select a date:</label>
-            <DatePicker
-              selected={date}
-              onChange={(val) => setDate(val)}
-              dateFormat="yyyy/MM/dd"
-            />
-          </div>
-          <span>{validation.date}</span>
-          <div className={s["form-group"]}>
-            <label htmlFor="format">Format:</label>
-            <select
-              id="format"
-              onChange={(event) => setFormatId(event.target.value)}
-              defaultValue=""
-            >
-              <option key={0} value="">
-                Select a Format
+        <span>{validation.price}</span>
+        <div className={s["form-group"]}>
+          <label htmlFor="quantity">Quantity:</label>
+          <input
+            type="number"
+            id="quantity"
+            value={quantity}
+            onChange={(event) => setQuantity(event.target.value)}
+          />
+        </div>
+        <span>{validation.quantity}</span>
+        <div className={s["form-group"]}>
+          <label>Select a date:</label>
+          <DatePicker
+            selected={date}
+            onChange={(val) => setDate(val)}
+            dateFormat="yyyy/MM/dd"
+          />
+        </div>
+        <span>{validation.date}</span>
+        <div className={s["form-group"]}>
+          <label htmlFor="format">Format:</label>
+          <select
+            id="format"
+            onChange={(event) => setFormatId(event.target.value)}
+            defaultValue=""
+          >
+            <option key={0} value="">
+              Select a Format
+            </option>
+            {formats.map((x) => (
+              <option key={x.id} value={x.id}>
+                {x.name}
               </option>
-              {formats.map((x) => (
+            ))}
+          </select>
+        </div>
+
+        <span>{validation.FormatId}</span>
+
+        <div className={s["form-group"]}>
+          <label htmlFor="language">Language:</label>
+          <select
+            id="language"
+            onChange={(event) => setLanguageId(event.target.value)}
+            defaultValue=""
+          >
+            <option key={0} value="">
+              Select a language
+            </option>
+            {languages.map((x) => (
+              <option key={x.id} value={x.id}>
+                {x.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <span>{validation.LanguageId}</span>
+
+        <div className={s["form-group"]}>
+          <label htmlFor="description">Description:</label>
+          <textarea
+            type="number"
+            id="description"
+            value={description}
+            onChange={(event) => setDescription(event.target.value)}
+          />
+        </div>
+        <span>{validation.description}</span>
+        <div className={s["form-group"]}>
+          <label htmlFor="genres">Genres:</label>
+          <div className={s.selectAdd}>
+            <select id="genres" onChange={handleGenreChange}>
+              <option key={0} value="">
+                Seleccione una opción
+              </option>
+              {genres.map((x) => (
                 <option key={x.id} value={x.id}>
                   {x.name}
                 </option>
               ))}
             </select>
+            <button className={s["add-button"]} onClick={handleAddTag}>
+              Agregar
+            </button>
           </div>
+        </div>
 
-          <span>{validation.FormatId}</span>
-
-          <div className={s["form-group"]}>
-            <label htmlFor="language">Language:</label>
-            <select
-              id="language"
-              onChange={(event) => setLanguageId(event.target.value)}
-              defaultValue=""
-            >
-              <option key={0} value="">
-                Select a language
-              </option>
-              {languages.map((x) => (
-                <option key={x.id} value={x.id}>
-                  {x.name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <span>{validation.LanguageId}</span>
-
-          <div className={s["form-group"]}>
-            <label htmlFor="description">Description:</label>
-            <textarea
-              type="number"
-              id="description"
-              value={description}
-              onChange={(event) => setDescription(event.target.value)}
+        <span>{validation.genre}</span>
+        <div className={s["tags-container"]}>
+          {genreTags.map((tag) => (
+            <Tag
+              key={tag.id}
+              tagName={tag.name}
+              onRemoveTag={handleRemoveTag}
             />
+
           </div>
           <span>{validation.description}</span>
           <div className={s["form-group"]}>
@@ -357,6 +386,7 @@ export const CreateMovie = () => {
           ) : null}
         </form>
       </div>
+
     </div>
   );
 };

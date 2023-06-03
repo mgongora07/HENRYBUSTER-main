@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link, Outlet } from "react-router-dom";
 
-import Table from "react-bootstrap/Table";
-import Pagination from "react-bootstrap/Pagination";
-import Button from "react-bootstrap/Button";
+import BarChart from "./BarChart";
+
+import Row from "react-bootstrap/Row";
+import Nav from "react-bootstrap/Nav";
+
 import Alert from "react-bootstrap/Alert";
-import Spinner from "react-bootstrap/Spinner";
+import Table from "react-bootstrap/Table";
+import Container from "react-bootstrap/Container";
+import Pagination from "react-bootstrap/Pagination";
 
 function Purchases() {
   const [purchases, setPurchases] = useState([]);
   const [page, setPage] = useState(1);
   const [pagination, setPagination] = useState([]);
+  const [genres, setGenres] = useState([]);
   const [status, setStatus] = useState({
     id: "",
     status: "",
@@ -40,11 +46,19 @@ function Purchases() {
       const data = await axios.get(`http://localhost:3001/purchases`);
 
       setPurchases(data.data);
+
+      setGenres(
+        purchases
+          .map((e) => e.Movies.map((x) => x.Genres.map((y) => y.name)))
+          .flat(2)
+          .filter((value, index, self) => {
+            return self.indexOf(value) === index;
+          })
+      );
     } catch (error) {
       console.log(error);
     }
   };
-
   const handleCick = async (id, info) => {
     console.log(info);
     const peticion = {
@@ -117,14 +131,14 @@ function Purchases() {
   }, [success]);
   useEffect(() => {
     if (purchases.length) {
-      splitPur(1);
+      splitPur(page);
       console.log(pagination);
     }
   }, [purchases]);
   useEffect(() => {}, [page]);
 
   return (
-    <div className="bg-white" style={{ width: "80%", marginLeft: "auto" }}>
+    <Container className="bg-white">
       <div style={{ height: "70px" }}>
         {change && (
           <Alert variant={color} show={change}>
@@ -132,11 +146,7 @@ function Purchases() {
           </Alert>
         )}
       </div>{" "}
-      <div
-        style={{
-          height: "465px",
-        }}
-      >
+      <Row>
         <Table striped hover>
           <thead>
             <tr>
@@ -183,6 +193,7 @@ function Purchases() {
                       );
                     }, 0).toFixed(2)}
                   </td>
+
                   {e.status !== "cancelled" && (
                     <td>
                       <button onClick={() => handleCick(e.id, "cancelled")}>
@@ -206,47 +217,53 @@ function Purchases() {
               ))}
           </tbody>
         </Table>
-      </div>
-      <Pagination
-        style={{
-          width: "60%",
+      </Row>
+      <Row>
+        {" "}
+        <Pagination
+          style={{
+            width: "60%",
 
-          marginLeft: "auto",
-          marginRight: "20px",
-        }}
-      >
-        <Pagination.Prev
-          disabled={page === 1 ? true : false}
-          onClick={() => {
-            if (page > 1) {
-              setPage(page - 1);
-              splitPur(page - 1);
-            }
+            marginLeft: "auto",
+            marginRight: "20px",
           }}
-        />
-        {pages.map((e) => (
-          <Pagination.Item
-            key={e}
+        >
+          <Pagination.Prev
+            disabled={page === 1 ? true : false}
             onClick={() => {
-              setPage(e);
-              splitPur(e);
+              if (page > 1) {
+                setPage(page - 1);
+                splitPur(page - 1);
+              }
             }}
-            active={e === page}
-          >
-            {e}
-          </Pagination.Item>
-        ))}
-        <Pagination.Next
-          disabled={page === pages.length ? true : false}
-          onClick={() => {
-            if (page < pages.length) {
-              setPage(page + 1);
-              splitPur(page + 1);
-            }
-          }}
-        />
-      </Pagination>
-    </div>
+          />
+          {pages.map((e) => (
+            <Pagination.Item
+              key={e}
+              onClick={() => {
+                setPage(e);
+                splitPur(e);
+              }}
+              active={e === page}
+            >
+              {e}
+            </Pagination.Item>
+          ))}
+          <Pagination.Next
+            disabled={page === pages.length ? true : false}
+            onClick={() => {
+              if (page < pages.length) {
+                setPage(page + 1);
+                splitPur(page + 1);
+              }
+            }}
+          />
+        </Pagination>
+      </Row>
+      {/* <Row style={{ height: "400px" }}>
+        <BarChart genres={genres} purchases={purchases} />
+      </Row> */}
+    </Container>
   );
 }
 

@@ -42,9 +42,6 @@ function AllGenres() {
   }, [dispatch, genres]);
   return (
     <div style={{ background: "white" }}>
-      <div className="col-4 col-md-2 bg-white vh-100 position-fixed">
-        <Sidebar />
-      </div>
       <div style={{ width: "80%", marginLeft: "auto", height: "490px" }}>
         {actualizar ? (
           <Button
@@ -74,9 +71,7 @@ function AllGenres() {
                     <td>{e.name}</td>
 
                     <td>
-                      <Link to={`/admin/update/genre/${e.id}`}>
-                        update
-                      </Link>
+                      <Link to={`/admin/update/genre/${e.id}`}>update</Link>
                     </td>
                   </tr>
                 ))}
