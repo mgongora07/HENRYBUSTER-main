@@ -166,9 +166,12 @@ export const CreateMovie = () => {
       }, 800);
       setTimeout(() => {
         setSuccess(false);
-      }, 1400);
+      }, 3000);
     } else {
       setErr(true);
+      setTimeout(() => {
+        setErr(false);
+      }, 3000);
     }
     // history.push("/home");
   };
@@ -334,10 +337,10 @@ export const CreateMovie = () => {
             ))}
           </div>
           {err && (
-            <Alerts variant="danger">Please fill the form correctly</Alerts>
+            <Alerts variant="danger" className="fixed-bottom">Please fill the form correctly</Alerts>
           )}
           {success && (
-            <Alerts variant="success">Movie created successfully</Alerts>
+            <Alerts variant="success" className="fixed-bottom">Movie created successfully</Alerts>
           )}
           <button
             type="submit"
