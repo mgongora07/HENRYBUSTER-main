@@ -28,12 +28,17 @@ import RouteError from "./components/RouteError/RouteError";
 import axios from "axios";
 import Users from "./components/Admin/users/Users";
 
-import UserProfile from "./components/Users/UserProfile";
+
 
 
 
 import Purchases from "./components/Admin/purchases/purchases";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import HomeProfile from "./components/Users/SideBarProfile";
+import SideBarProfile from "./components/Users/SideBarProfile";
+import AddAdressProfile from "./components/Users/AddAdressProfile";
+import MyOrders from "./components/Users/MyOrders";
+import AddNewAdress from "./components/Users/AddNewAdress";
 
 function App() {
   const location = useLocation();
@@ -80,11 +85,12 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/payment" element={<Payment />} />
-
+           
+            <Route path="miProfile/Adress" element={<AddNewAdress />} />
             <Route path="/miProfile" element={
               <ProtectedRoute>
 
-            <UserProfile />
+            <MyOrders />
               </ProtectedRoute>
             } />
 

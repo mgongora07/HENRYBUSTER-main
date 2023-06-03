@@ -5,9 +5,10 @@ import { CartContext } from '../Carrito/Context';
 import { setOrder } from '../../redux/actions';
 import axios from 'axios'
 import { useAuth } from "../../context/authContext";
+import SideBarProfile from './SideBarProfile';
 
 
-const UserProfile = () => {
+const AddNewAdress = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const { cartItems } = useContext(CartContext);
   const currentOrder = useSelector(state => state.currentOrder)
@@ -78,7 +79,12 @@ const UserProfile = () => {
  
 
   return (
-    <div >
+    <div className={style.container}>
+      <SideBarProfile/>
+      <div className={style.popup}>
+      <div>
+        <h1>Hola</h1>
+      </div>
       <form onSubmit={handleSubmit} className={style.popup}>
         <h2 className={style.letras2}>Save a new Adress</h2>
        
@@ -142,8 +148,9 @@ const UserProfile = () => {
           </button>
         </div>
       </form>
+      </div>
     </div>
   );
 };
 
-export default UserProfile;
+export default AddNewAdress;
