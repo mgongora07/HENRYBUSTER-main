@@ -326,6 +326,36 @@ export const CreateMovie = () => {
         </div>
 
         <span>{validation.genre}</span>
+        {/* <div className={s["tags-container"]}>
+          {genreTags.map((tag) => (
+            <Tag
+              key={tag.id}
+              tagName={tag.name}
+              onRemoveTag={handleRemoveTag}
+            />
+          
+          </div> */}
+        <span>{validation.description}</span>
+        <div className={s["form-group"]}>
+          <label htmlFor="genres">Genres:</label>
+          <div className={s.selectAdd}>
+            <select id="genres" onChange={handleGenreChange}>
+              <option key={0} value="">
+                Seleccione una opción
+              </option>
+              {genres.map((x) => (
+                <option key={x.id} value={x.id}>
+                  {x.name}
+                </option>
+              ))}
+            </select>
+            <button className={s["add-button"]} onClick={handleAddTag}>
+              Agregar
+            </button>
+          </div>
+        </div>
+
+        <span>{validation.genre}</span>
         <div className={s["tags-container"]}>
           {genreTags.map((tag) => (
             <Tag
@@ -333,60 +363,32 @@ export const CreateMovie = () => {
               tagName={tag.name}
               onRemoveTag={handleRemoveTag}
             />
-
-          </div>
-          <span>{validation.description}</span>
-          <div className={s["form-group"]}>
-            <label htmlFor="genres">Genres:</label>
-            <div className={s.selectAdd}>
-              <select id="genres" onChange={handleGenreChange}>
-                <option key={0} value="">
-                  Seleccione una opción
-                </option>
-                {genres.map((x) => (
-                  <option key={x.id} value={x.id}>
-                    {x.name}
-                  </option>
-                ))}
-              </select>
-              <button className={s["add-button"]} onClick={handleAddTag}>
-                Agregar
-              </button>
-            </div>
-          </div>
-
-          <span>{validation.genre}</span>
-          <div className={s["tags-container"]}>
-            {genreTags.map((tag) => (
-              <Tag
-                key={tag.id}
-                tagName={tag.name}
-                onRemoveTag={handleRemoveTag}
-              />
-            ))}
-          </div>
-          {err && (
-            <Alerts variant="danger" className="fixed-bottom">Please fill the form correctly</Alerts>
-          )}
-          {success && (
-            <Alerts variant="success" className="fixed-bottom">Movie created successfully</Alerts>
-          )}
-          <button
-            type="submit"
-            className={s["submit-button"]}
-            onClick={submitHandler}
-            disabled={loading ? true : false}
-          >
-            Enviar
-          </button>
-          {loading ? (
-            <Spinner animation="border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
-          ) : null}
-        </form>
-      </div>
-
+          ))}
+        </div>
+        {err && (
+          <Alerts variant="danger" className="fixed-bottom">
+            Please fill the form correctly
+          </Alerts>
+        )}
+        {success && (
+          <Alerts variant="success" className="fixed-bottom">
+            Movie created successfully
+          </Alerts>
+        )}
+        <button
+          type="submit"
+          className={s["submit-button"]}
+          onClick={submitHandler}
+          disabled={loading ? true : false}
+        >
+          Enviar
+        </button>
+        {loading ? (
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        ) : null}
+      </form>
     </div>
   );
 };

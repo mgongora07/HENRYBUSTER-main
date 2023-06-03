@@ -49,8 +49,8 @@ function MoviesAdmin() {
   };
 
   const deleteItem = async (itemId) => {
-    setDeleteItemId(itemId); 
-    setShowDeleteModal(true); 
+    setDeleteItemId(itemId);
+    setShowDeleteModal(true);
   };
 
   const handleDeleteConfirm = async () => {
@@ -64,7 +64,7 @@ function MoviesAdmin() {
     } catch (error) {
       console.log(error);
     } finally {
-      setShowDeleteModal(false); 
+      setShowDeleteModal(false);
     }
   };
 
@@ -152,23 +152,25 @@ function MoviesAdmin() {
             onClick={() => {
               if (page > 1) {
                 setPage(page - 1);
-
                 split(page - 1);
               }
             }}
           />
           {pages.map((e) => (
-            <Pagination.Item
-              key={e}
-              onClick={() => {
-                setPage(e);
-                split(e);
-              }}
-              active={e === page}
-            >
-              {e}
-            </Pagination.Item>
+            <>
+              <Pagination.Item
+                key={e}
+                onClick={() => {
+                  setPage(e);
+                  split(e);
+                }}
+                active={e === page}
+              >
+                {e}
+              </Pagination.Item>
+            </>
           ))}
+
           <Pagination.Next
             disabled={page === pages.length ? true : false}
             onClick={() => {
@@ -177,31 +179,16 @@ function MoviesAdmin() {
                 split(page + 1);
               }
             }}
+          />
+        </Pagination>
+      </Row>
 
-            active={e === page}
-          >
-            {e}
-          </Pagination.Item>
-        ))}
-        <Pagination.Next
-          disabled={page === pages.length ? true : false}
-          onClick={() => {
-            if (page < pages.length) {
-              setPage(page + 1);
-              split(page + 1);
-            }
-          }}
-        />
-      </Pagination>
-
-    
       <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Confirm Delete</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Are you sure you want to delete the movie with the ID:{" "}
-          {deleteItemId}?
+          Are you sure you want to delete the movie with the ID: {deleteItemId}?
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
@@ -212,7 +199,7 @@ function MoviesAdmin() {
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
+    </Container>
   );
 }
 

@@ -105,7 +105,7 @@ export const CreateMovie = () => {
 
   const submitHandler = async (e) => {
     const imageElement = document.querySelector("#image");
-imageElement.value= "";
+    imageElement.value = "";
     e.preventDefault();
     let valid = validationHandler();
 
@@ -230,7 +230,8 @@ imageElement.value= "";
                 <option key={x.id} value={x.id}>
                   {x.name}
                 </option>
-              ))}git pul
+              ))}
+              git pul
             </select>
           </div>
 
@@ -264,7 +265,7 @@ imageElement.value= "";
             />
           </div>
           <span>{validation.description}</span>
-          <div className={s["form-group"]}>
+          {/* <div className={s["form-group"]}>
             <label htmlFor="genres">Genres:</label>
             <div className={s.selectAdd}>
               <select id="genres" onChange={handleGenreChange}>
@@ -281,7 +282,7 @@ imageElement.value= "";
                 Agregar
               </button>
             </div>
-          </div>
+          </div> */}
 
           <span>{validation.genre}</span>
           <div className={s["tags-container"]}>
