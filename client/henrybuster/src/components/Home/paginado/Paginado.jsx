@@ -31,9 +31,9 @@ function Paginado({ pages, currentPage, split, totalPages }) {
             key={number}
             value={number}
             onClick={handleButtonClick}
-            className={
-              number === currentPage ? style.activeButton : style.button
-            }
+            className={`${style.button} ${
+              currentPage === number ? style.selectedButton : ""
+            }`}
           >
             {number}
           </button>

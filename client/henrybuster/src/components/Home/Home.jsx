@@ -24,7 +24,7 @@ export const Home = ({ handleUser }) => {
   const { user } = useAuth();
   const [currentPage, setCurrentPage] = useState(1);
 
-  const itemsPerPage = 9;
+  const itemsPerPage = 10;
   const totalPages = Math.ceil(moviesFilter.length / itemsPerPage);
   const maxPagesToShow = 5;
 
