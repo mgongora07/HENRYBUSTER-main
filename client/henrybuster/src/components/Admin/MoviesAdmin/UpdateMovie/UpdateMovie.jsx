@@ -67,6 +67,7 @@ export const UpdateMovie = () => {
     quantity: "",
     genre: "",
   });
+  const [success, setSuccess] = useState("");
 
   const handleAddTag = (event) => {
     event.preventDefault();
@@ -154,9 +155,16 @@ export const UpdateMovie = () => {
         quantity,
         genres: [...genreTags].map((x) => Number(x.id)),
       });
-      window.alert("Movie updated");
+
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess("");
+      }, 3000);
     } else {
-      window.alert("Please fill the form correctly");
+      setSuccess(false);
+      setTimeout(() => {
+        setSuccess("");
+      }, 3000);
     }
     // history.push("/home");
   };
@@ -319,6 +327,21 @@ export const UpdateMovie = () => {
           >
             Enviar
           </button>
+          {success === true ? (
+            <div className={`alert alert-success mt-3 fixed-bottom`} role="alert">
+              Update success!
+            </div>
+          ) : (
+            ""
+          )}
+
+          {success === false ? (
+            <div className={`alert alert-danger mt-3 fixed-bottom`} role="alert">
+              Fill the form correctly!
+            </div>
+          ) : (
+            ""
+          )}
         </form>
       </div>
     </div>
