@@ -1,14 +1,9 @@
 import React from "react";
-import "./HomeAdmin.css";
+import Container from "react-bootstrap/Container";
+
 const HomeAdmin = () => {
   return (
-    <div
-      style={{
-        background: "white",
-        width: "75%",
-        marginLeft: "auto",
-      }}
-    >
+    <div>
       <h2>Welcome Administrator</h2>
       <p>Here you will find a quick guide on how to use the admin panel:</p>
 

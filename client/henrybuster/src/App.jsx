@@ -30,9 +30,8 @@ import Users from "./components/Admin/users/Users";
 
 import UserProfile from "./components/Users/UserProfile";
 
-
-
 import Purchases from "./components/Admin/purchases/purchases";
+import BarChart from "./components/Admin/purchases/BarChart";
 
 function App() {
   const location = useLocation();
@@ -67,10 +66,16 @@ function App() {
     <>
       <CartProvider>
         <AuthProvider>
-          <Nav handleUser={handleUser} userRegister={userRegister} />
-          {location.pathname.startsWith("/admin") && userRegister.admin ? (
+          {!location.pathname.startsWith("/admin") && (
+            <Nav handleUser={handleUser} userRegister={userRegister} />
+          )}
+
+          {/* {location.pathname.startsWith("/admin") && userRegister.admin ? (
             <Sidebar handleUser={handleUser} userRegister={userRegister} />
-          ) : null}
+          ) : null} */}
+          {/* {location.pathname.startsWith("/admin") && userRegister.admin ? (
+            <Admin />
+          ) : null} */}
 
           <Routes>
             <Route path="/" element={<Home handleUser={handleUser} />} />
@@ -86,21 +91,21 @@ function App() {
 
             {userRegister && userRegister.admin ? (
               <>
-                <Route path="admin/create" element={<CreateMovie />} />
-                <Route path="admin/update/:id" element={<UpdateMovie />} />
-                <Route path="admin/create/genre" element={<CreateGenre />} />
-                <Route
-                  path="admin/update/genre/:id"
-                  element={<UpdateGenre />}
-                />
-                <Route path="admin/AllGenre" element={<AllGenres />} />
-                <Route path="/admin/*" element={<Admin />} />
-                <Route path="/admin/movies" element={<MoviesAdmin />} />
-                <Route
-                  path="/admin/users"
-                  element={<Users userRegister={userRegister} />}
-                />
-                <Route path="/admin/purchases" element={<Purchases />} />
+                <Route path="/admin" element={<Admin />}>
+                  <Route path="/admin" element={<HomeAdmin />} />
+                  <Route path="create" element={<CreateMovie />} />
+                  <Route path="update/:id" element={<UpdateMovie />} />
+                  <Route path="create/genre" element={<CreateGenre />} />
+                  <Route path="update/genre/:id" element={<UpdateGenre />} />
+                  <Route path="AllGenre" element={<AllGenres />} />
+                  <Route path="movies" element={<MoviesAdmin />} />
+                  <Route
+                    path="users"
+                    element={<Users userRegister={userRegister} />}
+                  />
+                  <Route path="purchases" element={<Purchases />} />
+                  <Route path="stadistics" element={<BarChart />} />
+                </Route>
               </>
             ) : (
               <Route path="/admin" element={<RouteError />} />

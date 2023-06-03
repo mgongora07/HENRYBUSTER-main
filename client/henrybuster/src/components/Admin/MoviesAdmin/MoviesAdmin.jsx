@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+
 import Table from "react-bootstrap/Table";
 import Pagination from "react-bootstrap/Pagination";
 import Button from "react-bootstrap/Button";
@@ -74,21 +78,16 @@ function MoviesAdmin() {
   useEffect(() => {}, [page, handleDispatch]);
 
   return (
-    <div style={{ background: "white", height: "593px" }}>
+    <Container fluid={true} className="mt-4 bg-white" style={{ width: "100%" }}>
       <Alert variant="danger" show={success}>
         <Alert.Heading>Movie Deleted Successfully</Alert.Heading>
       </Alert>
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
-        <h2 style={{ width: "fit-content", marginLeft: "270px" }}>
-          List of products:
-        </h2>
-        <div style={{ display: "flex", marginTop: "5px" }}>
+      <Row>
+        <Col className="d-flex justify-content-start">
+          <h2>List of products:</h2>
+        </Col>
+        <Col className="d-flex justify-content-end">
           <Button
             onClick={() => {
               dispatch(getMoviesAdmin());
@@ -100,17 +99,16 @@ function MoviesAdmin() {
             All
           </Button>
           <SearchBarAdmin handleDispatch={handleDispatch} />
-        </div>
-      </div>
-      <div
+        </Col>
+      </Row>
+      <hr />
+      <Row
         style={{
-          width: "80%",
-          marginLeft: "auto",
-          backgroundColor: "white",
           height: "500px",
+          overflowY: "auto",
         }}
       >
-        <Table responsive borderless>
+        <Table striped bordered hover className="mt-1 bg-white">
           <thead>
             <tr>
               <th>#</th>
@@ -144,47 +142,46 @@ function MoviesAdmin() {
               ))}
           </tbody>
         </Table>
-      </div>
-      <Pagination
-        style={{
-          width: "60%",
-          marginLeft: "auto",
-          marginRight: "20px",
-        }}
-      >
-        <Pagination.Prev
-          disabled={page === 1 ? true : false}
-          onClick={() => {
-            if (page > 1) {
-              setPage(page - 1);
-
-              split(page - 1);
-            }
-          }}
-        />
-        {pages.map((e) => (
-          <Pagination.Item
-            key={e}
+      </Row>
+      <Row className="">
+        <Pagination
+          className="d-flex justify-content-center mt-2"
+          style={{ width: "100%", flexWrap: "wrap" }}
+        >
+          <Pagination.Prev
+            disabled={page === 1 ? true : false}
             onClick={() => {
-              setPage(e);
-              split(e);
+              if (page > 1) {
+                setPage(page - 1);
+
+                split(page - 1);
+              }
             }}
-            active={e === page}
-          >
-            {e}
-          </Pagination.Item>
-        ))}
-        <Pagination.Next
-          disabled={page === pages.length ? true : false}
-          onClick={() => {
-            if (page < pages.length) {
-              setPage(page + 1);
-              split(page + 1);
-            }
-          }}
-        />
-      </Pagination>
-    </div>
+          />
+          {pages.map((e) => (
+            <Pagination.Item
+              key={e}
+              onClick={() => {
+                setPage(e);
+                split(e);
+              }}
+              active={e === page}
+            >
+              {e}
+            </Pagination.Item>
+          ))}
+          <Pagination.Next
+            disabled={page === pages.length ? true : false}
+            onClick={() => {
+              if (page < pages.length) {
+                setPage(page + 1);
+                split(page + 1);
+              }
+            }}
+          />
+        </Pagination>
+      </Row>
+    </Container>
   );
 }
 
