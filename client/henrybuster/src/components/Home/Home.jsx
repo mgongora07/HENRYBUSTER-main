@@ -22,19 +22,29 @@ export const Home = ({ handleUser }) => {
   );
 
   const { user } = useAuth();
+  const [currentPage, setCurrentPage] = useState(1);
 
-  let pages = moviesFilter
-    .slice(0, Math.ceil(moviesFilter.length / 10))
-    .map((recipe, index) => index + 1);
+  const itemsPerPage = 9;
+  const totalPages = Math.ceil(moviesFilter.length / itemsPerPage);
+  const maxPagesToShow = 5;
+
+  const startPage = Math.max(currentPage - Math.floor(maxPagesToShow / 2), 1);
+  const endPage = Math.min(startPage + maxPagesToShow - 1, totalPages);
+
+  const pages = Array.from(
+    { length: endPage - startPage + 1 },
+    (_, index) => startPage + index
+  );
+
+  // let pages = moviesFilter
+  //   .slice(0, Math.ceil(moviesFilter.length / 10))
+  //   .map((recipe, index) => index + 1);
 
   const split = (num) => {
-    if (num === 1) {
-      dispatch(splitRecipes(0, 9));
-    } else {
-      const inicio = num * 10 - 10;
-      const fin = num * 10 - 1;
-      dispatch(splitRecipes(inicio, fin));
-    }
+    setCurrentPage(num);
+    const startIndex = (num - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    dispatch(splitRecipes(startIndex, endIndex));
   };
 
   useEffect(() => {
@@ -67,7 +77,12 @@ export const Home = ({ handleUser }) => {
 
         <FilterMovies split={split} />
 
-        <Paginado pages={pages} split={split} />
+        <Paginado
+          pages={pages}
+          currentPage={currentPage}
+          split={split}
+          totalPages={totalPages}
+        />
         <div className={style.body}>
           {paginado &&
             paginado.map((e) => (
@@ -83,7 +98,12 @@ export const Home = ({ handleUser }) => {
               />
             ))}
         </div>
-        <Paginado pages={pages} split={split} />
+        <Paginado
+          pages={pages}
+          currentPage={currentPage}
+          split={split}
+          totalPages={totalPages}
+        />
       </div>
     </>
   );
