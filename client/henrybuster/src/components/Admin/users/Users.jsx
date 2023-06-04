@@ -4,6 +4,7 @@ import Pagination from "react-bootstrap/Pagination";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import Spinner from "react-bootstrap/Spinner";
+import Modal from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers, splitUsers } from "../../../redux/actions";
 import axios from "axios";
@@ -16,6 +17,8 @@ function Users({ userRegister }) {
   const [userModify, setUserModify] = useState("");
   const [message, setMessage] = useState("");
   const [color, setColor] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [userIdToDelete, setUserIdToDelete] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -60,38 +63,39 @@ function Users({ userRegister }) {
     }
   };
 
-  const deleteItem = async (itemId) => {
-    const resp = confirm(
-      `You want to delete the movie with the id: ${itemId}?`
-    );
-    if (resp) {
-      const resp = confirm(`¿you're sure?`);
-      if (resp) {
-        try {
-          await axios.delete(`http://localhost:3001/user/${itemId}`);
-          setSuccess(true);
+  const handleDeleteItem = async (itemId) => {
+    setShowModal(true);
+    setUserIdToDelete(itemId);
+  };
 
-          setMessage("User Admin Delete");
-          setColor("danger");
-          setTimeout(() => {
-            setSuccess(false);
-            setChange(true);
-          }, 1000);
-          setTimeout(() => {
-            setMessage("");
-            setColor("");
+  const confirmDelete = async () => {
+    try {
+      await axios.delete(`http://localhost:3001/user/${userIdToDelete}`);
+      setSuccess(true);
 
-            setChange(false);
-          }, 1800);
-        } catch (error) {
-          console.log(error);
-        }
-      } else {
-        return;
-      }
-    } else {
-      return;
+      setMessage("User Admin Delete");
+      setColor("danger");
+      setTimeout(() => {
+        setSuccess(false);
+        setChange(true);
+      }, 1000);
+      setTimeout(() => {
+        setMessage("");
+        setColor("");
+
+        setChange(false);
+      }, 1800);
+    } catch (error) {
+      console.log(error);
     }
+
+    setShowModal(false);
+    setUserIdToDelete(null);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setUserIdToDelete(null);
   };
 
   useEffect(() => {
@@ -106,7 +110,6 @@ function Users({ userRegister }) {
 
   return (
     <div className="bg-white" style={{ width: "81%", marginLeft: "auto" }}>
-      {" "}
       <div style={{ height: "70px" }}>
         {success && <Spinner animation="border" />}
         {change && (
@@ -122,7 +125,6 @@ function Users({ userRegister }) {
             <th>email</th>
             <th>username</th>
             <th>id</th>
-
             <th>admin</th>
             <th>AdminUpdate</th>
             <th>DeleteUser</th>
@@ -133,7 +135,6 @@ function Users({ userRegister }) {
             usersPaginado.map((e) => (
               <tr
                 key={e.id}
-                // style={userRegister.id === e.id ? { background: "#ccc" } : null}
                 className={userModify === e.id && change && "bg-warning"}
               >
                 <td>{e.name}</td>
@@ -146,14 +147,22 @@ function Users({ userRegister }) {
                 {userRegister.id !== e.id ? (
                   <>
                     <td>
-                    {e.username !=="Guest"?
-                    (<Button onClick={() => handleAdmin(e.id, !e.admin)}>
-                        Up
-                      </Button>) : ""}
-                      
+                      {e.username !== "Guest" ? (
+                        <Button
+                          className="btn btn-primary"
+                          onClick={() => handleAdmin(e.id, !e.admin)}
+                        >
+                          Up
+                        </Button>
+                      ) : null}
                     </td>
                     <td>
-                      <Button onClick={() => deleteItem(e.id)}>Del</Button>
+                      <Button
+                        className="btn btn-danger"
+                        onClick={() => handleDeleteItem(e.id)}
+                      >
+                        Del
+                      </Button>
                     </td>
                   </>
                 ) : (
@@ -204,6 +213,26 @@ function Users({ userRegister }) {
           }}
         />
       </Pagination>
+
+      <Modal show={showModal} onHide={closeModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Delete</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>
+            Are you sure you want to delete the user with the ID:{" "}
+            {userIdToDelete}?
+          </p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={closeModal}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={confirmDelete}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }
