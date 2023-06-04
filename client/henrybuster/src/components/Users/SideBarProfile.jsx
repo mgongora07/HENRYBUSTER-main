@@ -23,7 +23,7 @@ console.log(usuario)
           <div className="list-group-item py-2 text-start">
            
 
-            <Link to={"/admin/movies"} className="link-no-style">
+            <Link to={"/myProfile/Orders"} className="link-no-style">
               <div>
                 
                 <i className="bi bi-bag-fill fs-5 me-3"></i>
@@ -36,10 +36,10 @@ console.log(usuario)
           <div className="list-group-item py-2 text-start">
            
            
-            <Link to={"/miProfile/Adress"} className="link-no-style">
+            <Link to={"/myProfile/Adress"} className="link-no-style">
               <div>
                 <i className="bi bi-signpost-split fs-5 me-3"></i>
-                <span>Add an Adress</span>
+                <span>Add Information</span>
               </div>
             </Link>
             

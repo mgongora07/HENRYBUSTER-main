@@ -71,8 +71,8 @@ function App() {
 
   return (
     <>
-      <CartProvider>
         <AuthProvider>
+      <CartProvider>
           <Nav handleUser={handleUser} userRegister={userRegister} />
           {location.pathname.startsWith("/admin") && userRegister.admin ? (
             <Sidebar handleUser={handleUser} userRegister={userRegister} />
@@ -86,8 +86,9 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/payment" element={<Payment />} />
            
-            <Route path="miProfile/Adress" element={<AddNewAdress />} />
-            <Route path="/miProfile" element={
+            <Route path="/myProfile/Adress" element={<AddNewAdress />} />
+            <Route path="/myProfile/Orders" element={<MyOrders />} />
+            <Route path="/myProfile" element={
               <ProtectedRoute>
 
             <MyOrders />
@@ -120,8 +121,8 @@ function App() {
             <Route path="/results" element={<SearchResult />} />
             {/* ------- */}
           </Routes>
-        </AuthProvider>
       </CartProvider>
+        </AuthProvider>
     </>
   );
 }

@@ -85,7 +85,7 @@ const AddNewAdress = () => {
       <div>
         <h1>Hola</h1>
       </div>
-      <form onSubmit={handleSubmit} className={style.popup}>
+      <form onSubmit={handleSubmit} >
         <h2 className={style.letras2}>Save a new Adress</h2>
        
 
