@@ -1,18 +1,38 @@
 import React, { useState } from "react";
 import style from "./Sidebar.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../../context/authContext";
 import { useMediaQuery } from "react-responsive";
+import { useDispatch } from "react-redux";
+import { cleanOrders, cleanUser, setDirections } from "../../redux/actions";
 
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 
 function Sidebar({ handleUser, userRegister }) {
-  const isMdAndUp = useMediaQuery({ minWidth: 768 });
+  const isMdAndUp = useMediaQuery({ minWidth: 660 });
   const [show, setShow] = useState(isMdAndUp);
+
+  const dispatch = useDispatch();
+  const { logout } = useAuth();
+  const navigate = useNavigate();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleLogout = async () => {
+    try {
+      handleUser("");
+      await logout();
+      navigate("/");
+      dispatch(cleanOrders());
+      dispatch(cleanUser());
+      dispatch(setDirections([]));
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className={"body"}>
@@ -28,7 +48,7 @@ function Sidebar({ handleUser, userRegister }) {
               <Offcanvas.Title>
                 <div className="py-4">
                   <i className="bi bi-person-circle me-3 fs-4"></i>
-                  <span className="brand-name fs-4">Admin Name</span>
+                  <span className="brand-name fs-4">Panel Admin</span>
                 </div>
               </Offcanvas.Title>
             </Offcanvas.Header>
@@ -66,19 +86,19 @@ function Sidebar({ handleUser, userRegister }) {
               </Link>
               <Link to={"/admin/users"} className="link-no-style">
                 <div>
-                  <i className="bi bi-file-ruled fs-5 me-3"></i>
+                  <i className="fa-solid fa-user fs-5 me-3"></i>
                   <span className="sub-category">Users</span>
                 </div>
               </Link>
               <Link to={"/admin/purchases"} className="link-no-style">
                 <div>
-                  <i className="bi bi-file-ruled fs-5 me-3"></i>
+                  <i class="fa-solid fa-cart-shopping fs-6 me-3"></i>
                   <span className="sub-category">Purchases</span>
                 </div>
               </Link>
               <Link to={"/admin/stadistics"} className="link-no-style">
                 <div>
-                  <i className="bi bi-file-ruled fs-5 me-3"></i>
+                  <i class="fa-sharp fa-solid fa-chart-simple me-3"></i>
                   <span className="sub-category">Stadistics</span>
                 </div>
               </Link>
@@ -88,7 +108,8 @@ function Sidebar({ handleUser, userRegister }) {
                   <span className="sub-category">Home</span>
                 </div>
               </Link>
-              <Link to={"/"} className="link-no-style">
+
+              <Link onClick={handleLogout}>
                 <div style={{ textAlign: "center" }}>
                   <i className={`fa-solid fa-arrow-right-from-bracket `}> </i>{" "}
                   <span className="sub-category">LogOut</span>

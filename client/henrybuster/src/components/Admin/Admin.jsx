@@ -16,7 +16,7 @@ import { CreateMovie } from "./MoviesAdmin/CreateMovie/CreateMovie";
 import { UpdateMovie } from "./MoviesAdmin/UpdateMovie/UpdateMovie";
 import { auto } from "@popperjs/core";
 
-function Admin() {
+function Admin({ handleUser }) {
   const { user } = useAuth();
   const location = useLocation();
   const params = useParams();
@@ -26,14 +26,15 @@ function Admin() {
     <Container fluid={true} className="bg-white">
       <Row>
         <Col
-          className="col-12 col-sm-auto p-0"
+          className="col-12 col-sm-auto p-0 mt-sm-2"
           style={{
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
+            alignItems: "start",
           }}
         >
-          <Sidebar />
+          <Sidebar handleUser={handleUser} />
         </Col>
         <Col classNmae="col-12 col-lg-7">
           <Outlet />
@@ -42,21 +43,5 @@ function Admin() {
     </Container>
   );
 }
-/* 
- <Route path="admin/create" element={<CreateMovie />} />
-                <Route path="admin/update/:id" element={<UpdateMovie />} />
-                <Route path="admin/create/genre" element={<CreateGenre />} />
-                <Route
-                  path="admin/update/genre/:id"
-                  element={<UpdateGenre />}
-                />
-                <Route path="admin/AllGenre" element={<AllGenres />} />
-                <Route path="/admin/*" element={<Admin />} />
-                <Route path="/admin/movies" element={<MoviesAdmin />} />
-                <Route
-                  path="/admin/users"
-                  element={<Users userRegister={userRegister} />}
-                />
-                <Route path="/admin/purchases" element={<Purchases />} />
-*/
+
 export default Admin;

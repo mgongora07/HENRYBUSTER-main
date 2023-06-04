@@ -5,6 +5,7 @@ import Sidebar from "../Sidebar";
 
 import Table from "react-bootstrap/Table";
 import Pagination from "react-bootstrap/Pagination";
+import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { getGenres } from "../../../redux/actions";
@@ -41,8 +42,14 @@ function AllGenres() {
     }
   }, [dispatch, genres]);
   return (
-    <div style={{ background: "white" }}>
-      <div style={{ width: "80%", marginLeft: "auto", height: "490px" }}>
+    <Container fluid={true} className="mt-4 bg-white" style={{ width: "100%" }}>
+      <h1>Genres:</h1>
+      <div
+        style={{
+          height: "500px",
+          overflowY: "auto",
+        }}
+      >
         {actualizar ? (
           <Button
             style={{ marginTop: "250px" }}
@@ -80,11 +87,8 @@ function AllGenres() {
         )}
       </div>
       <Pagination
-        style={{
-          margin: "0 auto",
-          marginRight: "450px",
-          width: "fit-content",
-        }}
+        className="d-flex justify-content-center mt-2"
+        style={{ width: "100%", flexWrap: "wrap", paddingBottom: "17px" }}
       >
         <Pagination.Prev
           disabled={page === 1 ? true : false}
@@ -118,7 +122,7 @@ function AllGenres() {
           }}
         />
       </Pagination>
-    </div>
+    </Container>
   );
 }
 
