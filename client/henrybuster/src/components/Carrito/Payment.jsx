@@ -12,7 +12,6 @@ import axios from 'axios';
 
 
 
-
 const Payment = () => {
   const KEY = import.meta.env.STRIPE_KEY
   const dispatch = useDispatch();
@@ -41,7 +40,9 @@ const directions = useSelector(state=> state.directions);
   const [showPopup, setShowPopup] = useState(false);
   const [direccion, setDireccion] = useState([]);
   const [idAdress, setidAdress] = useState('')
+
   const stripePromise = loadStripe( 'pk_test_51NB6jDKYeZyt0ZZhF4rhnhYKRp55bCCtnvCqUWE8khTmgyBk37Op5cl3jYN4fHJBA2LaLGU2RU6wFoYuuA6WO1eh00GfjV2DDF');
+
 
   const getAdress = async (uid) => {
    

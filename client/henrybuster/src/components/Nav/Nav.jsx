@@ -1,13 +1,10 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import style from "../Styles/Nav.module.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
-import logo from "../../assets/mp-logo-01.png";
+import logo from "../../img/logo_movie.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../SearchBar/SearchBar";
-
-import { CartContext } from "../Carrito/Context";
-
 import {
   getMoviesName,
   cleanOrders,
@@ -16,28 +13,16 @@ import {
   getUserById,
 } from "../../redux/actions";
 
-
 export const Nav = ({ handleUser, userRegister }) => {
   const dispatch = useDispatch();
   const location = useLocation();
-
-  const usuario = useSelector(state=>state.user)
-  const { cartItems } = useContext(CartContext);
-  const [totalAmount, setTotalAmount] = useState(0);
-  
-
+  const usuario = useSelector((state) => state.user);
   const handleSearch = (name) => {
     dispatch(getMoviesName(name));
   };
   const [userState, setUserState] = useState({ id: "", name: "" });
   const { user, loading, logout } = useAuth();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const sumAmount = cartItems.reduce((total, item) => total + item.amount, 0);
-    setTotalAmount(sumAmount);
-  }, [cartItems])
-
 
   const handleLogout = async () => {
     try {
@@ -85,27 +70,20 @@ export const Nav = ({ handleUser, userRegister }) => {
       </div>
 
       <div className={style.contentLink}>
-        {userRegister?.admin && (
-          <Link className={style.link} to="/admin">
-            <i className="fa-solid fa-user"></i>
-            <span className={style.iconText}>Admin</span>
-          </Link>
-        ) }
         <Link className={style.link} to="/">
           <i className="fa-solid fa-house"></i>{" "}
           <span className={style.iconText}>HOME</span>
         </Link>
-
         <Link className={style.link} to="/Cart">
           <i className="fa-solid fa-cart-shopping"></i>{" "}
-          <span className={style.iconText}>CART({totalAmount})</span>
+          <span className={style.iconText}>CART</span>
         </Link>
         <Link className={style.link} to="/about">
           <i className="fa-solid fa-address-card"></i>{" "}
           <span className={style.iconText}>ABOUT</span>
         </Link>
         <Link hidden={perfil} className={style.link} to="/login">
-          <i className="fas fa-sign-in-alt"></i>{" "}
+          <i class="fas fa-sign-in-alt"></i>{" "}
           <span className={style.iconText}>LOGIN</span>
         </Link>
         {location.pathname !== "/admin/movies" && (
@@ -117,12 +95,9 @@ export const Nav = ({ handleUser, userRegister }) => {
           onClick={handleLogout}
           to="/"
         >
-          <i
-            className={`fa-solid fa-arrow-right-from-bracket ${style.logout}`}
-          ></i>
+          <i className={`fa-solid fa-arrow-right-from-bracket ${style.logout}`}></i>
         </Link>
       </div>
-
     </nav>
   );
 };

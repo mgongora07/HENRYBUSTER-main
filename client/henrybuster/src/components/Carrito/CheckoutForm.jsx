@@ -13,6 +13,7 @@ import { postOrder } from "../../redux/actions";
 import axios from "axios";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
+import emailjs from '@emailjs/browser';
 
 const CheckoutForm = (props) => {
   const { cartItems, clearCart } = useContext(CartContext);
@@ -33,6 +34,17 @@ const CheckoutForm = (props) => {
   console.log(usuario, "hola soy usuario");
   const[user, setUser] = useState({id:"", name:""})
   //Aqui se intenta hacer que los datos de la orden se llenen, para la ruta back de compra si fueras usuario
+
+  
+ var templateParams={
+  user_name:currentOrder.name?currentOrder.name:usuario.name ,
+  user_email:currentOrder.email?currentOrder.name:usuario.email
+}  
+
+
+
+console.log(templateParams)
+
 
   useEffect(() => {
     if (currentOrder && currentOrder.street !== "" && !usuario?.id) {
@@ -91,6 +103,15 @@ const CheckoutForm = (props) => {
             elements.getElement(CardElement).clear();
             clearCart();
             navigate("/");
+            emailjs.send('service_816e43q', 'template_tcxw4vn', templateParams,'W3vt9Xtn4Qq49pmM4')
+            .then(function(response) {
+               console.log('SUCCESS!', response.status, response.text);
+            }, function(error) {
+               console.log('FAILED...', error);
+            });
+
+
+
           } else {
             setResponseMessage("Payment failed. Please try again.");
             elements.getElement(CardElement).clear();

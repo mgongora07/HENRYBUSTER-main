@@ -42,13 +42,11 @@ export const Home = ({ handleUser }) => {
     dispatch(getFormats());
     dispatch(getGenres());
     if (user) {
-      console.log("llegue aqui");
       handleUser(user.uid);
     }
   }, [user]);
   useEffect(() => {
     if (user) {
-      console.log("llegue aqui");
       handleUser(user.uid);
     }
   }, [dispatch]);

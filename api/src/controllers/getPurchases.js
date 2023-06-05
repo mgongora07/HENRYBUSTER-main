@@ -1,5 +1,5 @@
-const { Movie, Purchase, Address,User } = require('../db');
-const { Op } = require('sequelize');
+const { Movie, Purchase, Address, User, Genre, Format } = require("../db");
+const { Op } = require("sequelize");
 
 const getPurchases = async (req, res) => {
   try {
@@ -7,19 +7,29 @@ const getPurchases = async (req, res) => {
       include: [
         {
           model: Movie,
-         
+          include: [
+            {
+              model: Genre,
+              attributes: ["name"],
+              through: { attributes: [] },
+            },
+            {
+              model: Format,
+              attributes: ["name"],
+            },
+          ],
         },
         {
           model: Address,
         },
         {
-            model: User
+          model: User,
         },
         {
-            model: Address
-        }
+          model: Address,
+        },
       ],
-      order: [['date', 'DESC']],
+      order: [["date", "DESC"]],
     });
 
     res.status(200).json(purchases);
