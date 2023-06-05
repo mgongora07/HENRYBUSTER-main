@@ -31,7 +31,6 @@ import Users from "./components/Admin/users/Users";
 import UserProfile from "./components/Users/UserProfile";
 
 
-
 import Purchases from "./components/Admin/purchases/purchases";
 
 function App() {
@@ -80,8 +79,8 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/payment" element={<Payment />} />
             {/* admin */}
-
-            {userRegister && userRegister.admin ? (
+         
+             {userRegister && userRegister.admin ? (
               <>
                 <Route path="admin/create" element={<CreateMovie />} />
                 <Route path="admin/update/:id" element={<UpdateMovie />} />
