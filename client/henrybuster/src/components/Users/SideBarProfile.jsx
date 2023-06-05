@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 function SideBarProfile({ handleUser, userRegister }) {
 const usuario = useSelector((state) => state.user);
-console.log(usuario)
+
   return (
     <div className={style.body} >
       <div className="sidebar p-2">

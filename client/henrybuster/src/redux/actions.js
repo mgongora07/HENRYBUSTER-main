@@ -22,7 +22,8 @@ import {
   ORDER_USER_DATA,
   CLEAN_ORDERS,
   DIRECTIONS,
-  CLEAN_USER
+  CLEAN_USER,
+  GET_MY_ORDERS
 } from "./action-type";
 
 import axios from "axios";
@@ -351,6 +352,25 @@ export const cleanOrders = () => {
       return dispatch({
         type: CLEAN_ORDERS,
         payload: clean,
+      });
+    } catch (error) {
+      return { error: error };
+    }
+  };
+};
+
+
+export const getMyOrders =  (uid) =>{
+  return async function (dispatch) {
+    try {
+      const orders = await axios(`http://localhost:3001/purchase/${uid}`);
+      console.log(orders,'orders de actiosn')
+      const payload = orders.data
+      console.log(payload,'paylooad del awat')
+
+      return dispatch({
+        type: GET_MY_ORDERS,
+        payload: payload,
       });
     } catch (error) {
       return { error: error };

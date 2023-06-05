@@ -34,7 +34,7 @@ import Purchases from "./components/Admin/purchases/purchases";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import HomeProfile from "./components/Users/SideBarProfile";
 import SideBarProfile from "./components/Users/SideBarProfile";
-import AddAdressProfile from "./components/Users/AddAdressProfile";
+
 import MyOrders from "./components/Users/MyOrders";
 import AddNewAdress from "./components/Users/AddNewAdress";
 

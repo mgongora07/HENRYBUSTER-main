@@ -23,5 +23,6 @@ export const ORDER_USER_DATA='ORDER_USER_DATA'
 export const CLEAN_ORDERS='CLEAN_ORDERS'
 export const CLEAN_USER='CLEAN_USER'
 export const DIRECTIONS='DIRECTIONS'
+export const  GET_MY_ORDERS=' GET_MY_ORDERS'
 
 
