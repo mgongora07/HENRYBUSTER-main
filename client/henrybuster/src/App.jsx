@@ -34,7 +34,6 @@ import Purchases from "./components/Admin/purchases/purchases";
 import BarChart from "./components/Admin/purchases/BarChart";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 
-
 function App() {
   const location = useLocation();
 
@@ -71,7 +70,6 @@ function App() {
             <Nav handleUser={handleUser} userRegister={userRegister} />
           )}
 
-         
           <Routes>
             <Route path="/" element={<Home handleUser={handleUser} />} />
             <Route path="/movie/:id" element={<Detail />} />
@@ -94,8 +92,10 @@ function App() {
 
             {userRegister && userRegister.admin ? (
               <>
-
-                <Route path="/admin" element={<Admin />}>
+                <Route
+                  path="/admin"
+                  element={<Admin handleUser={handleUser} />}
+                >
                   <Route path="/admin" element={<HomeAdmin />} />
                   <Route path="create" element={<CreateMovie />} />
                   <Route path="update/:id" element={<UpdateMovie />} />

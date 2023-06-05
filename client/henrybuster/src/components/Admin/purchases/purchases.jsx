@@ -5,6 +5,7 @@ import { Link, Outlet } from "react-router-dom";
 import BarChart from "./BarChart";
 
 import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 
 import Alert from "react-bootstrap/Alert";
@@ -139,14 +140,31 @@ function Purchases() {
 
   return (
     <Container className="bg-white">
-      <div style={{ height: "70px" }}>
-        {change && (
-          <Alert variant={color} show={change}>
-            <Alert.Heading>{message}</Alert.Heading>
-          </Alert>
-        )}
-      </div>{" "}
-      <Row>
+      <Row
+        style={{
+          height: "70px",
+          marginBottom: "10px",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <Col>
+          <h1 style={{ width: "fit-content" }}>Users List:</h1>
+        </Col>
+        <Col style={{ height: "70px" }}>
+          {change && (
+            <Alert variant={color} show={change}>
+              <Alert.Heading>{message}</Alert.Heading>
+            </Alert>
+          )}
+        </Col>
+      </Row>
+      <Row
+        style={{
+          height: "500px",
+          overflowY: "auto",
+        }}
+      >
         <Table striped hover>
           <thead>
             <tr>
@@ -221,12 +239,8 @@ function Purchases() {
       <Row>
         {" "}
         <Pagination
-          style={{
-            width: "60%",
-
-            marginLeft: "auto",
-            marginRight: "20px",
-          }}
+          className="d-flex justify-content-center mt-2"
+          style={{ width: "100%", flexWrap: "wrap", paddingBottom: "18px" }}
         >
           <Pagination.Prev
             disabled={page === 1 ? true : false}

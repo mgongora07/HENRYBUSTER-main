@@ -4,6 +4,8 @@ import Pagination from "react-bootstrap/Pagination";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+import Modal from "react-bootstrap/Modal";
+import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
 import Spinner from "react-bootstrap/Spinner";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,6 +20,10 @@ function Users({ userRegister }) {
   const [userModify, setUserModify] = useState("");
   const [message, setMessage] = useState("");
   const [color, setColor] = useState("");
+
+  // Modal
+  const [showDeleteModal, setShowDeleteModal] = useState(false); // Estado para controlar la visibilidad del modal de eliminación
+  const [deleteItemId, setDeleteItemId] = useState(""); // Estado para almacenar el ID del elemento a eliminar
 
   const dispatch = useDispatch();
 
@@ -63,36 +69,31 @@ function Users({ userRegister }) {
   };
 
   const deleteItem = async (itemId) => {
-    const resp = confirm(
-      `You want to delete the movie with the id: ${itemId}?`
-    );
-    if (resp) {
-      const resp = confirm(`¿you're sure?`);
-      if (resp) {
-        try {
-          await axios.delete(`http://localhost:3001/user/${itemId}`);
-          setSuccess(true);
+    setDeleteItemId(itemId);
+    setShowDeleteModal(true);
+  };
 
-          setMessage("User Admin Delete");
-          setColor("danger");
-          setTimeout(() => {
-            setSuccess(false);
-            setChange(true);
-          }, 1000);
-          setTimeout(() => {
-            setMessage("");
-            setColor("");
+  const handleDeleteConfirm = async () => {
+    try {
+      await axios.delete(`http://localhost:3001/user/${deleteItemId}`);
+      setSuccess(true);
 
-            setChange(false);
-          }, 1800);
-        } catch (error) {
-          console.log(error);
-        }
-      } else {
-        return;
-      }
-    } else {
-      return;
+      setMessage("User Admin Delete");
+      setColor("danger");
+      setTimeout(() => {
+        setSuccess(false);
+        setChange(true);
+      }, 1000);
+      setTimeout(() => {
+        setMessage("");
+        setColor("");
+
+        setChange(false);
+      }, 1800);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setShowDeleteModal(false);
     }
   };
 
@@ -107,39 +108,41 @@ function Users({ userRegister }) {
   }, []);
 
   return (
-    <Container
-      className="bg-white"
-      style={{
-        marginLeft: "-60px",
-        border: "1px solid black",
-      }}
-    >
+    <Container fluid={true} className="mt-4 bg-white" style={{ width: "100%" }}>
       {" "}
-      <Row>
-        <h1>Users List</h1>
-      </Row>
-      <Row>
-        <div style={{ height: "70px" }}>
+      <Row style={{ height: "70px", marginBottom: "10px" }}>
+        <Col>
+          <h1>Users List</h1>
+        </Col>
+        <Col>
           {success && <Spinner animation="border" />}
           {change && (
             <Alert variant={color} show={change}>
               <Alert.Heading>{message}</Alert.Heading>
             </Alert>
           )}
-        </div>
+        </Col>
       </Row>
-      <div>
+      <Row
+        style={{
+          height: "500px",
+          overflowY: "auto",
+        }}
+      >
         <Table striped hover>
           <thead>
             <tr>
               <th>Name</th>
               <th>email</th>
               <th>username</th>
-              <th>id</th>
 
               <th>admin</th>
-              <th>AdminUpdate</th>
-              <th>DeleteUser</th>
+              {userRegister.superAdmin && (
+                <>
+                  <th>AdminUpdate</th>
+                  <th>DeleteUser</th>
+                </>
+              )}
             </tr>
           </thead>
           <tbody>
@@ -155,9 +158,9 @@ function Users({ userRegister }) {
                   <td style={e.username !== "Guest" ? null : { color: "red" }}>
                     {e.username !== "Guest" ? e.username : "Guest"}
                   </td>
-                  <td>{e.id}</td>
+
                   <td>{e.admin ? "true" : "false"}</td>
-                  {userRegister.id !== e.id ? (
+                  {userRegister.id !== e.id && userRegister.superAdmin ? (
                     <>
                       <td>
                         <Button onClick={() => handleAdmin(e.id, !e.admin)}>
@@ -178,14 +181,11 @@ function Users({ userRegister }) {
               ))}
           </tbody>
         </Table>
-      </div>
+      </Row>
       <Row>
         <Pagination
-          style={{
-            width: "60%",
-            marginLeft: "auto",
-            marginRight: "20px",
-          }}
+          className="d-flex justify-content-center mt-2"
+          style={{ width: "100%", flexWrap: "wrap" }}
         >
           <Pagination.Prev
             disabled={page === 1 ? true : false}
@@ -219,6 +219,22 @@ function Users({ userRegister }) {
           />
         </Pagination>
       </Row>
+      <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Delete</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you want to delete the user with the ID: {deleteItemId}?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={handleDeleteConfirm}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 }

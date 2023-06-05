@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
-import s from "./UpdateMovie.module.css";
-import { getFormats, getLanguages, getGenres } from "../../../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
-//import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import { getFormats, getLanguages, getGenres } from "../../../../redux/actions";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import axios from "axios";
+
+//import { useHistory } from "react-router-dom";
 import Tag from "../../../Tags/Tags";
+
+import s from "./UpdateMovie.module.css";
+import Alert from "react-bootstrap/Alert";
 
 export const UpdateMovie = () => {
   const dispatch = useDispatch();
@@ -159,12 +162,12 @@ export const UpdateMovie = () => {
       setSuccess(true);
       setTimeout(() => {
         setSuccess("");
-      }, 3000);
+      }, 1500);
     } else {
       setSuccess(false);
       setTimeout(() => {
         setSuccess("");
-      }, 3000);
+      }, 1500);
     }
     // history.push("/home");
   };
@@ -320,6 +323,17 @@ export const UpdateMovie = () => {
               />
             ))}
           </div>
+          {success === true ? (
+            <Alert variant="success">Update success!</Alert>
+          ) : (
+            ""
+          )}
+
+          {success === false ? (
+            <Alert variant="danger">Fill the form correctly!</Alert>
+          ) : (
+            ""
+          )}
           <button
             type="submit"
             className={s["submit-button"]}
@@ -327,21 +341,6 @@ export const UpdateMovie = () => {
           >
             Enviar
           </button>
-          {success === true ? (
-            <div className={`alert alert-success mt-3 fixed-bottom`} role="alert">
-              Update success!
-            </div>
-          ) : (
-            ""
-          )}
-
-          {success === false ? (
-            <div className={`alert alert-danger mt-3 fixed-bottom`} role="alert">
-              Fill the form correctly!
-            </div>
-          ) : (
-            ""
-          )}
         </form>
       </div>
     </div>

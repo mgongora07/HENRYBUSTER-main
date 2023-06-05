@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 
 const HomeAdmin = () => {
   return (
-    <div>
+    <div style={{ height: "100vh" }}>
       <h2>Welcome Administrator</h2>
       <p>Here you will find a quick guide on how to use the admin panel:</p>
 
