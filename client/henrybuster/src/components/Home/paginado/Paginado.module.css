@@ -32,6 +32,12 @@
   color: #fff;
  }
 
+ .selectedButton {
+  color: crimson;
+  box-shadow: inset 4px 4px 12px #c5c5c5,
+              inset -4px -4px 12px #ffffff;
+}
+
 
 
 @media (max-width: 850px) {
