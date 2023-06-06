@@ -22,7 +22,8 @@ import {
   ORDER_USER_DATA,
   CLEAN_ORDERS,
   DIRECTIONS,
-  CLEAN_USER
+  CLEAN_USER,
+  GET_MY_ORDERS
 } from "./action-type";
 
 const INITIAL_STATE = {
@@ -44,7 +45,8 @@ const INITIAL_STATE = {
   allUsers: [],
   usersPaginado: [],
   currentUserOrder:{},
-  directions:{}
+  directions:{},
+  myOrders:[]
 };
 
 export default function rootReducer(
@@ -258,6 +260,12 @@ export default function rootReducer(
             ...state,
             user:{id:"",name:""}
           }
+      case GET_MY_ORDERS:
+        console.log(payload, 'soy payload')
+        return{
+          ...state,
+          myOrders: payload
+        }
     default:
       return state;
   }

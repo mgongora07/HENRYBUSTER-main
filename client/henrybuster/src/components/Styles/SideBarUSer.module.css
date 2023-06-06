@@ -1,0 +1,20 @@
+.body {
+    background-color: white;
+  
+    width: 250px;
+    height: 100vh;
+  }
+  
+  .sub-category-block {
+    display: block;
+    text-align: left;
+  }
+  
+  .link-no-style {
+    color: inherit; 
+    text-decoration: none;
+  }
+  
+  .link-no-style:hover {
+    color: blue;
+  }

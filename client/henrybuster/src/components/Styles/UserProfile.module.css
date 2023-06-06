@@ -1,26 +1,28 @@
 .letras {
     color: #333;
-    font-size: 18px;
-    font-weight: bold;
+    
     margin-bottom: 10px;
     width: 150px;
     display: flex;
     align-items: center;
     text-align: left;
-    font-size: x-large;
+    font-size:medium;
   }
   
   .letras2 {
     color: #333;
-    font-size: 18px;
+    font-size: medium;
     font-weight: bold;
-    font-size: xx-large;
+    font-size: medium;
     padding-bottom: 20px;
   }
   
   .popup {
+    display: flex;
+    flex-direction: row;
     background-color: #7498b6;
-    
+    height: 100vh;
+    width: 100%;
     padding: 20px;
    
   }
@@ -58,7 +60,7 @@
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
-    font-size: 25px;
+    font-size: medium;
     cursor: pointer;
   }
   
@@ -72,7 +74,7 @@
     right: 10px;
     border-radius: 5px;
     border: none;
-    font-size: 20px;
+    font-size: medium;
     color: #ffffff;
     cursor: pointer;
     background-color: #061c2d;
@@ -87,3 +89,34 @@
     z-index: 9999;
   }
   
+  .container{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100%;
+}
+
+.direccion{
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  margin: 5px 0;
+  width: 50vh;
+  text-align: left;
+}
+.column {
+  flex-basis: 50%; 
+  padding: 10px; 
+}
+
+.Columna2{
+  padding: 30px;
+
+}
+.titulo{
+  background-color: #7498b6;
+}

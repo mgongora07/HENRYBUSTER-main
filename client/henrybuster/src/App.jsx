@@ -28,11 +28,16 @@ import RouteError from "./components/RouteError/RouteError";
 import axios from "axios";
 import Users from "./components/Admin/users/Users";
 
-import UserProfile from "./components/Users/UserProfile";
+
 
 import Purchases from "./components/Admin/purchases/purchases";
 import BarChart from "./components/Admin/purchases/BarChart";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import HomeProfile from "./components/Users/SideBarProfile";
+import SideBarProfile from "./components/Users/SideBarProfile";
+
+import MyOrders from "./components/Users/MyOrders";
+import AddNewAdress from "./components/Users/AddNewAdress";
 
 function App() {
   const location = useLocation();
@@ -64,11 +69,13 @@ function App() {
 
   return (
     <>
-      <CartProvider>
         <AuthProvider>
-          {!location.pathname.startsWith("/admin") && (
-            <Nav handleUser={handleUser} userRegister={userRegister} />
-          )}
+
+      <CartProvider>
+          <Nav handleUser={handleUser} userRegister={userRegister} />
+          {location.pathname.startsWith("/admin") && userRegister.admin ? (
+            <Sidebar handleUser={handleUser} userRegister={userRegister} />
+          ) : null}
 
           <Routes>
             <Route path="/" element={<Home handleUser={handleUser} />} />
@@ -79,14 +86,15 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/payment" element={<Payment />} />
 
-            <Route
-              path="/miProfile"
-              element={
-                <ProtectedRoute>
-                  <UserProfile />
-                </ProtectedRoute>
-              }
-            />
+           
+            <Route path="/myProfile/Adress" element={<AddNewAdress />} />
+            <Route path="/myProfile/Orders" element={<MyOrders />} />
+            <Route path="/myProfile" element={
+              <ProtectedRoute>
+
+            <MyOrders />
+              </ProtectedRoute>
+            } />
 
             {/* admin */}
 
@@ -116,8 +124,8 @@ function App() {
             )}
             <Route path="/results" element={<SearchResult />} />
           </Routes>
-        </AuthProvider>
       </CartProvider>
+        </AuthProvider>
     </>
   );
 }
