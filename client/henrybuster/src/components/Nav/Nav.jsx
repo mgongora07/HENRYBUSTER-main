@@ -92,7 +92,7 @@ export const Nav = ({ handleUser, userRegister }) => {
           <span className={style.iconText}>ABOUT</span>
         </Link>
         <Link hidden={perfil} className={style.link} to="/login">
-          <i class="fas fa-key"></i>{" "}
+          <i className="fas fa-key"></i>{" "}
           <span className={style.iconText}>LOGIN</span>
         </Link>
         {location.pathname !== "/admin/movies" && (
