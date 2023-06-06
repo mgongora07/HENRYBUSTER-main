@@ -12,6 +12,7 @@ const rating = require("./models/Rating");
 const language = require("./models/Language");
 const address = require("./models/Address");
 const purchaseMovie = require("./models/PurchaseMovie");
+const wishList = require("./models/WishList");
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
 const sequelize = new Sequelize(
@@ -58,6 +59,7 @@ rating(sequelize);
 language(sequelize);
 address(sequelize);
 purchaseMovie(sequelize);
+wishList(sequelize);
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 const {
@@ -71,6 +73,7 @@ const {
   Language,
   Address,
   PurchaseMovie,
+  WishList
 } = sequelize.models;
 
 Movie.belongsToMany(Genre, { through: "MovieGenre" });
@@ -99,17 +102,10 @@ Purchase.belongsTo(User);
 
 User.hasMany(Address);
 Address.belongsTo(User);
-/*
-Purchase.belongsToMany(Movie, { through: "PurchaseMovie" });
-Movie.belongsToMany(Purchase, { through: "PurchaseMovie" });
 
+WishList.belongsTo(User);
+WishList.belongsTo(Movie);
 
-Movie.hasOne(PurchaseMovie)
-PurchaseMovie.belongsTo(Movie)
-
-Purchase.hasOne(PurchaseMovie)
-PurchaseMovie.belongsTo(Purchase)
-*/
 Purchase.belongsToMany(Movie, {
   through: PurchaseMovie,
   foreignKey: "PurchaseId",
