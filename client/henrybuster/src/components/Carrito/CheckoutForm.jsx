@@ -36,14 +36,6 @@ const CheckoutForm = (props) => {
   //Aqui se intenta hacer que los datos de la orden se llenen, para la ruta back de compra si fueras usuario
 
   
- var templateParams={
-  user_name:currentOrder.name?currentOrder.name:usuario.name ,
-  user_email:currentOrder.email?currentOrder.name:usuario.email
-}  
-
-
-
-console.log(templateParams)
 
 
   useEffect(() => {
@@ -67,6 +59,14 @@ console.log(templateParams)
     }
     
   }, [userState]);
+
+  var templateParams={
+    user_name:currentOrder.name?currentOrder.name:user.name,
+    user_email:currentOrder.email?currentOrder.email:user.email
+  }  
+  console.log(templateParams)
+  
+  
 
   //El detalle es que esto nuca se llena con los datos
   const handleSubmit = async (e) => {
