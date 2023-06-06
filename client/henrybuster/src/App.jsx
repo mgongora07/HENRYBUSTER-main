@@ -38,8 +38,16 @@ import SideBarProfile from "./components/Users/SideBarProfile";
 
 import MyOrders from "./components/Users/MyOrders";
 import AddNewAdress from "./components/Users/AddNewAdress";
+import Kommunicate from "@kommunicate/kommunicate-chatbot-plugin";
+
+  Kommunicate.init("3dc03d73906036a361d98fb3e7987a6d1", {
+    automaticChatOpenOnNavigation: true,
+    popupWidget: true,
+  });
 
 function App() {
+
+
   const location = useLocation();
 
   const [userRegister, setUser] = useState({});
