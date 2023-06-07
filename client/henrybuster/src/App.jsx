@@ -77,63 +77,77 @@ function App() {
 
   return (
     <>
-        <AuthProvider>
-
-      <CartProvider>
+      <AuthProvider>
+        <CartProvider>
           <Nav handleUser={handleUser} userRegister={userRegister} />
           {location.pathname.startsWith("/admin") && userRegister.admin ? (
             <Sidebar handleUser={handleUser} userRegister={userRegister} />
           ) : null}
 
           <Routes>
-            <Route path="/" element={<Home handleUser={handleUser} />} />
-            <Route path="/movie/:id" element={<Detail />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/payment" element={<Payment />} />
+            <Route path='/' element={<Home handleUser={handleUser} />} />
+            <Route path='/movie/:id' element={<Detail />} />
+            <Route path='/cart' element={<Cart />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/payment' element={<Payment />} />
 
-           
-            <Route path="/myProfile/Adress" element={<AddNewAdress />} />
-            <Route path="/myProfile/Orders" element={<MyOrders />} />
-            <Route path="/myProfile" element={
-              <ProtectedRoute>
-
-            <MyOrders />
-              </ProtectedRoute>
-            } />
+            <Route
+              path='/myProfile/Adress'
+              element={
+                <ProtectedRoute>
+                  <AddNewAdress />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path='/myProfile/Orders'
+              element={
+                <ProtectedRoute>
+                  <MyOrders />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path='/myProfile'
+              element={
+                <ProtectedRoute>
+                  <MyOrders />
+                </ProtectedRoute>
+              }
+            />
 
             {/* admin */}
 
             {userRegister && userRegister.admin ? (
               <>
                 <Route
-                  path="/admin"
+                  path='/admin'
                   element={<Admin handleUser={handleUser} />}
                 >
-                  <Route path="/admin" element={<HomeAdmin />} />
-                  <Route path="create" element={<CreateMovie />} />
-                  <Route path="update/:id" element={<UpdateMovie />} />
-                  <Route path="create/genre" element={<CreateGenre />} />
-                  <Route path="update/genre/:id" element={<UpdateGenre />} />
-                  <Route path="AllGenre" element={<AllGenres />} />
-                  <Route path="movies" element={<MoviesAdmin />} />
+                  <Route path='/admin' element={<HomeAdmin />} />
+                  <Route path='create' element={<CreateMovie />} />
+                  <Route path='update/:id' element={<UpdateMovie />} />
+                  <Route path='create/genre' element={<CreateGenre />} />
+                  <Route path='update/genre/:id' element={<UpdateGenre />} />
+                  <Route path='AllGenre' element={<AllGenres />} />
+                  <Route path='movies' element={<MoviesAdmin />} />
                   <Route
-                    path="users"
+                    path='users'
                     element={<Users userRegister={userRegister} />}
                   />
-                  <Route path="purchases" element={<Purchases />} />
-                  <Route path="stadistics" element={<BarChart />} />
+                  <Route path='purchases' element={<Purchases />} />
+                  <Route path='stadistics' element={<BarChart />} />
                 </Route>
               </>
             ) : (
-              <Route path="/admin" element={<RouteError />} />
+              <Route path='/admin' element={<RouteError />} />
             )}
-            <Route path="/results" element={<SearchResult />} />
+            <Route path='/results' element={<SearchResult />} />
           </Routes>
-      </CartProvider>
-        </AuthProvider>
+        </CartProvider>
+      </AuthProvider>
     </>
   );
 }
