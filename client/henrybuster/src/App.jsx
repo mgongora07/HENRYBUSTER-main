@@ -39,6 +39,7 @@ import SideBarProfile from "./components/Users/SideBarProfile";
 import MyOrders from "./components/Users/MyOrders";
 import AddNewAdress from "./components/Users/AddNewAdress";
 import Kommunicate from "@kommunicate/kommunicate-chatbot-plugin";
+import WhistList from "./components/Users/WhistList";
 
   Kommunicate.init("3dc03d73906036a361d98fb3e7987a6d1", {
     automaticChatOpenOnNavigation: true,
@@ -106,6 +107,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <MyOrders />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path='/myProfile/Whislist'
+              element={
+                <ProtectedRoute>
+                  <WhistList />
                 </ProtectedRoute>
               }
             />

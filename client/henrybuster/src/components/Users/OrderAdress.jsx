@@ -11,6 +11,7 @@ const OrderAdress = ({ onClose }) => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const directions = useSelector((state) => state.directions);
+  const [formErrors, setFormErrors] = useState({})
   const purchases = cartItems.map((item) => ({
     MovieId: item.id,
     quantity: item.amount,
@@ -44,15 +45,48 @@ const OrderAdress = ({ onClose }) => {
       ...user
     }));
   }, [user]);
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
+  
+    if (name === "street" || name === "city" || name === "state" || name === "country" ||name === "name" || name === "email"){
+      if (value.length > 70) {
+        setFormErrors((prevErrors) => ({
+          ...prevErrors,
+          [name]: ` The ${name} field cannot be greater than 70 characters`,
+        }));
+        return;
+      }
+    } else if (name === "postalCode" || name === "phoneNumber") {
+      if (value.length > 15 || !/^\d+$/.test(value)) {
+        setFormErrors((prevErrors) => ({
+          ...prevErrors,
+          [name]: 'Postal Code must be a numeric value and not exceed 10 characters',
+        }));
+        return;
+      }
+    }
+  
+    setFormErrors((prevErrors) => {
+      const updatedErrors = { ...prevErrors };
+      delete updatedErrors[name];
+      return updatedErrors;
+    });
+  
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
+  };
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     [name]: value,
+  //   }));
   
  
-  };
+  // };
 
   useEffect(() => {
     if (user) {
@@ -155,6 +189,7 @@ const OrderAdress = ({ onClose }) => {
             <input
               type="text"
               name="name"
+            
               value={formData.name}
               onChange={handleChange}
               disabled= {user?.name? true: false}
@@ -166,6 +201,7 @@ const OrderAdress = ({ onClose }) => {
             <input
               type="email"
               name="email"
+             
               value={formData.email}
               onChange={handleChange}
               disabled= {user?.email? true: false}
@@ -177,6 +213,8 @@ const OrderAdress = ({ onClose }) => {
             <input
               type="text"
               name="phoneNumber"
+              pattern="[0-9]+"
+            
               value={formData.phoneNumber}
               onChange={handleChange}
               disabled= {user?.phoneNumber? true: false}
@@ -188,6 +226,7 @@ const OrderAdress = ({ onClose }) => {
             <input
               type="text"
               name="street"
+           
               value={formData.street}
               onChange={handleChange}
             />
@@ -198,6 +237,7 @@ const OrderAdress = ({ onClose }) => {
             <input
               type="text"
               name="city"
+            
               value={formData.city}
               onChange={handleChange}
             />
@@ -208,6 +248,7 @@ const OrderAdress = ({ onClose }) => {
             <input
               type="text"
               name="state"
+           
               value={formData.state}
               onChange={handleChange}
             />
@@ -218,6 +259,8 @@ const OrderAdress = ({ onClose }) => {
             <input
               type="text"
               name="postalCode"
+           
+              pattern="[0-9]+"
               value={formData.postalCode}
               onChange={handleChange}
             />
@@ -228,11 +271,17 @@ const OrderAdress = ({ onClose }) => {
             <input
               type="text"
               name="country"
+             
               value={formData.country}
               onChange={handleChange}
             />
             <br />
           </div>
+          {Object.keys(formErrors).map((fieldName) => (
+              <p key={fieldName} className={style.error}>
+                {formErrors[fieldName]}
+              </p>
+            ))}
           <button className={style.button} type="submit">
             Save
           </button>

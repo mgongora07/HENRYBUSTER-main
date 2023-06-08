@@ -23,7 +23,10 @@ import {
   CLEAN_ORDERS,
   DIRECTIONS,
   CLEAN_USER,
-  GET_MY_ORDERS
+  GET_MY_ORDERS,
+  ADD_FAVORITE,
+  DELETE_FAVORITE,
+  GET_FAVORITES,
 } from "./action-type";
 
 import axios from "axios";
@@ -364,9 +367,9 @@ export const getMyOrders =  (uid) =>{
   return async function (dispatch) {
     try {
       const orders = await axios(`http://localhost:3001/purchase/${uid}`);
-      console.log(orders,'orders de actiosn')
+
       const payload = orders.data
-      console.log(payload,'paylooad del awat')
+   
 
       return dispatch({
         type: GET_MY_ORDERS,
@@ -377,3 +380,55 @@ export const getMyOrders =  (uid) =>{
     }
   };
 };
+
+export const addFavorite = (id, MovieId) => {
+    
+  return async  function( dispatch){ 
+      try {
+          
+       
+          const response = await axios.post(`http://localhost:3001/wishList/${id}`, {MovieId})
+      
+          dispatch({
+              type: ADD_FAVORITE, 
+              payload: response.data 
+          })
+
+          } catch (error) {
+                return {error: error}
+            }
+  
+  }
+}
+
+export const getAllFavorites = (id) => {
+  return async function (dispatch) {
+      try {
+         
+          const response = await  axios.get(`http://localhost:3001/wishList/${id}`)
+         
+     
+          return dispatch({
+              type: GET_FAVORITES,
+              payload: response.data
+          })
+      } catch (error) {
+          return {error:error}
+      }
+  }
+}
+
+export const deleteFavorite = (id) => {
+  return async function (dispatch){
+      try {
+          console.log(id, 'Antes del deelete')
+          const response = await axios.delete(`http://localhost:3001/wishList/${id}`)
+          console.log(response)
+      } catch (error) {
+          return {message: error}
+      }
+      
+
+  }
+  
+}

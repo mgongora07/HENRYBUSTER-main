@@ -10,11 +10,11 @@
     text-align: left;
   }
   
-  .link-no-style {
-    color: inherit; 
-    text-decoration: none;
+  .links {
+    color: inherit;  /* Hereda el color del texto */
+  text-decoration: none;  /* Sin subrayado */
   }
   
-  .link-no-style:hover {
+  .links:hover {
     color: blue;
   }
