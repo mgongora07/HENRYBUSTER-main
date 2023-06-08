@@ -68,3 +68,12 @@
   background-color: #ffcaa6;
  }
  
+ .buttonFav{
+    border: none;
+    background-color: none;
+ }
+
+ .buttonFav:hover{
+  border: solid 3px black;
+  
+}

@@ -28,3 +28,14 @@
     flex-direction: column;
     margin: 20px;
   }
+  .cartasDiv{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+ 
+    }
+
+    .letras{
+      margin: 10px;
+      font-size: large;
+    }

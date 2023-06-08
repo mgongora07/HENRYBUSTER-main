@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import style from "./Sidebar.css";
+//import style from "./Sidebar.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../context/authContext";

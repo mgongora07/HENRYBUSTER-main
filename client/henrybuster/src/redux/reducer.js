@@ -23,7 +23,10 @@ import {
   CLEAN_ORDERS,
   DIRECTIONS,
   CLEAN_USER,
-  GET_MY_ORDERS
+  GET_MY_ORDERS,
+  ADD_FAVORITE,
+  DELETE_FAVORITE,
+  GET_FAVORITES,
 } from "./action-type";
 
 const INITIAL_STATE = {
@@ -46,7 +49,8 @@ const INITIAL_STATE = {
   usersPaginado: [],
   currentUserOrder:{},
   directions:{},
-  myOrders:[]
+  myOrders:[],
+  myFavorites: [],
 };
 
 export default function rootReducer(
@@ -266,6 +270,18 @@ export default function rootReducer(
           ...state,
           myOrders: payload
         }
+        case ADD_FAVORITE:
+            return {
+                ...state,
+                myFavorites: payload,
+            }
+
+            case GET_FAVORITES:
+              return {
+                  ...state,
+                  myFavorites: payload,
+                  
+              }
     default:
       return state;
   }

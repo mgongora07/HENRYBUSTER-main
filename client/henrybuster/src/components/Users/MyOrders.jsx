@@ -27,7 +27,7 @@ const MyOrders = () => {
     <div className={style.container}>
         <SideBarProfile/>
         <div className={style.body}>
-            <h1> My orders</h1>
+            <h1><i className="bi bi-truck"></i> My orders</h1>
           <div className={style.orders}>
             {orders && orders.length >= 1 ? (
               orders.map(order=>(
@@ -39,7 +39,7 @@ const MyOrders = () => {
                 </div>
               ))
             ) : (
-              <p>Fill the form to add a new adress</p>
+              <p>Add items to cart and start a new order!</p>
             )}
           </div>
      </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import style from "../Styles/Nav.module.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
@@ -12,8 +12,12 @@ import {
   setDirections,
   getUserById,
 } from "../../redux/actions";
+import { CartContext } from "../Carrito/Context";
+
+
 
 export const Nav = ({ handleUser, userRegister }) => {
+  const { cartItems, clearCart } = useContext(CartContext);
   const dispatch = useDispatch();
   const location = useLocation();
   const usuario = useSelector((state) => state.user);
@@ -56,6 +60,8 @@ export const Nav = ({ handleUser, userRegister }) => {
     var email = user.email;
   }
 
+  const itemsNumber = cartItems.length
+ 
   return (
     <nav className={style.nav}>
       <div className={style.containerLogo}>
@@ -85,7 +91,7 @@ export const Nav = ({ handleUser, userRegister }) => {
         </Link>
         <Link className={style.link} to="/Cart">
           <i className="fa-solid fa-cart-shopping"></i>{" "}
-          <span className={style.iconText}>CART</span>
+          <span className={style.iconText}>CART({itemsNumber})</span>
         </Link>
         <Link className={style.link} to="/about">
           <i className="fa-solid fa-address-card"></i>{" "}
@@ -98,6 +104,10 @@ export const Nav = ({ handleUser, userRegister }) => {
         {location.pathname !== "/admin/movies" && (
           <SearchBar handleSearch={handleSearch} />
         )}
+         <Link hidden={!perfil} className={style.link} to="/myProfile">
+          <i className="bi bi-person-fill"></i>{" "}
+          <span className={style.iconText}>PROFILE</span>
+        </Link>
         <Link
           hidden={!perfil}
           className={style.link}

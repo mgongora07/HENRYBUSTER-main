@@ -1,5 +1,5 @@
 import React from "react";
-import style from '../Styles/SideBarUser.module.css'
+import style from '../Styles/SideBarUSer.module.css'
 import { Link } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -23,7 +23,7 @@ const usuario = useSelector((state) => state.user);
           <div className="list-group-item py-2 text-start">
            
 
-            <Link to={"/myProfile/Orders"} className="link-no-style">
+            <Link to={"/myProfile/Orders"} className={style.links}>
               <div>
                 
                 <i className="bi bi-bag-fill fs-5 me-3"></i>
@@ -36,7 +36,7 @@ const usuario = useSelector((state) => state.user);
           <div className="list-group-item py-2 text-start">
            
            
-            <Link to={"/myProfile/Adress"} className="link-no-style">
+            <Link to={"/myProfile/Adress"} className={style.links}>
               <div>
                 <i className="bi bi-signpost-split fs-5 me-3"></i>
                 <span>Add Information</span>
@@ -47,7 +47,7 @@ const usuario = useSelector((state) => state.user);
 
           <div className="list-group-item py-2 text-start">
             
-            <Link to={"/admin/users"} className="link-no-style">
+            <Link to={"/myProfile/Whislist"} className={style.links}>
               <div>
                 <i className="bi bi-heart-fill fs-5 me-3"></i>
                 <span className="sub-category">Whish list</span>

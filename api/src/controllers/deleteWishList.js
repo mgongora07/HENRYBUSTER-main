@@ -4,6 +4,7 @@ const deleteWishList = async (req, res) => {
   const { id } = req.params;
 
   try {
+    console.log(id, 'ide de la ruta')
     const wishList = await WishList.findByPk(id);
     if (!wishList) {
       throw new Error('WishList no encontrada.');

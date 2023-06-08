@@ -10,6 +10,7 @@ import SideBarProfile from './SideBarProfile';
 
 const AddNewAdress = () => {
   const [errorMsg, setErrorMsg] = useState("");
+  const [formErrors, setFormErrors] = useState({})
   const { cartItems } = useContext(CartContext);
   const currentOrder = useSelector(state => state.currentOrder)
   const dispatch = useDispatch()
@@ -35,16 +36,53 @@ const AddNewAdress = () => {
        phoneNumber:"",
  }) 
 
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     [name]: value,
+  //   }));
+  // };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
+  
+    if (name === "street" || name === "city" || name === "state" || name === "country") {
+      if (value.length > 70) {
+        setFormErrors((prevErrors) => ({
+          ...prevErrors,
+          [name]: ` The ${name} field cannot be greater than 70 characters`,
+        }));
+        return;
+      }
+    } else if (name === "postalCode") {
+      if (value.length > 10 || !/^\d+$/.test(value)) {
+        setFormErrors((prevErrors) => ({
+          ...prevErrors,
+          [name]: 'Postal Code must be a numeric value and not exceed 10 characters',
+        }));
+        return;
+      }
+    }
+  
+    setFormErrors((prevErrors) => {
+      const updatedErrors = { ...prevErrors };
+      delete updatedErrors[name];
+      return updatedErrors;
+    });
+  
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
   };
-
+  
+  
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+   
 
     if (
      
@@ -102,7 +140,7 @@ const AddNewAdress = () => {
     <div className={style.container}>
       <SideBarProfile/>
       <div className={style.titulo}>
-      <h1>My information</h1>
+      <h1><i className="bi bi-info-circle-fill"></i> My information</h1>
 
       
       <div className={style.popup}>
@@ -147,6 +185,7 @@ const AddNewAdress = () => {
             <label className={style.letras}>Zip Code:</label>
             <input
               type="text"
+              pattern="[0-9]+"
               name="postalCode"
               value={formData.postalCode}
               onChange={handleChange}
@@ -163,7 +202,11 @@ const AddNewAdress = () => {
             />
             <br />
           </div>
-          
+          {Object.keys(formErrors).map((fieldName) => (
+              <p key={fieldName} className={style.error}>
+                {formErrors[fieldName]}
+              </p>
+            ))}
           <button className={style.button} type="submit">
             Save
           </button>
