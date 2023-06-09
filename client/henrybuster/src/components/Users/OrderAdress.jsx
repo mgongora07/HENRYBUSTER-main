@@ -11,12 +11,12 @@ const OrderAdress = ({ onClose }) => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const directions = useSelector((state) => state.directions);
-  const [formErrors, setFormErrors] = useState({})
+  const [formErrors, setFormErrors] = useState({});
   const purchases = cartItems.map((item) => ({
     MovieId: item.id,
     quantity: item.amount,
   }));
-  const[usuario, setUsuario] = useState({id:""});
+  const [usuario, setUsuario] = useState({ id: "" });
   const [showForm, setShowForm] = useState(true);
 
   const [formData, setFormData] = useState({
@@ -38,18 +38,24 @@ const OrderAdress = ({ onClose }) => {
     }));
   }, [cartItems]);
 
-
   useEffect(() => {
     setUsuario((prevData) => ({
       ...prevData,
-      ...user
+      ...user,
     }));
   }, [user]);
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-  
-    if (name === "street" || name === "city" || name === "state" || name === "country" ||name === "name" || name === "email"){
+
+    if (
+      name === "street" ||
+      name === "city" ||
+      name === "state" ||
+      name === "country" ||
+      name === "name" ||
+      name === "email"
+    ) {
       if (value.length > 70) {
         setFormErrors((prevErrors) => ({
           ...prevErrors,
@@ -61,18 +67,19 @@ const OrderAdress = ({ onClose }) => {
       if (value.length > 15 || !/^\d+$/.test(value)) {
         setFormErrors((prevErrors) => ({
           ...prevErrors,
-          [name]: 'Postal Code must be a numeric value and not exceed 10 characters',
+          [name]:
+            "Postal Code must be a numeric value and not exceed 10 characters",
         }));
         return;
       }
     }
-  
+
     setFormErrors((prevErrors) => {
       const updatedErrors = { ...prevErrors };
       delete updatedErrors[name];
       return updatedErrors;
     });
-  
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -84,20 +91,22 @@ const OrderAdress = ({ onClose }) => {
   //     ...prevData,
   //     [name]: value,
   //   }));
-  
- 
+
   // };
 
   useEffect(() => {
     if (user) {
       if (user.name) {
-        setFormData(prevFormData => ({ ...prevFormData, name: user.name }));
+        setFormData((prevFormData) => ({ ...prevFormData, name: user.name }));
       }
       if (user.email) {
-        setFormData(prevFormData => ({ ...prevFormData, email: user.email }));
+        setFormData((prevFormData) => ({ ...prevFormData, email: user.email }));
       }
       if (user.phoneNumber) {
-        setFormData(prevFormData => ({ ...prevFormData, phoneNumber: user.phoneNumber }));
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          phoneNumber: user.phoneNumber,
+        }));
       }
     }
   }, [user]);
@@ -120,7 +129,6 @@ const OrderAdress = ({ onClose }) => {
     }
 
     if (!usuario.id) {
-
       let createAdress = {
         purchases: formData.purchases,
         name: formData.name,
@@ -137,8 +145,6 @@ const OrderAdress = ({ onClose }) => {
       //setShowForm(false);
       onClose();
     } else {
-
-     
       let createAdress = {
         purchases: formData.purchases,
         name: formData.name,
@@ -150,12 +156,12 @@ const OrderAdress = ({ onClose }) => {
         postalCode: formData.postalCode,
         country: formData.country,
       };
-      console.log(createAdress)
+      console.log(createAdress);
       const { data } = await axios.post(
-        `http://localhost:3001/address/${user.id}`,
+        `https://henrybuster.onrender.com/address/${user.id}`,
         createAdress
       );
-      dispatch(setDirections([data,...directions]));
+      dispatch(setDirections([data, ...directions]));
       createAdress.AddressId = data.id;
 
       dispatch(setUserOrder(createAdress));
@@ -189,10 +195,9 @@ const OrderAdress = ({ onClose }) => {
             <input
               type="text"
               name="name"
-            
               value={formData.name}
               onChange={handleChange}
-              disabled= {user?.name? true: false}
+              disabled={user?.name ? true : false}
             />
             <br />
           </div>
@@ -201,10 +206,9 @@ const OrderAdress = ({ onClose }) => {
             <input
               type="email"
               name="email"
-             
               value={formData.email}
               onChange={handleChange}
-              disabled= {user?.email? true: false}
+              disabled={user?.email ? true : false}
             />
             <br />
           </div>
@@ -214,10 +218,9 @@ const OrderAdress = ({ onClose }) => {
               type="text"
               name="phoneNumber"
               pattern="[0-9]+"
-            
               value={formData.phoneNumber}
               onChange={handleChange}
-              disabled= {user?.phoneNumber? true: false}
+              disabled={user?.phoneNumber ? true : false}
             />
             <br />
           </div>
@@ -226,7 +229,6 @@ const OrderAdress = ({ onClose }) => {
             <input
               type="text"
               name="street"
-           
               value={formData.street}
               onChange={handleChange}
             />
@@ -237,7 +239,6 @@ const OrderAdress = ({ onClose }) => {
             <input
               type="text"
               name="city"
-            
               value={formData.city}
               onChange={handleChange}
             />
@@ -248,7 +249,6 @@ const OrderAdress = ({ onClose }) => {
             <input
               type="text"
               name="state"
-           
               value={formData.state}
               onChange={handleChange}
             />
@@ -259,7 +259,6 @@ const OrderAdress = ({ onClose }) => {
             <input
               type="text"
               name="postalCode"
-           
               pattern="[0-9]+"
               value={formData.postalCode}
               onChange={handleChange}
@@ -271,17 +270,16 @@ const OrderAdress = ({ onClose }) => {
             <input
               type="text"
               name="country"
-             
               value={formData.country}
               onChange={handleChange}
             />
             <br />
           </div>
           {Object.keys(formErrors).map((fieldName) => (
-              <p key={fieldName} className={style.error}>
-                {formErrors[fieldName]}
-              </p>
-            ))}
+            <p key={fieldName} className={style.error}>
+              {formErrors[fieldName]}
+            </p>
+          ))}
           <button className={style.button} type="submit">
             Save
           </button>

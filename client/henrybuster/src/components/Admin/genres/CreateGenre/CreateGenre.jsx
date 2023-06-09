@@ -30,7 +30,7 @@ export const CreateGenre = () => {
     }
 
     if (genre) {
-      await axios.post(`http://localhost:3001/genre`, {
+      await axios.post(`https://henrybuster.onrender.com/genre`, {
         name: genre,
       });
       setErr("");

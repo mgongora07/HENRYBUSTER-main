@@ -34,7 +34,9 @@ import axios from "axios";
 export const getDetailMovie = (id) => {
   return async function (dispatch) {
     try {
-      let movie = await axios.get(`http://localhost:3001/movie/${id}`);
+      let movie = await axios.get(
+        `https://henrybuster.onrender.com/movie/${id}`
+      );
       let payload = movie.data;
 
       return dispatch({
@@ -62,13 +64,11 @@ export const cleanDetail = () => {
   };
 };
 
-
 export const cleanUser = () => {
   return function (dispatch) {
     try {
-
       return dispatch({
-        type: CLEAN_USER
+        type: CLEAN_USER,
       });
     } catch (error) {
       return { error: error };
@@ -78,7 +78,6 @@ export const cleanUser = () => {
 export const setDirections = (directions) => {
   return function (dispatch) {
     try {
-
       return dispatch({
         type: DIRECTIONS,
         payload: directions,
@@ -93,7 +92,7 @@ export const setDirections = (directions) => {
 export const getMovies = () => {
   return async function (dispatch) {
     try {
-      let movie = await axios.get(`http://localhost:3001/movies`);
+      let movie = await axios.get(`https://henrybuster.onrender.com/movies`);
       let payload = movie.data;
 
       return dispatch({
@@ -108,7 +107,7 @@ export const getMovies = () => {
 export const getUsers = () => {
   return async function (dispatch) {
     try {
-      let movie = await axios.get(`http://localhost:3001/users`);
+      let movie = await axios.get(`https://henrybuster.onrender.com/users`);
       let payload = movie.data;
 
       return dispatch({
@@ -134,10 +133,10 @@ export const getMoviesName = (name) => {
   return async function (dispatch) {
     try {
       let movie = await axios.get(
-        `http://localhost:3001/movies/search/guest?name=${name}`
+        `https://henrybuster.onrender.com/movies/search/guest?name=${name}`
       );
       let payload = movie.data;
-     
+
       return dispatch({
         type: GET_MOVIES_NAME,
         payload: payload,
@@ -151,7 +150,7 @@ export const getMoviesNameAdmin = (name) => {
   return async function (dispatch) {
     try {
       let movie = await axios.get(
-        `http://localhost:3001/movies/search?name=${name}`
+        `https://henrybuster.onrender.com/movies/search?name=${name}`
       );
       let payload = movie.data;
       return dispatch({
@@ -176,7 +175,9 @@ export function splitRecipes(inicio, fin) {
 export const getMoviesAdmin = () => {
   return async function (dispatch) {
     try {
-      let movie = await axios.get(`http://localhost:3001/movies/admin`);
+      let movie = await axios.get(
+        `https://henrybuster.onrender.com/movies/admin`
+      );
       let payload = movie.data;
 
       return dispatch({
@@ -201,7 +202,9 @@ export function splitRecipesAdmin(inicio, fin) {
 export const getRankingMovie = (id) => {
   return async function (dispatch) {
     try {
-      let ratings = await axios.get(`http://localhost:3001/rating/${id}`);
+      let ratings = await axios.get(
+        `https://henrybuster.onrender.com/rating/${id}`
+      );
 
       let payload = ratings.data;
 
@@ -232,7 +235,7 @@ export const cleanRatings = () => {
 
 export function getFormats() {
   return async (dispatch) => {
-    const resp = await axios(`http://localhost:3001/formats`);
+    const resp = await axios(`https://henrybuster.onrender.com/formats`);
     dispatch({
       type: GET_FORMAT,
       payload: resp.data,
@@ -241,7 +244,7 @@ export function getFormats() {
 }
 export function getGenres() {
   return async (dispatch) => {
-    const resp = await axios(`http://localhost:3001/genres`);
+    const resp = await axios(`https://henrybuster.onrender.com/genres`);
     dispatch({
       type: GET_GENRES,
       payload: resp.data,
@@ -251,7 +254,7 @@ export function getGenres() {
 
 export function getLanguages() {
   return async (dispatch) => {
-    const resp = await axios(`http://localhost:3001/languages`);
+    const resp = await axios(`https://henrybuster.onrender.com/languages`);
     dispatch({
       type: GET_LANGUAGES,
       payload: resp.data,
@@ -279,71 +282,60 @@ export function filterRatingStar(order) {
   };
 }
 
-export const postCheckout = async (id, amount)=>{
- 
-  
-      try {
-        
-        const {data} = await axios.post('http://localhost:3001/checkout', {id, amount});
-          return data.status
-          
-            
-      } catch (error) {
-         
-          return {message: error}
-      }
-  
-}
+export const postCheckout = async (id, amount) => {
+  try {
+    const { data } = await axios.post(
+      "https://henrybuster.onrender.com/checkout",
+      { id, amount }
+    );
+    return data.status;
+  } catch (error) {
+    return { message: error };
+  }
+};
 
-export const getUserById =  (id) =>{
+export const getUserById = (id) => {
   return async (dispatch) => {
-    const {data} = await axios(`http://localhost:3001/user/${id}`);
+    const { data } = await axios(`https://henrybuster.onrender.com/user/${id}`);
     dispatch({
       type: GET_USER,
-      payload:data,
+      payload: data,
+    });
+  };
+};
+
+export function setOrder(formData) {
+  return (dispatch) => {
+    dispatch({
+      type: ORDER_DATA,
+      payload: formData,
     });
   };
 }
 
-export function setOrder (formData){
-  
-  return (dispatch)=>{
-    dispatch({
-      type: ORDER_DATA,
-      payload: formData,
-
-    })
-    
-  };
-}
-
-
-export const postOrder = (orderData)=>{
+export const postOrder = (orderData) => {
   return async (dispatch) => {
     try {
-      const resp= await axios.post('http://localhost:3001/purchase/guest', orderData);
+      const resp = await axios.post(
+        "https://henrybuster.onrender.com/purchase/guest",
+        orderData
+      );
       dispatch({
         type: POST_ORDER,
         payload: {},
       });
     } catch (error) {
-        
-        return {message: error}
+      return { message: error };
     }
+  };
+};
 
-  }
-  
-}
-
-export function setUserOrder (formData){
-  
-  return (dispatch)=>{
+export function setUserOrder(formData) {
+  return (dispatch) => {
     dispatch({
       type: ORDER_USER_DATA,
       payload: formData,
-
-    })
-    
+    });
   };
 }
 
@@ -362,14 +354,14 @@ export const cleanOrders = () => {
   };
 };
 
-
-export const getMyOrders =  (uid) =>{
+export const getMyOrders = (uid) => {
   return async function (dispatch) {
     try {
-      const orders = await axios(`http://localhost:3001/purchase/${uid}`);
+      const orders = await axios(
+        `https://henrybuster.onrender.com/purchase/${uid}`
+      );
 
-      const payload = orders.data
-   
+      const payload = orders.data;
 
       return dispatch({
         type: GET_MY_ORDERS,
@@ -382,53 +374,50 @@ export const getMyOrders =  (uid) =>{
 };
 
 export const addFavorite = (id, MovieId) => {
-    
-  return async  function( dispatch){ 
-      try {
-          
-       
-          const response = await axios.post(`http://localhost:3001/wishList/${id}`, {MovieId})
-      
-          dispatch({
-              type: ADD_FAVORITE, 
-              payload: response.data 
-          })
+  return async function (dispatch) {
+    try {
+      const response = await axios.post(
+        `https://henrybuster.onrender.com/wishList/${id}`,
+        { MovieId }
+      );
 
-          } catch (error) {
-                return {error: error}
-            }
-  
-  }
-}
+      dispatch({
+        type: ADD_FAVORITE,
+        payload: response.data,
+      });
+    } catch (error) {
+      return { error: error };
+    }
+  };
+};
 
 export const getAllFavorites = (id) => {
   return async function (dispatch) {
-      try {
-         
-          const response = await  axios.get(`http://localhost:3001/wishList/${id}`)
-         
-     
-          return dispatch({
-              type: GET_FAVORITES,
-              payload: response.data
-          })
-      } catch (error) {
-          return {error:error}
-      }
-  }
-}
+    try {
+      const response = await axios.get(
+        `https://henrybuster.onrender.com/wishList/${id}`
+      );
+
+      return dispatch({
+        type: GET_FAVORITES,
+        payload: response.data,
+      });
+    } catch (error) {
+      return { error: error };
+    }
+  };
+};
 
 export const deleteFavorite = (id) => {
-  return async function (dispatch){
-      try {
-          console.log(id, 'Antes del deelete')
-          const response = await axios.delete(`http://localhost:3001/wishList/${id}`)
-          console.log(response)
-      } catch (error) {
-          return {message: error}
-      }
-      
-
-  }
-  
-}
+  return async function (dispatch) {
+    try {
+      console.log(id, "Antes del deelete");
+      const response = await axios.delete(
+        `https://henrybuster.onrender.com/wishList/${id}`
+      );
+      console.log(response);
+    } catch (error) {
+      return { message: error };
+    }
+  };
+};
