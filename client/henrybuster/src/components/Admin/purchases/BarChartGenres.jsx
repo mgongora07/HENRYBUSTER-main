@@ -14,7 +14,9 @@ const BarChartGenres = () => {
 
   const getMovies = async () => {
     try {
-      const data = await axios.get(`http://localhost:3001/purchases`);
+      const data = await axios.get(
+        `https://henrybuster.onrender.com/purchases`
+      );
 
       setPurchases(data.data);
     } catch (error) {

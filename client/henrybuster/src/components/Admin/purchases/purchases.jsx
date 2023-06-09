@@ -12,8 +12,7 @@ import Alert from "react-bootstrap/Alert";
 import Table from "react-bootstrap/Table";
 import Container from "react-bootstrap/Container";
 import Pagination from "react-bootstrap/Pagination";
-import emailjs from '@emailjs/browser';
-
+import emailjs from "@emailjs/browser";
 
 function Purchases() {
   const [purchases, setPurchases] = useState([]);
@@ -46,7 +45,9 @@ function Purchases() {
 
   const getMovies = async () => {
     try {
-      const data = await axios.get(`http://localhost:3001/purchases`);
+      const data = await axios.get(
+        `https://henrybuster.onrender.com/purchases`
+      );
 
       setPurchases(data.data);
 
@@ -73,7 +74,7 @@ function Purchases() {
     });
     try {
       const data = await axios.put(
-        `http://localhost:3001/purchase/${id}`,
+        `https://henrybuster.onrender.com/purchase/${id}`,
         peticion
       );
       setSuccess(true);
@@ -96,7 +97,7 @@ function Purchases() {
     }
   };
 
-  const handleSuccess = async (id,name,email) => {
+  const handleSuccess = async (id, name, email) => {
     setStatus({
       id,
       status: "Send",
@@ -104,21 +105,29 @@ function Purchases() {
     const peticion = {
       status: "Send",
     };
-    var templateParams={
-      user_name:name,
-      user_email:email
-    }  
-    emailjs.send('service_816e43q', 'template_ym6wrh6', templateParams,'W3vt9Xtn4Qq49pmM4')
-    .then(function(response) {
-       console.log('SUCCESS!', response.status, response.text);
-    }, function(error) {
-       console.log('FAILED...', error);
-    });
-
+    var templateParams = {
+      user_name: name,
+      user_email: email,
+    };
+    emailjs
+      .send(
+        "service_816e43q",
+        "template_ym6wrh6",
+        templateParams,
+        "W3vt9Xtn4Qq49pmM4"
+      )
+      .then(
+        function (response) {
+          console.log("SUCCESS!", response.status, response.text);
+        },
+        function (error) {
+          console.log("FAILED...", error);
+        }
+      );
 
     try {
       const data = await axios.put(
-        `http://localhost:3001/purchase/${id}`,
+        `https://henrybuster.onrender.com/purchase/${id}`,
         peticion
       );
       setSuccess(true);
@@ -236,7 +245,9 @@ function Purchases() {
                       </button>
                       <button
                         style={{ marginLeft: "2px" }}
-                        onClick={() => handleSuccess(e.id,e.User.name,e.User.email)}
+                        onClick={() =>
+                          handleSuccess(e.id, e.User.name, e.User.email)
+                        }
                       >
                         <i
                           class="fa-solid fa-check"

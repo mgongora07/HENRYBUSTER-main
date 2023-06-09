@@ -45,7 +45,7 @@ function Users({ userRegister }) {
     const bodyData = { admin: data };
     try {
       const data = await axios.put(
-        `http://localhost:3001/user/${id}`,
+        `https://henrybuster.onrender.com/user/${id}`,
         bodyData
       );
       setUserModify(id);
@@ -75,7 +75,9 @@ function Users({ userRegister }) {
 
   const handleDeleteConfirm = async () => {
     try {
-      await axios.delete(`http://localhost:3001/user/${deleteItemId}`);
+      await axios.delete(
+        `https://henrybuster.onrender.com/user/${deleteItemId}`
+      );
       setSuccess(true);
 
       setMessage("User Admin Delete");
