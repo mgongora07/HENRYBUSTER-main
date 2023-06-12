@@ -107,7 +107,7 @@ if(selectElement) selectElement.selectedIndex = 0;
 
 }, [directions]);
   useEffect(() => {
-    if (!currentOrder.street || !currentOrder.name) {
+    if (!currentOrder.street || !currentOrder.name || !currentOrder.phoneNumber) {
       setShipMessage('Provide the shipping data. You must fill all the fields to continue');
     } else {
       setShipMessage('');
