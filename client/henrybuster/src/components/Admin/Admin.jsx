@@ -36,7 +36,7 @@ function Admin({ handleUser }) {
         >
           <Sidebar handleUser={handleUser} />
         </Col>
-        <Col classNmae="col-12 col-lg-7">
+        <Col>
           <Outlet />
         </Col>
       </Row>

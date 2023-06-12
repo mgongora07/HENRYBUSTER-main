@@ -78,10 +78,10 @@ function App() {
     <>
       <AuthProvider>
         <CartProvider>
-          <Nav handleUser={handleUser} userRegister={userRegister} />
-          {location.pathname.startsWith("/admin") && userRegister.admin ? (
-            <Sidebar handleUser={handleUser} userRegister={userRegister} />
-          ) : null}
+          {location.pathname.startsWith("/admin") &&
+          userRegister.admin ? null : (
+            <Nav handleUser={handleUser} userRegister={userRegister} />
+          )}
 
           <Routes>
             <Route path="/" element={<Home handleUser={handleUser} />} />
