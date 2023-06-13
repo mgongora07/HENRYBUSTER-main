@@ -13,6 +13,20 @@ import {
   GET_MOVIES_ADMIN,
   SPLIT_RECIPES_ADMIN,
   GET_MOVIES_NAME_ADMIN,
+  POST_CHECKOUT,
+  GET_USER,
+  GET_ALL_USER,
+  SPLIT_USERS,
+  ORDER_DATA,
+  POST_ORDER,
+  ORDER_USER_DATA,
+  CLEAN_ORDERS,
+  DIRECTIONS,
+  CLEAN_USER,
+  GET_MY_ORDERS,
+  ADD_FAVORITE,
+  DELETE_FAVORITE,
+  GET_FAVORITES,
 } from "./action-type";
 
 const INITIAL_STATE = {
@@ -28,6 +42,15 @@ const INITIAL_STATE = {
   ratingsFilter: [],
   moviesAdmin: [],
   paginadoAdmin: [],
+  user: {id:"", name:""},
+  currentOrder:{},
+  allAdress:{},
+  allUsers: [],
+  usersPaginado: [],
+  currentUserOrder:{},
+  directions:{},
+  myOrders:[],
+  myFavorites: [],
 };
 
 export default function rootReducer(
@@ -171,7 +194,94 @@ export default function rootReducer(
         moviesAdmin: payload,
         paginadoAdmin: allResultsFilter,
       };
+    case GET_ALL_USER:
+      if (!state.usersPaginado.length) {
+        const asd = payload.slice(0, 10);
+        return {
+          ...state,
+          allUsers: payload,
+          usersPaginado: asd,
+        };
+      } else {
+        return {
+          ...state,
+          allUsers: payload,
+        };
+      }
+    case SPLIT_USERS:
+      const resultUser = state.allUsers.slice(inicio, fin);
+      return {
+        ...state,
+        usersPaginado: resultUser,
+      };
 
+    case POST_CHECKOUT:
+      return {
+        ...state,
+      };
+
+      case GET_USER:
+        return{
+          ...state,
+          user: payload
+        }
+
+      case ORDER_DATA:
+ 
+      return {
+        ...state,
+        currentOrder:payload
+      };
+      
+      case ORDER_USER_DATA:
+  
+      return {
+        ...state,
+        currentUserOrder:payload
+      };
+
+      case POST_ORDER:
+     
+      return {
+        ...state,
+        currentOrder:payload
+      };
+      case CLEAN_ORDERS:
+     
+      return {
+        ...state,
+        currentOrder:payload,
+        currentUserOrder: payload
+      };
+      case DIRECTIONS:
+        return{
+          ...state,
+          directions: payload
+        }
+
+        case CLEAN_USER:
+          return{
+            ...state,
+            user:{id:"",name:""}
+          }
+      case GET_MY_ORDERS:
+        console.log(payload, 'soy payload')
+        return{
+          ...state,
+          myOrders: payload
+        }
+        case ADD_FAVORITE:
+            return {
+                ...state,
+                myFavorites: payload,
+            }
+
+            case GET_FAVORITES:
+              return {
+                  ...state,
+                  myFavorites: payload,
+                  
+              }
     default:
       return state;
   }

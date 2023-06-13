@@ -6,15 +6,26 @@ import Card from "react-bootstrap/Card";
 
 import { CartContext } from "../../Carrito/Context";
 import style from "./Cards.module.css";
+import { useDispatch, useSelector } from 'react-redux';
+import { useAuth } from "../../../context/authContext";
+import { addFavorite, deleteFavorite } from "../../../redux/actions";
+
 
 function Cards({ name, image, id, genres, movies, price, format }) {
   const { addItemToCart, deleteItemToCart } = useContext(CartContext);
   const [stateBuy, setStateBuy] = useState(false);
   const [success, setSuccess] = useState(false);
   const [deleteSuccess, setDeleteSuccess] = useState(false);
-
+  const { user} = useAuth();
+  
+  const dispatch= useDispatch()
+  
+  const myFavorites = useSelector(state=>state.myFavorites)
+  const [isFav, setIsFav] = useState(false)
   const valor = localStorage.getItem("cartProducts");
   const valorArray = JSON.parse(valor);
+  let filterFavs;
+
 
   useEffect(() => {
     const x = valorArray.filter((item) => item.id === id); // Utilizar filter en el array
@@ -43,17 +54,40 @@ function Cards({ name, image, id, genres, movies, price, format }) {
       }, 800);
     }
   };
-  
-    const pageRef = useRef();
-  
-    const handleScrollUp = () => {
-      pageRef.current.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    };
-  
-   
+
+  const pageRef = useRef();
+
+  const handleScrollUp = () => {
+    pageRef.current.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const handleFavorite = () => {
+    if(isFav){
+       setIsFav(false)
+       dispatch(deleteFavorite(id))
+    }else{
+       setIsFav(true)
+       dispatch(addFavorite(user.uid,id))
+    }
+ } 
+
+ if (myFavorites.length >= 1) {
+   filterFavs = myFavorites.map(fav => ({ ...fav.Movie, favId: fav.id }));
+ }
+ 
+ useEffect(() => {
+  if (filterFavs && filterFavs.length >= 1) {
+    filterFavs.forEach((fav) => {
+      if (fav.id === id) {
+        setIsFav(true);
+      }
+    });
+  }
+}, [myFavorites, id]);
+
 
 
   return (
@@ -78,6 +112,15 @@ function Cards({ name, image, id, genres, movies, price, format }) {
               <span className={style.text_title}>${price}</span>
             </Card.Text>
           </div>
+
+            <div >
+              { user ?
+              (isFav ? 
+             (<button className={style.buttonFav} onClick={handleFavorite}><i className="bi bi-heart-fill"></i></button> ): 
+             (<button className={style.buttonFav} onClick={handleFavorite}><i className="bi bi-heart"></i></button>)
+             ) : null
+             }
+            </div>
           <div className={style.card_button}>
             <Button
               className={stateBuy === true ? "bg-danger" : "bg-success"}
@@ -85,7 +128,7 @@ function Cards({ name, image, id, genres, movies, price, format }) {
               onClick={handleClick}
               style={{ height: "fit-content" }}
             >
-              <i class="fa-solid fa-cart-plus"> + </i>
+              <i className="fa-solid fa-cart-plus"> + </i>
             </Button>
           </div>
         </div>
@@ -95,10 +138,11 @@ function Cards({ name, image, id, genres, movies, price, format }) {
           ) : null}
           {deleteSuccess ? (
             <Card.Text className="text-warning">
-             Deleted successfully!
+              Deleted successfully!
             </Card.Text>
           ) : null}
         </div>
+        
       </div>
     </>
   );

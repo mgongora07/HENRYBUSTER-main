@@ -13,3 +13,19 @@ export const GET_TOP_10 = "GET_TOP_10";
 export const GET_MOVIES_NAME = "GET_MOVIES_NAME";
 export const GET_LANGUAGES = "GET_LANGUAGES";
 export const GET_MOVIES_NAME_ADMIN = "GET_MOVIES_NAME_ADMIN";
+export const POST_CHECKOUT = "POST_CHECKOUT";
+export const GET_ALL_USER = "GET_ALL_USER";
+export const SPLIT_USERS = "SPLIT_USERS";
+export const GET_USER = "GET_USER";
+export const ORDER_DATA='ORDER_DATA';
+export const POST_ORDER='POST_ORDER';
+export const ORDER_USER_DATA='ORDER_USER_DATA'
+export const CLEAN_ORDERS='CLEAN_ORDERS'
+export const CLEAN_USER='CLEAN_USER'
+export const DIRECTIONS='DIRECTIONS'
+export const  GET_MY_ORDERS=' GET_MY_ORDERS'
+export const ADD_FAVORITE='ADD_FAVORITE'
+export const DELETE_FAVORITE='DELETE_FAVORITE'
+export const GET_FAVORITES='GET_FAVORITES'
+
+

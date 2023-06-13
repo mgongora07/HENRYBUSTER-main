@@ -24,6 +24,22 @@ const searchMovieForGuest = require("../controllers/searchMovieForGuest");
 const updateGenre = require("../controllers/updateGenre");
 const deleteMovie = require("../controllers/deleteMovie");
 
+const order = require("../controllers/order");
+
+const InsertPurchase = require("../controllers/InsertPurchase");
+const insertGuestPurchase = require("../controllers/insertGuestPurchase");
+const getGenreById = require("../controllers/getGenreById");
+const getAddressByUserId = require("../controllers/getAddressByUserId");
+const InsertAddressByUserId = require("../controllers/InsertAddressByUserId.js");
+const getAddressById = require("../controllers/getAddressById");
+const deleteUser = require("../controllers/deleteUser");
+const getPurchases = require("../controllers/getPurchases");
+const updatePuchaseById = require("../controllers/updatePuchaseById");
+const getPurchaseByUserId = require("../controllers/getPurchaseByUserId");
+const insertWishListByUserId = require("../controllers/insertWishListByUserId");
+const deleteWishList = require("../controllers/deleteWishList");
+const getWishListByUserId = require("../controllers/getWishListByUserId");
+
 const router = express.Router();
 
 // Configurar los routers
@@ -39,14 +55,29 @@ router.get("/languages", getLanguage);
 router.get("/rating/:id", getRatingsByMovieId);
 router.get("/movies/search", searchMovieByName);
 router.get("/movies/search/guest", searchMovieForGuest);
+router.get("/genre/:id", getGenreById);
+router.get("/address/:id", getAddressById);
+router.get("/address/user/:id", getAddressByUserId);
+router.get("/purchases", getPurchases);
+router.get("/purchase/:id", getPurchaseByUserId);
+router.get("/wishList/:id", getWishListByUserId);
+router.post("/address/:id", InsertAddressByUserId);
 router.post("/genre", insertGenre);
 router.post("/language", insertLanguage);
 router.post("/format", insertFormat);
 router.post("/user", insertUser);
 router.post("/movie", insertMovie);
 router.post("/rating", InsertRating);
+router.post("/purchase/guest", insertGuestPurchase);
+router.post("/purchase/:id", InsertPurchase);
+router.post("/wishList/:id", insertWishListByUserId);
 router.put("/movie/:id", updateMovie);
 router.put("/user/:id", updateUser);
 router.put("/genre/:id", updateGenre);
+router.put("/purchase/:id", updatePuchaseById);
 router.delete("/movie/:id", deleteMovie);
+router.delete("/user/:id", deleteUser);
+router.delete("/wishList/:id", deleteWishList);
+router.post("/checkout", order);
+
 module.exports = router;

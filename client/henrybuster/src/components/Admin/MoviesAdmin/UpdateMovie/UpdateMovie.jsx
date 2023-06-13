@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
-import s from "./UpdateMovie.module.css";
-import { getFormats, getLanguages, getGenres } from "../../../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
-//import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import { getFormats, getLanguages, getGenres } from "../../../../redux/actions";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import axios from "axios";
+
+//import { useHistory } from "react-router-dom";
 import Tag from "../../../Tags/Tags";
+
+import s from "./UpdateMovie.module.css";
+import Alert from "react-bootstrap/Alert";
 
 export const UpdateMovie = () => {
   const dispatch = useDispatch();
@@ -15,7 +18,9 @@ export const UpdateMovie = () => {
   // const history = useHistory();
 
   const fetchData = async () => {
-    const { data } = await axios.get(`http://localhost:3001/movie/${id}`);
+    const { data } = await axios.get(
+      `https://henrybuster.onrender.com/movie/${id}`
+    );
 
     setName(data.name);
     setImage(data.image);
@@ -67,6 +72,7 @@ export const UpdateMovie = () => {
     quantity: "",
     genre: "",
   });
+  const [success, setSuccess] = useState("");
 
   const handleAddTag = (event) => {
     event.preventDefault();
@@ -143,7 +149,7 @@ export const UpdateMovie = () => {
       !valid.quantity &&
       !valid.genre
     ) {
-      await axios.put(`http://localhost:3001/movie/${id}`, {
+      await axios.put(`https://henrybuster.onrender.com/movie/${id}`, {
         name,
         image,
         description,
@@ -154,9 +160,16 @@ export const UpdateMovie = () => {
         quantity,
         genres: [...genreTags].map((x) => Number(x.id)),
       });
-      window.alert("Movie updated");
+
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess("");
+      }, 1500);
     } else {
-      window.alert("Please fill the form correctly");
+      setSuccess(false);
+      setTimeout(() => {
+        setSuccess("");
+      }, 1500);
     }
     // history.push("/home");
   };
@@ -312,6 +325,17 @@ export const UpdateMovie = () => {
               />
             ))}
           </div>
+          {success === true ? (
+            <Alert variant="success">Update success!</Alert>
+          ) : (
+            ""
+          )}
+
+          {success === false ? (
+            <Alert variant="danger">Fill the form correctly!</Alert>
+          ) : (
+            ""
+          )}
           <button
             type="submit"
             className={s["submit-button"]}

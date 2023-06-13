@@ -1,83 +1,124 @@
-import React from "react";
-import "./Sidebar.css";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import style from "./Sidebar.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../../context/authContext";
+import { useMediaQuery } from "react-responsive";
+import { useDispatch } from "react-redux";
+import { cleanOrders, cleanUser, setDirections } from "../../redux/actions";
 
-function Sidebar({ handleCreateMovie }) {
+import Button from "react-bootstrap/Button";
+import Offcanvas from "react-bootstrap/Offcanvas";
+
+function Sidebar({ handleUser, userRegister }) {
+  const isMdAndUp = useMediaQuery({ minWidth: 660 });
+  const [show, setShow] = useState(isMdAndUp);
+
+  const dispatch = useDispatch();
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const handleLogout = async () => {
+    try {
+      handleUser("");
+      await logout();
+      navigate("/");
+      dispatch(cleanOrders());
+      dispatch(cleanUser());
+      dispatch(setDirections([]));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <div className="body">
-      <div className="sidebar p-2">
-        <div className="m-2">
-          <i className="bi bi-person-circle me-3 fs-4"></i>
-          <span className="brand-name fs-4">Admin Name</span>
+    <div className={"body"}>
+      <>
+        <div className="buttonShow">
+          <Button variant="danger" onClick={handleShow}>
+            Show Panel <i className="fa-solid fa-arrow-right"></i>
+          </Button>
         </div>
-
-        <hr className="text-dark" />
-
-        <div className="list-group list-group-flush">
-          <span className="list-group-item py-2 text-start">
-            <Link to={"/admin"} className="link-no-style">
-              <i className="bi bi-speedometer2 fs-5 me-3"></i>
-              <span>Dashboard</span>
-            </Link>
-          </span>
-
-          <div className="list-group-item py-2 text-start">
-            <i className="bi bi-collection fs-5 me-3"></i>
-            <span>
-              Products<i className="bi bi-chevron-down"></i>
-            </span>
-
-            <Link to={"/admin/movies"} className="link-no-style">
-              <div>
-                <i className="bi bi-file-ruled fs-5 me-3"></i>
-                <span>All movies</span>
-              </div>
-            </Link>
-            <Link to={"/admin/create"} className="link-no-style">
-              <div>
-                <i className="bi bi-collection-play-fill fs-5 me-3"></i>
-                <span className="sub-category">Create new movie</span>
-              </div>
-            </Link>
+        <Offcanvas show={show} onHide={handleClose}>
+          <div className="logo">
+            <Offcanvas.Header closeButton>
+              <Offcanvas.Title>
+                <div className="py-4">
+                  <i className="bi bi-person-circle me-3 fs-4"></i>
+                  <span className="brand-name fs-4">Panel Admin</span>
+                </div>
+              </Offcanvas.Title>
+            </Offcanvas.Header>
           </div>
+          <Offcanvas.Body className={`barraLateral`}>
+            <nav className={`menu d-sm-block justify-content-center flex-wrap`}>
+              <Link to={"/admin"} className="link-no-style">
+                <i className="bi bi-speedometer2 fs-5 me-3"></i>
+                <span>Dashboard</span>
+              </Link>
 
-          <div className="list-group-item py-2 text-start">
-            <i className="bi bi-columns fs-5 me-3"></i>
-            <span>Categories</span>
-            <i className="bi bi-chevron-down"></i>
-            <Link to={"/admin/AllGenre"} className="link-no-style">
-              <div>
-                <i className="bi bi-file-ruled fs-5 me-3"></i>
-                <span>All Genres</span>
-              </div>
-            </Link>
-            <Link to={"/admin/create/genre"} className="link-no-style">
-              <div>
-                <i className="bi bi-columns-gap fs-5 me-3"></i>
-                <span className="sub-category">Create Genre</span>
-              </div>
-            </Link>
-          </div>
+              <Link to={"/admin/movies"} className="link-no-style">
+                <div>
+                  <i className="bi bi-file-ruled fs-5 me-3"></i>
+                  <span>All movies</span>
+                </div>
+              </Link>
+              <Link to={"/admin/create"} className="link-no-style">
+                <div>
+                  <i className="bi bi-collection-play-fill fs-5 me-3"></i>
+                  <span className="sub-category">Create new movie</span>
+                </div>
+              </Link>
+              <Link to={"/admin/AllGenre"} className="link-no-style">
+                <div>
+                  <i className="bi bi-file-ruled fs-5 me-3"></i>
+                  <span>All Genres</span>
+                </div>
+              </Link>
+              <Link to={"/admin/create/genre"} className="link-no-style">
+                <div>
+                  <i className="bi bi-columns-gap fs-5 me-3"></i>
+                  <span className="sub-category">Create Genre</span>
+                </div>
+              </Link>
+              <Link to={"/admin/users"} className="link-no-style">
+                <div>
+                  <i className="fa-solid fa-user fs-5 me-3"></i>
+                  <span className="sub-category">Users</span>
+                </div>
+              </Link>
+              <Link to={"/admin/purchases"} className="link-no-style">
+                <div>
+                  <i className="fa-solid fa-cart-shopping fs-6 me-3"></i>
+                  <span className="sub-category">Purchases</span>
+                </div>
+              </Link>
+              <Link to={"/admin/stadistics"} className="link-no-style">
+                <div>
+                  <i className="fa-sharp fa-solid fa-chart-simple me-3"></i>
+                  <span className="sub-category">Stadistics</span>
+                </div>
+              </Link>
+              <Link to={"/"} className="link-no-style">
+                <div style={{ textAlign: "center" }}>
+                  <i className="fa-solid fa-house"></i> {""}
+                  <span className="sub-category">Home</span>
+                </div>
+              </Link>
 
-          <div className="list-group-item py-2 text-start">
-            <i className="bi bi-bag fs-5 me-3"></i>
-            <span>
-              Order management<i className="bi bi-chevron-down"></i>
-            </span>
-
-            <div>
-              <i className="bi bi-clipboard-check fs-5 me-3"></i>
-              <span className="sub-category">View orders</span>
-            </div>
-          </div>
-
-          <div className="list-group-item py-2 text-start">
-            <i className="bi bi-box-arrow-in-left fs-5 me-3"></i>
-            <span>Logout</span>
-          </div>
-        </div>
-      </div>
+              <Link onClick={handleLogout}>
+                <div style={{ textAlign: "center" }}>
+                  <i className={`fa-solid fa-arrow-right-from-bracket `}> </i>{" "}
+                  <span className="sub-category">LogOut</span>
+                </div>
+              </Link>
+            </nav>
+          </Offcanvas.Body>
+        </Offcanvas>
+      </>
     </div>
   );
 }

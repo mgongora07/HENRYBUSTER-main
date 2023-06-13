@@ -13,6 +13,20 @@ import {
   GET_MOVIES_ADMIN,
   SPLIT_RECIPES_ADMIN,
   GET_MOVIES_NAME_ADMIN,
+  POST_CHECKOUT,
+  GET_ALL_USER,
+  SPLIT_USERS,
+  GET_USER,
+  POST_ORDER,
+  ORDER_DATA,
+  ORDER_USER_DATA,
+  CLEAN_ORDERS,
+  DIRECTIONS,
+  CLEAN_USER,
+  GET_MY_ORDERS,
+  ADD_FAVORITE,
+  DELETE_FAVORITE,
+  GET_FAVORITES,
 } from "./action-type";
 
 import axios from "axios";
@@ -50,6 +64,30 @@ export const cleanDetail = () => {
   };
 };
 
+export const cleanUser = () => {
+  return function (dispatch) {
+    try {
+      return dispatch({
+        type: CLEAN_USER,
+      });
+    } catch (error) {
+      return { error: error };
+    }
+  };
+};
+export const setDirections = (directions) => {
+  return function (dispatch) {
+    try {
+      return dispatch({
+        type: DIRECTIONS,
+        payload: directions,
+      });
+    } catch (error) {
+      return { error: error };
+    }
+  };
+};
+
 // funciones en el home
 export const getMovies = () => {
   return async function (dispatch) {
@@ -66,6 +104,30 @@ export const getMovies = () => {
     }
   };
 };
+export const getUsers = () => {
+  return async function (dispatch) {
+    try {
+      let movie = await axios.get(`https://henrybuster.onrender.com/users`);
+      let payload = movie.data;
+
+      return dispatch({
+        type: GET_ALL_USER,
+        payload: payload,
+      });
+    } catch (error) {
+      return { error: error };
+    }
+  };
+};
+export function splitUsers(inicio, fin) {
+  return async (dispatch) => {
+    dispatch({
+      type: SPLIT_USERS,
+      inicio,
+      fin,
+    });
+  };
+}
 
 export const getMoviesName = (name) => {
   return async function (dispatch) {
@@ -74,7 +136,7 @@ export const getMoviesName = (name) => {
         `https://henrybuster.onrender.com/movies/search/guest?name=${name}`
       );
       let payload = movie.data;
-      console.log(payload);
+
       return dispatch({
         type: GET_MOVIES_NAME,
         payload: payload,
@@ -91,7 +153,6 @@ export const getMoviesNameAdmin = (name) => {
         `https://henrybuster.onrender.com/movies/search?name=${name}`
       );
       let payload = movie.data;
-      console.log(payload);
       return dispatch({
         type: GET_MOVIES_NAME_ADMIN,
         payload: payload,
@@ -220,3 +281,143 @@ export function filterRatingStar(order) {
     payload: order,
   };
 }
+
+export const postCheckout = async (id, amount) => {
+  try {
+    const { data } = await axios.post(
+      "https://henrybuster.onrender.com/checkout",
+      { id, amount }
+    );
+    return data.status;
+  } catch (error) {
+    return { message: error };
+  }
+};
+
+export const getUserById = (id) => {
+  return async (dispatch) => {
+    const { data } = await axios(`https://henrybuster.onrender.com/user/${id}`);
+    dispatch({
+      type: GET_USER,
+      payload: data,
+    });
+  };
+};
+
+export function setOrder(formData) {
+  return (dispatch) => {
+    dispatch({
+      type: ORDER_DATA,
+      payload: formData,
+    });
+  };
+}
+
+export const postOrder = (orderData) => {
+  return async (dispatch) => {
+    try {
+      const resp = await axios.post(
+        "https://henrybuster.onrender.com/purchase/guest",
+        orderData
+      );
+      dispatch({
+        type: POST_ORDER,
+        payload: {},
+      });
+    } catch (error) {
+      return { message: error };
+    }
+  };
+};
+
+export function setUserOrder(formData) {
+  return (dispatch) => {
+    dispatch({
+      type: ORDER_USER_DATA,
+      payload: formData,
+    });
+  };
+}
+
+export const cleanOrders = () => {
+  return function (dispatch) {
+    try {
+      let clean = {};
+
+      return dispatch({
+        type: CLEAN_ORDERS,
+        payload: clean,
+      });
+    } catch (error) {
+      return { error: error };
+    }
+  };
+};
+
+export const getMyOrders = (uid) => {
+  return async function (dispatch) {
+    try {
+      const orders = await axios(
+        `https://henrybuster.onrender.com/purchase/${uid}`
+      );
+
+      const payload = orders.data;
+
+      return dispatch({
+        type: GET_MY_ORDERS,
+        payload: payload,
+      });
+    } catch (error) {
+      return { error: error };
+    }
+  };
+};
+
+export const addFavorite = (id, MovieId) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.post(
+        `https://henrybuster.onrender.com/wishList/${id}`,
+        { MovieId }
+      );
+
+      dispatch({
+        type: ADD_FAVORITE,
+        payload: response.data,
+      });
+    } catch (error) {
+      return { error: error };
+    }
+  };
+};
+
+export const getAllFavorites = (id) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(
+        `https://henrybuster.onrender.com/wishList/${id}`
+      );
+
+      return dispatch({
+        type: GET_FAVORITES,
+        payload: response.data,
+      });
+    } catch (error) {
+      return { error: error };
+    }
+  };
+};
+
+export const deleteFavorite = (id) => {
+  return async function (dispatch) {
+    try {
+      console.log(id, "Antes del deelete");
+      const response = await axios.delete(
+        `https://henrybuster.onrender.com/wishList/${id}`
+      );
+      console.log(response);
+    } catch (error) {
+      return { message: error };
+    }
+  };
+};

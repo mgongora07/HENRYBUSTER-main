@@ -2,10 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+
 import Table from "react-bootstrap/Table";
 import Pagination from "react-bootstrap/Pagination";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
+import Modal from "react-bootstrap/Modal"; // Importa el componente Modal
 
 import Sidebar from "../Sidebar";
 import {
@@ -19,6 +24,8 @@ import SearchBarAdmin from "./SearchBarAdmin";
 function MoviesAdmin() {
   const [page, setPage] = useState(1);
   const [success, setSuccess] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false); // Estado para controlar la visibilidad del modal de eliminación
+  const [deleteItemId, setDeleteItemId] = useState(""); // Estado para almacenar el ID del elemento a eliminar
   const { paginadoAdmin, moviesAdmin } = useSelector((state) => state);
 
   const split = (num) => {
@@ -40,29 +47,26 @@ function MoviesAdmin() {
   const handleDispatch = (name) => {
     dispatch(getMoviesNameAdmin(name));
   };
+
   const deleteItem = async (itemId) => {
-    const resp = confirm(
-      `You want to delete the movie with the id: ${itemId}?`
-    );
-    console.log(resp);
-    if (resp) {
-      const resp = confirm(`¿you're sure?`);
-      if (resp) {
-        try {
-          await axios.delete(`http://localhost:3001/movie/${itemId}`);
-          dispatch(getMoviesAdmin());
-          setSuccess(true);
-          setTimeout(() => {
-            setSuccess(false);
-          }, 1000);
-        } catch (error) {
-          console.log(error);
-        }
-      } else {
-        return;
-      }
-    } else {
-      return;
+    setDeleteItemId(itemId);
+    setShowDeleteModal(true);
+  };
+
+  const handleDeleteConfirm = async () => {
+    try {
+      await axios.delete(
+        `https://henrybuster.onrender.com/movie/${deleteItemId}`
+      );
+      dispatch(getMoviesAdmin());
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+      }, 1000);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setShowDeleteModal(false);
     }
   };
 
@@ -71,24 +75,20 @@ function MoviesAdmin() {
     dispatch(splitRecipesAdmin(0, 10));
     setPage(1);
   }, [dispatch]);
+
   useEffect(() => {}, [page, handleDispatch]);
 
   return (
-    <div style={{ background: "white", height: "593px" }}>
+    <Container fluid={true} className="mt-4 bg-white" style={{ width: "100%" }}>
       <Alert variant="danger" show={success}>
         <Alert.Heading>Movie Deleted Successfully</Alert.Heading>
       </Alert>
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
-        <h2 style={{ width: "fit-content", marginLeft: "270px" }}>
-          List of products:
-        </h2>
-        <div style={{ display: "flex", marginTop: "5px" }}>
+      <Row>
+        <Col className="d-flex justify-content-start">
+          <h2>List of products:</h2>
+        </Col>
+        <Col className="d-flex justify-content-end">
           <Button
             onClick={() => {
               dispatch(getMoviesAdmin());
@@ -100,17 +100,16 @@ function MoviesAdmin() {
             All
           </Button>
           <SearchBarAdmin handleDispatch={handleDispatch} />
-        </div>
-      </div>
-      <div
+        </Col>
+      </Row>
+      <hr />
+      <Row
         style={{
-          width: "80%",
-          marginLeft: "auto",
-          backgroundColor: "white",
           height: "500px",
+          overflowY: "auto",
         }}
       >
-        <Table responsive borderless>
+        <Table striped bordered hover className="mt-1 bg-white">
           <thead>
             <tr>
               <th>#</th>
@@ -144,47 +143,65 @@ function MoviesAdmin() {
               ))}
           </tbody>
         </Table>
-      </div>
-      <Pagination
-        style={{
-          width: "60%",
-          marginLeft: "auto",
-          marginRight: "20px",
-        }}
-      >
-        <Pagination.Prev
-          disabled={page === 1 ? true : false}
-          onClick={() => {
-            if (page > 1) {
-              setPage(page - 1);
-
-              split(page - 1);
-            }
-          }}
-        />
-        {pages.map((e) => (
-          <Pagination.Item
-            key={e}
+      </Row>
+      <Row className="">
+        <Pagination
+          className="d-flex justify-content-center mt-2"
+          style={{ width: "100%", flexWrap: "wrap" }}
+        >
+          <Pagination.Prev
+            disabled={page === 1 ? true : false}
             onClick={() => {
-              setPage(e);
-              split(e);
+              if (page > 1) {
+                setPage(page - 1);
+                split(page - 1);
+              }
             }}
-            active={e === page}
-          >
-            {e}
-          </Pagination.Item>
-        ))}
-        <Pagination.Next
-          disabled={page === pages.length ? true : false}
-          onClick={() => {
-            if (page < pages.length) {
-              setPage(page + 1);
-              split(page + 1);
-            }
-          }}
-        />
-      </Pagination>
-    </div>
+          />
+          {pages.map((e) => (
+            <>
+              <Pagination.Item
+                key={e}
+                onClick={() => {
+                  setPage(e);
+                  split(e);
+                }}
+                active={e === page}
+              >
+                {e}
+              </Pagination.Item>
+            </>
+          ))}
+
+          <Pagination.Next
+            disabled={page === pages.length ? true : false}
+            onClick={() => {
+              if (page < pages.length) {
+                setPage(page + 1);
+                split(page + 1);
+              }
+            }}
+          />
+        </Pagination>
+      </Row>
+
+      <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Delete</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you want to delete the movie with the ID: {deleteItemId}?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={handleDeleteConfirm}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </Container>
   );
 }
 

@@ -13,30 +13,53 @@ import Paginado from "./paginado/Paginado";
 import FilterMovies from "./Filter/FilterMovies";
 import CarouselFadeExample from "./carrusel/CarruselComponent";
 import NewMovie from "./agregadasRecientemente/NewMovie";
+import { useAuth } from "../../context/authContext";
 
-export const Home = () => {
+export const Home = ({ handleUser }) => {
   const dispatch = useDispatch();
-  const { paginado, moviesFilter, movies } = useSelector((state) => state);
+  const { paginado, moviesFilter, movies, userRegister } = useSelector(
+    (state) => state
+  );
 
-  let pages = moviesFilter
-    .slice(0, Math.ceil(moviesFilter.length / 10))
-    .map((recipe, index) => index + 1);
+  const { user } = useAuth();
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(moviesFilter.length / itemsPerPage);
+  const maxPagesToShow = 5;
+
+  const startPage = Math.max(currentPage - Math.floor(maxPagesToShow / 2), 1);
+  const endPage = Math.min(startPage + maxPagesToShow - 1, totalPages);
+
+  const pages = Array.from(
+    { length: endPage - startPage + 1 },
+    (_, index) => startPage + index
+  );
+
+  // let pages = moviesFilter
+  //   .slice(0, Math.ceil(moviesFilter.length / 10))
+  //   .map((recipe, index) => index + 1);
 
   const split = (num) => {
-    if (num === 1) {
-      dispatch(splitRecipes(0, 9));
-    } else {
-      const inicio = num * 10 - 10;
-      const fin = num * 10 - 1;
-      dispatch(splitRecipes(inicio, fin));
-    }
+    setCurrentPage(num);
+    const startIndex = (num - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    dispatch(splitRecipes(startIndex, endIndex));
   };
 
   useEffect(() => {
     dispatch(getMovies());
     dispatch(getFormats());
     dispatch(getGenres());
-  }, []);
+    if (user) {
+      handleUser(user.uid);
+    }
+  }, [user]);
+  useEffect(() => {
+    if (user) {
+      handleUser(user.uid);
+    }
+  }, [dispatch]);
 
   return (
     <>
@@ -52,7 +75,12 @@ export const Home = () => {
 
         <FilterMovies split={split} />
 
-        <Paginado pages={pages} split={split} />
+        <Paginado
+          pages={pages}
+          currentPage={currentPage}
+          split={split}
+          totalPages={totalPages}
+        />
         <div className={style.body}>
           {paginado &&
             paginado.map((e) => (
@@ -68,7 +96,12 @@ export const Home = () => {
               />
             ))}
         </div>
-        <Paginado pages={pages} split={split} />
+        <Paginado
+          pages={pages}
+          currentPage={currentPage}
+          split={split}
+          totalPages={totalPages}
+        />
       </div>
     </>
   );
