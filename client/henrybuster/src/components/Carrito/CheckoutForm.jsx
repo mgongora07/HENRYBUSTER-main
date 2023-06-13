@@ -165,12 +165,37 @@ const CheckoutForm = (props) => {
           />
         </div>
         <button
+  className={`${style.boton} ${
+    usuario
+      ? !stripe || !userOrder.phoneNumber
+        ? style.disabledButton
+        : ""
+      : !currentOrder.phoneNumber || !stripe
+      ? style.disabledButton
+      : ""
+  }`}
+  disabled={
+    (usuario && (!stripe || !userOrder.phoneNumber)) ||
+    (!usuario && (!currentOrder.phoneNumber || !stripe))
+  }
+>
+  {loading ? (
+    <div className="spinner-border text-dark" role="status">
+      <span className="sr-only">Loading...</span>
+    </div>
+  ) : (
+    `Submit Payment ${amountDolars}`
+  )}
+</button>
+
+
+        {/* <button
           className={`${style.boton} ${
-            stripe && currentOrder && currentOrder.street !== ""
+            !stripe && !currentOrder.phoneNumber && !userOrder.phoneNumber !== ""
               ? ""
               : style.disabledButton
           }`}
-          disabled={stripe && currentOrder && currentOrder.street === ""}
+          disabled={!stripe && !currentOrder && !currentOrder.street === ""}
         >
           {loading ? (
             <div className="spinner-border text-dark" role="status">
@@ -179,7 +204,7 @@ const CheckoutForm = (props) => {
           ) : (
             `Submit Payment ${amountDolars}`
           )}
-        </button>
+        </button> */}
         {responseMessage && (
           <p className='"d-flex align-items-center justify-content-center"'>
             {responseMessage}
