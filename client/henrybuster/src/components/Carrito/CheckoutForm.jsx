@@ -13,7 +13,7 @@ import { postOrder } from "../../redux/actions";
 import axios from "axios";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
 
 const CheckoutForm = (props) => {
   const { cartItems, clearCart } = useContext(CartContext);
@@ -32,11 +32,8 @@ const CheckoutForm = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   console.log(usuario, "hola soy usuario");
-  const[user, setUser] = useState({id:"", name:""})
+  const [user, setUser] = useState({ id: "", name: "" });
   //Aqui se intenta hacer que los datos de la orden se llenen, para la ruta back de compra si fueras usuario
-
-  
-
 
   useEffect(() => {
     if (currentOrder && currentOrder.street !== "" && !usuario?.id) {
@@ -51,22 +48,19 @@ const CheckoutForm = (props) => {
   }, [currentOrder, props.id]);
 
   useEffect(() => {
-    if(userState){
-      setUser((prev)=>({
+    if (userState) {
+      setUser((prev) => ({
         ...prev,
-        ...userState
-      }))
+        ...userState,
+      }));
     }
-    
   }, [userState]);
 
-  var templateParams={
-    user_name:currentOrder.name?currentOrder.name:user.name,
-    user_email:currentOrder.email?currentOrder.email:user.email
-  }  
-  console.log(templateParams)
-  
-  
+  var templateParams = {
+    user_name: currentOrder.name ? currentOrder.name : user.name,
+    user_email: currentOrder.email ? currentOrder.email : user.email,
+  };
+  console.log(templateParams);
 
   //El detalle es que esto nuca se llena con los datos
   const handleSubmit = async (e) => {
@@ -90,12 +84,12 @@ const CheckoutForm = (props) => {
 
             if (user.id) {
               await axios.post(
-                `http://localhost:3001/purchase/${usuario.id}`,
+                `https://henrybuster.onrender.com/purchase/${usuario.id}`,
                 userOrder
               );
             } else {
               await axios.post(
-                "http://localhost:3001/purchase/guest",
+                "https://henrybuster.onrender.com/purchase/guest",
                 currentOrder
               );
             }
@@ -103,15 +97,21 @@ const CheckoutForm = (props) => {
             elements.getElement(CardElement).clear();
             clearCart();
             navigate("/");
-            emailjs.send('service_816e43q', 'template_tcxw4vn', templateParams,'W3vt9Xtn4Qq49pmM4')
-            .then(function(response) {
-               console.log('SUCCESS!', response.status, response.text);
-            }, function(error) {
-               console.log('FAILED...', error);
-            });
-
-
-
+            emailjs
+              .send(
+                "service_816e43q",
+                "template_tcxw4vn",
+                templateParams,
+                "W3vt9Xtn4Qq49pmM4"
+              )
+              .then(
+                function (response) {
+                  console.log("SUCCESS!", response.status, response.text);
+                },
+                function (error) {
+                  console.log("FAILED...", error);
+                }
+              );
           } else {
             setResponseMessage("Payment failed. Please try again.");
             elements.getElement(CardElement).clear();

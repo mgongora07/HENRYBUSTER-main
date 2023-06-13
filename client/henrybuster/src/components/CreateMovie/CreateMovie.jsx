@@ -120,7 +120,7 @@ export const CreateMovie = () => {
       !valid.quantity &&
       !valid.genre
     ) {
-      await axios.post("http://localhost:3001/movie", {
+      await axios.post("https://henrybuster.onrender.com/movie", {
         name,
         image,
         description,

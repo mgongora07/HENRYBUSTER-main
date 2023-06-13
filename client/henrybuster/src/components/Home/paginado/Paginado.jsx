@@ -1,8 +1,8 @@
 import style from "./Paginado.module.css";
 
 function Paginado({ pages, currentPage, split }) {
-  console.log(pages);
-  console.log(currentPage);
+  // console.log(pages);
+  // console.log(currentPage);
   const handleButtonClick = (e) => {
     const pageNumber = parseInt(e.target.value);
     split(pageNumber);

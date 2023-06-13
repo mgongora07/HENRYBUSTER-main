@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-//import style from "./Sidebar.css";
+import style from "./Sidebar.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
@@ -39,7 +39,7 @@ function Sidebar({ handleUser, userRegister }) {
       <>
         <div className="buttonShow">
           <Button variant="danger" onClick={handleShow}>
-            Show Panel <i class="fa-solid fa-arrow-right"></i>
+            Show Panel <i className="fa-solid fa-arrow-right"></i>
           </Button>
         </div>
         <Offcanvas show={show} onHide={handleClose}>
@@ -92,13 +92,13 @@ function Sidebar({ handleUser, userRegister }) {
               </Link>
               <Link to={"/admin/purchases"} className="link-no-style">
                 <div>
-                  <i class="fa-solid fa-cart-shopping fs-6 me-3"></i>
+                  <i className="fa-solid fa-cart-shopping fs-6 me-3"></i>
                   <span className="sub-category">Purchases</span>
                 </div>
               </Link>
               <Link to={"/admin/stadistics"} className="link-no-style">
                 <div>
-                  <i class="fa-sharp fa-solid fa-chart-simple me-3"></i>
+                  <i className="fa-sharp fa-solid fa-chart-simple me-3"></i>
                   <span className="sub-category">Stadistics</span>
                 </div>
               </Link>

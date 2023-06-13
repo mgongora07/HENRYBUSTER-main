@@ -1,53 +1,60 @@
-import React, { useState, useContext, useEffect } from 'react';
-import style from '../Styles/Payment.module.css';
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements, CardElement } from '@stripe/react-stripe-js';
-import CheckoutForm from './CheckoutForm';
-import OrderAdress from '../Users/OrderAdress';
+import React, { useState, useContext, useEffect } from "react";
+import style from "../Styles/Payment.module.css";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements, CardElement } from "@stripe/react-stripe-js";
+import CheckoutForm from "./CheckoutForm";
+import OrderAdress from "../Users/OrderAdress";
 import { CartContext } from "./Context";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 import { useAuth } from "../../context/authContext";
-import { getUserById, setOrder, postOrder, setUserOrder, setDirections } from '../../redux/actions';
-import axios from 'axios';
-
+import {
+  getUserById,
+  setOrder,
+  postOrder,
+  setUserOrder,
+  setDirections,
+} from "../../redux/actions";
+import axios from "axios";
 
 const Payment = () => {
-  const KEY = import.meta.env.STRIPE_KEY
+  const KEY = import.meta.env.STRIPE_KEY;
   const dispatch = useDispatch();
   const { cartItems } = useContext(CartContext);
   const { user } = useAuth();
-  const userState = useSelector(state => state.user);
+  const userState = useSelector((state) => state.user);
   const purchases = cartItems.map((item) => ({
     MovieId: item.id,
     quantity: item.amount,
   }));
 
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phoneNumber: '',
-    street: '',
-    city: '',
-    state: '',
-    postalCode: '',
-    country: '',
+    name: "",
+    email: "",
+    phoneNumber: "",
+    street: "",
+    city: "",
+    state: "",
+    postalCode: "",
+    country: "",
   });
-  const currentOrder = useSelector(state => state.currentOrder);
-  const currentUserOrder = useSelector(state => state.currentUserOrder);
-const directions = useSelector(state=> state.directions);
+  const currentOrder = useSelector((state) => state.currentOrder);
+  const currentUserOrder = useSelector((state) => state.currentUserOrder);
+  const directions = useSelector((state) => state.directions);
   const [shipMessage, setShipMessage] = useState("");
   const [showPopup, setShowPopup] = useState(false);
   const [direccion, setDireccion] = useState([]);
-  const [idAdress, setidAdress] = useState('')
+  const [idAdress, setidAdress] = useState("");
 
-  const stripePromise = loadStripe( 'pk_test_51NB6jDKYeZyt0ZZhF4rhnhYKRp55bCCtnvCqUWE8khTmgyBk37Op5cl3jYN4fHJBA2LaLGU2RU6wFoYuuA6WO1eh00GfjV2DDF');
-
+  const stripePromise = loadStripe(
+    "pk_test_51NB6jDKYeZyt0ZZhF4rhnhYKRp55bCCtnvCqUWE8khTmgyBk37Op5cl3jYN4fHJBA2LaLGU2RU6wFoYuuA6WO1eh00GfjV2DDF"
+  );
 
   const getAdress = async (uid) => {
-   
-    const adress = await axios.get(`http://localhost:3001/address/user/${uid}`);
+    const adress = await axios.get(
+      `https://henrybuster.onrender.com/address/user/${uid}`
+    );
     const direccionData = adress.data;
-   dispatch(setDirections(direccionData));
+    dispatch(setDirections(direccionData));
   };
 
   useEffect(() => {
@@ -57,13 +64,13 @@ const directions = useSelector(state=> state.directions);
   }, [user]);
 
   useEffect(() => {
-    if(user){const fetchAddress = async () => {
-      await getAdress(user.uid);
-    };
-    fetchAddress();
-  }
-    
-  }, [user,userState]);
+    if (user) {
+      const fetchAddress = async () => {
+        await getAdress(user.uid);
+      };
+      fetchAddress();
+    }
+  }, [user, userState]);
   const handlePhone = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -78,35 +85,50 @@ const directions = useSelector(state=> state.directions);
         ...formData,
         name: userState && userState.name ? userState.name : formData.name,
         email: user && user.email ? user.email : formData.email,
-        phoneNumber: userState && userState.phoneNumber ? userState.phoneNumber : formData.phoneNumber,
-        street: directions[0] && directions[0].street ? directions[0].street : formData.street,
-        city: directions[0] && directions[0].city ? directions[0].city : formData.city,
-        state: directions[0] && directions[0].state ? directions[0].state : formData.state,
-        postalCode: directions[0] && directions[0].postalCode ? directions[0].postalCode : formData.postalCode,
-        country: directions[0] && directions[0].country ? directions[0].country : formData.country,
+        phoneNumber:
+          userState && userState.phoneNumber
+            ? userState.phoneNumber
+            : formData.phoneNumber,
+        street:
+          directions[0] && directions[0].street
+            ? directions[0].street
+            : formData.street,
+        city:
+          directions[0] && directions[0].city
+            ? directions[0].city
+            : formData.city,
+        state:
+          directions[0] && directions[0].state
+            ? directions[0].state
+            : formData.state,
+        postalCode:
+          directions[0] && directions[0].postalCode
+            ? directions[0].postalCode
+            : formData.postalCode,
+        country:
+          directions[0] && directions[0].country
+            ? directions[0].country
+            : formData.country,
       };
+
       if(userState.id && userState.id === undefined){
         dispatch(setOrder(updatedData))
       }else{
         dispatch(setUserOrder(updatedData))
 
       }
-       
-       
-       
+
       setFormData(updatedData);
     }
-
-  
-  }, [directions,user, userState]);
+  }, [directions, user, userState]);
 
   useEffect(() => {
-  const selectElement = document.querySelector("#address");
+    const selectElement = document.querySelector("#address");
 
-if(selectElement) selectElement.selectedIndex = 0;
-
-}, [directions]);
+    if (selectElement) selectElement.selectedIndex = 0;
+  }, [directions]);
   useEffect(() => {
+
     if(user){
       if (!currentUserOrder.street || !currentUserOrder.name || !currentUserOrder.phoneNumber) {
         setShipMessage('Provide the shipping data. You must fill all the fields to continue');
@@ -115,8 +137,9 @@ if(selectElement) selectElement.selectedIndex = 0;
       }
     }else if (!currentOrder.street || !currentOrder.name || !currentOrder.phoneNumber) {
       setShipMessage('Provide the shipping data. You must fill all the fields to continue');
+
     } else {
-      setShipMessage('');
+      setShipMessage("");
     }
   }, [currentOrder, currentUserOrder]);
 
@@ -133,7 +156,7 @@ if(selectElement) selectElement.selectedIndex = 0;
   const closePopup = () => {
     setShowPopup(false);
   };
-/*
+  /*
   if(currentOrder){
     const direccionSeleccionada = direccion[0]
     
@@ -148,56 +171,51 @@ if(selectElement) selectElement.selectedIndex = 0;
    }
 */
 
+  useEffect(() => {
+    if (directions) {
+      const value = document.querySelector("#address");
+      if (value) {
+        console.log(value.value);
+        const getAdressById = async (id) => {
+          const { data } = await axios.get(
+            `https://henrybuster.onrender.com/address/${id}`
+          );
+          const newAddress = {
+            AddressId: id,
+            purchases: purchases,
+            name: userState.name,
+            phoneNumber: currentUserOrder.phoneNumber,
+            street: data.street,
+            city: data.city,
+          };
 
-
-useEffect(() => {
-  if (directions){
-    const value = document.querySelector("#address")
-    if(value){
-      console.log(value.value)
-      const getAdressById = async(id) =>{
-        const{data} = await axios.get(`http://localhost:3001/address/${id}`)
-        const newAddress = {
-          
-          AddressId:id,
-          purchases:purchases,
-          name: userState.name,
-          phoneNumber:currentUserOrder.phoneNumber,
-          street: data.street,
-          city: data.city
+          dispatch(setUserOrder(newAddress));
         };
 
-        
-        dispatch(setUserOrder(newAddress));
+        getAdressById(value.value);
       }
-
-      getAdressById(value.value)
     }
-  }
-}, [directions]);
-
-
+  }, [directions]);
 
   const handleAddressChange = async (event) => {
-    
     const selectedStreet = event.target.value;
 
-      const{data} = await axios.get(`http://localhost:3001/address/${selectedStreet}`)
-      const newAddress = {
-        
-        AddressId:selectedStreet,
-        purchases:purchases,
-        name: userState.name,
-        phoneNumber:userState.phoneNumber,
-        street: data.street,
-        city: data.city
-      };
-      dispatch(setUserOrder(newAddress));
-      setFormData(newAddress);
-      
-     console.log(newAddress,'componente payment')
-  };
+    const { data } = await axios.get(
+      `https://henrybuster.onrender.com/address/${selectedStreet}`
+    );
+    const newAddress = {
+      AddressId: selectedStreet,
+      purchases: purchases,
+      name: userState.name,
+      phoneNumber: userState.phoneNumber,
+      street: data.street,
+      city: data.city,
+    };
+    dispatch(setUserOrder(newAddress));
+    setFormData(newAddress);
 
+    console.log(newAddress, "componente payment");
+  };
 
   return (
     <div className={style.container}>
@@ -208,22 +226,20 @@ useEffect(() => {
             <h1 className={style.titulos1}>It's almost yours!:</h1>
           </div>
           <div>
-            <div className={style.imagecontainer}>
-              {renderImages()}
-            </div>
+            <div className={style.imagecontainer}>{renderImages()}</div>
           </div>
           <div className={style.adress}>
-          {directions.length>=1 && (
-            <select name="" id="address" onChange={handleAddressChange}>
-              {directions.map((address) => (
-                <option key={address.id} value={address.id}>
-                  {address.street}
-                </option>
-              ))}
-            </select>
-          )}
-  <h2>Shipping data:</h2>
-  {/*
+            {directions.length >= 1 && (
+              <select name="" id="address" onChange={handleAddressChange}>
+                {directions.map((address) => (
+                  <option key={address.id} value={address.id}>
+                    {address.street}
+                  </option>
+                ))}
+              </select>
+            )}
+            <h2>Shipping data:</h2>
+            {/*
   <div>
   
     <label htmlFor="">Please enter a phone number:</label>
@@ -233,24 +249,34 @@ useEffect(() => {
            onChange={handlePhone}/>
               </div>*/}
 
-  {!userState?.id? (
-    <><h2>{currentOrder.name ? currentOrder.name : ""}</h2>
-    <p>{currentOrder.phoneNumber ? currentOrder.phoneNumber : ""}</p>
-    <p>{currentOrder.street ? currentOrder.street : ""}</p>
-    <p>{currentOrder.city ? currentOrder.city : ""}</p>
-    {shipMessage !== "" && <p>{shipMessage}</p>}</>) :
-  (<><h2>{currentUserOrder.name ? currentUserOrder.name : ""}</h2>
-  <p>{currentUserOrder.phoneNumber ? currentUserOrder.phoneNumber : ""}</p>
-  <p>{currentUserOrder.street ? currentUserOrder.street : ""}</p>
-  <p>{currentUserOrder.city ? currentUserOrder.city : ""}</p>
-  {shipMessage !== "" && <p>{shipMessage}</p>}</>)
-  }
-  
-  
-  
-</div>
+            {!userState?.id ? (
+              <>
+                <h2>{currentOrder.name ? currentOrder.name : ""}</h2>
+                <p>
+                  {currentOrder.phoneNumber ? currentOrder.phoneNumber : ""}
+                </p>
+                <p>{currentOrder.street ? currentOrder.street : ""}</p>
+                <p>{currentOrder.city ? currentOrder.city : ""}</p>
+                {shipMessage !== "" && <p>{shipMessage}</p>}
+              </>
+            ) : (
+              <>
+                <h2>{currentUserOrder.name ? currentUserOrder.name : ""}</h2>
+                <p>
+                  {currentUserOrder.phoneNumber
+                    ? currentUserOrder.phoneNumber
+                    : ""}
+                </p>
+                <p>{currentUserOrder.street ? currentUserOrder.street : ""}</p>
+                <p>{currentUserOrder.city ? currentUserOrder.city : ""}</p>
+                {shipMessage !== "" && <p>{shipMessage}</p>}
+              </>
+            )}
+          </div>
           <div>
-            <button className={style.boton} onClick={openPopup}>Add Address</button>
+            <button className={style.boton} onClick={openPopup}>
+              Add Address
+            </button>
             {showPopup && (
               <div className="overlay">
                 <OrderAdress onClose={closePopup} />
@@ -262,9 +288,7 @@ useEffect(() => {
           <div></div>
           <div>
             <Elements stripe={stripePromise}>
-              <CheckoutForm 
-              idAdress={idAdress}
-              />
+              <CheckoutForm idAdress={idAdress} />
             </Elements>
           </div>
         </div>
