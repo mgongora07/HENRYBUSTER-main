@@ -11,7 +11,8 @@ const SmallCard = ({ name, image, id, price, Format, movie, favId}) => {
    
     const { addItemToCart, deleteItemToCart, cartItems} = useContext(CartContext);
     const { user} = useAuth();
-    
+    const [showSpinner, setShowSpinner] = useState(false);
+
     const [stateBuy, setStateBuy] = useState(false);
     const [success, setSuccess] = useState(false);
     const [deleteSuccess, setDeleteSuccess] = useState(false);
@@ -41,15 +42,22 @@ const SmallCard = ({ name, image, id, price, Format, movie, favId}) => {
           }, 800);
         }
       };
-    
       const handleFavorite = () => {
+        setIsFav(false);
+        setShowSpinner(true);
+        dispatch(deleteFavorite(favId));
+        dispatch(getAllFavorites(user.uid));
+      };
+      
+    
+      // const handleFavorite = () => {
        
-           setIsFav(false)
-           dispatch(deleteFavorite(favId))
-           dispatch(getAllFavorites(user.uid))
+      //      setIsFav(false)
+      //      dispatch(deleteFavorite(favId))
+      //      dispatch(getAllFavorites(user.uid))
        
           
-        }
+      //   }
       
     //  useEffect(() => {
     //   if (myFavorites.length >= 1) {
@@ -87,13 +95,24 @@ const SmallCard = ({ name, image, id, price, Format, movie, favId}) => {
                 <i className="bi bi-cart-plus bi-sm"></i>
             )}
      </button>
-            
      <div>
+  {showSpinner ? (
+   <div className="spinner-border" role="status">
+   <span className="sr-only">Loading...</span>
+ </div>
+  ) : (
+    <button className={style.buttonFav} onClick={handleFavorite}>
+      <i className="bi bi-heart-fill"></i>
+    </button>
+  )}
+</div>
+
+     {/* <div>
           {isFav ? <button className={style.buttonFav} onClick={handleFavorite}><i className="bi bi-heart-fill"></i></button> : ""
      
          
          }
-    </div>
+    </div> */}
         {/* Agrega aquí los elementos adicionales del footer */}
       </div>
     </div>

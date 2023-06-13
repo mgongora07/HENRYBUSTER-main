@@ -110,10 +110,12 @@ const Payment = () => {
             ? directions[0].country
             : formData.country,
       };
-      if (userState.id === undefined) {
-        dispatch(setOrder(updatedData));
-      } else {
-        dispatch(setUserOrder(updatedData));
+
+      if(userState.id && userState.id === undefined){
+        dispatch(setOrder(updatedData))
+      }else{
+        dispatch(setUserOrder(updatedData))
+
       }
 
       setFormData(updatedData);
@@ -126,14 +128,20 @@ const Payment = () => {
     if (selectElement) selectElement.selectedIndex = 0;
   }, [directions]);
   useEffect(() => {
-    if (!currentOrder.street || !currentOrder.name) {
-      setShipMessage(
-        "Provide the shipping data. You must fill all the fields to continue"
-      );
+
+    if(user){
+      if (!currentUserOrder.street || !currentUserOrder.name || !currentUserOrder.phoneNumber) {
+        setShipMessage('Provide the shipping data. You must fill all the fields to continue');
+      } else {
+        setShipMessage('');
+      }
+    }else if (!currentOrder.street || !currentOrder.name || !currentOrder.phoneNumber) {
+      setShipMessage('Provide the shipping data. You must fill all the fields to continue');
+
     } else {
       setShipMessage("");
     }
-  }, [currentOrder]);
+  }, [currentOrder, currentUserOrder]);
 
   const renderImages = () => {
     return cartItems.map((item, index) => (
