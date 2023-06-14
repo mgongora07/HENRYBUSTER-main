@@ -230,6 +230,7 @@ const AddNewAdress = () => {
      
       </div>
       </div>
+      <p>For support, please contact: movieprimecontact@gmail.com</p>
       </div>
     </div>
   );
