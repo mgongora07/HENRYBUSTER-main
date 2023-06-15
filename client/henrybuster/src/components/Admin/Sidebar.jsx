@@ -9,6 +9,7 @@ import { cleanOrders, cleanUser, setDirections } from "../../redux/actions";
 
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import style from "./Sidebar.css";
 
 function Sidebar({ handleUser, userRegister }) {
   const isMdAndUp = useMediaQuery({ minWidth: 660 });
