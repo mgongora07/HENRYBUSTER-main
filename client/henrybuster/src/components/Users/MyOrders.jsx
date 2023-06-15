@@ -42,6 +42,7 @@ const MyOrders = () => {
               <p>Add items to cart and start a new order!</p>
             )}
           </div>
+     <p>For support, please contact: movieprimecontact@gmail.com</p>
      </div>
     </div>
   )

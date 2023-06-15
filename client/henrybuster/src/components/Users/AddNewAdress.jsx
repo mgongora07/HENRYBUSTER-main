@@ -224,6 +224,28 @@ const AddNewAdress = () => {
             )}
           </div>
         </div>
+
+      </form>
+      <div className={style.Columna2}>
+      {directions && directions.length >= 1 ?(   
+      directions.map((address) => (
+    <div key={address.id} className={style.direccion}>
+      <p>Street: {address.street}<br />
+      City: {address.city} <br />
+      State: {address.state} <br />
+      Zip Code: {address.postalCode} <br />
+      Country: {address.country}</p>
+    </div>
+  ))
+) : (
+  <p>Fill the form to add a new adress</p>
+)}
+
+     
+      </div>
+      </div>
+      <p>For support, please contact: movieprimecontact@gmail.com</p>
+
       </div>
     </div>
   );
