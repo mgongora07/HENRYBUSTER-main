@@ -28,7 +28,7 @@ const WhistList = () => {
        <div className={style.container}>
         <SideBarProfile/>
         <div className={style.body}>
-            <h1><i className="bi bi-bag-heart-fill"></i>My Whishlist</h1>
+            <h1><i className="bi bi-bag-heart-fill"></i> My Whishlist</h1>
             {/* <div className={style.cartasDiv}>
               {filterFavs?.map(movie=>{
                 return (
