@@ -2,9 +2,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 120px; /* Ancho fijo de la carta */
-    height: 230px; /* Altura se ajustará automáticamente según el contenido */
-    padding: 0.8em;
+    width: 180px; /* Ancho fijo de la carta */
+    height: 240px; /* Altura se ajustará automáticamente según el contenido */
+    padding: 0.9em;
     background: #f5f5f5;
     position: relative;
     overflow: visible;
@@ -73,17 +73,16 @@
     border-radius: 3px;
     border: none;
     padding: 0.1em 0.1em;
-    font-size: 0.7em; /* Ajusta el tamaño del botón según tus necesidades */
+    font-size: 1em;
     background-color: #a8d796;
-  }
+    transition: 1s;
+}
 
   .addButton:hover {
-    
     background-color: #4e8937;
   }
 
   .buyButton:hover {
-  
     background-color: #e3223f;
   }
 
@@ -91,6 +90,7 @@
     border: none;
     background-color: none;
   }
+
   .buttonFav:hover{
     border: solid 1px black;
     

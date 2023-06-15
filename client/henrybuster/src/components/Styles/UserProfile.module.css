@@ -1,26 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700;800;900&display=swap');
+
 .letras {
     color: #333;
-    
     margin-bottom: 10px;
     width: 150px;
     display: flex;
     align-items: center;
     text-align: left;
     font-size:medium;
+    font-family: 'Roboto Slab', serif;
+  }
+  .title{
+    font-family: 'Roboto Slab', serif;
+    font-size: 32px;
+    padding: 10px;
   }
   
   .letras2 {
-    color: #333;
-    font-size: medium;
-    font-weight: bold;
-    font-size: medium;
-    padding-bottom: 20px;
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
   }
   
   .popup {
     display: flex;
     flex-direction: row;
-    justify-content:space-evenly;
+    justify-content:space-around;
 
     background-color: #7498b6;
     height: 100vh;
@@ -29,48 +33,59 @@
     overflow: auto;
    
   }
-  
-  .campo {
+
+  .form{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    margin-bottom: 10px;
+  }
+
+  .campo{
+    margin: 10px;
+    width: 310px;
   }
   
-  .campo input[type="text"],
-  .campo input[type="email"] {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    font-size: 16px;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-    border-radius: 20px;
-  }
   
   .campo input[type="text"]:focus,
   .campo input[type="email"]:focus {
     outline: none;
     box-shadow: 0 0 3px #7498b6;
-    border-radius: 20px;
-  }
+    border-radius: 10px;
+}
   
-  .button {
-    background-color: #061c2d;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: medium;
-    cursor: pointer;
-  }
-  
-  .button:hover {
-    background-color: #56778f;
-  }
-  
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  cursor: pointer;
+  width: 150px;
+  height: 50px;
+  background-image: linear-gradient(to top, #D8D9DB 0%, #fff 80%, #FDFDFD 100%);
+  border-radius: 30px;
+  border: 1px solid #8F9092;
+  transition: all 0.2s ease;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #606060;
+  text-shadow: 0 1px #fff;
+}
+
+.button:hover {
+  box-shadow: 0 4px 3px 1px #fcfcfc2e, 
+  0 6px 8px #d6d7d93c, 0 -4px 4px #cecfd129, 
+  0 -6px 4px #fefefe14, inset 0 0 3px 3px #cecfd114;
+}
+
+.button:active {
+  box-shadow: 0 4px 3px 1px #fcfcfc63, 
+  0 6px 8px #d6d7d951, 0 -4px 4px #cecfd133, 
+  0 -6px 4px #fefefe2c, inset 0 0 5px 3px #999999be, inset 0 0 30px #aaaaaa85;
+}
+
+
+
   .closeButton {
     position: absolute;
     top: 10px;
@@ -105,7 +120,7 @@
 .direccion{
   display: flex;
   flex-direction: column;
-  background-color: #fff;
+  background-color: #ffffff98;
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 10px;
@@ -113,8 +128,14 @@
   margin: 5px 0;
   width: 50vh;
   text-align: left;
-  
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: 1s;
 }
+
+.direccion:hover{
+  transform: scale(1.03);
+}
+
 .column {
   flex-basis: 50%; 
   padding: 10px; 
@@ -123,15 +144,21 @@
 
 .Columna2{
   padding: 30px;
-
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+
 .titulo{
-  background-color: #7498b6;
+  background-color: #7498b6d2;
   overflow: auto;
   width: 100%;
   
 }
 
 .error{
-   max-width: 300px;
+   max-width: 270px;
+   color: red;
+   font-size: 16px;
+   text-align: left;
 }
+
+
