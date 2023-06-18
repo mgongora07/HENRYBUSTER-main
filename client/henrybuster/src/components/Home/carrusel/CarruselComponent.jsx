@@ -21,7 +21,11 @@ function CarouselFadeExample() {
       <Carousel fade>
         {top10Movies.map((e, i) => (
           <Carousel.Item key={i}>
+            <div className={style.test}>
+            <div className={style.imagenPrueba}>
+
             <img className={style.img} src={e.image} alt={e.name} />
+            </div>
             <Carousel.Caption className={style.controls}>
               <div className={style.text}>
                 <Link
@@ -47,6 +51,7 @@ function CarouselFadeExample() {
                 </div>
               </div>
             </Carousel.Caption>
+            </div>
           </Carousel.Item>
         ))}
       </Carousel>
@@ -55,3 +60,4 @@ function CarouselFadeExample() {
 }
 
 export default CarouselFadeExample;
+

@@ -93,23 +93,30 @@ function Cards({ name, image, id, genres, movies, price, format }) {
   return (
     <>
       <div className={style.card}>
-        <div className={style.card_img}>
-          <Link to={`/movie/${id}`} onClick={handleScrollUp}>
-            <Card.Img variant="top" src={image} style={{ height: "250px" }} />
-          </Link>
+    
+        <div className={style.div1}>
+         
+            <div className={style.prueba}>
+
+            <Card.Img variant="top" src={image} className={style.img} />
+            </div>
+          
         </div>
+       
         <div className={style.card_info}>
+        <Link to={`/movie/${id}`} onClick={handleScrollUp} className={style.links}>
           <p className={style.text_title}>
             <Card.Title className={style.text}>{name}</Card.Title>
-          </p>
-          <Card.Text className={style.text}>
-            <span>Format:</span> {format}
+          </p></Link>
+          <Card.Text className={style.text2}>
+            <p className={style.text2}>Format:{format}</p> 
           </Card.Text>
         </div>
+      
         <div className={style.card_footer}>
-          <div>
+          <div >
             <Card.Text className={style.text}>
-              <span className={style.text_title}>${price}</span>
+              <span className={style.textprice}>${price}</span>
             </Card.Text>
           </div>
 
@@ -126,7 +133,7 @@ function Cards({ name, image, id, genres, movies, price, format }) {
               className={stateBuy === true ? "bg-danger" : "bg-success"}
               value={id}
               onClick={handleClick}
-              style={{ height: "fit-content" }}
+              // style={{ height: "fit-content" }}
             >
               <i className="fa-solid fa-cart-plus"> + </i>
             </Button>
@@ -137,15 +144,17 @@ function Cards({ name, image, id, genres, movies, price, format }) {
             <Card.Text className="text-success">Added successfully!</Card.Text>
           ) : null}
           {deleteSuccess ? (
-            <Card.Text className="text-warning">
+            <Card.Text className="text-danger">
               Deleted successfully!
             </Card.Text>
           ) : null}
         </div>
         
       </div>
+      
     </>
   );
 }
 
 export default Cards;
+
