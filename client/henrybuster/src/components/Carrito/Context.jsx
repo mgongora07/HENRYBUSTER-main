@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
-
+import Swal from 'sweetalert2'
 export const CartContext = createContext();
+
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState(() => {
@@ -30,7 +31,12 @@ export const CartProvider = ({ children }) => {
         );
       } else {
         
-        alert("Stock insuficiente para añadir mas items de este mismo producto");
+        Swal.fire({
+          text: 'Insufficient stock to add more items of this product',
+          icon: 'warning',
+          confirmButtonColor: '#153f59'
+        });
+        
       }
     } else {
       setCartItems([...cartItems, { ...product, amount: 1 }]);

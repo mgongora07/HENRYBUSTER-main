@@ -14,6 +14,7 @@ import axios from "axios";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser";
+import Swal from 'sweetalert2'
 
 const CheckoutForm = (props) => {
   const { cartItems, clearCart } = useContext(CartContext);
@@ -80,8 +81,13 @@ const CheckoutForm = (props) => {
           console.log(respuesta, "soy respuesta");
 
           if (respuesta === "succeeded") {
-            setResponseMessage("Payment successful!");
-
+            setResponseMessage("Payment successfull!");
+            Swal.fire({
+              title: 'Successfull payment!',
+              text: 'Check your profile for tracking, or your email if you are an user',
+              icon: 'sucess',
+              confirmButtonColor: '#153f59'
+            });
             if (user.id) {
               await axios.post(
                 `https://henrybuster.onrender.com/purchase/${usuario.id}`,

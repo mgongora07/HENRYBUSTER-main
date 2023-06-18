@@ -12,7 +12,9 @@
     object-fit: cover;
     margin-right: 10px;
   }
-  
+  .bluebutton{
+    background-color: blue;
+  }
   .list-item-details {
     flex: 1;
     display: flex;

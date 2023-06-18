@@ -80,7 +80,9 @@ function App() {
         <CartProvider>
           {location.pathname.startsWith("/admin") &&
           userRegister.admin ? null : (
-            <Nav handleUser={handleUser} userRegister={userRegister} />
+            <header className="fixed-nav">
+              <Nav handleUser={handleUser} userRegister={userRegister} />
+            </header>
           )}
 
           <Routes>
