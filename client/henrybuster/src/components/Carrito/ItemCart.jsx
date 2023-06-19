@@ -62,7 +62,7 @@ const ItemCart = ({ item }) => {
             </button>
           </div>
 
-          <p>Subtotal: ${item.amount * item.price} USD</p>
+          <p>Subtotal: ${(item.amount * item.price).toFixed(2)} USD</p>
         </div>
 
       </div>

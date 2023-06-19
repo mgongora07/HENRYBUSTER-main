@@ -77,10 +77,18 @@ export const CartProvider = ({ children }) => {
           })
         );
       } else {
-        alert("Stock insuficiente para establecer la cantidad de este producto.");
+        Swal.fire({
+          text: 'Insufficient stock to add more items of this product',
+          icon: 'warning',
+          confirmButtonColor: '#153f59'
+        });
       }
     } else {
-      alert("El producto no se encuentra en el carrito.");
+      Swal.fire({
+        text: 'Product Not in cart',
+        icon: 'warning',
+        confirmButtonColor: '#153f59'
+      });
     }
   };
   

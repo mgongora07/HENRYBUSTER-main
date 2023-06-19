@@ -1,12 +1,13 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { getDetailMovie, cleanDetail } from '../../redux/actions';
 import { CartContext } from '../Carrito/Context';
 import Reviews from './Reviews';
 import style from '../Styles/Detail.module.css';
 
 export const Detail = () => {
+  useNavigate
   const goBack = () => {
     window.history.back();
   };
@@ -38,6 +39,9 @@ export const Detail = () => {
       ) : (
         <div>
           <div className={style.Wraper}>
+          <div className={style.containerBack}>
+              <button onClick={goBack} className={style.btnBack}><i class="bi bi-arrow-left-circle-fill"></i> Go Back</button>
+            </div>
             <div className={style.DatosPelis}>
               <div className={style.ImagenPelis}>
                 <h5>{movies ? movies.name : "No info about"}</h5>
@@ -66,9 +70,7 @@ export const Detail = () => {
                 rating={movies.vote_average}
               />
             </div>
-            <div className={style.containerBack}>
-              <button onClick={goBack} className={style.btnBack}>Back</button>
-            </div>
+           
           </div>
         </div>
       )}

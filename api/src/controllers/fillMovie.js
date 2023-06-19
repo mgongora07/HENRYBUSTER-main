@@ -593,7 +593,7 @@ const fillMovie = async (req, res) => {
       name: "Interstellar",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
-      description: `https://www.themoviedb.org/t/p/w600_and_h900_bestv2/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg`,
+      description: `Gracias a un descubrimiento, un grupo de científicos y exploradores, encabezados por Cooper, se embarcan en un viaje espacial para encontrar un lugar con las condiciones necesarias para reemplazar a la Tierra y comenzar una nueva vida allí.`,
       price: 9.99,
       LanguageId: 2,
       FormatId: 3,
@@ -631,7 +631,7 @@ const fillMovie = async (req, res) => {
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/7twNCiHS1rR7P2fyGOH1sUmLDyY.jpg",
       description:
-        "Superman, Batman, Mujer Maravilla, Flash, Cyborg, Linterna Verde y Vixen son transportados al extraño mundo de Remnant y se encuentran convertidos en adolescentes. Mientras tanto, los héroes de Remnant, Ruby, Weiss, Blake y Yang, deben combinar fuerzas con la Liga de la Justicia para descubrir por qué su planeta ha sido alterado misteriosamente antes de que un Grimm con superpoderes destruya todo.",
+        "Superman, Batman, Mujer Maravilla, Flash, Cyborg, Linterna Verde y Vixen son transportados al extraño mundo de Remnant y se encuentran convertidos en adolescentes.",
       price: 25.5,
       LanguageId: 2,
       FormatId: 10,
@@ -745,7 +745,7 @@ const fillMovie = async (req, res) => {
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/y0M1j79sOShd6456pMEYpkDimhz.jpg",
       description:
-        "Dean Youngblood (Lowe), con sólo 17 años, ha demostrado ser el mejor patinador sobre hielo. Lo que se propone es triunfar en la Liga Nacional de Hockey sobre hielo con los Hamilton Mustangs, un equipo canadiense no profesional. Aunque está seguro de que su habilidad sobre el hielo deslumbrará al público, pronto se da cuenta de que su rapidez y astucia no serán suficientes para enfrentarse a sus principales rivales: Los Thunder Bay Bombers, los chicos malos de la Liga. Además, de manera inesperada, cuando el ariete de los Mustangs (Swayze) pierde el conocimiento, Dean tiene que pasar automáticamente de novato a estrella.",
+        "Dean Youngblood (Lowe), con sólo 17 años, ha demostrado ser el mejor patinador sobre hielo. Lo que se propone es triunfar en la Liga Nacional de Hockey sobre hielo con los Hamilton Mustangs, un equipo canadiense no profesional.",
       price: 30.25,
       LanguageId: 4,
       FormatId: 6,
@@ -821,7 +821,7 @@ const fillMovie = async (req, res) => {
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/piJK8RL8YBP4QZ2ZY1hLGS5uMa4.jpg",
       description:
-        "Cuando la familia Primm se muda a Nueva York, su hijo adolescente Josh lucha por adaptarse a su nueva escuela y nuevos amigos. Todo eso cambia cuando descubre a Lilo – un cocodrilo cantante a quien le gusta darse baños, el caviar y la buena música – viviendo en el ático de su nueva casa. Los dos se convierten en mejores amigos, pero cuando la existencia de Lilo se ve amenazada por su malvado vecino Mr. Grumps, los Primm deberán aliarse con el carismático dueño de Lilo, Hector P. Valenti, para mostrar al mundo que la familia puede surgir de los lugares más inesperados y que no hay nada malo con un gran cocodrilo cantante con una personalidad aún mayor.",
+        "Cuando la familia Primm se muda a Nueva York, su hijo adolescente Josh lucha por adaptarse a su nueva escuela y nuevos amigos. Todo eso cambia cuando descubre a Lilo – un cocodrilo cantante a quien le gusta darse baños, el caviar y la buena música – viviendo en el ático de su nueva casa.",
       price: 34.25,
       LanguageId: 2,
       FormatId: 2,
@@ -855,7 +855,7 @@ const fillMovie = async (req, res) => {
 
     const movie47 = await Movie.create({
       vote_average: getRandomNumber(1, 5),
-      name: "Guardianes de la noche: Rumbo a la aldea de los herreros ",
+      name: "Guardianes de la noche",
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/rzAShiFrU6tSSr9gLD5AxKKwtOo.jpg",
       description:
@@ -935,7 +935,7 @@ const fillMovie = async (req, res) => {
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/bAQ8O5Uw6FedtlCbJTutenzPVKd.jpg",
       description:
-        "Han pasado dos años desde que acabó la Cuarta Guerra Shinobi y con ello la última pelea entre Naruto y Sasuke. Konoha se encuentra en paz, pero un nuevo enemigo amenaza esta paz. La luna que fue creada por el sabio de los seis caminos cuando sello al Jūbi, se perturba y empieza a dirigirse a la tierra en forma de un meteorito gigante, se descubre que el causante de esta inminente tragedia es alguien llamado Toneri Ōtsutsuki quien es el último descendiente del Clan Ōtsutsuki, cuyos miembros habitaron en la luna los último mil años. En medio del inminente desastre Toneri Ōtsutsuki intenta secuestrar a Hinata, pero Hannabi, la hermana menor, es quien termina siendo raptada, es entonces donde Naruto y los demás deberán rescatarla y vencer a Toneri Ōtsutsuki antes de que sea demasiado tarde y así descubrir las verdaderas intenciones de Ōtsutsuki.",
+        "Han pasado dos años desde que acabó la Cuarta Guerra Shinobi y con ello la última pelea entre Naruto y Sasuke. Konoha se encuentra en paz, pero un nuevo enemigo amenaza esta paz. ",
       price: 30.05,
       LanguageId: 8,
       FormatId: 4,
@@ -1049,7 +1049,7 @@ const fillMovie = async (req, res) => {
       image:
         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/i6E8fx8lAEI0PGGCUlaA2Ap1gWi.jpg",
       description:
-        "Secuela de la cinta original de 1996, Space Jam, protagonizada por Michael Jordan. En esta segunda parte, la super estrella de la NBA es LeBron James, quien queda atrapado junto a su hijo Dom en un extraño lugar, un espacio digital de una fuerza todopoderosa y malvada conocida como A.I. Para volver a casa y poner a salvo a su hijo, el jugador de baloncesto deberá unir fuerzas con Bugs Bunny, Lola Bunny y el resto de personajes de los Looney Tunes para enfrentarse en un partido de baloncesto a los campeones digitalizados por inteligencia artificial.",
+        "Secuela de la cinta original de 1996, Space Jam, protagonizada por Michael Jordan. En esta segunda parte, la super estrella de la NBA es LeBron James, quien queda atrapado junto a su hijo Dom en un extraño lugar, un espacio digital de una fuerza todopoderosa y malvada conocida como A.I. ",
       price: 10.05,
       LanguageId: 2,
       FormatId: 8,
@@ -2890,7 +2890,7 @@ const fillMovie = async (req, res) => {
     await movie151.addGenres([7, 10, 12]);
 
     const movie152 = await Movie.create({
-      name: "Diario de un niño debilucho: las reglas de Rodrick",
+      name: "Las reglas de Rodrick",
       image:
         "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/iW6ixzkrvdrcxk0umiLZMtlSl9L.jpg",
       description:
