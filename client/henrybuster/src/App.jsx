@@ -28,6 +28,8 @@ import RouteError from "./components/RouteError/RouteError";
 import axios from "axios";
 import Users from "./components/Admin/users/Users";
 
+
+
 import Purchases from "./components/Admin/purchases/purchases";
 import BarChart from "./components/Admin/purchases/BarChart";
 import { ProtectedRoute } from "./components/ProtectedRoute";
@@ -39,12 +41,14 @@ import AddNewAdress from "./components/Users/AddNewAdress";
 import Kommunicate from "@kommunicate/kommunicate-chatbot-plugin";
 import WhistList from "./components/Users/WhistList";
 
-Kommunicate.init("3dc03d73906036a361d98fb3e7987a6d1", {
-  automaticChatOpenOnNavigation: true,
-  popupWidget: true,
-});
+  Kommunicate.init("3dc03d73906036a361d98fb3e7987a6d1", {
+    automaticChatOpenOnNavigation: true,
+    popupWidget: true,
+  });
 
 function App() {
+
+
   const location = useLocation();
 
   const [userRegister, setUser] = useState({});
@@ -53,12 +57,8 @@ function App() {
     if (id === "") {
       localStorage.setItem("user", JSON.stringify(""));
     } else {
-      let userRegister = await axios.get(
-        `https://localhost:3001/user/${id}`
-      );
-      console.log(userRegister)
+      let userRegister = await axios.get(`http://localhost:3001/user/${id}`);
       let user = userRegister.data;
-      console.log(user.name)
       if (user) {
         localStorage.setItem("user", JSON.stringify(user));
       }
@@ -80,24 +80,22 @@ function App() {
     <>
       <AuthProvider>
         <CartProvider>
-          {location.pathname.startsWith("/admin") &&
-          userRegister.admin ? null : (
-            <header className="fixed-nav">
-              <Nav handleUser={handleUser} userRegister={userRegister} />
-            </header>
-          )}
+          <Nav handleUser={handleUser} userRegister={userRegister} />
+          {location.pathname.startsWith("/admin") && userRegister.admin ? (
+            <Sidebar handleUser={handleUser} userRegister={userRegister} />
+          ) : null}
 
           <Routes>
-            <Route path="/" element={<Home handleUser={handleUser} />} />
-            <Route path="/movie/:id" element={<Detail />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/payment" element={<Payment />} />
+            <Route path='/' element={<Home handleUser={handleUser} />} />
+            <Route path='/movie/:id' element={<Detail />} />
+            <Route path='/cart' element={<Cart />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/payment' element={<Payment />} />
 
             <Route
-              path="/myProfile/Adress"
+              path='/myProfile/Adress'
               element={
                 <ProtectedRoute>
                   <AddNewAdress />
@@ -105,7 +103,7 @@ function App() {
               }
             />
             <Route
-              path="/myProfile/Orders"
+              path='/myProfile/Orders'
               element={
                 <ProtectedRoute>
                   <MyOrders />
@@ -113,7 +111,7 @@ function App() {
               }
             />
             <Route
-              path="/myProfile/Whislist"
+              path='/myProfile/Whislist'
               element={
                 <ProtectedRoute>
                   <WhistList />
@@ -121,7 +119,7 @@ function App() {
               }
             />
             <Route
-              path="/myProfile"
+              path='/myProfile'
               element={
                 <ProtectedRoute>
                   <MyOrders />
@@ -134,28 +132,28 @@ function App() {
             {userRegister && userRegister.admin ? (
               <>
                 <Route
-                  path="/admin"
+                  path='/admin'
                   element={<Admin handleUser={handleUser} />}
                 >
-                  <Route path="/admin" element={<HomeAdmin />} />
-                  <Route path="create" element={<CreateMovie />} />
-                  <Route path="update/:id" element={<UpdateMovie />} />
-                  <Route path="create/genre" element={<CreateGenre />} />
-                  <Route path="update/genre/:id" element={<UpdateGenre />} />
-                  <Route path="AllGenre" element={<AllGenres />} />
-                  <Route path="movies" element={<MoviesAdmin />} />
+                  <Route path='/admin' element={<HomeAdmin />} />
+                  <Route path='create' element={<CreateMovie />} />
+                  <Route path='update/:id' element={<UpdateMovie />} />
+                  <Route path='create/genre' element={<CreateGenre />} />
+                  <Route path='update/genre/:id' element={<UpdateGenre />} />
+                  <Route path='AllGenre' element={<AllGenres />} />
+                  <Route path='movies' element={<MoviesAdmin />} />
                   <Route
-                    path="users"
+                    path='users'
                     element={<Users userRegister={userRegister} />}
                   />
-                  <Route path="purchases" element={<Purchases />} />
-                  <Route path="stadistics" element={<BarChart />} />
+                  <Route path='purchases' element={<Purchases />} />
+                  <Route path='stadistics' element={<BarChart />} />
                 </Route>
               </>
             ) : (
-              <Route path="/admin" element={<RouteError />} />
+              <Route path='/admin' element={<RouteError />} />
             )}
-            <Route path="/results" element={<SearchResult />} />
+            <Route path='/results' element={<SearchResult />} />
           </Routes>
         </CartProvider>
       </AuthProvider>
@@ -164,4 +162,3 @@ function App() {
 }
 
 export default App;
-

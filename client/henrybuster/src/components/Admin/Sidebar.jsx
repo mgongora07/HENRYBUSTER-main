@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-//import style from "./Sidebar.css";
+import style from "./Sidebar.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
@@ -56,8 +56,8 @@ function Sidebar({ handleUser, userRegister }) {
           <Offcanvas.Body className={`barraLateral`}>
             <nav className={`menu d-sm-block justify-content-center flex-wrap`}>
               <Link to={"/admin"} className="link-no-style">
-                <i className="bi bi-speedometer2 fs-5 me-3"></i>
-                <span>Dashboard</span>
+              <i className="bi bi-journal-bookmark-fill fs-5 me-3"></i>
+                <span>Quick guide</span>
               </Link>
 
               <Link to={"/admin/movies"} className="link-no-style">

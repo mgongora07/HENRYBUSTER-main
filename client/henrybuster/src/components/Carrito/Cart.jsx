@@ -2,11 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import style from '../Styles/Carrito.module.css'
 import ItemCart from "./ItemCart";
 import { CartContext } from "./Context";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
+import { useAuth } from "../../context/authContext"
+
 const Cart = () => {
   const [productsLength, setProductsLength] = useState(0);
-
+  const navigate = useNavigate();
+  const { user, loading } = useAuth();
   const { cartItems, addItemToCart, deleteItemToCart } =
     useContext(CartContext);
 
@@ -22,15 +25,38 @@ const Cart = () => {
   ).toFixed(2);;
   const handlePayment = async (e) => {
     e.preventDefault();
+    if(!user){
     Swal.fire({
-      title: 'Want to pay without login or sign up?',
+      title: 'You are not registered',
+      text: 'Click "ok" to continue checkout without login or sing up, click "Go" to log in or sign up',
       icon: 'question',
-      confirmButtonColor: '#153f59'
-    });
+      showCancelButton: true,
+      confirmButtonText: 'Ok, go to Pay anyway',
+      cancelButtonText: 'Go sing up or log in',
+      allowEscapeKey: false,
+      customClass: {
+        popup: 'my-popup'
+      },
+      didOpen: (popup) => {
+        console.log(popup);
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        
+        navigate("/payment")
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        
+       
+        navigate('/login'); 
+      }
+    });;}else{
+      navigate("/payment")
+    }
   }
 
   return (
     <div style={{ color: "white" }}>
+     
       {cartItems && (
         <div>
           <div className={style.titulo2}><h2 >Your cart</h2> </div>
@@ -44,12 +70,12 @@ const Cart = () => {
               {cartItems.map((item, i) => (
                 <ItemCart key={i} item={item} />
               ))}
-              <Link to={"/payment"}>
+             
           <button className={style.boton}
           onClick={handlePayment}
           >Go to pay (${total} USD)</button>
           
-          </Link>
+         
             </div>
           )}
           
@@ -57,6 +83,7 @@ const Cart = () => {
          
         </div>
       )}
+      
     </div>
   );
 };

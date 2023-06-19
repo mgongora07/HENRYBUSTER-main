@@ -69,7 +69,7 @@ export const Nav = ({ handleUser, userRegister }) => {
         {userRegister && (
           <p className={style.user}>
             <i className="fas fa-user-circle"></i>{" "}
-            <span className={style.iconText}>BIENVENIDO </span>{" "}
+            <span className={style.iconText}>WELCOME </span>{" "}
             {userRegister.name}
           </p>
         )}
