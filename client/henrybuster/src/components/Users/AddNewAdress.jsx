@@ -36,7 +36,7 @@ const AddNewAdress = () => {
  }) 
 
   const [loading, setLoading] = useState(false); // Nuevo estado de carga
-
+  const [loading2, setLoading2] = useState(false);
   const handleChange = (e) => {
     const { name, value } = e.target;
   
@@ -116,9 +116,11 @@ const AddNewAdress = () => {
   };
 
   const getAdress = async (uid) => {
+    setLoading2(true);
     const adress = await axios.get(`http://localhost:3001/address/user/${user.uid}`);
     const direccionData = adress.data;
     dispatch(setDirections(direccionData));
+    setLoading2(false); // Finalizar la carga
   };
 
   useEffect(() => {
@@ -210,7 +212,11 @@ const AddNewAdress = () => {
             </div>
           </form>
           <div className={style.Columna2}>
-            {directions && directions.length >= 1 ? (   
+          {loading2 ? (
+             <div className="spinner-border text-dark" role="status">
+             <span className="sr-only">Loading...</span>
+           </div>
+            ) : directions && directions.length >= 1 ? (
               directions.map((address) => (
                 <div key={address.id} className={style.direccion}>
                   <p>Street: {address.street}<br />

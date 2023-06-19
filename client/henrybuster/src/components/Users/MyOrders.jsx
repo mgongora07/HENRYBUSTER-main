@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import SideBarProfile from './SideBarProfile'
 import style from '../Styles/MyOrders.module.css'
 import { useSelector, useDispatch } from 'react-redux'
@@ -10,10 +10,12 @@ const MyOrders = () => {
   const { user} = useAuth();
   const dispatch = useDispatch()
   const orders = useSelector(state => state.myOrders);
+  const [loading, setLoading] = useState(false); 
 
   useEffect(()=>{
+    setLoading(true); 
     dispatch(getMyOrders(user.uid));
-
+    setLoading(false); 
   },[user])
 
  
@@ -29,7 +31,11 @@ const MyOrders = () => {
         <div className={style.body}>
             <h1><i className="bi bi-truck"></i> My orders</h1>
           <div className={style.orders}>
-            {orders && orders.length >= 1 ? (
+            {loading ? (
+             <div className="spinner-border text-dark" role="status">
+             <span className="sr-only">Loading...</span>
+           </div>
+            ) : orders && orders.length >= 1 ? (
               orders.map(order=>(
                 <div key={order.id} className={style.orderCard}>
                   <p>Order number: {order.id} <br/>
