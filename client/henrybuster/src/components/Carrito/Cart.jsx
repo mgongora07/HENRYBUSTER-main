@@ -3,7 +3,7 @@ import style from '../Styles/Carrito.module.css'
 import ItemCart from "./ItemCart";
 import { CartContext } from "./Context";
 import { Link } from "react-router-dom";
-
+import Swal from 'sweetalert2'
 const Cart = () => {
   const [productsLength, setProductsLength] = useState(0);
 
@@ -20,6 +20,14 @@ const Cart = () => {
     (previous, current) => previous + current.amount * current.price,
     0
   ).toFixed(2);;
+  const handlePayment = async (e) => {
+    e.preventDefault();
+    Swal.fire({
+      title: 'Want to pay without login or sign up?',
+      icon: 'question',
+      confirmButtonColor: '#153f59'
+    });
+  }
 
   return (
     <div style={{ color: "white" }}>
@@ -37,8 +45,10 @@ const Cart = () => {
                 <ItemCart key={i} item={item} />
               ))}
               <Link to={"/payment"}>
-          <button className={style.boton}>Go to pay (${total} USD)</button>
-
+          <button className={style.boton}
+          onClick={handlePayment}
+          >Go to pay (${total} USD)</button>
+          
           </Link>
             </div>
           )}

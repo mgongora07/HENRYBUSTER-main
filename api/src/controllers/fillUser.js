@@ -18,7 +18,8 @@ const fillUser = async (User) => {
       {id: "15", name: "Benjamin", admin: false, username: "Benjamin", phoneNumber: "+1123456789", email: "benjamin@example.com", state: true},
       {id: "16", name: "Lily", admin: false, username: "Lily", phoneNumber: "+1098765432", email: "lily@example.com", state: true},
       {id: "17", name: "William", admin: false, username: "William", phoneNumber: "+1155555555", email: "william@example.com", state: true},
-      {id:"sweBwHLTcwgoDB2HeTnYiwIUohM2", username: null, name: "Kevin Fangio Reyes López", phoneNumber:null, email:"202106488@p.uapa.edu.do", state:true, admin:true, superAdmin:true}
+      {id:"sweBwHLTcwgoDB2HeTnYiwIUohM2", username: null, name: "Kevin Fangio Reyes López", phoneNumber:null, email:"202106488@p.uapa.edu.do", state:true, admin:true, superAdmin:true},
+      {id:"rkkDXQLW6GcD8H12spb5vFSHUuf2", username: null, name: "Saraid Gutierrez Mateos", phoneNumber:null, email:"saraidmateos23@gmail.com", state:true, admin:true, superAdmin:true}
     ]
     );
   } catch (error) {

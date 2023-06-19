@@ -54,9 +54,11 @@ function App() {
       localStorage.setItem("user", JSON.stringify(""));
     } else {
       let userRegister = await axios.get(
-        `https://henrybuster.onrender.com/user/${id}`
+        `https://localhost:3001/user/${id}`
       );
+      console.log(userRegister)
       let user = userRegister.data;
+      console.log(user.name)
       if (user) {
         localStorage.setItem("user", JSON.stringify(user));
       }
