@@ -24,6 +24,10 @@ import express1 from '../../img/expr.png'
 import post1 from '../../img/Postgresql.png'
 import sequ1 from '../../img/sequelize.jpeg'
 import dotenv1 from '../../img/dotenv.svg'
+import cloudinary1 from '../../img/cloudinary.png'
+import github1 from '../../img/github.png'
+import render1 from '../../img/render.png'
+import vercel1 from '../../img/vercel.png'
 // import Logo from "../../img/Logo.png";
 // import github from "../../img/github.jpg";
 // import Linkedin from "../../img/Linkedin.png";
@@ -59,7 +63,7 @@ export default function About() {
           <br />
           <br />
           <strong className={style.strong}>
-            Client-Side Main Dependencies in this Proyect:
+            MAIN TECHNOLOGIES USED IN THIS PROYECT:
             </strong> <br />
             <br />
             <img className={style.icon} src={react1} alt="react" /> React: Library for building user interfaces. <br /><br />
@@ -73,22 +77,17 @@ export default function About() {
             <img className={style.icon} src={chart1} alt="Chart" /> Chart.js: These libraries allow creating interactive and visually appealing charts in the application. <br /><br />
             <img className={style.icon} src={esbuild1} alt="esbuild" /> Esbuild: A fast and efficient bundling package that transforms and packages the application's source code. <br /><br />
             <img className={style.icon} src={localforage1} alt="localforage" /> Localforage: An offline data storage library that uses a localStorage-like API but with support for larger storage and improved persistence. <br /><br />
-          
+    
 
-
-	
-  <br />
-  <strong className={style.strong}>
-  Server-Side Main Dependencies in this Proyect:
-            </strong>
- <br />
-<br />
 <img className={style.icon} src={axios1} alt="Axios" /> Axios: A promise-based HTTP client library used on the server-side for making HTTP requests. <br /><br />
 <img className={style.icon} src={express1} alt="Express" /> Express: A Node.js web framework used to create the API and handle HTTP requests on the server-side. <br /><br />
 <img className={style.icon} src={post1} alt="PostgreSQL" /> PostgreSQL: PostgreSQL is a database system or database engine.<br /><br />
 <img className={style.icon} src={sequ1} alt="Sequelize" /> Sequelize: These libraries are used to interact with a PostgreSQL database and perform object-relational mapping (ORM) operations on the server. <br /><br />
-<img className={style.icon} src={dotenv1} alt="Dotenv" /> Dotenv: A module that loads environment variables from a .env file for use in the server. <br /><br />
-	
+<img className={style.icon} src={cloudinary1} alt="Cloudinary" /> Cloudinary: It is a cloud platform that offers storage and manipulation services for images and videos. <br /><br />
+<img className={style.icon} src={github1} alt="Github" /> Github: It is a collaborative development platform that allows hosting and managing source code repositories, facilitating version control and teamwork. <br /><br />
+<img className={style.icon} src={vercel1} alt="Vercel" /> Vercel: It is a platform for hosting and deploying static web applications and serverless functions, which integrates seamlessly with Git repositories. <br /><br />
+<img className={style.icon} src={render1} alt="Render" /> Render: It is a cloud platform that provides hosting and deployment services for web applications and backend services, offering scalability and high availability. <br /><br />
+
 	
 	
         </p>

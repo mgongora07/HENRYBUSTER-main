@@ -26,13 +26,10 @@ const BarChart = () => {
         }}
       >
         <Col>
-          <h2>Purchases:</h2>
-          <p>Total de Vendidas</p>
-          <p>Total de vendidas en $ </p>
+  
         </Col>
         <Col>
-          <h2>Users</h2>
-          <p>Total de Usuarios:</p>
+          
         </Col>
       </Row>
     </Container>

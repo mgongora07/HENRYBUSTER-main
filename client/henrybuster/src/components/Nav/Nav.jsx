@@ -33,9 +33,9 @@ export const Nav = ({ handleUser, userRegister }) => {
       handleUser("");
       await logout();
       navigate("/");
-      dispatch(cleanOrders());
-      dispatch(cleanUser());
-      dispatch(setDirections([]));
+      await dispatch(cleanOrders());
+    await dispatch(cleanUser());
+    await dispatch(setDirections([]));
     } catch (error) {
       console.log(error);
     }
@@ -61,26 +61,20 @@ export const Nav = ({ handleUser, userRegister }) => {
   }
 
   const itemsNumber = cartItems.length
-  let cutName = "";
-  if(userRegister.name){
-     let cutName = userRegister.name.split(' ')[0];
-     return cutName
-  }
  
   return (
     <nav className={style.nav}>
-      <Link className={style.link} to="/">
       <div className={style.containerLogo}>
         <img src={logo} alt="logo not found" className={style.logo} />
         {userRegister && (
           <p className={style.user}>
-            <i className="fas fa-user-circle" style={{ marginLeft: "5px" }}></i>{" "}
-            <span className={style.iconText}>WELCOME </span>{" "}
-            {cutName? cutName : ""}
+            <i className="fas fa-user-circle"></i>{" "}
+            <span className={style.iconText}>Welcome </span>{" "}
+            {userRegister.name}
           </p>
         )}
       </div>
-      </Link>
+
       <div className={style.contentLink}>
         {userRegister.admin ? (
           <Link className={style.link} to="/admin">
