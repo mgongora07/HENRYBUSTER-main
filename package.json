@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@kommunicate/kommunicate-chatbot-plugin": "^0.0.6",
+    "@stripe/react-stripe-js": "^2.1.0",
+    "@stripe/stripe-js": "^1.53.0",
+    "bootstrap-icons": "^1.10.5",
+    "react-router-dom": "^6.11.2"
+  }
+}

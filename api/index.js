@@ -39,13 +39,12 @@ conn.sync({ force: true }).then(() => {
   server.listen(3001, async () => {
     console.log("%s listening at 3001"); // eslint-disable-line no-console
     fillUser(User);
-    fillFormat(Format);
-    fillGenre(Genre);
-    fillLanguage(Language);
-    fillMovie(Movie);
-    setTimeout(function() {
+   fillFormat(Format);
+     fillGenre(Genre);
+     fillLanguage(Language);
+     fillMovie(Movie);
+     setTimeout(function () {
       fillRating(Rating);
-    }, 3000);
-    
+     }, 3000);
   });
-})
+});

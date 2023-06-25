@@ -22,7 +22,7 @@ module.exports = (sequelize) => {
       },
       email: {
         type: DataTypes.STRING,
-        unique: true,
+        //unique: true,
         allowNull: false,
         validate: {
           isEmail: true,
@@ -32,11 +32,16 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         allowNull: false,
       },
+      superAdmin:{
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
       state: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: true,
-      },
+        defaultValue: true,
+      },
     },
     {
       timestamps: false,
